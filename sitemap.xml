@@ -61,10 +61,6 @@
          <lastmod>2026-03-11</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/builders/documentation-automation/</loc>
-         <lastmod>2026-03-11</lastmod>
-    </url>
-    <url>
          <loc>https://docs.core-stack.org/builders/run-internal-tasks/</loc>
          <lastmod>2026-03-11</lastmod>
     </url>
@@ -89,11 +85,23 @@
          <lastmod>2026-03-11</lastmod>
     </url>
     <url>
+         <loc>https://docs.core-stack.org/community/core-stack-innovation-challenge/</loc>
+         <lastmod>2026-03-11</lastmod>
+    </url>
+    <url>
          <loc>https://docs.core-stack.org/community/data-stewardship/</loc>
          <lastmod>2026-03-11</lastmod>
     </url>
     <url>
          <loc>https://docs.core-stack.org/community/gram-panchayat/</loc>
+         <lastmod>2026-03-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.core-stack.org/community/innovation-challenges/</loc>
+         <lastmod>2026-03-11</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.core-stack.org/community/tessera-innovation-call/</loc>
          <lastmod>2026-03-11</lastmod>
     </url>
     <url>
@@ -138,26 +146,6 @@
     </url>
     <url>
          <loc>https://docs.core-stack.org/integrations/google-earth-engine/</loc>
-         <lastmod>2026-03-11</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.core-stack.org/local-first/</loc>
-         <lastmod>2026-03-11</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.core-stack.org/local-first/architecture/</loc>
-         <lastmod>2026-03-11</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.core-stack.org/local-first/running-swb-local/</loc>
-         <lastmod>2026-03-11</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.core-stack.org/local-first/stac-fetcher/</loc>
-         <lastmod>2026-03-11</lastmod>
-    </url>
-    <url>
-         <loc>https://docs.core-stack.org/local-first/writing-local-engines/</loc>
          <lastmod>2026-03-11</lastmod>
     </url>
     <url>
