@@ -1,259 +1,307 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://docs.core-stack.org/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/index.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/vision/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/api/api-explorer.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/api/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/api/authentication.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/api/authentication/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/api/computing-endpoints.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/api/computing-endpoints/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/api/geoadmin-noauth.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/api/internal-api-access/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/api/public-endpoints.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/api/public-endpoints/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/api/stac-specs.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/api/roles-and-organizations/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/blog/index.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/api/swagger-ui/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/blog/2026/03/19/rebuilding-the-docs-tree-for-v3.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/api/testing-locally/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/community/index.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/builders/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/community/code-of-conduct.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/builders/adding-pipelines/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/community/contributing.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/builders/backend-code-map/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/community/contributions.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/builders/data-models/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/community/core-stack-innovation-challenge.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/builders/run-internal-tasks/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/community/how-core-stack-is-used.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/builders/system-architecture/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/community/tessera-student-innovation-call.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/community/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/community/innovation-challenges/index.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/community/code-of-conduct/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/developers/index.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/community/contributing/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/developers/add-new-data-resources.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/community/contributions/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/developers/backend-code-map.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/community/core-stack-innovation-challenge/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/developers/build-new-pipelines.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/community/data-stewardship/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/developers/celery-auth-and-task-integration.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/community/gram-panchayat/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/developers/coding-standards-and-guidelines.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/community/innovation-challenges/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/developers/django-computing-api-integration.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/community/tessera-innovation-call/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/developers/first-manual-api-run.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/community/whatsapp-bot/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/developers/installer.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/community/pipelines/computation-registry/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/developers/local-pipeline-first.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/get-started/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/developers/setup-troubleshooting.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/get-started/first-run/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/developers/system-architecture.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/get-started/interactive-installer/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/developers/integrations/index.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/get-started/system-requirements/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/developers/integrations/aws.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/get-started/troubleshooting/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/developers/integrations/geoserver.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/get-started/verification/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/developers/integrations/google-earth-engine.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/integrations/aws-s3/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/index.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/integrations/geoserver/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/admin-boundary.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/integrations/google-earth-engine/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/agroecological-space.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/aquifer-vector.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/ADD-PIPELINES/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/catchment-area.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/admin_boundary/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/common-design-and-integration-patterns.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/agroecological_space/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/computation-registry.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/aquifer_vector/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/distance-to-nearest-drainage.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/catchment_area/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/drainage-lines.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/distancetonearestdrainage/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/facilities-proximity.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/drainage_lines/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/hls-interpolated-ndvi.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/facilities_proximity/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/how-pipelines-work-algorithmically.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/gee_authentication_setup/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/how-pipelines-work-programmatically.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/hls_interpolated_ndvi/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/hydrology.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/hydrology/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/lulc-generation.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/lulc-generation/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/natural-depression.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/naturaldepression/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/ndvi-time-series.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/ndvi_time_series/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/nrega-assets.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/nrega/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/pan-india-clip-modules.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/pan_india_clip_modules/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/pipeline-integrations.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/restoration_opportunity/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/restoration-opportunity.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/slope_percentage/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/slope-percentage.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/soge_vector/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/soge-vector.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/stream_order/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/stream-order.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/swb-detection/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/swb-detection.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/pipelines/terrain-analysis/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/terrain-analysis.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/reference/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/watershed-data-structure.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/reference/api-errors/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/boundary-and-enrichment/index.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/reference/glossary/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/core-workflows/index.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/reference/learning-resources/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/raster-and-drainage/index.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/reference/watershed-data-model/</loc>
-         <lastmod>2026-03-11</lastmod>
+         <loc>https://docs.core-stack.org/pipelines/time-series-and-ops/index.html</loc>
+         <lastmod>2026-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.core-stack.org/reference/index.html</loc>
+         <lastmod>2026-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.core-stack.org/reference/abbreviations.html</loc>
+         <lastmod>2026-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.core-stack.org/reference/api-errors.html</loc>
+         <lastmod>2026-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.core-stack.org/reference/geospatial-learning-resources.html</loc>
+         <lastmod>2026-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.core-stack.org/reference/glossary.html</loc>
+         <lastmod>2026-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.core-stack.org/reference/license.html</loc>
+         <lastmod>2026-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.core-stack.org/reference/standardised-field-constant-variable-names.html</loc>
+         <lastmod>2026-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.core-stack.org/reference/wonderful-github-repos.html</loc>
+         <lastmod>2026-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.core-stack.org/use-precomputed-data/index.html</loc>
+         <lastmod>2026-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.core-stack.org/use-precomputed-data/how-current-data-was-computed.html</loc>
+         <lastmod>2026-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.core-stack.org/blog/archive/2026.html</loc>
+         <lastmod>2026-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.core-stack.org/blog/category/docs.html</loc>
+         <lastmod>2026-03-19</lastmod>
     </url>
 </urlset>
