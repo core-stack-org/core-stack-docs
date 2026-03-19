@@ -1,0 +1,48 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# UV Configuration (machine-specific)
+.uv
+.uv-cache/
+
+# Virtual environments
+.venv
+
+
+# Local Work
+.history/
+.local/
+logs/
+.repo-evolution/
+.kilocode/
+.codex/
+site/
+
+
+# Files
+*.docx
+*.pptx
+*.bak
+*.log
+*.tmp
+*.swp
+*.zip
+*.7z
+*.kilo*
+
+
+
+.cache/
+.github/
+.history/
+.archive/
+.contributions/
+.core_stack_innovation_2025/
+*.docx
+*.7z
+*.zip

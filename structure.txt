@@ -1,0 +1,42 @@
+Home
+Getting Started
+Use PreComputed Geospatial Data
+	GeoAdmin (NoAuth) APIs (to get location names)
+	Swagger
+	Public API References
+	STAC Specs (Auto generated from repo)
+	Data Lessons
+		How current data was computed (guide them to `Computation Pipelines`)
+	Encourage data users to try installing backend and compute data using existing computing pipelines if data for some regions wasn't available
+Computation Pipelines (how we generated what we are presenting)
+	Watershed Data Structure
+	How Our Pipelines work Algorithmically
+	How they work programmatically
+	Common Pipeline Design/Integration Patterns
+	Pipeline Integrations
+	Computation Registry (List all APIs, including all computation APIs)
+Develop CoRE-Stack! (mostly focused on getting people to build pipelines for diverse tasks, or building UIs and other plaforms to visualise them adding value to raw data step by step -- as we also just added one step, others can build on the semi-computed (our precomputed can be their secondary data resource) or they can do different computations on the raw data we are already using).
+	Our Data Structure
+	How and what we commonly do, using which entry points
+	Common functions, workflows etc.
+	Build New Pipelines
+	Integrations (with GEE, GeoServer, AWS etc)
+	Add and integrate public/new Data Resources
+	Coding Standard and Guidelines
+Community
+	innovation-challenges
+		tessera-student-innovation-call
+		core-stack-innovation-challenge
+		contributions
+	Contributing
+	Code of Conduct
+	Start commoning
+		Stewardship
+		CSOs / Local Governance Bodies
+		Data Verification and Grounding
+References/Learn
+	Glossary
+	Abbreviations
+	Standardised field/constant/variable names
+	Geospatial Learning Resources
+	Wonderful GitHub Repos!

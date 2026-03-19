@@ -1,0 +1,229 @@
+site_name: CoRE Stack Documentation
+site_description: Community Resource Planning Stack - open geospatial infrastructure for public data access, computation pipelines, and grounded planning.
+site_url: https://docs.core-stack.org
+copyright: CoRE Stack; 2026
+
+repo_name: core-stack-org/core-stack-docs
+repo_url: https://github.com/core-stack-org/core-stack-docs
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  custom_dir: overrides
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.indexes
+    - navigation.top
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.instant.preview
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.tabs.link
+    - content.code.copy
+    - content.code.annotate
+    - content.action.edit
+  icon:
+    repo: fontawesome/brands/github
+  logo: assets/logo.png
+  favicon: assets/logo.png
+
+extra:
+  generator: false
+  offline_mode: !ENV [MKDOCS_OFFLINE, false]
+  giscus:
+    repo: core-stack-org/core-stack-docs
+    repo_id: ""
+    category: General
+    category_id: ""
+    mapping: pathname
+    strict: "0"
+    reactions_enabled: "1"
+    emit_metadata: "0"
+    input_position: bottom
+    lang: en
+    loading: lazy
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/core-stack-org
+      name: Build CoRE Stack with us
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/PSkZX4hvWx
+      name: Join discussions on Discord
+    - icon: fontawesome/solid/globe
+      link: https://core-stack.org
+      name: CoRE Stack website
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/company/core-stack
+      name: Connect on LinkedIn
+
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  - search
+  - blog
+  - social
+  - offline
+  - mermaid2:
+      arguments:
+        theme: neutral
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+      title: On this page
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - pymdownx.blocks.caption
+
+nav:
+  - Home: index.md
+  - Understand CoRE Stack Data Structure:
+      - pipelines/watershed-data-structure.md      
+  - Develop CoRE Stack:
+      - developers/index.md
+      - Backend Code Map: developers/backend-code-map.md
+      - System Architecture: developers/system-architecture.md
+      - First Manual API Run: developers/first-manual-api-run.md
+      - Integrations:
+          - developers/integrations/index.md
+          - Google Earth Engine: developers/integrations/google-earth-engine.md
+          - GeoServer: developers/integrations/geoserver.md
+          - AWS: developers/integrations/aws.md
+      - Coding Standards and Guidelines: developers/coding-standards-and-guidelines.md
+  - Develop Computation Pipelines:
+      - pipelines/index.md
+      - Installer: developers/installer.md
+      - Setup Troubleshooting: developers/setup-troubleshooting.md
+      - How Our Pipelines Work Algorithmically: pipelines/how-pipelines-work-algorithmically.md
+      - How They Work Programmatically: pipelines/how-pipelines-work-programmatically.md
+      - Common Pipeline Design / Integration Patterns: pipelines/common-design-and-integration-patterns.md
+      - Pipeline Integrations: pipelines/pipeline-integrations.md
+      - Computation Registry: pipelines/computation-registry.md
+      - Computing API Endpoints: api/computing-endpoints.md
+      - Local Pipeline First: developers/local-pipeline-first.md
+      - Integrate With Django Computing API: developers/django-computing-api-integration.md
+      - Add Celery / Auth / Task Integration: developers/celery-auth-and-task-integration.md
+      - Build New Pipelines: developers/build-new-pipelines.md
+      - Add and Integrate Public / New Data Resources: developers/add-new-data-resources.md
+      - Core Workflows:
+          - pipelines/core-workflows/index.md
+          - LULC Generation: pipelines/lulc-generation.md
+          - SWB Detection: pipelines/swb-detection.md
+          - Hydrology: pipelines/hydrology.md
+          - Terrain Analysis: pipelines/terrain-analysis.md
+      - Boundary and Enrichment Layers:
+          - pipelines/boundary-and-enrichment/index.md
+          - Admin Boundary: pipelines/admin-boundary.md
+          - Facilities Proximity: pipelines/facilities-proximity.md
+          - NREGA Assets: pipelines/nrega-assets.md
+          - Agroecological Space: pipelines/agroecological-space.md
+          - Aquifer Vector: pipelines/aquifer-vector.md
+          - SOGE Vector: pipelines/soge-vector.md
+          - Pan-India Clip Modules: pipelines/pan-india-clip-modules.md
+      - Raster and Drainage Layers:
+          - pipelines/raster-and-drainage/index.md
+          - Drainage Lines: pipelines/drainage-lines.md
+          - Catchment Area: pipelines/catchment-area.md
+          - Stream Order: pipelines/stream-order.md
+          - Distance to Nearest Drainage: pipelines/distance-to-nearest-drainage.md
+          - Natural Depression: pipelines/natural-depression.md
+          - Slope Percentage: pipelines/slope-percentage.md
+          - Restoration Opportunity: pipelines/restoration-opportunity.md
+      - Time Series and Ops:
+          - pipelines/time-series-and-ops/index.md
+          - NDVI Time Series: pipelines/ndvi-time-series.md
+          - HLS Interpolated NDVI: pipelines/hls-interpolated-ndvi.md
+  - Use PreComputed Geospatial Data:
+      - use-precomputed-data/index.md
+      - GeoAdmin (NoAuth) APIs: api/geoadmin-noauth.md
+      - Get Public API Access: api/authentication.md
+      - Swagger / ReDoc: api/api-explorer.md
+      - Public API References: api/public-endpoints.md
+      - STAC Specs: api/stac-specs.md
+      - How Current Data Was Computed: use-precomputed-data/how-current-data-was-computed.md
+  - Community:
+      - community/index.md
+      - How CoRE Stack Is Used: community/how-core-stack-is-used.md
+      - Innovation Challenges:
+          - community/innovation-challenges/index.md
+          - CoRE Stack Innovation Challenge: community/core-stack-innovation-challenge.md
+          - TESSERA Student Innovation Call: community/tessera-student-innovation-call.md
+          - Contributions: community/contributions.md
+      - Contributing: community/contributing.md
+      - Code of Conduct: community/code-of-conduct.md
+  - References / Learn:
+      - reference/index.md
+      - Glossary: reference/glossary.md
+      - Abbreviations: reference/abbreviations.md
+      - Standardised Field / Constant / Variable Names: reference/standardised-field-constant-variable-names.md
+      - Geospatial Learning Resources: reference/geospatial-learning-resources.md
+      - Wonderful GitHub Repos!: reference/wonderful-github-repos.md
+      - API Errors: reference/api-errors.md
+  - Blog:
+      - blog/index.md
+
+dev_addr: 127.0.0.1:8001
+strict: false
+
+watch:
+  - docs
+  - overrides
