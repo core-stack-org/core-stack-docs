@@ -33,7 +33,7 @@
          <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/blog/2026/03/19/rebuilding-the-docs-tree-for-v3.html</loc>
+         <loc>https://docs.core-stack.org/blog/2026/03/19/tessera-and-why-it-matters-for-earth-observation.html</loc>
          <lastmod>2026-03-19</lastmod>
     </url>
     <url>
@@ -281,6 +281,10 @@
          <lastmod>2026-03-19</lastmod>
     </url>
     <url>
+         <loc>https://docs.core-stack.org/reference/scientific-papers-and-research-repositories.html</loc>
+         <lastmod>2026-03-19</lastmod>
+    </url>
+    <url>
          <loc>https://docs.core-stack.org/reference/standardised-field-constant-variable-names.html</loc>
          <lastmod>2026-03-19</lastmod>
     </url>
@@ -301,7 +305,11 @@
          <lastmod>2026-03-19</lastmod>
     </url>
     <url>
-         <loc>https://docs.core-stack.org/blog/category/docs.html</loc>
+         <loc>https://docs.core-stack.org/blog/category/research.html</loc>
+         <lastmod>2026-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.core-stack.org/blog/category/community.html</loc>
          <lastmod>2026-03-19</lastmod>
     </url>
 </urlset>
