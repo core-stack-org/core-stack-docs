@@ -5,13 +5,13 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="Understand the pipeline logic and extend computation workflows from theory to integration once the backend is installed." name="description"/>
+<meta content="Understand how CoRE Stack pipelines work and extend computation workflows from local experimentation to integrated platform outputs." name="description"/>
 <link href="https://docs.core-stack.org/pipelines/index.html" rel="canonical"/>
 <link href="../developers/coding-standards-and-guidelines.html" rel="prev"/>
-<link href="how-pipelines-work-algorithmically.html" rel="next"/>
+<link href="first-manual-api-run.html" rel="next"/>
 <link href="../assets/logo.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.4" name="generator"/>
-<title>Develop Computation Pipelines - CoRE Stack Documentation</title>
+<title>Pipeline Development - CoRE Stack Documentation</title>
 <link href="../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
 <script src="https://unpkg.com/iframe-worker/shim"></script>
@@ -21,16 +21,16 @@
 <link href="../stylesheets/extra.css" rel="stylesheet"/>
 <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <meta content="website" property="og:type">
-<meta content="Develop Computation Pipelines - CoRE Stack Documentation" property="og:title">
-<meta content="Understand the pipeline logic and extend computation workflows from theory to integration once the backend is installed." property="og:description">
+<meta content="Pipeline Development - CoRE Stack Documentation" property="og:title">
+<meta content="Understand how CoRE Stack pipelines work and extend computation workflows from local experimentation to integrated platform outputs." property="og:description">
 <meta content="https://docs.core-stack.org/assets/images/social/pipelines/index.png" property="og:image">
 <meta content="image/png" property="og:image:type"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
 <meta content="https://docs.core-stack.org/pipelines/index.html" property="og:url"/>
 <meta content="summary_large_image" property="twitter:card"/>
-<meta content="Develop Computation Pipelines - CoRE Stack Documentation" property="twitter:title"/>
-<meta content="Understand the pipeline logic and extend computation workflows from theory to integration once the backend is installed." property="twitter:description"/>
+<meta content="Pipeline Development - CoRE Stack Documentation" property="twitter:title"/>
+<meta content="Understand how CoRE Stack pipelines work and extend computation workflows from local experimentation to integrated platform outputs." property="twitter:description"/>
 <meta content="https://docs.core-stack.org/assets/images/social/pipelines/index.png" property="twitter:image"/>
 </meta></meta></meta></meta></head>
 <body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
@@ -38,7 +38,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#develop-computation-pipelines">
+<a class="md-skip" href="#pipeline-development">
           Skip to content
         </a>
 </div>
@@ -62,7 +62,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Develop Computation Pipelines
+              Pipeline Development
             
           </span>
 </div>
@@ -153,7 +153,7 @@
 
         </a>
 </li>
-<li class="md-tabs__item">
+<li class="md-tabs__item md-tabs__item--active">
 <a class="md-tabs__link" href="../developers/index.html">
           
   
@@ -161,17 +161,6 @@
     
   
   Develop CoRE Stack
-
-        </a>
-</li>
-<li class="md-tabs__item md-tabs__item--active">
-<a class="md-tabs__link" href="index.html">
-          
-  
-  
-    
-  
-  Pipelines
 
         </a>
 </li>
@@ -297,8 +286,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../developers/index.html">
 <span class="md-ellipsis">
@@ -310,11 +299,11 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
             
@@ -360,32 +349,8 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../developers/system-architecture.html">
-<span class="md-ellipsis">
-    
-  
-    System Architecture
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../developers/first-manual-api-run.html">
-<span class="md-ellipsis">
-    
-  
-    First Manual API Run
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_7" type="checkbox"/>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_5" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../developers/integrations/index.html">
 <span class="md-ellipsis">
@@ -397,12 +362,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+<label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_3_7_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_3_7">
+<nav aria-expanded="false" aria-labelledby="__nav_3_5_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_5">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -462,36 +427,45 @@
   </span>
 </a>
 </li>
-</ul>
-</nav>
-</li>
 <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_7" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link md-nav__link--active" href="index.html">
 <span class="md-ellipsis">
     
   
-    Pipelines
+    Pipeline Development
   
 
     
   </span>
 </a>
-<label class="md-nav__link md-nav__link--active" for="__nav_4" id="__nav_4_label" tabindex="">
+<label class="md-nav__link md-nav__link--active" for="__nav_3_7" id="__nav_3_7_label" tabindex="">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_4">
+<nav aria-expanded="true" aria-labelledby="__nav_3_7_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_7">
 <span class="md-nav__icon md-icon"></span>
             
   
-    Pipelines
+    Pipeline Development
   
 
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="first-manual-api-run.html">
+<span class="md-ellipsis">
+    
+  
+    First Manual API Run
+  
+
+    
+  </span>
+</a>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="how-pipelines-work-algorithmically.html">
 <span class="md-ellipsis">
@@ -517,11 +491,71 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="local-pipeline-first.html">
+<span class="md-ellipsis">
+    
+  
+    Local Pipeline First
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="django-computing-api-integration.html">
+<span class="md-ellipsis">
+    
+  
+    Integrate With Django Computing API
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="celery-auth-and-task-integration.html">
+<span class="md-ellipsis">
+    
+  
+    Add Celery / Auth / Task Integration
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="computing-endpoints.html">
+<span class="md-ellipsis">
+    
+  
+    Computing API Endpoints
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="common-design-and-integration-patterns.html">
 <span class="md-ellipsis">
     
   
     Common Pipeline Design / Integration Patterns
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="build-new-pipelines.html">
+<span class="md-ellipsis">
+    
+  
+    Build New Pipelines
   
 
     
@@ -541,67 +575,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../api/computing-endpoints.html">
-<span class="md-ellipsis">
-    
-  
-    Computing API Endpoints
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../developers/local-pipeline-first.html">
-<span class="md-ellipsis">
-    
-  
-    Local Pipeline First
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../developers/django-computing-api-integration.html">
-<span class="md-ellipsis">
-    
-  
-    Integrate With Django Computing API
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../developers/celery-auth-and-task-integration.html">
-<span class="md-ellipsis">
-    
-  
-    Add Celery / Auth / Task Integration
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../developers/build-new-pipelines.html">
-<span class="md-ellipsis">
-    
-  
-    Build New Pipelines
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../developers/add-new-data-resources.html">
+<a class="md-nav__link" href="add-new-data-resources.html">
 <span class="md-ellipsis">
     
   
@@ -612,8 +586,8 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_12" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_7_13" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="core-workflows/index.html">
 <span class="md-ellipsis">
@@ -625,12 +599,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_4_12" id="__nav_4_12_label" tabindex="">
+<label class="md-nav__link" for="__nav_3_7_13" id="__nav_3_7_13_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_12_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_4_12">
+<nav aria-expanded="false" aria-labelledby="__nav_3_7_13_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_7_13">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -690,8 +664,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_13" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_7_14" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="boundary-and-enrichment/index.html">
 <span class="md-ellipsis">
@@ -703,12 +677,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_4_13" id="__nav_4_13_label" tabindex="">
+<label class="md-nav__link" for="__nav_3_7_14" id="__nav_3_7_14_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_13_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_4_13">
+<nav aria-expanded="false" aria-labelledby="__nav_3_7_14_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_7_14">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -804,8 +778,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_14" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_7_15" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="raster-and-drainage/index.html">
 <span class="md-ellipsis">
@@ -817,12 +791,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_4_14" id="__nav_4_14_label" tabindex="">
+<label class="md-nav__link" for="__nav_3_7_15" id="__nav_3_7_15_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_14_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_4_14">
+<nav aria-expanded="false" aria-labelledby="__nav_3_7_15_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_7_15">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -918,8 +892,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_15" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_7_16" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="time-series-and-ops/index.html">
 <span class="md-ellipsis">
@@ -931,12 +905,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_4_15" id="__nav_4_15_label" tabindex="">
+<label class="md-nav__link" for="__nav_3_7_16" id="__nav_3_7_16_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_15_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_4_15">
+<nav aria-expanded="false" aria-labelledby="__nav_3_7_16_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_7_16">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -975,8 +949,11 @@
 </ul>
 </nav>
 </li>
+</ul>
+</nav>
+</li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5" type="checkbox"/>
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../use-precomputed-data/index.html">
 <span class="md-ellipsis">
@@ -988,12 +965,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_5">
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -1002,6 +979,18 @@
 
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../use-precomputed-data/how-current-data-was-computed.html">
+<span class="md-ellipsis">
+    
+  
+    How Current Data Was Computed
+  
+
+    
+  </span>
+</a>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../api/geoadmin-noauth.html">
 <span class="md-ellipsis">
@@ -1015,35 +1004,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../api/authentication.html">
+<a class="md-nav__link" href="../api/public-apis.html">
 <span class="md-ellipsis">
     
   
-    Get Public API Access
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../api/api-explorer.html">
-<span class="md-ellipsis">
-    
-  
-    Swagger / ReDoc
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../api/public-endpoints.html">
-<span class="md-ellipsis">
-    
-  
-    Public API References
+    Get and Explore Public APIs
   
 
     
@@ -1062,23 +1027,11 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../use-precomputed-data/how-current-data-was-computed.html">
-<span class="md-ellipsis">
-    
-  
-    How Current Data Was Computed
-  
-
-    
-  </span>
-</a>
-</li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6" type="checkbox"/>
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../community/index.html">
 <span class="md-ellipsis">
@@ -1090,12 +1043,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_6">
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -1117,7 +1070,7 @@
 </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6_3" type="checkbox"/>
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5_3" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../community/innovation-challenges/index.html">
 <span class="md-ellipsis">
@@ -1129,12 +1082,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+<label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_6_3_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_6_3">
+<nav aria-expanded="false" aria-labelledby="__nav_5_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_5_3">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -1210,7 +1163,7 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7" type="checkbox"/>
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../reference/index.html">
 <span class="md-ellipsis">
@@ -1222,12 +1175,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_7">
+<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -1236,18 +1189,6 @@
 
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../reference/license.html">
-<span class="md-ellipsis">
-    
-  
-    License
-  
-
-    
-  </span>
-</a>
-</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../reference/scientific-papers-and-research-repositories.html">
 <span class="md-ellipsis">
@@ -1332,11 +1273,23 @@
   </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../reference/license.html">
+<span class="md-ellipsis">
+    
+  
+    License
+  
+
+    
+  </span>
+</a>
+</li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8" type="checkbox"/>
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../blog/index.html">
 <span class="md-ellipsis">
@@ -1348,12 +1301,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_8_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_8">
+<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -1363,8 +1316,8 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
 <span class="md-ellipsis">
     
   
@@ -1375,8 +1328,8 @@
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_8_2_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_8_2">
+<nav aria-expanded="false" aria-labelledby="__nav_7_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_7_2">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -1401,8 +1354,8 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8_3" type="checkbox"/>
-<label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
 <span class="md-ellipsis">
     
   
@@ -1413,8 +1366,8 @@
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_8_3_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_8_3">
+<nav aria-expanded="false" aria-labelledby="__nav_7_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_7_3">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -1468,10 +1421,10 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#choose-the-right-reading-order">
+<a class="md-nav__link" href="#recommended-path">
 <span class="md-ellipsis">
       
-        Choose The Right Reading Order
+        Recommended Path
       
     </span>
 </a>
@@ -1519,17 +1472,25 @@
 </a>
 </li>
 <li class="md-path__item">
+<a class="md-path__link" href="../developers/index.html">
+<span class="md-ellipsis">
+    Develop CoRE Stack
+  </span>
+</a>
+</li>
+<li class="md-path__item">
 <a class="md-path__link" href="index.html">
 <span class="md-ellipsis">
-    Pipelines
+    Pipeline Development
   </span>
 </a>
 </li>
 </ol>
 </nav>
 <article class="md-content__inner md-typeset">
-<h1 id="develop-computation-pipelines">Develop Computation Pipelines<a class="headerlink" href="#develop-computation-pipelines" title="Permanent link">¶</a></h1>
-<p>This section explains how CoRE Stack computes the data it publishes, and how contributors can extend those computations responsibly.</p>
+<h1 id="pipeline-development">Pipeline Development<a class="headerlink" href="#pipeline-development" title="Permanent link">¶</a></h1>
+<p>Pipeline development is one of the main ways CoRE Stack itself is developed.</p>
+<p>This section explains how CoRE Stack computes the data it publishes, and how contributors can extend those computations responsibly once the backend is installed.</p>
 <p>Read the <a href="watershed-data-structure.html">CoRE Stack Data Structure</a> chapter first if you have not already.</p>
 <p>Use it when you want to answer one of these questions:</p>
 <ul>
@@ -1540,37 +1501,19 @@
 <li>how do I move from a local experiment to an integrated computation?</li>
 </ul>
 <hr/>
-<h2 id="choose-the-right-reading-order">Choose The Right Reading Order<a class="headerlink" href="#choose-the-right-reading-order" title="Permanent link">¶</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">I want to understand current data</label><label for="__tabbed_1_2">I want to build a pipeline</label><label for="__tabbed_1_3">I want to trace code</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<ul>
-<li><a href="watershed-data-structure.html">CoRE Stack Data Structure</a></li>
-<li><a href="how-pipelines-work-algorithmically.html">How Pipelines Work Algorithmically</a></li>
-<li><a href="core-workflows/index.html">Core Workflows</a></li>
-<li><a href="../use-precomputed-data/how-current-data-was-computed.html">How Current Data Was Computed</a></li>
-</ul>
-</div>
-<div class="tabbed-block">
-<ul>
-<li><a href="../developers/installer.html">Installer</a></li>
-<li><a href="../developers/local-pipeline-first.html">Local Pipeline First</a></li>
-<li><a href="common-design-and-integration-patterns.html">Common Pipeline Design / Integration Patterns</a></li>
-<li><a href="../developers/django-computing-api-integration.html">Integrate With Django Computing API</a></li>
-<li><a href="../developers/celery-auth-and-task-integration.html">Add Celery / Auth / Task Integration</a></li>
-<li><a href="../developers/build-new-pipelines.html">Build New Pipelines</a></li>
-</ul>
-</div>
-<div class="tabbed-block">
-<ul>
-<li><a href="how-pipelines-work-programmatically.html">How They Work Programmatically</a></li>
-<li><a href="../api/computing-endpoints.html">Computing API Endpoints</a></li>
-<li><a href="pipeline-integrations.html">Pipeline Integrations</a></li>
-<li><a href="../developers/backend-code-map.html">Backend Code Map</a></li>
-</ul>
-</div>
-</div>
-</input></input></input></div>
+<h2 id="recommended-path">Recommended Path<a class="headerlink" href="#recommended-path" title="Permanent link">¶</a></h2>
+<p>Follow this order if you want the straightest route through pipeline development:</p>
+<ol>
+<li>Read <a href="how-pipelines-work-algorithmically.html">How Our Pipelines Work Algorithmically</a> to understand what each family computes.</li>
+<li>Read <a href="how-pipelines-work-programmatically.html">How They Work Programmatically</a> to understand the code path.</li>
+<li>Trace one real request in <a href="first-manual-api-run.html">First Manual API Run</a>.</li>
+<li>Start new work from <a href="local-pipeline-first.html">Local Pipeline First</a>.</li>
+<li>Add the thin route layer through <a href="django-computing-api-integration.html">Integrate With Django Computing API</a>.</li>
+<li>Add async execution through <a href="celery-auth-and-task-integration.html">Add Celery / Auth / Task Integration</a> only when needed.</li>
+<li>Use <a href="computing-endpoints.html">Computing API Endpoints</a> as the route catalog for the existing compute surface.</li>
+<li>Use <a href="build-new-pipelines.html">Build New Pipelines</a>, <a href="pipeline-integrations.html">Pipeline Integrations</a>, and <a href="add-new-data-resources.html">Add and Integrate Public / New Data Resources</a> when extending the stack.</li>
+</ol>
+<p>If you are here to understand an existing output rather than build something new, move into <a href="core-workflows/index.html">Core Workflows</a> or <a href="../use-precomputed-data/how-current-data-was-computed.html">How Current Data Was Computed</a>.</p>
 <hr/>
 <h2 id="the-common-shape">The Common Shape<a class="headerlink" href="#the-common-shape" title="Permanent link">¶</a></h2>
 <pre class="mermaid"><code>flowchart LR
@@ -1585,32 +1528,12 @@
 <p>If your environment is not ready yet, complete <a href="../developers/installer.html">Installer</a> and use <a href="../developers/setup-troubleshooting.html">Setup Troubleshooting</a> before going deeper into pipeline internals.</p>
 <hr/>
 <h2 id="workflow-families">Workflow Families<a class="headerlink" href="#workflow-families" title="Permanent link">¶</a></h2>
-<div class="grid cards">
 <ul>
-<li><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5a.5.5 0 0 0 .5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5a.5.5 0 0 0-.5-.5l-.16.03L15 5.1zM8 5.45v11.7l-3 1.16V6.46zm2 .02 4 1.4v11.66l-4-1.4zm9 .23v11.84l-3 1.01V6.86zm-11.54.6-1.89.67v2.15l1.89-.67zm0 2.75-1.89.67v2.15l1.89-.67zm0 2.75-1.89.67v2.15l1.89-.67zm0 2.75-1.89.67v2.15l1.89-.67z"></path></svg></span> <strong>Core Workflows</strong></li>
+<li><a href="core-workflows/index.html">Core Workflows</a>: the main current workflow families such as LULC, SWB, hydrology, and terrain.</li>
+<li><a href="boundary-and-enrichment/index.html">Boundary and Enrichment Layers</a>: workflows that clip, enrich, or join public layers onto planning units.</li>
+<li><a href="raster-and-drainage/index.html">Raster and Drainage Layers</a>: terrain support outputs, drainage derivatives, catchments, and raster surfaces.</li>
+<li><a href="time-series-and-ops/index.html">Time Series and Ops</a>: temporal vegetation outputs and the operational surfaces around them.</li>
 </ul>
-<hr/>
-<p>The most central current workflow families: land cover, waterbodies, hydrology, and terrain.</p>
-<p><a class="md-button" href="core-workflows/index.html">Open Core Workflows</a></p>
-<ul>
-<li><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 15a3 3 0 0 1 3 3 3 3 0 0 1-3 3 2.99 2.99 0 0 1-2.83-2H14v-2h1.17c.41-1.17 1.52-2 2.83-2m0 2a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m0-9a1.43 1.43 0 0 0 1.43-1.43 1.43 1.43 0 1 0-2.86 0A1.43 1.43 0 0 0 18 8m0-5.43a4 4 0 0 1 4 4C22 9.56 18 14 18 14s-4-4.44-4-7.43a4 4 0 0 1 4-4M8.83 17H10v2H8.83A2.99 2.99 0 0 1 6 21a3 3 0 0 1-3-3c0-1.31.83-2.42 2-2.83V14h2v1.17c.85.3 1.53.98 1.83 1.83M6 17a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1M6 3a3 3 0 0 1 3 3c0 1.31-.83 2.42-2 2.83V10H5V8.83A2.99 2.99 0 0 1 3 6a3 3 0 0 1 3-3m0 2a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1m5 14v-2h2v2zm-4-6H5v-2h2z"></path></svg></span> <strong>Boundary and Enrichment Layers</strong></li>
-</ul>
-<hr/>
-<p>Clip, enrich, or join datasets onto administrative or watershed boundaries.</p>
-<p><a class="md-button" href="boundary-and-enrichment/index.html">Open Boundary and Enrichment</a></p>
-<ul>
-<li><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m14 6-3.75 5 2.85 3.8-1.6 1.2C9.81 13.75 7 10 7 10l-6 8h22z"></path></svg></span> <strong>Raster and Drainage Layers</strong></li>
-</ul>
-<hr/>
-<p>Raster derivatives, drainage networks, catchments, terrain outputs, and related products.</p>
-<p><a class="md-button" href="raster-and-drainage/index.html">Open Raster and Drainage</a></p>
-<ul>
-<li><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m3 14 .5.07L8.07 9.5a1.95 1.95 0 0 1 .52-1.91c.78-.79 2.04-.79 2.82 0 .53.52.7 1.26.52 1.91l2.57 2.57.5-.07c.18 0 .35 0 .5.07l3.57-3.57C19 8.35 19 8.18 19 8a2 2 0 0 1 2-2 2 2 0 0 1 2 2 2 2 0 0 1-2 2c-.18 0-.35 0-.5-.07l-3.57 3.57c.07.15.07.32.07.5a2 2 0 0 1-2 2 2 2 0 0 1-2-2l.07-.5-2.57-2.57c-.32.07-.68.07-1 0L4.93 15.5 5 16a2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2"></path></svg></span> <strong>Time Series and Ops</strong></li>
-</ul>
-<hr/>
-<p>Temporal vegetation workflows and supporting operational surfaces.</p>
-<p><a class="md-button" href="time-series-and-ops/index.html">Open Time Series and Ops</a></p>
-</div>
 <hr/>
 <h2 id="key-backend-surfaces">Key Backend Surfaces<a class="headerlink" href="#key-backend-surfaces" title="Permanent link">¶</a></h2>
 <ul>

@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Community Resource Planning Stack - open geospatial infrastructure for public data access, computation pipelines, and grounded planning.">
+        <meta name="description" content="Route-oriented view of the CoRE Stack Computing API, with links into the pipeline families each route belongs to.">
       
       
       
-        <link rel="canonical" href="https://docs.core-stack.org/api/public-endpoints.html">
+        <link rel="canonical" href="https://docs.core-stack.org/pipelines/computing-endpoints.html">
       
       
-        <link rel="prev" href="api-explorer.html">
+        <link rel="prev" href="celery-auth-and-task-integration.html">
       
       
-        <link rel="next" href="stac-specs.html">
+        <link rel="next" href="common-design-and-integration-patterns.html">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Public API References - CoRE Stack Documentation</title>
+        <title>Computing API Endpoints - CoRE Stack Documentation</title>
       
     
     
@@ -65,17 +65,17 @@
     
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Public API References - CoRE Stack Documentation" />
-<meta property="og:description" content="Community Resource Planning Stack - open geospatial infrastructure for public data access, computation pipelines, and grounded planning." />
-<meta property="og:image" content="https://docs.core-stack.org/assets/images/social/api/public-endpoints.png" />
+<meta property="og:title" content="Computing API Endpoints - CoRE Stack Documentation" />
+<meta property="og:description" content="Route-oriented view of the CoRE Stack Computing API, with links into the pipeline families each route belongs to." />
+<meta property="og:image" content="https://docs.core-stack.org/assets/images/social/pipelines/computing-endpoints.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://docs.core-stack.org/api/public-endpoints.html" />
+<meta property="og:url" content="https://docs.core-stack.org/pipelines/computing-endpoints.html" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Public API References - CoRE Stack Documentation" />
-<meta property="twitter:description" content="Community Resource Planning Stack - open geospatial infrastructure for public data access, computation pipelines, and grounded planning." />
-<meta property="twitter:image" content="https://docs.core-stack.org/assets/images/social/api/public-endpoints.png" />
+<meta property="twitter:title" content="Computing API Endpoints - CoRE Stack Documentation" />
+<meta property="twitter:description" content="Route-oriented view of the CoRE Stack Computing API, with links into the pipeline families each route belongs to." />
+<meta property="twitter:image" content="https://docs.core-stack.org/assets/images/social/pipelines/computing-endpoints.png" />
 </head>
   
   
@@ -95,7 +95,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#public-api-endpoints" class="md-skip">
+        <a href="#computing-api-endpoints" class="md-skip">
           Skip to content
         </a>
       
@@ -130,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Public API References
+              Computing API Endpoints
             
           </span>
         </div>
@@ -273,7 +273,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../pipelines/watershed-data-structure.html" class="md-tabs__link">
+        <a href="watershed-data-structure.html" class="md-tabs__link">
           
   
   
@@ -291,10 +291,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../developers/index.html" class="md-tabs__link">
           
   
@@ -317,30 +319,6 @@
     
     
       <li class="md-tabs__item">
-        <a href="../pipelines/index.html" class="md-tabs__link">
-          
-  
-  
-    
-  
-  Pipelines
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-    
-  
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
         <a href="../use-precomputed-data/index.html" class="md-tabs__link">
           
   
@@ -563,7 +541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/watershed-data-structure.html" class="md-nav__link">
+      <a href="watershed-data-structure.html" class="md-nav__link">
         
   
   
@@ -595,6 +573,8 @@
       
   
   
+    
+  
   
   
     
@@ -616,24 +596,23 @@
       
         
       
-        
-      
     
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <div class="md-nav__link md-nav__container">
@@ -655,13 +634,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -764,62 +743,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../developers/system-architecture.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    System Architecture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../developers/first-manual-api-run.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    First Manual API Run
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
       
@@ -839,16 +762,19 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -870,14 +796,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1009,16 +935,11 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
+              
+                
   
-
+  
     
-      
-      
-  
   
   
   
@@ -1057,33 +978,36 @@
       
         
       
-    
-    
-    
-      
-      
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    
       
-        
+      
         
           
+          
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../pipelines/index.html" class="md-nav__link ">
+            <a href="index.html" class="md-nav__link ">
               
   
   
   <span class="md-ellipsis">
     
   
-    Pipelines
+    Pipeline Development
   
 
     
@@ -1094,18 +1018,18 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_7" id="__nav_3_7_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_7">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Pipelines
+    Pipeline Development
   
 
           </label>
@@ -1120,7 +1044,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/how-pipelines-work-algorithmically.html" class="md-nav__link">
+      <a href="first-manual-api-run.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First Manual API Run
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="how-pipelines-work-algorithmically.html" class="md-nav__link">
         
   
   
@@ -1148,7 +1100,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/how-pipelines-work-programmatically.html" class="md-nav__link">
+      <a href="how-pipelines-work-programmatically.html" class="md-nav__link">
         
   
   
@@ -1176,91 +1128,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/common-design-and-integration-patterns.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Common Pipeline Design / Integration Patterns
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../pipelines/pipeline-integrations.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Pipeline Integrations
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="computing-endpoints.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Computing API Endpoints
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../developers/local-pipeline-first.html" class="md-nav__link">
+      <a href="local-pipeline-first.html" class="md-nav__link">
         
   
   
@@ -1288,7 +1156,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../developers/django-computing-api-integration.html" class="md-nav__link">
+      <a href="django-computing-api-integration.html" class="md-nav__link">
         
   
   
@@ -1316,7 +1184,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../developers/celery-auth-and-task-integration.html" class="md-nav__link">
+      <a href="celery-auth-and-task-integration.html" class="md-nav__link">
         
   
   
@@ -1341,10 +1209,253 @@
                 
   
   
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computing API Endpoints
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="computing-endpoints.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computing API Endpoints
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-use-these-routes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before You Use These Routes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repeated-route-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repeated Route Pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-route-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Route Inventory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complete Route Inventory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#workspace-publication-and-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workspace, publication, and status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boundary-and-mws-scaffolding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boundary and MWS scaffolding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hydrology-land-use-and-time-series" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hydrology, land use, and time series
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terrain-drought-change-and-tree-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terrain, drought, change, and tree health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#water-drainage-and-restoration-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Water, drainage, and restoration layers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enrichment-and-planning-overlays" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enrichment and planning overlays
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-request-bodies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Request Bodies
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-happens-after-submission" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Happens After Submission
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#want-to-try-one-of-these-compute-routes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Want to Try One Of These Compute Routes?
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
   
   
     <li class="md-nav__item">
-      <a href="../developers/build-new-pipelines.html" class="md-nav__link">
+      <a href="common-design-and-integration-patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common Pipeline Design / Integration Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="build-new-pipelines.html" class="md-nav__link">
         
   
   
@@ -1372,7 +1483,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../developers/add-new-data-resources.html" class="md-nav__link">
+      <a href="pipeline-integrations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipeline Integrations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="add-new-data-resources.html" class="md-nav__link">
         
   
   
@@ -1429,11 +1568,11 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_12" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7_13" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../pipelines/core-workflows/index.html" class="md-nav__link ">
+            <a href="core-workflows/index.html" class="md-nav__link ">
               
   
   
@@ -1451,14 +1590,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4_12" id="__nav_4_12_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_7_13" id="__nav_3_7_13_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_12_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_12">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_7_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7_13">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1477,7 +1616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/lulc-generation.html" class="md-nav__link">
+      <a href="lulc-generation.html" class="md-nav__link">
         
   
   
@@ -1505,7 +1644,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/swb-detection.html" class="md-nav__link">
+      <a href="swb-detection.html" class="md-nav__link">
         
   
   
@@ -1533,7 +1672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/hydrology.html" class="md-nav__link">
+      <a href="hydrology.html" class="md-nav__link">
         
   
   
@@ -1561,7 +1700,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/terrain-analysis.html" class="md-nav__link">
+      <a href="terrain-analysis.html" class="md-nav__link">
         
   
   
@@ -1632,11 +1771,11 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_13" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7_14" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../pipelines/boundary-and-enrichment/index.html" class="md-nav__link ">
+            <a href="boundary-and-enrichment/index.html" class="md-nav__link ">
               
   
   
@@ -1654,14 +1793,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4_13" id="__nav_4_13_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_7_14" id="__nav_3_7_14_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_13_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_13">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_7_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7_14">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1680,7 +1819,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/admin-boundary.html" class="md-nav__link">
+      <a href="admin-boundary.html" class="md-nav__link">
         
   
   
@@ -1708,7 +1847,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/facilities-proximity.html" class="md-nav__link">
+      <a href="facilities-proximity.html" class="md-nav__link">
         
   
   
@@ -1736,7 +1875,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/nrega-assets.html" class="md-nav__link">
+      <a href="nrega-assets.html" class="md-nav__link">
         
   
   
@@ -1764,7 +1903,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/agroecological-space.html" class="md-nav__link">
+      <a href="agroecological-space.html" class="md-nav__link">
         
   
   
@@ -1792,7 +1931,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/aquifer-vector.html" class="md-nav__link">
+      <a href="aquifer-vector.html" class="md-nav__link">
         
   
   
@@ -1820,7 +1959,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/soge-vector.html" class="md-nav__link">
+      <a href="soge-vector.html" class="md-nav__link">
         
   
   
@@ -1848,7 +1987,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/pan-india-clip-modules.html" class="md-nav__link">
+      <a href="pan-india-clip-modules.html" class="md-nav__link">
         
   
   
@@ -1919,11 +2058,11 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_14" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7_15" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../pipelines/raster-and-drainage/index.html" class="md-nav__link ">
+            <a href="raster-and-drainage/index.html" class="md-nav__link ">
               
   
   
@@ -1941,14 +2080,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4_14" id="__nav_4_14_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_7_15" id="__nav_3_7_15_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_14_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_14">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_7_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7_15">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1967,7 +2106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/drainage-lines.html" class="md-nav__link">
+      <a href="drainage-lines.html" class="md-nav__link">
         
   
   
@@ -1995,7 +2134,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/catchment-area.html" class="md-nav__link">
+      <a href="catchment-area.html" class="md-nav__link">
         
   
   
@@ -2023,7 +2162,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/stream-order.html" class="md-nav__link">
+      <a href="stream-order.html" class="md-nav__link">
         
   
   
@@ -2051,7 +2190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/distance-to-nearest-drainage.html" class="md-nav__link">
+      <a href="distance-to-nearest-drainage.html" class="md-nav__link">
         
   
   
@@ -2079,7 +2218,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/natural-depression.html" class="md-nav__link">
+      <a href="natural-depression.html" class="md-nav__link">
         
   
   
@@ -2107,7 +2246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/slope-percentage.html" class="md-nav__link">
+      <a href="slope-percentage.html" class="md-nav__link">
         
   
   
@@ -2135,7 +2274,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/restoration-opportunity.html" class="md-nav__link">
+      <a href="restoration-opportunity.html" class="md-nav__link">
         
   
   
@@ -2196,11 +2335,11 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_15" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7_16" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../pipelines/time-series-and-ops/index.html" class="md-nav__link ">
+            <a href="time-series-and-ops/index.html" class="md-nav__link ">
               
   
   
@@ -2218,14 +2357,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4_15" id="__nav_4_15_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_7_16" id="__nav_3_7_16_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_15_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_15">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_7_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7_16">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2244,7 +2383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/ndvi-time-series.html" class="md-nav__link">
+      <a href="ndvi-time-series.html" class="md-nav__link">
         
   
   
@@ -2272,7 +2411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/hls-interpolated-ndvi.html" class="md-nav__link">
+      <a href="hls-interpolated-ndvi.html" class="md-nav__link">
         
   
   
@@ -2307,12 +2446,18 @@
     </li>
   
 
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
     
       
       
   
-  
-    
   
   
   
@@ -2331,27 +2476,22 @@
       
         
       
-        
-      
-        
-      
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -2373,14 +2513,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2399,7 +2539,35 @@
   
   
     <li class="md-nav__item">
-      <a href="geoadmin-noauth.html" class="md-nav__link">
+      <a href="../use-precomputed-data/how-current-data-was-computed.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Current Data Was Computed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/geoadmin-noauth.html" class="md-nav__link">
         
   
   
@@ -2427,14 +2595,14 @@
   
   
     <li class="md-nav__item">
-      <a href="authentication.html" class="md-nav__link">
+      <a href="../api/public-apis.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Get Public API Access
+    Get and Explore Public APIs
   
 
     
@@ -2455,250 +2623,7 @@
   
   
     <li class="md-nav__item">
-      <a href="api-explorer.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Swagger / ReDoc
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Public API References
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="public-endpoints.html" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Public API References
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-auth-free-geography-discovery" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Auth-Free Geography Discovery
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-api-key-public-data-access" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. API-Key Public Data Access
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#generated-layer-url-payloads" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Generated Layer URL Payloads
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#a-practical-route-through-the-public-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        A Practical Route Through The Public Data
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="A Practical Route Through The Public Data">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-discover-a-real-place" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Discover a real place
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-inventory-the-published-layers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Inventory the published layers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-fetch-stable-geometries" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Fetch stable geometries
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-fetch-analytical-tables" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Fetch analytical tables
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-join-by-uid" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. Join by uid
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-keep-an-example-script-nearby" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. Keep an example script nearby
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#geometry-routes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Geometry Routes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#see-also" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        See Also
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="stac-specs.html" class="md-nav__link">
+      <a href="../api/stac-specs.html" class="md-nav__link">
         
   
   
@@ -2706,34 +2631,6 @@
     
   
     STAC Specs
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../use-precomputed-data/how-current-data-was-computed.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    How Current Data Was Computed
   
 
     
@@ -2790,7 +2687,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -2812,14 +2709,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2893,7 +2790,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_3" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -2915,14 +2812,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3133,7 +3030,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -3155,14 +3052,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3172,34 +3069,6 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../reference/license.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    License
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -3398,6 +3267,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/license.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3437,7 +3334,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -3459,14 +3356,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3504,10 +3401,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_2" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_2" >
         
           
-          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
             
   
   
@@ -3525,8 +3422,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3602,10 +3499,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_3" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_3" >
         
           
-          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
             
   
   
@@ -3623,8 +3520,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3738,10 +3635,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-auth-free-geography-discovery" class="md-nav__link">
+  <a href="#before-you-use-these-routes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Auth-Free Geography Discovery
+        Before You Use These Routes
       
     </span>
   </a>
@@ -3749,10 +3646,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-api-key-public-data-access" class="md-nav__link">
+  <a href="#repeated-route-pattern" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. API-Key Public Data Access
+        Repeated Route Pattern
       
     </span>
   </a>
@@ -3760,33 +3657,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#generated-layer-url-payloads" class="md-nav__link">
+  <a href="#complete-route-inventory" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Generated Layer URL Payloads
+        Complete Route Inventory
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#a-practical-route-through-the-public-data" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        A Practical Route Through The Public Data
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="A Practical Route Through The Public Data">
+    <nav class="md-nav" aria-label="Complete Route Inventory">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-discover-a-real-place" class="md-nav__link">
+  <a href="#workspace-publication-and-status" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Discover a real place
+        Workspace, publication, and status
       
     </span>
   </a>
@@ -3794,10 +3680,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-inventory-the-published-layers" class="md-nav__link">
+  <a href="#boundary-and-mws-scaffolding" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Inventory the published layers
+        Boundary and MWS scaffolding
       
     </span>
   </a>
@@ -3805,10 +3691,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-fetch-stable-geometries" class="md-nav__link">
+  <a href="#hydrology-land-use-and-time-series" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Fetch stable geometries
+        Hydrology, land use, and time series
       
     </span>
   </a>
@@ -3816,10 +3702,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-fetch-analytical-tables" class="md-nav__link">
+  <a href="#terrain-drought-change-and-tree-health" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Fetch analytical tables
+        Terrain, drought, change, and tree health
       
     </span>
   </a>
@@ -3827,10 +3713,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-join-by-uid" class="md-nav__link">
+  <a href="#water-drainage-and-restoration-layers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Join by uid
+        Water, drainage, and restoration layers
       
     </span>
   </a>
@@ -3838,10 +3724,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-keep-an-example-script-nearby" class="md-nav__link">
+  <a href="#enrichment-and-planning-overlays" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Keep an example script nearby
+        Enrichment and planning overlays
       
     </span>
   </a>
@@ -3854,10 +3740,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#geometry-routes" class="md-nav__link">
+  <a href="#example-request-bodies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Geometry Routes
+        Example Request Bodies
       
     </span>
   </a>
@@ -3865,10 +3751,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#see-also" class="md-nav__link">
+  <a href="#what-happens-after-submission" class="md-nav__link">
     <span class="md-ellipsis">
       
-        See Also
+        What Happens After Submission
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#want-to-try-one-of-these-compute-routes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Want to Try One Of These Compute Routes?
       
     </span>
   </a>
@@ -3918,10 +3815,28 @@
     
     
       <li class="md-path__item">
-        <a href="../use-precomputed-data/index.html" class="md-path__link">
+        <a href="../developers/index.html" class="md-path__link">
           
   <span class="md-ellipsis">
-    Use PreComputed Geospatial Data
+    Develop CoRE Stack
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="index.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Pipeline Development
   </span>
 
         </a>
@@ -3943,236 +3858,483 @@
   
 
 
-<h1 id="public-api-endpoints">Public API Endpoints<a class="headerlink" href="#public-api-endpoints" title="Permanent link">&para;</a></h1>
-<p>This page documents the public-facing endpoints that are already present in the backend codebase.</p>
-<p>Use it together with:</p>
+<h1 id="computing-api-endpoints">Computing API Endpoints<a class="headerlink" href="#computing-api-endpoints" title="Permanent link">&para;</a></h1>
+<p>The Computing API is the developer-facing surface that triggers CoRE Stack computations.</p>
+<p>Primary sources:</p>
 <ul>
-<li><a href="authentication.html">Get Public API Access</a></li>
-<li><a href="api-explorer.html">Swagger / ReDoc</a></li>
-<li><a href="geoadmin-noauth.html">GeoAdmin (NoAuth) APIs</a></li>
-<li><a href="stac-specs.html">STAC Specs</a></li>
-<li><a href="../use-precomputed-data/how-current-data-was-computed.html">How Current Data Was Computed</a></li>
-</ul>
-<p>There are two useful groups:</p>
-<ol>
-<li>auth-free geography discovery</li>
-<li>API-key public data access</li>
-</ol>
-<p>If you want a visual explorer first, use:</p>
-<ul>
-<li><a href="https://geoserver.core-stack.org/swagger/">Swagger</a></li>
-<li><a href="https://api-doc.core-stack.org/">ReDoc</a></li>
-</ul>
-<hr />
-<h2 id="1-auth-free-geography-discovery">1. Auth-Free Geography Discovery<a class="headerlink" href="#1-auth-free-geography-discovery" title="Permanent link">&para;</a></h2>
-<p>Routes:</p>
-<ul>
-<li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/geoadmin/urls.py#L5-L12">geoadmin/urls.py</a></li>
-<li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/geoadmin/api.py#L21-L79">geoadmin/api.py</a></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Route</th>
-<th>What it returns</th>
-<th>Source</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>GET /api/v1/get_states/</code></td>
-<td>all states with normalized names</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/geoadmin/api.py#L21-L34">get_states()</a></td>
-</tr>
-<tr>
-<td><code>GET /api/v1/get_districts/&lt;state_id&gt;/</code></td>
-<td>districts for one state</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/geoadmin/api.py#L37-L52">get_districts()</a></td>
-</tr>
-<tr>
-<td><code>GET /api/v1/get_blocks/&lt;district_id&gt;/</code></td>
-<td>blocks or tehsils for one district</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/geoadmin/api.py#L55-L70">get_blocks()</a></td>
-</tr>
-<tr>
-<td><code>GET /api/v1/proposed_blocks/</code></td>
-<td>activated or proposed locations</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/geoadmin/api.py#L73-L84">proposed_blocks()</a></td>
-</tr>
-</tbody>
-</table>
-<p>Examples:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>https://geoserver.core-stack.org/api/v1/get_states/
-</span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl<span class="w"> </span>https://geoserver.core-stack.org/api/v1/get_districts/29/
-</span></code></pre></div>
-<hr />
-<h2 id="2-api-key-public-data-access">2. API-Key Public Data Access<a class="headerlink" href="#2-api-key-public-data-access" title="Permanent link">&para;</a></h2>
-<p>Routes:</p>
-<ul>
-<li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/urls.py#L4-L34">public_api/urls.py</a></li>
-<li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L43-L487">public_api/api.py</a></li>
-</ul>
-<p>All routes in this section use:</p>
-<div class="language-http highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="err">X-API-Key: YOUR_API_KEY</span>
-</span></code></pre></div>
-<p>That requirement comes from <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/utilities/auth_check_decorator.py#L143-L161">utilities/auth_check_decorator.py</a>.</p>
-<table>
-<thead>
-<tr>
-<th>Route</th>
-<th>What it does</th>
-<th>Source</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>GET /api/v1/get_admin_details_by_latlon/</code></td>
-<td>state, district, tehsil for a coordinate</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L43-L88">get_admin_details_by_lat_lon()</a></td>
-</tr>
-<tr>
-<td><code>GET /api/v1/get_mwsid_by_latlon/</code></td>
-<td>MWS identifier for a coordinate</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L91-L131">get_mws_by_lat_lon()</a></td>
-</tr>
-<tr>
-<td><code>GET /api/v1/get_tehsil_data/</code></td>
-<td>tehsil JSON derived from stats spreadsheets</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L186-L235">generate_tehsil_data()</a></td>
-</tr>
-<tr>
-<td><code>GET /api/v1/get_mws_data/</code></td>
-<td>MWS time-series data</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L134-L183">get_mws_data()</a></td>
-</tr>
-<tr>
-<td><code>GET /api/v1/get_mws_kyl_indicators/</code></td>
-<td>KYL indicator subset for one MWS</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L238-L296">get_mws_json_by_kyl_indicator()</a></td>
-</tr>
-<tr>
-<td><code>GET /api/v1/get_generated_layer_urls/</code></td>
-<td>generated vector or raster layer URLs</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L299-L329">get_generated_layer_urls()</a></td>
-</tr>
-<tr>
-<td><code>GET /api/v1/get_mws_report/</code></td>
-<td>report URL for one MWS</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L343-L399">get_mws_report_urls()</a></td>
-</tr>
-<tr>
-<td><code>GET /api/v1/get_active_locations/</code></td>
-<td>activated location inventory</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L404-L423">generate_active_locations()</a></td>
-</tr>
-<tr>
-<td><code>GET /api/v1/get_mws_geometries/</code></td>
-<td>MWS geometries via GeoServer</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L428-L455">get_mws_geometries()</a></td>
-</tr>
-<tr>
-<td><code>GET /api/v1/get_village_geometries/</code></td>
-<td>village geometries via GeoServer</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L460-L487">get_village_geometries()</a></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="generated-layer-url-payloads">Generated Layer URL Payloads<a class="headerlink" href="#generated-layer-url-payloads" title="Permanent link">&para;</a></h2>
-<p>The response builder for generated layers is in <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/views.py#L56-L114">public_api/views.py</a>.</p>
-<p>Each layer entry is assembled from backend models and includes:</p>
-<ul>
-<li><code>layer_name</code></li>
-<li><code>dataset_name</code></li>
-<li><code>layer_type</code></li>
-<li><code>layer_url</code></li>
-<li><code>layer_version</code></li>
-<li><code>style_url</code></li>
-<li><code>gee_asset_path</code></li>
-</ul>
-<p>Example:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>curl<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;X-API-Key: YOUR_API_KEY&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="s2">&quot;https://geoserver.core-stack.org/api/v1/get_generated_layer_urls/?state=karnataka&amp;district=raichur&amp;tehsil=devadurga&quot;</span>
-</span></code></pre></div>
-<hr />
-<h2 id="a-practical-route-through-the-public-data">A Practical Route Through The Public Data<a class="headerlink" href="#a-practical-route-through-the-public-data" title="Permanent link">&para;</a></h2>
-<p>This is the practical pattern for moving from discovery to analysis with the public data APIs.</p>
-<h3 id="1-discover-a-real-place">1. Discover a real place<a class="headerlink" href="#1-discover-a-real-place" title="Permanent link">&para;</a></h3>
-<p>Use either:</p>
-<ul>
-<li><a href="geoadmin-noauth.html">GeoAdmin (NoAuth) APIs</a> if you need state or district names</li>
-<li><code>GET /api/v1/get_active_locations/</code> if you want only places currently active in the public surface</li>
-</ul>
-<h3 id="2-inventory-the-published-layers">2. Inventory the published layers<a class="headerlink" href="#2-inventory-the-published-layers" title="Permanent link">&para;</a></h3>
-<p>Call <code>GET /api/v1/get_generated_layer_urls/</code> and inspect:</p>
-<ul>
-<li><code>dataset_name</code></li>
-<li><code>layer_type</code></li>
-<li><code>layer_url</code></li>
-<li><code>style_url</code></li>
-<li><code>gee_asset_path</code></li>
-</ul>
-<p>Those fields are the main handoff points into:</p>
-<ul>
-<li>direct download</li>
-<li>QGIS loading</li>
-<li>GeoServer-backed clients</li>
-<li>Earth Engine-oriented follow-up work</li>
-</ul>
-<h3 id="3-fetch-stable-geometries">3. Fetch stable geometries<a class="headerlink" href="#3-fetch-stable-geometries" title="Permanent link">&para;</a></h3>
-<p>Use:</p>
-<ul>
-<li><code>GET /api/v1/get_mws_geometries/</code></li>
-<li><code>GET /api/v1/get_village_geometries/</code></li>
-</ul>
-<p>The main practical join key to watch for is <code>uid</code> on micro-watershed-aligned outputs.</p>
-<h3 id="4-fetch-analytical-tables">4. Fetch analytical tables<a class="headerlink" href="#4-fetch-analytical-tables" title="Permanent link">&para;</a></h3>
-<p>Use:</p>
-<ul>
-<li><code>GET /api/v1/get_tehsil_data/</code> for tehsil-wide analytical tables keyed by watershed identifiers</li>
-<li><code>GET /api/v1/get_mws_data/</code> for one watershed time series</li>
-<li><code>GET /api/v1/get_mws_kyl_indicators/</code> for a compact watershed snapshot</li>
-<li><code>GET /api/v1/get_mws_report/</code> for report handoff URLs</li>
-</ul>
-<h3 id="5-join-by-uid">5. Join by <code>uid</code><a class="headerlink" href="#5-join-by-uid" title="Permanent link">&para;</a></h3>
-<p>That is the central reuse pattern:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">geometries</span> <span class="o">=</span> <span class="n">fetch_mws_geometries</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">tehsil_data</span> <span class="o">=</span> <span class="n">fetch_tehsil_data</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">metric_table</span> <span class="o">=</span> <span class="n">build_metric_table</span><span class="p">(</span><span class="n">tehsil_data</span><span class="p">)</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">joined_geojson</span> <span class="o">=</span> <span class="n">join_metrics_to_geojson</span><span class="p">(</span><span class="n">geometries</span><span class="p">,</span> <span class="n">metric_table</span><span class="p">)</span>
-</span></code></pre></div>
-<p>In other words:</p>
-<ol>
-<li>choose a stable geometry layer</li>
-<li>choose an analytical table</li>
-<li>join through the watershed identifier</li>
-<li>visualize, rank, or export</li>
-</ol>
-<h3 id="6-keep-an-example-script-nearby">6. Keep an example script nearby<a class="headerlink" href="#6-keep-an-example-script-nearby" title="Permanent link">&para;</a></h3>
-<p>If you want a reproducible example of that workflow, keep your request payloads and joins close to the route families documented on this page, then trace the corresponding backend implementation in:</p>
-<ul>
-<li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/views.py">public_api/views.py</a></li>
 <li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/computing/urls.py">computing/urls.py</a></li>
+<li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/computing/api.py">computing/api.py</a></li>
+</ul>
+<p>Most handlers queue work and return quickly while pipeline modules do the heavy processing.</p>
+<hr />
+<h2 id="before-you-use-these-routes">Before You Use These Routes<a class="headerlink" href="#before-you-use-these-routes" title="Permanent link">&para;</a></h2>
+<p>Many request bodies include <code>gee_account_id</code>.</p>
+<p>That value should refer to a Django <code>GEEAccount</code> configured in your environment, as documented in <a href="../developers/integrations/google-earth-engine.html">Google Earth Engine</a>.</p>
+<p>If you are new to backend execution, start with:</p>
+<ul>
+<li><a href="../developers/installer.html">Installer</a></li>
+<li><a href="first-manual-api-run.html">First Manual API Run</a></li>
+<li><a href="local-pipeline-first.html">Local Pipeline First</a></li>
 </ul>
 <hr />
-<h2 id="geometry-routes">Geometry Routes<a class="headerlink" href="#geometry-routes" title="Permanent link">&para;</a></h2>
-<p>The geometry helpers ultimately call GeoServer-backed WFS endpoints from <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/views.py#L412-L519">public_api/views.py</a>.</p>
-<p>That makes these routes especially useful for:</p>
-<ul>
-<li>UI teams that need polygons quickly</li>
-<li>researchers who want MWS or village geometry dumps</li>
-<li>data users building custom download or visualization pipelines</li>
-</ul>
+<h2 id="repeated-route-pattern">Repeated Route Pattern<a class="headerlink" href="#repeated-route-pattern" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Typical Computing API shape</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nd">@api_view</span><span class="p">([</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="nd">@schema</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">generate_example</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="hll">    <span class="n">state</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;state&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>  <span class="c1"># (1)!</span>
+</span></span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="hll">    <span class="n">district</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;district&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</span></span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="hll">    <span class="n">block</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;block&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</span></span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="hll">    <span class="n">gee_account_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;gee_account_id&quot;</span><span class="p">)</span>
+</span></span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="hll">    <span class="n">generate_example_task</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span>         <span class="c1"># (2)!</span>
+</span></span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="hll">        <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="n">district</span><span class="p">,</span> <span class="n">block</span><span class="p">,</span> <span class="n">gee_account_id</span><span class="p">],</span> <span class="n">queue</span><span class="o">=</span><span class="s2">&quot;nrm&quot;</span>
+</span></span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="hll">    <span class="p">)</span>
+</span></span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a>    <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s2">&quot;Success&quot;</span><span class="p">:</span> <span class="s2">&quot;Successfully initiated&quot;</span><span class="p">})</span>  <span class="c1"># (3)!</span>
+</span></code></pre></div></td></tr></table></div>
+<ol>
+<li>parse and normalize the request</li>
+<li>delegate heavy work to the real computation boundary</li>
+<li>return quickly</li>
+</ol>
 <hr />
-<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
+<h2 id="complete-route-inventory">Complete Route Inventory<a class="headerlink" href="#complete-route-inventory" title="Permanent link">&para;</a></h2>
+<p>The current <code>computing/urls.py</code> inventory contains <code>58</code> routes under <code>/api/v1/</code>.</p>
+<p>Most of them are <code>POST</code> routes. The main <code>GET</code> exception is:</p>
 <ul>
-<li><a href="authentication.html">Get Public API Access</a></li>
-<li><a href="computing-endpoints.html">Computing API Endpoints</a></li>
-<li><a href="api-explorer.html">Swagger / ReDoc</a></li>
-<li><a href="stac-specs.html">STAC Specs</a></li>
-<li><a href="../use-precomputed-data/how-current-data-was-computed.html">How Current Data Was Computed</a></li>
+<li><code>GET /api/v1/get_layers_in_workspace/</code></li>
+</ul>
+<h3 id="workspace-publication-and-status">Workspace, publication, and status<a class="headerlink" href="#workspace-publication-and-status" title="Permanent link">&para;</a></h3>
+<p>Use these routes when you are creating workspaces, managing published layers, or checking backend task status. Read this section with <a href="pipeline-integrations.html">Pipeline Integrations</a>, <a href="../developers/integrations/geoserver.html">GeoServer</a>, and <a href="../developers/integrations/google-earth-engine.html">Google Earth Engine</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Method</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/v1/create_workspace/</code></td>
+<td><code>POST</code></td>
+<td>create a GeoServer workspace</td>
+</tr>
+<tr>
+<td><code>/api/v1/delete_layer/</code></td>
+<td><code>POST</code></td>
+<td>delete a published layer from a workspace</td>
+</tr>
+<tr>
+<td><code>/api/v1/upload_kml/</code></td>
+<td><code>POST</code></td>
+<td>upload a KML and convert it into server-side geometry</td>
+</tr>
+<tr>
+<td><code>/api/v1/get_layers_in_workspace/</code></td>
+<td><code>GET</code></td>
+<td>list the layers available in a workspace</td>
+</tr>
+<tr>
+<td><code>/api/v1/get_gee_layer/</code></td>
+<td><code>POST</code></td>
+<td>fetch or download a GEE-backed layer</td>
+</tr>
+<tr>
+<td><code>/api/v1/gee_task_status/</code></td>
+<td><code>POST</code></td>
+<td>inspect the status of an Earth Engine task</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_layer_in_order/</code></td>
+<td><code>POST</code></td>
+<td>run an ordered layer-generation sequence</td>
+</tr>
+<tr>
+<td><code>/api/v1/layer_status_dashboard/</code></td>
+<td><code>POST</code></td>
+<td>retrieve layer status dashboard data</td>
+</tr>
+</tbody>
+</table>
+<h3 id="boundary-and-mws-scaffolding">Boundary and MWS scaffolding<a class="headerlink" href="#boundary-and-mws-scaffolding" title="Permanent link">&para;</a></h3>
+<p>These routes create the spatial scaffolding that later computations depend on. Read this section with <a href="watershed-data-structure.html">CoRE Stack Data Structure</a>, <a href="admin-boundary.html">Admin Boundary</a>, and <a href="how-pipelines-work-algorithmically.html">How Our Pipelines Work Algorithmically</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Method</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/v1/generate_block_layer/</code></td>
+<td><code>POST</code></td>
+<td>generate the admin boundary layer for a block or tehsil</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_mws_layer/</code></td>
+<td><code>POST</code></td>
+<td>generate the micro-watershed layer</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_mws_centroid/</code></td>
+<td><code>POST</code></td>
+<td>generate centroids for micro-watersheds</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_mws_connectivity_data/</code></td>
+<td><code>POST</code></td>
+<td>generate upstream and downstream MWS connectivity data</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_zoi_data/</code></td>
+<td><code>POST</code></td>
+<td>generate zone-of-influence data for downstream use</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hydrology-land-use-and-time-series">Hydrology, land use, and time series<a class="headerlink" href="#hydrology-land-use-and-time-series" title="Permanent link">&para;</a></h3>
+<p>These routes cover hydrology, LULC generation, cropping intensity, and time-series outputs. Read this section with <a href="hydrology.html">Hydrology</a>, <a href="lulc-generation.html">LULC Generation</a>, and <a href="ndvi-time-series.html">NDVI Time Series</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Method</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/v1/hydrology_fortnightly/</code></td>
+<td><code>POST</code></td>
+<td>run fortnightly hydrology generation</td>
+</tr>
+<tr>
+<td><code>/api/v1/hydrology_annual/</code></td>
+<td><code>POST</code></td>
+<td>run annual hydrology generation</td>
+</tr>
+<tr>
+<td><code>/api/v1/lulc_for_tehsil/</code></td>
+<td><code>POST</code></td>
+<td>generate tehsil-level LULC</td>
+</tr>
+<tr>
+<td><code>/api/v1/lulc_v2_river_basin/</code></td>
+<td><code>POST</code></td>
+<td>generate river-basin LULC v2</td>
+</tr>
+<tr>
+<td><code>/api/v1/lulc_v3_river_basin/</code></td>
+<td><code>POST</code></td>
+<td>generate river-basin LULC v3</td>
+</tr>
+<tr>
+<td><code>/api/v1/lulc_v3/</code></td>
+<td><code>POST</code></td>
+<td>generate or clip LULC v3</td>
+</tr>
+<tr>
+<td><code>/api/v1/lulc_vector/</code></td>
+<td><code>POST</code></td>
+<td>vectorize LULC outputs</td>
+</tr>
+<tr>
+<td><code>/api/v1/lulc_farm_boundary/</code></td>
+<td><code>POST</code></td>
+<td>compute LULC on farm boundaries</td>
+</tr>
+<tr>
+<td><code>/api/v1/lulc_v4/</code></td>
+<td><code>POST</code></td>
+<td>run the newer LULC v4 workflow</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_ci_layer/</code></td>
+<td><code>POST</code></td>
+<td>generate cropping intensity outputs</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_ndvi_timeseries/</code></td>
+<td><code>POST</code></td>
+<td>generate NDVI time-series outputs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="terrain-drought-change-and-tree-health">Terrain, drought, change, and tree health<a class="headerlink" href="#terrain-drought-change-and-tree-health" title="Permanent link">&para;</a></h3>
+<p>These routes produce terrain descriptors, drought layers, change-detection outputs, and tree-health analytics. Read this section with <a href="terrain-analysis.html">Terrain Analysis</a>, <a href="how-pipelines-work-algorithmically.html">How Our Pipelines Work Algorithmically</a>, and <a href="raster-and-drainage/index.html">Raster and Drainage Layers</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Method</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/v1/generate_drought_layer/</code></td>
+<td><code>POST</code></td>
+<td>generate drought outputs</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_terrain_descriptor/</code></td>
+<td><code>POST</code></td>
+<td>generate terrain cluster and descriptor outputs</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_terrain_raster/</code></td>
+<td><code>POST</code></td>
+<td>generate clipped terrain rasters</td>
+</tr>
+<tr>
+<td><code>/api/v1/terrain_lulc_slope_cluster/</code></td>
+<td><code>POST</code></td>
+<td>combine terrain and LULC on slope clusters</td>
+</tr>
+<tr>
+<td><code>/api/v1/terrain_lulc_plain_cluster/</code></td>
+<td><code>POST</code></td>
+<td>combine terrain and LULC on plain clusters</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_clart/</code></td>
+<td><code>POST</code></td>
+<td>generate CLART outputs</td>
+</tr>
+<tr>
+<td><code>/api/v1/fes_clart_layer/</code></td>
+<td><code>POST</code></td>
+<td>publish or upload FES CLART outputs</td>
+</tr>
+<tr>
+<td><code>/api/v1/change_detection/</code></td>
+<td><code>POST</code></td>
+<td>generate raster change-detection outputs</td>
+</tr>
+<tr>
+<td><code>/api/v1/change_detection_vector/</code></td>
+<td><code>POST</code></td>
+<td>vectorize change-detection outputs</td>
+</tr>
+<tr>
+<td><code>/api/v1/crop_grid/</code></td>
+<td><code>POST</code></td>
+<td>generate crop-grid outputs</td>
+</tr>
+<tr>
+<td><code>/api/v1/tree_health_raster/</code></td>
+<td><code>POST</code></td>
+<td>generate raster tree-health outputs</td>
+</tr>
+<tr>
+<td><code>/api/v1/tree_health_vector/</code></td>
+<td><code>POST</code></td>
+<td>generate vector tree-health outputs</td>
+</tr>
+<tr>
+<td><code>/api/v1/mws_drought_causality/</code></td>
+<td><code>POST</code></td>
+<td>compute drought causality metrics by MWS</td>
+</tr>
+<tr>
+<td><code>/api/v1/plantation_site_suitability/</code></td>
+<td><code>POST</code></td>
+<td>generate plantation site-suitability outputs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="water-drainage-and-restoration-layers">Water, drainage, and restoration layers<a class="headerlink" href="#water-drainage-and-restoration-layers" title="Permanent link">&para;</a></h3>
+<p>These routes handle surface water, drainage derivatives, restoration, and water-related infrastructure layers. Read this section with <a href="swb-detection.html">SWB Detection</a>, <a href="drainage-lines.html">Drainage Lines</a>, <a href="restoration-opportunity.html">Restoration Opportunity</a>, and <a href="nrega-assets.html">NREGA Assets</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Method</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/v1/generate_swb/</code></td>
+<td><code>POST</code></td>
+<td>generate surface water body layers</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_ponds/</code></td>
+<td><code>POST</code></td>
+<td>generate pond layers</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_wells/</code></td>
+<td><code>POST</code></td>
+<td>generate well layers</td>
+</tr>
+<tr>
+<td><code>/api/v1/merge_swb_ponds/</code></td>
+<td><code>POST</code></td>
+<td>merge SWB and pond outputs</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_nrega_layer/</code></td>
+<td><code>POST</code></td>
+<td>clip or generate the NREGA layer</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_drainage_layer/</code></td>
+<td><code>POST</code></td>
+<td>clip or generate drainage lines</td>
+</tr>
+<tr>
+<td><code>/api/v1/stream_order/</code></td>
+<td><code>POST</code></td>
+<td>generate stream-order outputs</td>
+</tr>
+<tr>
+<td><code>/api/v1/restoration_opportunity/</code></td>
+<td><code>POST</code></td>
+<td>generate restoration-opportunity outputs</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_natural_depression/</code></td>
+<td><code>POST</code></td>
+<td>generate natural-depression outputs</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_distance_nearest_DL/</code></td>
+<td><code>POST</code></td>
+<td>generate distance-to-nearest drainage-line outputs</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_catchment_area_singleflow/</code></td>
+<td><code>POST</code></td>
+<td>generate single-flow catchment-area outputs</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_slope_percentage/</code></td>
+<td><code>POST</code></td>
+<td>generate slope-percentage outputs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="enrichment-and-planning-overlays">Enrichment and planning overlays<a class="headerlink" href="#enrichment-and-planning-overlays" title="Permanent link">&para;</a></h3>
+<p>These routes attach thematic overlays and planning-oriented enrichments onto the core landscape units. Read this section with <a href="boundary-and-enrichment/index.html">Boundary and Enrichment Layers</a>, <a href="agroecological-space.html">Agroecological Space</a>, <a href="aquifer-vector.html">Aquifer Vector</a>, <a href="soge-vector.html">SOGE Vector</a>, and <a href="facilities-proximity.html">Facilities Proximity</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Method</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/v1/aquifer_vector/</code></td>
+<td><code>POST</code></td>
+<td>generate aquifer vector outputs</td>
+</tr>
+<tr>
+<td><code>/api/v1/soge_vector/</code></td>
+<td><code>POST</code></td>
+<td>generate SOGE vector outputs</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_lcw/</code></td>
+<td><code>POST</code></td>
+<td>generate Land Conflict Watch overlays</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_agroecological/</code></td>
+<td><code>POST</code></td>
+<td>generate agroecological space outputs</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_factory_csr/</code></td>
+<td><code>POST</code></td>
+<td>generate factory CSR overlays</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_green_credit/</code></td>
+<td><code>POST</code></td>
+<td>generate green-credit overlays</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_mining/</code></td>
+<td><code>POST</code></td>
+<td>generate mining overlays</td>
+</tr>
+<tr>
+<td><code>/api/v1/generate_facilities_proximity/</code></td>
+<td><code>POST</code></td>
+<td>generate facilities-proximity outputs</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="example-request-bodies">Example Request Bodies<a class="headerlink" href="#example-request-bodies" title="Permanent link">&para;</a></h2>
+<p>Replace <code>gee_account_id: 1</code> with the real account ID from your environment.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Hydrology</label><label for="__tabbed_1_2">LULC</label><label for="__tabbed_1_3">SWB</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;karnataka&quot;</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;district&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;raichur&quot;</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">&quot;block&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;devadurga&quot;</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">&quot;start_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2022</span><span class="p">,</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">&quot;end_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2023</span><span class="p">,</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">&quot;gee_account_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;karnataka&quot;</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;district&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;raichur&quot;</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">&quot;block&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;devadurga&quot;</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">&quot;start_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2022</span><span class="p">,</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nt">&quot;end_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2023</span><span class="p">,</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nt">&quot;gee_account_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v3&quot;</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;karnataka&quot;</span><span class="p">,</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">&quot;district&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;raichur&quot;</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">&quot;block&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;devadurga&quot;</span><span class="p">,</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">&quot;start_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2022</span><span class="p">,</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="nt">&quot;end_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2023</span><span class="p">,</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="nt">&quot;gee_account_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<hr />
+<h2 id="what-happens-after-submission">What Happens After Submission<a class="headerlink" href="#what-happens-after-submission" title="Permanent link">&para;</a></h2>
+<p>The common execution sequence is:</p>
+<ol>
+<li>route declared in <code>computing/urls.py</code></li>
+<li>request handled in <code>computing/api.py</code></li>
+<li>task or callable computation boundary invoked</li>
+<li>pipeline module runs</li>
+<li>results move toward metadata, GeoServer, or public delivery surfaces</li>
+</ol>
+<hr />
+<h2 id="want-to-try-one-of-these-compute-routes">Want to Try One Of These Compute Routes?<a class="headerlink" href="#want-to-try-one-of-these-compute-routes" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="first-manual-api-run.html">First Manual API Run</a></li>
 </ul>
 
 
@@ -4180,6 +4342,9 @@
 
 
 
+
+  
+  
 
 
 

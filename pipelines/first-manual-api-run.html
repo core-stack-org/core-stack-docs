@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Add async execution, retries, and auth-layer concerns after the local and Django Computing API layers are already working.">
+        <meta name="description" content="Trace one real LULC computation from request to code path, then compute the built-up share for a place you care about.">
       
       
       
-        <link rel="canonical" href="https://docs.core-stack.org/developers/celery-auth-and-task-integration.html">
+        <link rel="canonical" href="https://docs.core-stack.org/pipelines/first-manual-api-run.html">
       
       
-        <link rel="prev" href="django-computing-api-integration.html">
+        <link rel="prev" href="index.html">
       
       
-        <link rel="next" href="build-new-pipelines.html">
+        <link rel="next" href="how-pipelines-work-algorithmically.html">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Add Celery / Auth / Task Integration - CoRE Stack Documentation</title>
+        <title>First Manual API Run - CoRE Stack Documentation</title>
       
     
     
@@ -65,17 +65,17 @@
     
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Add Celery / Auth / Task Integration - CoRE Stack Documentation" />
-<meta property="og:description" content="Add async execution, retries, and auth-layer concerns after the local and Django Computing API layers are already working." />
-<meta property="og:image" content="https://docs.core-stack.org/assets/images/social/developers/celery-auth-and-task-integration.png" />
+<meta property="og:title" content="First Manual API Run - CoRE Stack Documentation" />
+<meta property="og:description" content="Trace one real LULC computation from request to code path, then compute the built-up share for a place you care about." />
+<meta property="og:image" content="https://docs.core-stack.org/assets/images/social/pipelines/first-manual-api-run.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://docs.core-stack.org/developers/celery-auth-and-task-integration.html" />
+<meta property="og:url" content="https://docs.core-stack.org/pipelines/first-manual-api-run.html" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Add Celery / Auth / Task Integration - CoRE Stack Documentation" />
-<meta property="twitter:description" content="Add async execution, retries, and auth-layer concerns after the local and Django Computing API layers are already working." />
-<meta property="twitter:image" content="https://docs.core-stack.org/assets/images/social/developers/celery-auth-and-task-integration.png" />
+<meta property="twitter:title" content="First Manual API Run - CoRE Stack Documentation" />
+<meta property="twitter:description" content="Trace one real LULC computation from request to code path, then compute the built-up share for a place you care about." />
+<meta property="twitter:image" content="https://docs.core-stack.org/assets/images/social/pipelines/first-manual-api-run.png" />
 </head>
   
   
@@ -95,7 +95,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#add-celery-auth-task-integration" class="md-skip">
+        <a href="#first-manual-api-run" class="md-skip">
           Skip to content
         </a>
       
@@ -130,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Add Celery / Auth / Task Integration
+              First Manual API Run
             
           </span>
         </div>
@@ -273,7 +273,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../pipelines/watershed-data-structure.html" class="md-tabs__link">
+        <a href="watershed-data-structure.html" class="md-tabs__link">
           
   
   
@@ -291,41 +291,19 @@
   
   
   
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="index.html" class="md-tabs__link">
-          
-  
-  
-    
-  
-  Develop CoRE Stack
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
     
   
   
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../pipelines/index.html" class="md-tabs__link">
+        <a href="../developers/index.html" class="md-tabs__link">
           
   
   
     
   
-  Pipelines
+  Develop CoRE Stack
 
         </a>
       </li>
@@ -563,7 +541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/watershed-data-structure.html" class="md-nav__link">
+      <a href="watershed-data-structure.html" class="md-nav__link">
         
   
   
@@ -595,6 +573,8 @@
       
   
   
+    
+  
   
   
     
@@ -616,28 +596,27 @@
       
         
       
-        
-      
     
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="index.html" class="md-nav__link ">
+            <a href="../developers/index.html" class="md-nav__link ">
               
   
   
@@ -655,13 +634,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -681,7 +660,7 @@
   
   
     <li class="md-nav__item">
-      <a href="installer.html" class="md-nav__link">
+      <a href="../developers/installer.html" class="md-nav__link">
         
   
   
@@ -709,7 +688,7 @@
   
   
     <li class="md-nav__item">
-      <a href="setup-troubleshooting.html" class="md-nav__link">
+      <a href="../developers/setup-troubleshooting.html" class="md-nav__link">
         
   
   
@@ -737,7 +716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="backend-code-map.html" class="md-nav__link">
+      <a href="../developers/backend-code-map.html" class="md-nav__link">
         
   
   
@@ -764,62 +743,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="system-architecture.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    System Architecture
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="first-manual-api-run.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    First Manual API Run
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
       
@@ -839,20 +762,23 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_5" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="integrations/index.html" class="md-nav__link ">
+            <a href="../developers/integrations/index.html" class="md-nav__link ">
               
   
   
@@ -870,14 +796,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -896,7 +822,7 @@
   
   
     <li class="md-nav__item">
-      <a href="integrations/google-earth-engine.html" class="md-nav__link">
+      <a href="../developers/integrations/google-earth-engine.html" class="md-nav__link">
         
   
   
@@ -924,7 +850,7 @@
   
   
     <li class="md-nav__item">
-      <a href="integrations/geoserver.html" class="md-nav__link">
+      <a href="../developers/integrations/geoserver.html" class="md-nav__link">
         
   
   
@@ -952,7 +878,7 @@
   
   
     <li class="md-nav__item">
-      <a href="integrations/aws.html" class="md-nav__link">
+      <a href="../developers/integrations/aws.html" class="md-nav__link">
         
   
   
@@ -988,7 +914,7 @@
   
   
     <li class="md-nav__item">
-      <a href="coding-standards-and-guidelines.html" class="md-nav__link">
+      <a href="../developers/coding-standards-and-guidelines.html" class="md-nav__link">
         
   
   
@@ -1009,15 +935,8 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
+              
+                
   
   
     
@@ -1059,14 +978,16 @@
       
         
       
-    
-    
-    
-      
-        
         
       
+    
+    
+    
       
+      
+        
+          
+          
         
       
     
@@ -1075,18 +996,18 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../pipelines/index.html" class="md-nav__link ">
+            <a href="index.html" class="md-nav__link ">
               
   
   
   <span class="md-ellipsis">
     
   
-    Pipelines
+    Pipeline Development
   
 
     
@@ -1097,18 +1018,18 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+              <label class="md-nav__link " for="__nav_3_7" id="__nav_3_7_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_7">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Pipelines
+    Pipeline Development
   
 
           </label>
@@ -1120,10 +1041,197 @@
                 
   
   
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First Manual API Run
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="first-manual-api-run.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First Manual API Run
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-will-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What You Will Do
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before You Start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-pick-a-place" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Pick A Place
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-trigger-one-lulc-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Trigger one LULC Run
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-find-the-route-in-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Find The Route In Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-inspect-the-handler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Inspect The Handler
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-follow-the-computation-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Follow The Computation Path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-calculate-the-built-up-share" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Calculate The Built-up Share
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-fallback-start-from-latitude-and-longitude" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional Fallback: Start From Latitude And Longitude
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outcome" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outcome
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/how-pipelines-work-algorithmically.html" class="md-nav__link">
+      <a href="how-pipelines-work-algorithmically.html" class="md-nav__link">
         
   
   
@@ -1151,7 +1259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/how-pipelines-work-programmatically.html" class="md-nav__link">
+      <a href="how-pipelines-work-programmatically.html" class="md-nav__link">
         
   
   
@@ -1159,90 +1267,6 @@
     
   
     How They Work Programmatically
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../pipelines/common-design-and-integration-patterns.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Common Pipeline Design / Integration Patterns
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../pipelines/pipeline-integrations.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Pipeline Integrations
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/computing-endpoints.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Computing API Endpoints
   
 
     
@@ -1316,37 +1340,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add Celery / Auth / Task Integration
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="celery-auth-and-task-integration.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="celery-auth-and-task-integration.html" class="md-nav__link">
         
   
   
@@ -1362,83 +1359,62 @@
   
 
       </a>
-      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="computing-endpoints.html" class="md-nav__link">
         
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
   
   
-  
+  <span class="md-ellipsis">
     
   
+    Computing API Endpoints
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-this-page-is-for" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What This Page Is For
-      
-    </span>
-  </a>
+
+    
+  </span>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#a-good-task-boundary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        A Good Task Boundary
-      
-    </span>
-  </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#auth-comes-after-meaning" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Auth Comes After Meaning
-      
-    </span>
-  </a>
+
+      </a>
+    </li>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#when-to-stop-adding-layers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        When To Stop Adding Layers
-      
-    </span>
-  </a>
+
+              
+            
+              
+                
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-paths" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Next Paths
-      
-    </span>
-  </a>
   
-</li>
-      
-    </ul>
   
-</nav>
-      
+  
+    <li class="md-nav__item">
+      <a href="common-design-and-integration-patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common Pipeline Design / Integration Patterns
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1459,6 +1435,34 @@
     
   
     Build New Pipelines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pipeline-integrations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pipeline Integrations
   
 
     
@@ -1527,23 +1531,20 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_12" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7_13" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../pipelines/core-workflows/index.html" class="md-nav__link ">
+            <a href="core-workflows/index.html" class="md-nav__link ">
               
   
   
@@ -1561,14 +1562,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4_12" id="__nav_4_12_label" tabindex="">
+              <label class="md-nav__link " for="__nav_3_7_13" id="__nav_3_7_13_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_12_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_12">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_7_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7_13">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1587,7 +1588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/lulc-generation.html" class="md-nav__link">
+      <a href="lulc-generation.html" class="md-nav__link">
         
   
   
@@ -1615,7 +1616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/swb-detection.html" class="md-nav__link">
+      <a href="swb-detection.html" class="md-nav__link">
         
   
   
@@ -1643,7 +1644,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/hydrology.html" class="md-nav__link">
+      <a href="hydrology.html" class="md-nav__link">
         
   
   
@@ -1671,7 +1672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/terrain-analysis.html" class="md-nav__link">
+      <a href="terrain-analysis.html" class="md-nav__link">
         
   
   
@@ -1733,23 +1734,20 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_13" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7_14" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../pipelines/boundary-and-enrichment/index.html" class="md-nav__link ">
+            <a href="boundary-and-enrichment/index.html" class="md-nav__link ">
               
   
   
@@ -1767,14 +1765,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4_13" id="__nav_4_13_label" tabindex="">
+              <label class="md-nav__link " for="__nav_3_7_14" id="__nav_3_7_14_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_13_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_13">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_7_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7_14">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1793,7 +1791,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/admin-boundary.html" class="md-nav__link">
+      <a href="admin-boundary.html" class="md-nav__link">
         
   
   
@@ -1821,7 +1819,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/facilities-proximity.html" class="md-nav__link">
+      <a href="facilities-proximity.html" class="md-nav__link">
         
   
   
@@ -1849,7 +1847,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/nrega-assets.html" class="md-nav__link">
+      <a href="nrega-assets.html" class="md-nav__link">
         
   
   
@@ -1877,7 +1875,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/agroecological-space.html" class="md-nav__link">
+      <a href="agroecological-space.html" class="md-nav__link">
         
   
   
@@ -1905,7 +1903,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/aquifer-vector.html" class="md-nav__link">
+      <a href="aquifer-vector.html" class="md-nav__link">
         
   
   
@@ -1933,7 +1931,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/soge-vector.html" class="md-nav__link">
+      <a href="soge-vector.html" class="md-nav__link">
         
   
   
@@ -1961,7 +1959,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/pan-india-clip-modules.html" class="md-nav__link">
+      <a href="pan-india-clip-modules.html" class="md-nav__link">
         
   
   
@@ -2023,23 +2021,20 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_14" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7_15" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../pipelines/raster-and-drainage/index.html" class="md-nav__link ">
+            <a href="raster-and-drainage/index.html" class="md-nav__link ">
               
   
   
@@ -2057,14 +2052,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4_14" id="__nav_4_14_label" tabindex="">
+              <label class="md-nav__link " for="__nav_3_7_15" id="__nav_3_7_15_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_14_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_14">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_7_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7_15">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2083,7 +2078,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/drainage-lines.html" class="md-nav__link">
+      <a href="drainage-lines.html" class="md-nav__link">
         
   
   
@@ -2111,7 +2106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/catchment-area.html" class="md-nav__link">
+      <a href="catchment-area.html" class="md-nav__link">
         
   
   
@@ -2139,7 +2134,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/stream-order.html" class="md-nav__link">
+      <a href="stream-order.html" class="md-nav__link">
         
   
   
@@ -2167,7 +2162,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/distance-to-nearest-drainage.html" class="md-nav__link">
+      <a href="distance-to-nearest-drainage.html" class="md-nav__link">
         
   
   
@@ -2195,7 +2190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/natural-depression.html" class="md-nav__link">
+      <a href="natural-depression.html" class="md-nav__link">
         
   
   
@@ -2223,7 +2218,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/slope-percentage.html" class="md-nav__link">
+      <a href="slope-percentage.html" class="md-nav__link">
         
   
   
@@ -2251,7 +2246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/restoration-opportunity.html" class="md-nav__link">
+      <a href="restoration-opportunity.html" class="md-nav__link">
         
   
   
@@ -2303,23 +2298,20 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_15" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_7_16" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../pipelines/time-series-and-ops/index.html" class="md-nav__link ">
+            <a href="time-series-and-ops/index.html" class="md-nav__link ">
               
   
   
@@ -2337,14 +2329,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4_15" id="__nav_4_15_label" tabindex="">
+              <label class="md-nav__link " for="__nav_3_7_16" id="__nav_3_7_16_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_15_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_15">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_7_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7_16">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2363,7 +2355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/ndvi-time-series.html" class="md-nav__link">
+      <a href="ndvi-time-series.html" class="md-nav__link">
         
   
   
@@ -2391,7 +2383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/hls-interpolated-ndvi.html" class="md-nav__link">
+      <a href="hls-interpolated-ndvi.html" class="md-nav__link">
         
   
   
@@ -2426,6 +2418,14 @@
     </li>
   
 
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
     
       
       
@@ -2438,10 +2438,6 @@
       
         
           
-        
-      
-        
-      
         
       
         
@@ -2467,7 +2463,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -2489,14 +2485,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2506,6 +2502,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use-precomputed-data/how-current-data-was-computed.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Current Data Was Computed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -2543,70 +2567,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/authentication.html" class="md-nav__link">
+      <a href="../api/public-apis.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Get Public API Access
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/api-explorer.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Swagger / ReDoc
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../api/public-endpoints.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Public API References
+    Get and Explore Public APIs
   
 
     
@@ -2648,34 +2616,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../use-precomputed-data/how-current-data-was-computed.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    How Current Data Was Computed
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -2719,7 +2659,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -2741,14 +2681,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2822,7 +2762,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_3" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -2844,14 +2784,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3062,7 +3002,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -3084,14 +3024,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3101,34 +3041,6 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../reference/license.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    License
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -3327,6 +3239,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/license.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    License
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3366,7 +3306,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -3388,14 +3328,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3433,10 +3373,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_2" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_2" >
         
           
-          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
             
   
   
@@ -3454,8 +3394,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3531,10 +3471,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_3" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_3" >
         
           
-          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
             
   
   
@@ -3552,8 +3492,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3667,10 +3607,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-this-page-is-for" class="md-nav__link">
+  <a href="#what-you-will-do" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What This Page Is For
+        What You Will Do
       
     </span>
   </a>
@@ -3678,10 +3618,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#a-good-task-boundary" class="md-nav__link">
+  <a href="#before-you-start" class="md-nav__link">
     <span class="md-ellipsis">
       
-        A Good Task Boundary
+        Before You Start
       
     </span>
   </a>
@@ -3689,10 +3629,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#auth-comes-after-meaning" class="md-nav__link">
+  <a href="#step-1-pick-a-place" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Auth Comes After Meaning
+        Step 1: Pick A Place
       
     </span>
   </a>
@@ -3700,10 +3640,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-stop-adding-layers" class="md-nav__link">
+  <a href="#step-2-trigger-one-lulc-run" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When To Stop Adding Layers
+        Step 2: Trigger one LULC Run
       
     </span>
   </a>
@@ -3711,10 +3651,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-paths" class="md-nav__link">
+  <a href="#step-3-find-the-route-in-code" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Next Paths
+        Step 3: Find The Route In Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-inspect-the-handler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Inspect The Handler
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-follow-the-computation-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Follow The Computation Path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-calculate-the-built-up-share" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Calculate The Built-up Share
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-fallback-start-from-latitude-and-longitude" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional Fallback: Start From Latitude And Longitude
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outcome" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outcome
       
     </span>
   </a>
@@ -3764,10 +3759,28 @@
     
     
       <li class="md-path__item">
-        <a href="../pipelines/index.html" class="md-path__link">
+        <a href="../developers/index.html" class="md-path__link">
           
   <span class="md-ellipsis">
-    Pipelines
+    Develop CoRE Stack
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="index.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Pipeline Development
   </span>
 
         </a>
@@ -3789,85 +3802,252 @@
   
 
 
-<h1 id="add-celery-auth-task-integration">Add Celery / Auth / Task Integration<a class="headerlink" href="#add-celery-auth-task-integration" title="Permanent link">&para;</a></h1>
-<p>This page comes after:</p>
-<ul>
-<li><a href="local-pipeline-first.html">Local Pipeline First</a></li>
-<li><a href="django-computing-api-integration.html">Integrate With Django Computing API</a></li>
-</ul>
-<p>That order matters.</p>
+<h1 id="first-manual-api-run">First Manual API Run<a class="headerlink" href="#first-manual-api-run" title="Permanent link">&para;</a></h1>
+<p>This page turns one concrete question into one traceable CoRE Stack run:</p>
+<p><strong>How much of my tehsil or block is built-up?</strong></p>
+<p>Use it as the bridge between "the backend is running" and "I can follow one real computation through the stack."</p>
 <hr />
-<h2 id="what-this-page-is-for">What This Page Is For<a class="headerlink" href="#what-this-page-is-for" title="Permanent link">&para;</a></h2>
-<p>Use it when the computation now needs:</p>
-<ul>
-<li>async execution</li>
-<li>retry behavior</li>
-<li>queue selection</li>
-<li>auth or access decisions</li>
-<li>clearer operational boundaries</li>
-</ul>
-<hr />
-<h2 id="a-good-task-boundary">A Good Task Boundary<a class="headerlink" href="#a-good-task-boundary" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Retry-aware task wrapper pattern</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-0-10">10</a></span>
-<span class="normal"><a href="#__codelineno-0-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="hll"><span class="nd">@app</span><span class="o">.</span><span class="n">task</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_retries</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">default_retry_delay</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
-</span></span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">generate_example_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">district</span><span class="p">,</span> <span class="n">block</span><span class="p">,</span> <span class="n">gee_account_id</span><span class="p">):</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="k">try</span><span class="p">:</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="hll">        <span class="k">return</span> <span class="n">generate_example</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">district</span><span class="p">,</span> <span class="n">block</span><span class="p">,</span> <span class="n">gee_account_id</span><span class="p">)</span>  <span class="c1"># (1)!</span>
-</span></span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="hll">        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Celery task error: </span><span class="si">{</span><span class="n">exc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>                        <span class="c1"># (2)!</span>
-</span></span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="hll">        <span class="k">try</span><span class="p">:</span>
-</span></span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="hll">            <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">retry</span><span class="p">(</span><span class="n">exc</span><span class="o">=</span><span class="n">exc</span><span class="p">)</span>                                    <span class="c1"># (3)!</span>
-</span></span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="hll">        <span class="k">except</span> <span class="bp">self</span><span class="o">.</span><span class="n">MaxRetriesExceededError</span><span class="p">:</span>
-</span></span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="hll">            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Max retries exceeded for </span><span class="si">{</span><span class="n">state</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">district</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">block</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span></span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a>            <span class="k">return</span> <span class="kc">False</span>
-</span></code></pre></div></td></tr></table></div>
+<h2 id="what-you-will-do">What You Will Do<a class="headerlink" href="#what-you-will-do" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Keep the analytical function separately callable.</li>
-<li>Log at the operational boundary.</li>
-<li>Retry where transient infrastructure failures actually matter.</li>
+<li>choose a place</li>
+<li>trigger one LULC run</li>
+<li>trace the route and handler</li>
+<li>inspect the next computation file</li>
+<li>calculate the built-up share from the output</li>
 </ol>
 <hr />
-<h2 id="auth-comes-after-meaning">Auth Comes After Meaning<a class="headerlink" href="#auth-comes-after-meaning" title="Permanent link">&para;</a></h2>
-<p>Auth decisions are important, but they are still later than “does the computation actually do the right thing?”</p>
-<p>When you add auth or access checks, keep them:</p>
+<h2 id="before-you-start">Before You Start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
 <ul>
-<li>explicit</li>
-<li>documented</li>
-<li>aligned with the intended audience of the route</li>
+<li>Complete <a href="../developers/installer.html">Installer</a> first.</li>
+<li>Keep one valid <code>gee_account_id</code> ready if your local setup requires it.</li>
+<li>Start with the normal tehsil or block route if you already know the place names.</li>
 </ul>
-<p>For public data, see <a href="../api/authentication.html">Get Public API Access</a>.</p>
-<p>For developer-facing computation surfaces, keep documentation consistent with <a href="../api/computing-endpoints.html">Computing API Endpoints</a>.</p>
+<p>If exact spellings are difficult, use the fallback at the end of this page to start from latitude and longitude instead.</p>
 <hr />
-<h2 id="when-to-stop-adding-layers">When To Stop Adding Layers<a class="headerlink" href="#when-to-stop-adding-layers" title="Permanent link">&para;</a></h2>
-<p>Not every computation needs every integration feature immediately.</p>
-<p>If the computation is still evolving, it is often enough to stop at:</p>
+<h2 id="step-1-pick-a-place">Step 1: Pick A Place<a class="headerlink" href="#step-1-pick-a-place" title="Permanent link">&para;</a></h2>
+<p>The canonical path uses:</p>
 <ul>
-<li>local callable</li>
-<li>thin Django route</li>
-<li>basic task execution</li>
+<li><code>state</code></li>
+<li><code>district</code></li>
+<li><code>block</code> or <code>tehsil</code></li>
 </ul>
-<p>and postpone:</p>
+<p>Example:</p>
 <ul>
-<li>elaborate auth</li>
-<li>retries</li>
-<li>public metadata exposure</li>
-<li>dataset registration</li>
+<li><code>state</code>: <code>karnataka</code></li>
+<li><code>district</code>: <code>raichur</code></li>
+<li><code>block</code>: <code>devadurga</code></li>
 </ul>
-<p>until the workflow is stable.</p>
+<p>If you are not sure about the spellings, first use <a href="../api/geoadmin-noauth.html">GeoAdmin (NoAuth) APIs</a> to confirm the exact location names you should send into the computation route.</p>
+<details>
+  <summary>Reveal a quick location-finding route</summary>
+
+Start with your state:
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>https://geoserver.core-stack.org/api/v1/get_states/
+</span></code></pre></div>
+
+Once you find your state (eg: 29), start with:
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl<span class="w"> </span>https://geoserver.core-stack.org/api/v1/get_districts/29/
+</span></code></pre></div>
+
+Using the district code in your state, follow with:
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>curl<span class="w"> </span>https://geoserver.core-stack.org/api/v1/get_blocks/566/
+</span></code></pre></div>
+
+That lets you copy the exact district and block names before you try the computation route locally.
+
+</details>
+
 <hr />
-<h2 id="next-paths">Next Paths<a class="headerlink" href="#next-paths" title="Permanent link">&para;</a></h2>
+<h2 id="step-2-trigger-one-lulc-run">Step 2: Trigger one LULC Run<a class="headerlink" href="#step-2-trigger-one-lulc-run" title="Permanent link">&para;</a></h2>
+<p>Start with the tehsil-level LULC route because it keeps the scope easy to inspect.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="s1">    &quot;state&quot;: &quot;karnataka&quot;,</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="s1">    &quot;district&quot;: &quot;raichur&quot;,</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="s1">    &quot;block&quot;: &quot;devadurga&quot;,</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="s1">    &quot;start_year&quot;: 2022,</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="s1">    &quot;end_year&quot;: 2023,</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="s1">    &quot;gee_account_id&quot;: 1</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="s1">  }&#39;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span>http://127.0.0.1:8000/api/v1/lulc_for_tehsil/
+</span></code></pre></div>
+<p>Why this route?</p>
 <ul>
-<li><a href="add-new-data-resources.html">Add and Integrate Public / New Data Resources</a></li>
+<li>it is a real computation endpoint already listed in <a href="computing-endpoints.html">Computing API Endpoints</a></li>
+<li>built-up is one class inside the resulting LULC output</li>
+<li>it gives you a clean path from request to handler to computation module</li>
 </ul>
+<details>
+  <summary>Reveal what success should look like</summary>
+
+The route should acknowledge the request quickly, because the heavy work usually moves into a task or computation boundary after the handler parses the payload.
+
+If nothing happens, stop here and check:
+
+- the backend server is running
+- your request keys are spelled exactly as expected
+- your local environment has the required Earth Engine configuration
+
+</details>
+
+<hr />
+<h2 id="step-3-find-the-route-in-code">Step 3: Find The Route In Code<a class="headerlink" href="#step-3-find-the-route-in-code" title="Permanent link">&para;</a></h2>
+<p>Open the route file first:</p>
+<ul>
+<li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/computing/urls.py">computing/urls.py</a></li>
+</ul>
+<p>Look for a line shaped like this:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Route shape to look for in computing/urls.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="hll">    <span class="n">path</span><span class="p">(</span><span class="s2">&quot;lulc_for_tehsil/&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">),</span>
+</span></span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="p">]</span>
+</span></code></pre></div></td></tr></table></div>
+<p>You are not trying to memorize the whole file. You are only verifying one thing:</p>
+<p>the incoming <code>POST /api/v1/lulc_for_tehsil/</code> request really has a named route in the computing surface.</p>
+<details>
+  <summary>Reveal the next clue</summary>
+
+Once you find the route entry, the next useful question is:
+
+which handler in `computing/api.py` owns this request?
+
+</details>
+
+<hr />
+<h2 id="step-4-inspect-the-handler">Step 4: Inspect The Handler<a class="headerlink" href="#step-4-inspect-the-handler" title="Permanent link">&para;</a></h2>
+<p>Now open:</p>
+<ul>
+<li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/computing/api.py">computing/api.py</a></li>
+</ul>
+<p>The handler will usually have this overall shape:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Typical computing handler shape</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="nd">@api_view</span><span class="p">([</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="nd">@schema</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">lulc_for_tehsil</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="hll">    <span class="n">state</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;state&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</span></span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="hll">    <span class="n">district</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;district&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</span></span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="hll">    <span class="n">block</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;block&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</span></span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="hll">    <span class="n">gee_account_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;gee_account_id&quot;</span><span class="p">)</span>
+</span></span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="hll">    <span class="n">run_lulc_task</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span>
+</span></span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="hll">        <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="n">district</span><span class="p">,</span> <span class="n">block</span><span class="p">,</span> <span class="n">gee_account_id</span><span class="p">],</span>
+</span></span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="hll">        <span class="n">queue</span><span class="o">=</span><span class="s2">&quot;nrm&quot;</span><span class="p">,</span>
+</span></span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="hll">    <span class="p">)</span>
+</span></span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12"></a>    <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s2">&quot;Success&quot;</span><span class="p">:</span> <span class="s2">&quot;Successfully initiated&quot;</span><span class="p">})</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Focus on the highlighted parts:</p>
+<ul>
+<li>request fields are normalized early</li>
+<li>the handler stays thin</li>
+<li>the real work is handed off to a task or computation boundary</li>
+</ul>
+<details>
+  <summary>Reveal what to inspect next</summary>
+
+Do not stop at the handler.
+
+Search for the task or function it calls, then follow that into the LULC workflow module under `computing/`.
+
+That is the point where the route stops being an API concern and becomes a geospatial computation concern.
+
+</details>
+
+<hr />
+<h2 id="step-5-follow-the-computation-path">Step 5: Follow The Computation Path<a class="headerlink" href="#step-5-follow-the-computation-path" title="Permanent link">&para;</a></h2>
+<p>At this point, your next useful references are:</p>
+<ul>
+<li><a href="how-pipelines-work-programmatically.html">How They Work Programmatically</a></li>
+<li><a href="lulc-generation.html">LULC Generation</a></li>
+<li>the LULC-related module under <code>computing/</code> in the backend repo</li>
+</ul>
+<p>Use this rule while tracing:</p>
+<ol>
+<li><code>computing/urls.py</code> tells you the route name</li>
+<li><code>computing/api.py</code> tells you the handler and task handoff</li>
+<li>the LULC module tells you how the result is actually produced</li>
+</ol>
+<p>If you lose the trail, search for:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>rg<span class="w"> </span><span class="s2">&quot;lulc_for_tehsil|lulc_v3|lulc_v4&quot;</span><span class="w"> </span>computing
+</span></code></pre></div>
+<p>That usually gets you back onto the main road quickly.</p>
+<hr />
+<h2 id="step-6-calculate-the-built-up-share">Step 6: Calculate The Built-up Share<a class="headerlink" href="#step-6-calculate-the-built-up-share" title="Permanent link">&para;</a></h2>
+<p>Once the computation finishes, extract or summarize the class areas and compute the built-up percentage.</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Turn class areas into a built-up share</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span>
+<span class="normal"><a href="#__codelineno-7-7">7</a></span>
+<span class="normal"><a href="#__codelineno-7-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="n">class_areas</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>    <span class="s2">&quot;cropland&quot;</span><span class="p">:</span> <span class="mf">1264.2</span><span class="p">,</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>    <span class="s2">&quot;built_up&quot;</span><span class="p">:</span> <span class="mf">182.4</span><span class="p">,</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>    <span class="s2">&quot;water&quot;</span><span class="p">:</span> <span class="mf">37.8</span><span class="p">,</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a>    <span class="s2">&quot;other&quot;</span><span class="p">:</span> <span class="mf">615.6</span><span class="p">,</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="hll"><span class="p">}</span>
+</span></span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="n">built_up_share</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">class_areas</span><span class="p">[</span><span class="s2">&quot;built_up&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">class_areas</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Built-up share: </span><span class="si">{</span><span class="n">built_up_share</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>What matters here is the shape of the final reasoning:</p>
+<ul>
+<li>identify the built-up class</li>
+<li>identify the total area under consideration</li>
+<li>divide built-up area by total area</li>
+<li>report the answer as a percentage</li>
+</ul>
+<p>If your output is a table instead of a dictionary, the same rule still applies.</p>
+<hr />
+<h2 id="optional-fallback-start-from-latitude-and-longitude">Optional Fallback: Start From Latitude And Longitude<a class="headerlink" href="#optional-fallback-start-from-latitude-and-longitude" title="Permanent link">&para;</a></h2>
+<p>Use this only when place names are hard to resolve or you want a quick local dry run around a point before running the full tehsil workflow.</p>
+<p>This is a local exploration shortcut, not the canonical published tehsil route.</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Optional 1 km point-based sanity check</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">ee</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">()</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="hll"><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span> <span class="o">=</span> <span class="mf">15.91</span><span class="p">,</span> <span class="mf">76.53</span>
+</span></span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="hll"><span class="n">roi</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">Point</span><span class="p">([</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">])</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</span></span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="hll"><span class="c1"># Replace this with the local LULC helper you are tracing in your checkout.</span>
+</span></span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="n">class_areas</span> <span class="o">=</span> <span class="n">run_lulc_sample</span><span class="p">(</span><span class="n">roi</span><span class="o">=</span><span class="n">roi</span><span class="p">,</span> <span class="n">start_year</span><span class="o">=</span><span class="mi">2022</span><span class="p">,</span> <span class="n">end_year</span><span class="o">=</span><span class="mi">2023</span><span class="p">)</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="n">built_up_share</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">class_areas</span><span class="p">[</span><span class="s2">&quot;built_up&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">class_areas</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Built-up share inside 1 km radius: </span><span class="si">{</span><span class="n">built_up_share</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Use this fallback to answer a smaller question first:</p>
+<p>"Around this point, in a 1 km radius, what share is built-up?"</p>
+<p>Then return to the tehsil route once you are ready to run the full administrative unit.</p>
+<hr />
+<h2 id="outcome">Outcome<a class="headerlink" href="#outcome" title="Permanent link">&para;</a></h2>
+<p>By the end of this page, you should have:</p>
+<ul>
+<li>sent one real LULC request</li>
+<li>located the route and handler in code</li>
+<li>followed the handoff into the computation layer</li>
+<li>calculated one built-up-share result for a place or a 1 km local ROI</li>
+</ul>
+<p>If you want the next step after this, continue into <a href="local-pipeline-first.html">Local Pipeline First</a> or <a href="how-pipelines-work-programmatically.html">How They Work Programmatically</a>.</p>
 
 
 

@@ -8,7 +8,7 @@
 <meta content="Programmatic view of CoRE Stack computations, from request handlers and task boundaries to publication and metadata surfaces." name="description"/>
 <link href="https://docs.core-stack.org/pipelines/how-pipelines-work-programmatically.html" rel="canonical"/>
 <link href="how-pipelines-work-algorithmically.html" rel="prev"/>
-<link href="common-design-and-integration-patterns.html" rel="next"/>
+<link href="local-pipeline-first.html" rel="next"/>
 <link href="../assets/logo.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.4" name="generator"/>
 <title>How They Work Programmatically - CoRE Stack Documentation</title>
@@ -153,7 +153,7 @@
 
         </a>
 </li>
-<li class="md-tabs__item">
+<li class="md-tabs__item md-tabs__item--active">
 <a class="md-tabs__link" href="../developers/index.html">
           
   
@@ -161,17 +161,6 @@
     
   
   Develop CoRE Stack
-
-        </a>
-</li>
-<li class="md-tabs__item md-tabs__item--active">
-<a class="md-tabs__link" href="index.html">
-          
-  
-  
-    
-  
-  Pipelines
 
         </a>
 </li>
@@ -297,8 +286,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../developers/index.html">
 <span class="md-ellipsis">
@@ -310,11 +299,11 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_3">
 <span class="md-nav__icon md-icon"></span>
             
@@ -360,32 +349,8 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../developers/system-architecture.html">
-<span class="md-ellipsis">
-    
-  
-    System Architecture
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../developers/first-manual-api-run.html">
-<span class="md-ellipsis">
-    
-  
-    First Manual API Run
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_7" type="checkbox"/>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_5" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../developers/integrations/index.html">
 <span class="md-ellipsis">
@@ -397,12 +362,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+<label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_3_7_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_3_7">
+<nav aria-expanded="false" aria-labelledby="__nav_3_5_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_5">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -462,36 +427,45 @@
   </span>
 </a>
 </li>
-</ul>
-</nav>
-</li>
 <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_3_7" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="index.html">
 <span class="md-ellipsis">
     
   
-    Pipelines
+    Pipeline Development
   
 
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+<label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_4">
+<nav aria-expanded="true" aria-labelledby="__nav_3_7_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_3_7">
 <span class="md-nav__icon md-icon"></span>
             
   
-    Pipelines
+    Pipeline Development
   
 
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="first-manual-api-run.html">
+<span class="md-ellipsis">
+    
+  
+    First Manual API Run
+  
+
+    
+  </span>
+</a>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="how-pipelines-work-algorithmically.html">
 <span class="md-ellipsis">
@@ -640,11 +614,71 @@
 </nav>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="local-pipeline-first.html">
+<span class="md-ellipsis">
+    
+  
+    Local Pipeline First
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="django-computing-api-integration.html">
+<span class="md-ellipsis">
+    
+  
+    Integrate With Django Computing API
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="celery-auth-and-task-integration.html">
+<span class="md-ellipsis">
+    
+  
+    Add Celery / Auth / Task Integration
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="computing-endpoints.html">
+<span class="md-ellipsis">
+    
+  
+    Computing API Endpoints
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="common-design-and-integration-patterns.html">
 <span class="md-ellipsis">
     
   
     Common Pipeline Design / Integration Patterns
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="build-new-pipelines.html">
+<span class="md-ellipsis">
+    
+  
+    Build New Pipelines
   
 
     
@@ -664,67 +698,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../api/computing-endpoints.html">
-<span class="md-ellipsis">
-    
-  
-    Computing API Endpoints
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../developers/local-pipeline-first.html">
-<span class="md-ellipsis">
-    
-  
-    Local Pipeline First
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../developers/django-computing-api-integration.html">
-<span class="md-ellipsis">
-    
-  
-    Integrate With Django Computing API
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../developers/celery-auth-and-task-integration.html">
-<span class="md-ellipsis">
-    
-  
-    Add Celery / Auth / Task Integration
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../developers/build-new-pipelines.html">
-<span class="md-ellipsis">
-    
-  
-    Build New Pipelines
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../developers/add-new-data-resources.html">
+<a class="md-nav__link" href="add-new-data-resources.html">
 <span class="md-ellipsis">
     
   
@@ -735,8 +709,8 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_12" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_7_13" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="core-workflows/index.html">
 <span class="md-ellipsis">
@@ -748,12 +722,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_4_12" id="__nav_4_12_label" tabindex="">
+<label class="md-nav__link" for="__nav_3_7_13" id="__nav_3_7_13_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_12_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_4_12">
+<nav aria-expanded="false" aria-labelledby="__nav_3_7_13_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_7_13">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -813,8 +787,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_13" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_7_14" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="boundary-and-enrichment/index.html">
 <span class="md-ellipsis">
@@ -826,12 +800,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_4_13" id="__nav_4_13_label" tabindex="">
+<label class="md-nav__link" for="__nav_3_7_14" id="__nav_3_7_14_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_13_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_4_13">
+<nav aria-expanded="false" aria-labelledby="__nav_3_7_14_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_7_14">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -927,8 +901,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_14" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_7_15" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="raster-and-drainage/index.html">
 <span class="md-ellipsis">
@@ -940,12 +914,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_4_14" id="__nav_4_14_label" tabindex="">
+<label class="md-nav__link" for="__nav_3_7_15" id="__nav_3_7_15_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_14_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_4_14">
+<nav aria-expanded="false" aria-labelledby="__nav_3_7_15_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_7_15">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -1041,8 +1015,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_15" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_7_16" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="time-series-and-ops/index.html">
 <span class="md-ellipsis">
@@ -1054,12 +1028,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_4_15" id="__nav_4_15_label" tabindex="">
+<label class="md-nav__link" for="__nav_3_7_16" id="__nav_3_7_16_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_15_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_4_15">
+<nav aria-expanded="false" aria-labelledby="__nav_3_7_16_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_3_7_16">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -1098,8 +1072,11 @@
 </ul>
 </nav>
 </li>
+</ul>
+</nav>
+</li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5" type="checkbox"/>
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../use-precomputed-data/index.html">
 <span class="md-ellipsis">
@@ -1111,12 +1088,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_5">
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -1125,6 +1102,18 @@
 
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../use-precomputed-data/how-current-data-was-computed.html">
+<span class="md-ellipsis">
+    
+  
+    How Current Data Was Computed
+  
+
+    
+  </span>
+</a>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../api/geoadmin-noauth.html">
 <span class="md-ellipsis">
@@ -1138,35 +1127,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../api/authentication.html">
+<a class="md-nav__link" href="../api/public-apis.html">
 <span class="md-ellipsis">
     
   
-    Get Public API Access
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../api/api-explorer.html">
-<span class="md-ellipsis">
-    
-  
-    Swagger / ReDoc
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../api/public-endpoints.html">
-<span class="md-ellipsis">
-    
-  
-    Public API References
+    Get and Explore Public APIs
   
 
     
@@ -1185,23 +1150,11 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../use-precomputed-data/how-current-data-was-computed.html">
-<span class="md-ellipsis">
-    
-  
-    How Current Data Was Computed
-  
-
-    
-  </span>
-</a>
-</li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6" type="checkbox"/>
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../community/index.html">
 <span class="md-ellipsis">
@@ -1213,12 +1166,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_6">
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -1240,7 +1193,7 @@
 </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6_3" type="checkbox"/>
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5_3" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../community/innovation-challenges/index.html">
 <span class="md-ellipsis">
@@ -1252,12 +1205,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+<label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_6_3_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_6_3">
+<nav aria-expanded="false" aria-labelledby="__nav_5_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_5_3">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -1333,7 +1286,7 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7" type="checkbox"/>
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../reference/index.html">
 <span class="md-ellipsis">
@@ -1345,12 +1298,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_7">
+<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -1359,18 +1312,6 @@
 
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../reference/license.html">
-<span class="md-ellipsis">
-    
-  
-    License
-  
-
-    
-  </span>
-</a>
-</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../reference/scientific-papers-and-research-repositories.html">
 <span class="md-ellipsis">
@@ -1455,11 +1396,23 @@
   </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../reference/license.html">
+<span class="md-ellipsis">
+    
+  
+    License
+  
+
+    
+  </span>
+</a>
+</li>
 </ul>
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8" type="checkbox"/>
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../blog/index.html">
 <span class="md-ellipsis">
@@ -1471,12 +1424,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_8_label" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_8">
+<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -1486,8 +1439,8 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
 <span class="md-ellipsis">
     
   
@@ -1498,8 +1451,8 @@
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_8_2_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_8_2">
+<nav aria-expanded="false" aria-labelledby="__nav_7_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_7_2">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -1524,8 +1477,8 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8_3" type="checkbox"/>
-<label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
 <span class="md-ellipsis">
     
   
@@ -1536,8 +1489,8 @@
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_8_3_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_8_3">
+<nav aria-expanded="false" aria-labelledby="__nav_7_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_7_3">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -1709,9 +1662,16 @@
 </a>
 </li>
 <li class="md-path__item">
+<a class="md-path__link" href="../developers/index.html">
+<span class="md-ellipsis">
+    Develop CoRE Stack
+  </span>
+</a>
+</li>
+<li class="md-path__item">
 <a class="md-path__link" href="index.html">
 <span class="md-ellipsis">
-    Pipelines
+    Pipeline Development
   </span>
 </a>
 </li>
@@ -1814,12 +1774,12 @@
 <li>expose it through the Django Computing API</li>
 <li>add Celery, auth, retries, and publication integration</li>
 </ol>
-<p>That is why the developer flow begins with <a href="../developers/local-pipeline-first.html">Local Pipeline First</a>, not with Celery or admin wiring.</p>
+<p>That is why the developer flow begins with <a href="local-pipeline-first.html">Local Pipeline First</a>, not with Celery or admin wiring.</p>
 <hr/>
 <h2 id="where-public-data-re-enters">Where Public Data Re-enters<a class="headerlink" href="#where-public-data-re-enters" title="Permanent link">¶</a></h2>
 <p>Once the computation is published, downstream public surfaces begin to depend on it:</p>
 <ul>
-<li><a href="../api/public-endpoints.html">Public API References</a></li>
+<li><a href="../api/public-apis.html">Public API References</a></li>
 <li><a href="../api/stac-specs.html">STAC Specs</a></li>
 <li><a href="../use-precomputed-data/how-current-data-was-computed.html">How Current Data Was Computed</a></li>
 </ul>
