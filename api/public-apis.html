@@ -3769,12 +3769,7 @@
 
 
 <h1 id="public-apis">Public APIs<a class="headerlink" href="#public-apis" title="Permanent link">&para;</a></h1>
-<p>Use this page when you want one practical path into CoRE Stack public data:</p>
-<ol>
-<li>identify a valid place</li>
-<li>get an API key</li>
-<li>call the right public route</li>
-</ol>
+<p>This page is a one-stop path if you simply want to access and use CoRE Stack public data:</p>
 <hr />
 <h2 id="1-generate-an-api-key">1. Generate An API Key<a class="headerlink" href="#1-generate-an-api-key" title="Permanent link">&para;</a></h2>
 <p>For public dataset access:</p>
@@ -3862,6 +3857,30 @@
 <p>Use either:</p>
 <ul>
 <li><a href="geoadmin-noauth.html">GeoAdmin (NoAuth) APIs</a> if you need state or district names</li>
+</ul>
+<details>
+  <summary>Reveal a quick location-finding route</summary>
+
+Start with your state:
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>https://geoserver.core-stack.org/api/v1/get_states/
+</span></code></pre></div>
+
+Once you find your state (eg: 29), start with:
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl<span class="w"> </span>https://geoserver.core-stack.org/api/v1/get_districts/29/
+</span></code></pre></div>
+
+Using the district code in your state, follow with:
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>curl<span class="w"> </span>https://geoserver.core-stack.org/api/v1/get_blocks/566/
+</span></code></pre></div>
+
+That lets you copy the exact district and block names before you try the computation route locally.
+
+</details>
+
+<ul>
 <li><code>GET /api/v1/get_active_locations/</code> if you want only places currently active in the public surface</li>
 </ul>
 <h3 id="inventory-the-published-layers">Inventory the published layers<a class="headerlink" href="#inventory-the-published-layers" title="Permanent link">&para;</a></h3>
@@ -3897,10 +3916,10 @@
 </ul>
 <h3 id="join-by-uid">Join by <code>uid</code><a class="headerlink" href="#join-by-uid" title="Permanent link">&para;</a></h3>
 <p>That is the central reuse pattern:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">geometries</span> <span class="o">=</span> <span class="n">fetch_mws_geometries</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">tehsil_data</span> <span class="o">=</span> <span class="n">fetch_tehsil_data</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">metric_table</span> <span class="o">=</span> <span class="n">build_metric_table</span><span class="p">(</span><span class="n">tehsil_data</span><span class="p">)</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">joined_geojson</span> <span class="o">=</span> <span class="n">join_metrics_to_geojson</span><span class="p">(</span><span class="n">geometries</span><span class="p">,</span> <span class="n">metric_table</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">geometries</span> <span class="o">=</span> <span class="n">fetch_mws_geometries</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">tehsil_data</span> <span class="o">=</span> <span class="n">fetch_tehsil_data</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">metric_table</span> <span class="o">=</span> <span class="n">build_metric_table</span><span class="p">(</span><span class="n">tehsil_data</span><span class="p">)</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">joined_geojson</span> <span class="o">=</span> <span class="n">join_metrics_to_geojson</span><span class="p">(</span><span class="n">geometries</span><span class="p">,</span> <span class="n">metric_table</span><span class="p">)</span>
 </span></code></pre></div>
 <p>In other words:</p>
 <ol>
