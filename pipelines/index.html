@@ -6,15 +6,14 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Understand how CoRE Stack pipelines work and extend computation workflows from local experimentation to integrated platform outputs." name="description"/>
-<link href="https://docs.core-stack.org/pipelines/index.html" rel="canonical"/>
-<link href="../developers/coding-standards-and-guidelines.html" rel="prev"/>
-<link href="first-manual-api-run.html" rel="next"/>
+<link href="https://core-stack-org.github.io/core-stack-docs/pipelines/" rel="canonical"/>
+<link href="../developers/coding-standards-and-guidelines/" rel="prev"/>
+<link href="first-manual-api-run/" rel="next"/>
 <link href="../assets/logo.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.4" name="generator"/>
 <title>Pipeline Development - CoRE Stack Documentation</title>
 <link href="../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
-<script src="https://unpkg.com/iframe-worker/shim"></script>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
@@ -23,15 +22,15 @@
 <meta content="website" property="og:type">
 <meta content="Pipeline Development - CoRE Stack Documentation" property="og:title">
 <meta content="Understand how CoRE Stack pipelines work and extend computation workflows from local experimentation to integrated platform outputs." property="og:description">
-<meta content="https://docs.core-stack.org/assets/images/social/pipelines/index.png" property="og:image">
+<meta content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/pipelines/index.png" property="og:image">
 <meta content="image/png" property="og:image:type"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
-<meta content="https://docs.core-stack.org/pipelines/index.html" property="og:url"/>
+<meta content="https://core-stack-org.github.io/core-stack-docs/pipelines/" property="og:url"/>
 <meta content="summary_large_image" property="twitter:card"/>
 <meta content="Pipeline Development - CoRE Stack Documentation" property="twitter:title"/>
 <meta content="Understand how CoRE Stack pipelines work and extend computation workflows from local experimentation to integrated platform outputs." property="twitter:description"/>
-<meta content="https://docs.core-stack.org/assets/images/social/pipelines/index.png" property="twitter:image"/>
+<meta content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/pipelines/index.png" property="twitter:image"/>
 </meta></meta></meta></meta></head>
 <body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
@@ -46,7 +45,7 @@
 </div>
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="CoRE Stack Documentation" class="md-header__button md-logo" data-md-component="logo" href="../index.html" title="CoRE Stack Documentation">
+<a aria-label="CoRE Stack Documentation" class="md-header__button md-logo" data-md-component="logo" href=".." title="CoRE Stack Documentation">
 <img alt="logo" src="../assets/logo.png"/>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
@@ -132,7 +131,7 @@
 <div class="md-grid">
 <ul class="md-tabs__list">
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../index.html">
+<a class="md-tabs__link" href="..">
         
   
   
@@ -143,7 +142,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="watershed-data-structure.html">
+<a class="md-tabs__link" href="watershed-data-structure/">
           
   
   
@@ -154,7 +153,7 @@
         </a>
 </li>
 <li class="md-tabs__item md-tabs__item--active">
-<a class="md-tabs__link" href="../developers/index.html">
+<a class="md-tabs__link" href="../developers/">
           
   
   
@@ -165,7 +164,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../use-precomputed-data/index.html">
+<a class="md-tabs__link" href="../use-precomputed-data/">
           
   
   
@@ -176,7 +175,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../community/index.html">
+<a class="md-tabs__link" href="../community/">
           
   
   
@@ -187,7 +186,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../reference/index.html">
+<a class="md-tabs__link" href="../reference/">
           
   
   
@@ -198,7 +197,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../blog/index.html">
+<a class="md-tabs__link" href="../blog/">
           
   
   
@@ -220,7 +219,7 @@
 <div class="md-sidebar__inner">
 <nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="CoRE Stack Documentation" class="md-nav__button md-logo" data-md-component="logo" href="../index.html" title="CoRE Stack Documentation">
+<a aria-label="CoRE Stack Documentation" class="md-nav__button md-logo" data-md-component="logo" href=".." title="CoRE Stack Documentation">
 <img alt="logo" src="../assets/logo.png"/>
 </a>
     CoRE Stack Documentation
@@ -237,7 +236,7 @@
 </div>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../index.html">
+<a class="md-nav__link" href="..">
 <span class="md-ellipsis">
     
   
@@ -272,7 +271,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="watershed-data-structure.html">
+<a class="md-nav__link" href="watershed-data-structure/">
 <span class="md-ellipsis">
     
   
@@ -289,7 +288,7 @@
 <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
 <input checked="" class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../developers/index.html">
+<a class="md-nav__link" href="../developers/">
 <span class="md-ellipsis">
     
   
@@ -314,7 +313,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../developers/installer.html">
+<a class="md-nav__link" href="../developers/installer/">
 <span class="md-ellipsis">
     
   
@@ -326,7 +325,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../developers/setup-troubleshooting.html">
+<a class="md-nav__link" href="../developers/setup-troubleshooting/">
 <span class="md-ellipsis">
     
   
@@ -338,7 +337,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../developers/backend-code-map.html">
+<a class="md-nav__link" href="../developers/backend-code-map/">
 <span class="md-ellipsis">
     
   
@@ -352,7 +351,7 @@
 <li class="md-nav__item md-nav__item--section md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_5" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../developers/integrations/index.html">
+<a class="md-nav__link" href="../developers/integrations/">
 <span class="md-ellipsis">
     
   
@@ -377,7 +376,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../developers/integrations/google-earth-engine.html">
+<a class="md-nav__link" href="../developers/integrations/google-earth-engine/">
 <span class="md-ellipsis">
     
   
@@ -389,7 +388,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../developers/integrations/geoserver.html">
+<a class="md-nav__link" href="../developers/integrations/geoserver/">
 <span class="md-ellipsis">
     
   
@@ -401,7 +400,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../developers/integrations/aws.html">
+<a class="md-nav__link" href="../developers/integrations/aws/">
 <span class="md-ellipsis">
     
   
@@ -416,7 +415,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../developers/coding-standards-and-guidelines.html">
+<a class="md-nav__link" href="../developers/coding-standards-and-guidelines/">
 <span class="md-ellipsis">
     
   
@@ -430,7 +429,7 @@
 <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
 <input checked="" class="md-nav__toggle md-toggle" id="__nav_3_7" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link md-nav__link--active" href="index.html">
+<a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     
   
@@ -455,7 +454,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="first-manual-api-run.html">
+<a class="md-nav__link" href="first-manual-api-run/">
 <span class="md-ellipsis">
     
   
@@ -467,7 +466,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="how-pipelines-work-algorithmically.html">
+<a class="md-nav__link" href="how-pipelines-work-algorithmically/">
 <span class="md-ellipsis">
     
   
@@ -479,7 +478,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="how-pipelines-work-programmatically.html">
+<a class="md-nav__link" href="how-pipelines-work-programmatically/">
 <span class="md-ellipsis">
     
   
@@ -491,7 +490,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="local-pipeline-first.html">
+<a class="md-nav__link" href="local-pipeline-first/">
 <span class="md-ellipsis">
     
   
@@ -503,7 +502,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="django-computing-api-integration.html">
+<a class="md-nav__link" href="django-computing-api-integration/">
 <span class="md-ellipsis">
     
   
@@ -515,7 +514,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="celery-auth-and-task-integration.html">
+<a class="md-nav__link" href="celery-auth-and-task-integration/">
 <span class="md-ellipsis">
     
   
@@ -527,7 +526,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="computing-endpoints.html">
+<a class="md-nav__link" href="computing-endpoints/">
 <span class="md-ellipsis">
     
   
@@ -539,7 +538,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="common-design-and-integration-patterns.html">
+<a class="md-nav__link" href="common-design-and-integration-patterns/">
 <span class="md-ellipsis">
     
   
@@ -551,7 +550,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="build-new-pipelines.html">
+<a class="md-nav__link" href="build-new-pipelines/">
 <span class="md-ellipsis">
     
   
@@ -563,7 +562,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="pipeline-integrations.html">
+<a class="md-nav__link" href="pipeline-integrations/">
 <span class="md-ellipsis">
     
   
@@ -575,7 +574,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="add-new-data-resources.html">
+<a class="md-nav__link" href="add-new-data-resources/">
 <span class="md-ellipsis">
     
   
@@ -589,7 +588,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_7_13" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="core-workflows/index.html">
+<a class="md-nav__link" href="core-workflows/">
 <span class="md-ellipsis">
     
   
@@ -614,7 +613,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="lulc-generation.html">
+<a class="md-nav__link" href="lulc-generation/">
 <span class="md-ellipsis">
     
   
@@ -626,7 +625,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="swb-detection.html">
+<a class="md-nav__link" href="swb-detection/">
 <span class="md-ellipsis">
     
   
@@ -638,7 +637,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="hydrology.html">
+<a class="md-nav__link" href="hydrology/">
 <span class="md-ellipsis">
     
   
@@ -650,7 +649,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="terrain-analysis.html">
+<a class="md-nav__link" href="terrain-analysis/">
 <span class="md-ellipsis">
     
   
@@ -667,7 +666,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_7_14" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="boundary-and-enrichment/index.html">
+<a class="md-nav__link" href="boundary-and-enrichment/">
 <span class="md-ellipsis">
     
   
@@ -692,7 +691,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="admin-boundary.html">
+<a class="md-nav__link" href="admin-boundary/">
 <span class="md-ellipsis">
     
   
@@ -704,7 +703,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="facilities-proximity.html">
+<a class="md-nav__link" href="facilities-proximity/">
 <span class="md-ellipsis">
     
   
@@ -716,7 +715,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="nrega-assets.html">
+<a class="md-nav__link" href="nrega-assets/">
 <span class="md-ellipsis">
     
   
@@ -728,7 +727,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="agroecological-space.html">
+<a class="md-nav__link" href="agroecological-space/">
 <span class="md-ellipsis">
     
   
@@ -740,7 +739,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="aquifer-vector.html">
+<a class="md-nav__link" href="aquifer-vector/">
 <span class="md-ellipsis">
     
   
@@ -752,7 +751,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="soge-vector.html">
+<a class="md-nav__link" href="soge-vector/">
 <span class="md-ellipsis">
     
   
@@ -764,7 +763,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="pan-india-clip-modules.html">
+<a class="md-nav__link" href="pan-india-clip-modules/">
 <span class="md-ellipsis">
     
   
@@ -781,7 +780,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_7_15" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="raster-and-drainage/index.html">
+<a class="md-nav__link" href="raster-and-drainage/">
 <span class="md-ellipsis">
     
   
@@ -806,7 +805,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="drainage-lines.html">
+<a class="md-nav__link" href="drainage-lines/">
 <span class="md-ellipsis">
     
   
@@ -818,7 +817,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="catchment-area.html">
+<a class="md-nav__link" href="catchment-area/">
 <span class="md-ellipsis">
     
   
@@ -830,7 +829,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="stream-order.html">
+<a class="md-nav__link" href="stream-order/">
 <span class="md-ellipsis">
     
   
@@ -842,7 +841,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="distance-to-nearest-drainage.html">
+<a class="md-nav__link" href="distance-to-nearest-drainage/">
 <span class="md-ellipsis">
     
   
@@ -854,7 +853,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="natural-depression.html">
+<a class="md-nav__link" href="natural-depression/">
 <span class="md-ellipsis">
     
   
@@ -866,7 +865,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="slope-percentage.html">
+<a class="md-nav__link" href="slope-percentage/">
 <span class="md-ellipsis">
     
   
@@ -878,7 +877,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="restoration-opportunity.html">
+<a class="md-nav__link" href="restoration-opportunity/">
 <span class="md-ellipsis">
     
   
@@ -895,7 +894,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3_7_16" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="time-series-and-ops/index.html">
+<a class="md-nav__link" href="time-series-and-ops/">
 <span class="md-ellipsis">
     
   
@@ -920,7 +919,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="ndvi-time-series.html">
+<a class="md-nav__link" href="ndvi-time-series/">
 <span class="md-ellipsis">
     
   
@@ -932,7 +931,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="hls-interpolated-ndvi.html">
+<a class="md-nav__link" href="hls-interpolated-ndvi/">
 <span class="md-ellipsis">
     
   
@@ -955,7 +954,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../use-precomputed-data/index.html">
+<a class="md-nav__link" href="../use-precomputed-data/">
 <span class="md-ellipsis">
     
   
@@ -980,7 +979,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../use-precomputed-data/how-current-data-was-computed.html">
+<a class="md-nav__link" href="../use-precomputed-data/how-current-data-was-computed/">
 <span class="md-ellipsis">
     
   
@@ -992,7 +991,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../api/geoadmin-noauth.html">
+<a class="md-nav__link" href="../api/geoadmin-noauth/">
 <span class="md-ellipsis">
     
   
@@ -1004,7 +1003,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../api/public-apis.html">
+<a class="md-nav__link" href="../api/public-apis/">
 <span class="md-ellipsis">
     
   
@@ -1016,7 +1015,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../api/stac-specs.html">
+<a class="md-nav__link" href="../api/stac-specs/">
 <span class="md-ellipsis">
     
   
@@ -1033,7 +1032,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../community/index.html">
+<a class="md-nav__link" href="../community/">
 <span class="md-ellipsis">
     
   
@@ -1058,7 +1057,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../community/how-core-stack-is-used.html">
+<a class="md-nav__link" href="../community/how-core-stack-is-used/">
 <span class="md-ellipsis">
     
   
@@ -1072,7 +1071,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5_3" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../community/innovation-challenges/index.html">
+<a class="md-nav__link" href="../community/innovation-challenges/">
 <span class="md-ellipsis">
     
   
@@ -1097,7 +1096,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../community/core-stack-innovation-challenge.html">
+<a class="md-nav__link" href="../community/core-stack-innovation-challenge/">
 <span class="md-ellipsis">
     
   
@@ -1109,7 +1108,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../community/tessera-student-innovation-call.html">
+<a class="md-nav__link" href="../community/tessera-student-innovation-call/">
 <span class="md-ellipsis">
     
   
@@ -1121,7 +1120,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../community/contributions.html">
+<a class="md-nav__link" href="../community/contributions/">
 <span class="md-ellipsis">
     
   
@@ -1136,7 +1135,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../community/contributing.html">
+<a class="md-nav__link" href="../community/contributing/">
 <span class="md-ellipsis">
     
   
@@ -1148,7 +1147,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../community/code-of-conduct.html">
+<a class="md-nav__link" href="../community/code-of-conduct/">
 <span class="md-ellipsis">
     
   
@@ -1165,7 +1164,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../reference/index.html">
+<a class="md-nav__link" href="../reference/">
 <span class="md-ellipsis">
     
   
@@ -1190,7 +1189,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../reference/scientific-papers-and-research-repositories.html">
+<a class="md-nav__link" href="../reference/scientific-papers-and-research-repositories/">
 <span class="md-ellipsis">
     
   
@@ -1202,7 +1201,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../reference/glossary.html">
+<a class="md-nav__link" href="../reference/glossary/">
 <span class="md-ellipsis">
     
   
@@ -1214,7 +1213,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../reference/abbreviations.html">
+<a class="md-nav__link" href="../reference/abbreviations/">
 <span class="md-ellipsis">
     
   
@@ -1226,7 +1225,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../reference/standardised-field-constant-variable-names.html">
+<a class="md-nav__link" href="../reference/standardised-field-constant-variable-names/">
 <span class="md-ellipsis">
     
   
@@ -1238,7 +1237,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../reference/geospatial-learning-resources.html">
+<a class="md-nav__link" href="../reference/geospatial-learning-resources/">
 <span class="md-ellipsis">
     
   
@@ -1250,7 +1249,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../reference/wonderful-github-repos.html">
+<a class="md-nav__link" href="../reference/wonderful-github-repos/">
 <span class="md-ellipsis">
     
   
@@ -1262,7 +1261,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../reference/api-errors.html">
+<a class="md-nav__link" href="../reference/api-errors/">
 <span class="md-ellipsis">
     
   
@@ -1274,7 +1273,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../reference/license.html">
+<a class="md-nav__link" href="../reference/license/">
 <span class="md-ellipsis">
     
   
@@ -1291,7 +1290,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../blog/index.html">
+<a class="md-nav__link" href="../blog/">
 <span class="md-ellipsis">
     
   
@@ -1339,7 +1338,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../blog/archive/2026.html">
+<a class="md-nav__link" href="../blog/archive/2026/">
 <span class="md-ellipsis">
     
   
@@ -1377,7 +1376,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../blog/category/community.html">
+<a class="md-nav__link" href="../blog/category/community/">
 <span class="md-ellipsis">
     
   
@@ -1389,7 +1388,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../blog/category/research.html">
+<a class="md-nav__link" href="../blog/category/research/">
 <span class="md-ellipsis">
     
   
@@ -1465,21 +1464,21 @@
 <nav aria-label="Navigation" class="md-path">
 <ol class="md-path__list">
 <li class="md-path__item">
-<a class="md-path__link" href="../index.html">
+<a class="md-path__link" href="..">
 <span class="md-ellipsis">
     Home
   </span>
 </a>
 </li>
 <li class="md-path__item">
-<a class="md-path__link" href="../developers/index.html">
+<a class="md-path__link" href="../developers/">
 <span class="md-ellipsis">
     Develop CoRE Stack
   </span>
 </a>
 </li>
 <li class="md-path__item">
-<a class="md-path__link" href="index.html">
+<a class="md-path__link" href="./">
 <span class="md-ellipsis">
     Pipeline Development
   </span>
@@ -1491,7 +1490,7 @@
 <h1 id="pipeline-development">Pipeline Development<a class="headerlink" href="#pipeline-development" title="Permanent link">¶</a></h1>
 <p>Pipeline development is one of the main ways CoRE Stack itself is developed.</p>
 <p>This section explains how CoRE Stack computes the data it publishes, and how contributors can extend those computations responsibly once the backend is installed.</p>
-<p>Read the <a href="watershed-data-structure.html">CoRE Stack Data Structure</a> chapter first if you have not already.</p>
+<p>Read the <a href="watershed-data-structure/">CoRE Stack Data Structure</a> chapter first if you have not already.</p>
 <p>Use it when you want to answer one of these questions:</p>
 <ul>
 <li>what produced the data I am seeing?</li>
@@ -1504,16 +1503,16 @@
 <h2 id="recommended-path">Recommended Path<a class="headerlink" href="#recommended-path" title="Permanent link">¶</a></h2>
 <p>Follow this order if you want the straightest route through pipeline development:</p>
 <ol>
-<li>Read <a href="how-pipelines-work-algorithmically.html">How Our Pipelines Work Algorithmically</a> to understand what each family computes.</li>
-<li>Read <a href="how-pipelines-work-programmatically.html">How They Work Programmatically</a> to understand the code path.</li>
-<li>Trace one real request in <a href="first-manual-api-run.html">First Manual API Run</a>.</li>
-<li>Start new work from <a href="local-pipeline-first.html">Local Pipeline First</a>.</li>
-<li>Add the thin route layer through <a href="django-computing-api-integration.html">Integrate With Django Computing API</a>.</li>
-<li>Add async execution through <a href="celery-auth-and-task-integration.html">Add Celery / Auth / Task Integration</a> only when needed.</li>
-<li>Use <a href="computing-endpoints.html">Computing API Endpoints</a> as the route catalog for the existing compute surface.</li>
-<li>Use <a href="build-new-pipelines.html">Build New Pipelines</a>, <a href="pipeline-integrations.html">Pipeline Integrations</a>, and <a href="add-new-data-resources.html">Add and Integrate Public / New Data Resources</a> when extending the stack.</li>
+<li>Read <a href="how-pipelines-work-algorithmically/">How Our Pipelines Work Algorithmically</a> to understand what each family computes.</li>
+<li>Read <a href="how-pipelines-work-programmatically/">How They Work Programmatically</a> to understand the code path.</li>
+<li>Trace one real request in <a href="first-manual-api-run/">First Manual API Run</a>.</li>
+<li>Start new work from <a href="local-pipeline-first/">Local Pipeline First</a>.</li>
+<li>Add the thin route layer through <a href="django-computing-api-integration/">Integrate With Django Computing API</a>.</li>
+<li>Add async execution through <a href="celery-auth-and-task-integration/">Add Celery / Auth / Task Integration</a> only when needed.</li>
+<li>Use <a href="computing-endpoints/">Computing API Endpoints</a> as the route catalog for the existing compute surface.</li>
+<li>Use <a href="build-new-pipelines/">Build New Pipelines</a>, <a href="pipeline-integrations/">Pipeline Integrations</a>, and <a href="add-new-data-resources/">Add and Integrate Public / New Data Resources</a> when extending the stack.</li>
 </ol>
-<p>If you are here to understand an existing output rather than build something new, move into <a href="core-workflows/index.html">Core Workflows</a> or <a href="../use-precomputed-data/how-current-data-was-computed.html">How Current Data Was Computed</a>.</p>
+<p>If you are here to understand an existing output rather than build something new, move into <a href="core-workflows/">Core Workflows</a> or <a href="../use-precomputed-data/how-current-data-was-computed/">How Current Data Was Computed</a>.</p>
 <hr/>
 <h2 id="the-common-shape">The Common Shape<a class="headerlink" href="#the-common-shape" title="Permanent link">¶</a></h2>
 <pre class="mermaid"><code>flowchart LR
@@ -1525,14 +1524,14 @@
     E --&gt; G[GeoServer publication]
     E --&gt; H[STAC and public layer metadata]</code></pre>
 <p>This shape changes in detail from workflow to workflow, but not in spirit.</p>
-<p>If your environment is not ready yet, complete <a href="../developers/installer.html">Installer</a> and use <a href="../developers/setup-troubleshooting.html">Setup Troubleshooting</a> before going deeper into pipeline internals.</p>
+<p>If your environment is not ready yet, complete <a href="../developers/installer/">Installer</a> and use <a href="../developers/setup-troubleshooting/">Setup Troubleshooting</a> before going deeper into pipeline internals.</p>
 <hr/>
 <h2 id="workflow-families">Workflow Families<a class="headerlink" href="#workflow-families" title="Permanent link">¶</a></h2>
 <ul>
-<li><a href="core-workflows/index.html">Core Workflows</a>: the main current workflow families such as LULC, SWB, hydrology, and terrain.</li>
-<li><a href="boundary-and-enrichment/index.html">Boundary and Enrichment Layers</a>: workflows that clip, enrich, or join public layers onto planning units.</li>
-<li><a href="raster-and-drainage/index.html">Raster and Drainage Layers</a>: terrain support outputs, drainage derivatives, catchments, and raster surfaces.</li>
-<li><a href="time-series-and-ops/index.html">Time Series and Ops</a>: temporal vegetation outputs and the operational surfaces around them.</li>
+<li><a href="core-workflows/">Core Workflows</a>: the main current workflow families such as LULC, SWB, hydrology, and terrain.</li>
+<li><a href="boundary-and-enrichment/">Boundary and Enrichment Layers</a>: workflows that clip, enrich, or join public layers onto planning units.</li>
+<li><a href="raster-and-drainage/">Raster and Drainage Layers</a>: terrain support outputs, drainage derivatives, catchments, and raster surfaces.</li>
+<li><a href="time-series-and-ops/">Time Series and Ops</a>: temporal vegetation outputs and the operational surfaces around them.</li>
 </ul>
 <hr/>
 <h2 id="key-backend-surfaces">Key Backend Surfaces<a class="headerlink" href="#key-backend-surfaces" title="Permanent link">¶</a></h2>
