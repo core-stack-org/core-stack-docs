@@ -1134,10 +1134,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#when-aws-matters" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        When AWS Matters
       
     </span>
   </a>
@@ -1145,10 +1145,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
+  <a href="#configure-it-in-nrm_appenv" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuration
+        Configure It In nrm_app/.env
       
     </span>
   </a>
@@ -1156,10 +1156,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
+  <a href="#practical-guidance" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Usage
+        Practical Guidance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Docs
       
     </span>
   </a>
@@ -3528,10 +3539,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
+  <a href="#when-aws-matters" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Overview
+        When AWS Matters
       
     </span>
   </a>
@@ -3539,10 +3550,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
+  <a href="#configure-it-in-nrm_appenv" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuration
+        Configure It In nrm_app/.env
       
     </span>
   </a>
@@ -3550,10 +3561,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
+  <a href="#practical-guidance" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Usage
+        Practical Guidance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Docs
       
     </span>
   </a>
@@ -3647,25 +3669,47 @@
 
 
 <h1 id="aws-s3-integration">AWS S3 Integration<a class="headerlink" href="#aws-s3-integration" title="Permanent link">&para;</a></h1>
-<p>Store and retrieve geospatial data using AWS S3.</p>
+<p>CoRE Stack can store selected outputs in S3-backed storage, but S3 is not part of the baseline local installer validation.</p>
+<p>Treat AWS settings as deployment-specific configuration, not as a prerequisite for every local install.</p>
 <hr />
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>CoRE Stack can export computation results to S3 for long-term storage and sharing.</p>
+<h2 id="when-aws-matters">When AWS Matters<a class="headerlink" href="#when-aws-matters" title="Permanent link">&para;</a></h2>
+<p>AWS configuration is usually only needed when:</p>
+<ul>
+<li>your deployment writes generated artifacts to S3 instead of keeping them only on local disk</li>
+<li>your workflow depends on DPR-specific S3 buckets</li>
+<li>downstream consumers expect cloud-hosted output URLs rather than local filesystem artifacts</li>
+</ul>
+<p>For many local development tasks, these values can stay blank.</p>
 <hr />
-<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># nrm_app/settings.py</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">AWS_ACCESS_KEY_ID</span> <span class="o">=</span> <span class="s2">&quot;your-access-key&quot;</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">AWS_SECRET_ACCESS_KEY</span> <span class="o">=</span> <span class="s2">&quot;your-secret-key&quot;</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">AWS_STORAGE_BUCKET_NAME</span> <span class="o">=</span> <span class="s2">&quot;corestack-data&quot;</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">AWS_S3_REGION_NAME</span> <span class="o">=</span> <span class="s2">&quot;ap-south-1&quot;</span>
+<h2 id="configure-it-in-nrm_appenv">Configure It In <code>nrm_app/.env</code><a class="headerlink" href="#configure-it-in-nrm_appenv" title="Permanent link">&para;</a></h2>
+<p>The current backend installation guide documents these S3-facing env variables:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>S3_BUCKET=your-bucket-name
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>S3_REGION=ap-south-1
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>S3_ACCESS_KEY=your-access-key
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>S3_SECRET_KEY=your-secret-key
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>DPR_S3_BUCKET=your-dpr-bucket
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>DPR_S3_FOLDER=your-folder
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>DPR_S3_ACCESS_KEY=your-access-key
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>DPR_S3_SECRET_KEY=your-secret-key
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>DPR_S3_REGION=ap-south-1
 </span></code></pre></div>
+<p>The installer generates <code>nrm_app/.env</code>, but it does not validate S3 connectivity for you.</p>
 <hr />
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<p>Results are automatically uploaded to S3 when configured:</p>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;output_url&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://corestack-data.s3.ap-south-1.amazonaws.com/outputs/swb/result.geojson&quot;</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">}</span>
-</span></code></pre></div>
+<h2 id="practical-guidance">Practical Guidance<a class="headerlink" href="#practical-guidance" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Keep these values blank on a local-only install unless a specific workflow needs them.</li>
+<li>Fill both the generic S3 and <code>DPR_*</code> settings only if your project actually uses both surfaces.</li>
+<li>Treat them as secrets and keep them out of git.</li>
+<li>If a pipeline still works locally without them, do not add them preemptively just to “complete” the env file.</li>
+</ul>
+<hr />
+<h2 id="related-docs">Related Docs<a class="headerlink" href="#related-docs" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../installer/">Installer</a></li>
+<li><a href="../../../pipelines/pipeline-integrations/">Pipeline Integrations</a></li>
+<li><a href="../../../api/public-apis/">Public APIs</a></li>
+</ul>
 
 
 
