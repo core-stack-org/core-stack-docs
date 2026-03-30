@@ -3934,16 +3934,9 @@
 <h2 id="what-you-still-need-to-review">What You Still Need To Review<a class="headerlink" href="#what-you-still-need-to-review" title="Permanent link">&para;</a></h2>
 <h3 id="check-the-generated-env">Check the generated <code>.env</code><a class="headerlink" href="#check-the-generated-env" title="Permanent link">&para;</a></h3>
 <p>The installer generates:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>/var/www/data/corestack/nrm_app/.env
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>./nrm_app/.env
 </span></code></pre></div>
 <p>Review and complete the values that depend on your environment:</p>
-<ul>
-<li><code>SECRET_KEY</code></li>
-<li><code>DEBUG</code></li>
-<li>GeoServer credentials</li>
-<li>Earth Engine related credentials</li>
-<li>email or other integration secrets if your deployment needs them</li>
-</ul>
 <h3 id="create-an-admin-user">Create an admin user<a class="headerlink" href="#create-an-admin-user" title="Permanent link">&para;</a></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/miniconda3/etc/profile.d/conda.sh&quot;</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestack-backend
