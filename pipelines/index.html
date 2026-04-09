@@ -7,10 +7,10 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Understand how CoRE Stack pipelines work and extend computation workflows from local experimentation to integrated platform outputs." name="description"/>
 <link href="https://core-stack-org.github.io/core-stack-docs/pipelines/" rel="canonical"/>
-<link href="../developers/coding-standards-and-guidelines/" rel="prev"/>
-<link href="first-manual-api-run/" rel="next"/>
+<link href="../developers/integrations/aws/" rel="prev"/>
+<link href="how-pipelines-work-algorithmically/" rel="next"/>
 <link href="../assets/logo.png" rel="icon"/>
-<meta content="mkdocs-1.6.1, mkdocs-material-9.7.4" name="generator"/>
+<meta content="mkdocs-1.6.0, mkdocs-material-9.7.6" name="generator"/>
 <title>Pipeline Development - CoRE Stack Documentation</title>
 <link href="../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
@@ -492,20 +492,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../developers/coding-standards-and-guidelines/">
-<span class="md-ellipsis">
-    
-  
-    Coding Standards and Guidelines
-  
-
-    
-  </span>
-</a>
-</li>
 <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_4_7" type="checkbox"/>
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_4_6" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
@@ -517,12 +505,12 @@
     
   </span>
 </a>
-<label class="md-nav__link md-nav__link--active" for="__nav_4_7" id="__nav_4_7_label" tabindex="">
+<label class="md-nav__link md-nav__link--active" for="__nav_4_6" id="__nav_4_6_label" tabindex="">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_4_7_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_4_7">
+<nav aria-expanded="true" aria-labelledby="__nav_4_6_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_6">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -531,18 +519,6 @@
 
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="first-manual-api-run/">
-<span class="md-ellipsis">
-    
-  
-    First Manual API Run
-  
-
-    
-  </span>
-</a>
-</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="how-pipelines-work-algorithmically/">
 <span class="md-ellipsis">
@@ -561,6 +537,18 @@
     
   
     How They Work Programmatically
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="first-manual-api-run/">
+<span class="md-ellipsis">
+    
+  
+    First Manual API Run
   
 
     
@@ -664,7 +652,7 @@
 </a>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_7_13" type="checkbox"/>
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_6_13" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="core-workflows/">
 <span class="md-ellipsis">
@@ -676,12 +664,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_4_7_13" id="__nav_4_7_13_label" tabindex="0">
+<label class="md-nav__link" for="__nav_4_6_13" id="__nav_4_6_13_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_7_13_label" class="md-nav" data-md-level="3">
-<label class="md-nav__title" for="__nav_4_7_13">
+<nav aria-expanded="false" aria-labelledby="__nav_4_6_13_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_6_13">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -742,7 +730,7 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_7_14" type="checkbox"/>
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_6_14" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="boundary-and-enrichment/">
 <span class="md-ellipsis">
@@ -754,12 +742,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_4_7_14" id="__nav_4_7_14_label" tabindex="0">
+<label class="md-nav__link" for="__nav_4_6_14" id="__nav_4_6_14_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_7_14_label" class="md-nav" data-md-level="3">
-<label class="md-nav__title" for="__nav_4_7_14">
+<nav aria-expanded="false" aria-labelledby="__nav_4_6_14_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_6_14">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -856,7 +844,7 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_7_15" type="checkbox"/>
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_6_15" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="raster-and-drainage/">
 <span class="md-ellipsis">
@@ -868,12 +856,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_4_7_15" id="__nav_4_7_15_label" tabindex="0">
+<label class="md-nav__link" for="__nav_4_6_15" id="__nav_4_6_15_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_7_15_label" class="md-nav" data-md-level="3">
-<label class="md-nav__title" for="__nav_4_7_15">
+<nav aria-expanded="false" aria-labelledby="__nav_4_6_15_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_6_15">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -970,7 +958,7 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_7_16" type="checkbox"/>
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_6_16" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="time-series-and-ops/">
 <span class="md-ellipsis">
@@ -982,12 +970,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_4_7_16" id="__nav_4_7_16_label" tabindex="0">
+<label class="md-nav__link" for="__nav_4_6_16" id="__nav_4_6_16_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_7_16_label" class="md-nav" data-md-level="3">
-<label class="md-nav__title" for="__nav_4_7_16">
+<nav aria-expanded="false" aria-labelledby="__nav_4_6_16_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_4_6_16">
 <span class="md-nav__icon md-icon"></span>
             
   
@@ -1025,6 +1013,18 @@
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../developers/coding-standards-and-guidelines/">
+<span class="md-ellipsis">
+    
+  
+    Coding Standards and Guidelines
+  
+
+    
+  </span>
+</a>
 </li>
 </ul>
 </nav>
@@ -1447,10 +1447,10 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#key-backend-surfaces">
+<a class="md-nav__link" href="#key-backend-entry-points">
 <span class="md-ellipsis">
       
-        Key Backend Surfaces
+        Key Backend Entry Points
       
     </span>
 </a>
@@ -1516,13 +1516,12 @@
 <hr/>
 <h2 id="the-common-shape">The Common Shape<a class="headerlink" href="#the-common-shape" title="Permanent link">¶</a></h2>
 <pre class="mermaid"><code>flowchart LR
-    A[Local experiment or API request] --&gt; B[computing/urls.py]
-    B --&gt; C[computing/api.py]
-    C --&gt; D[Pipeline module]
-    D --&gt; E[Earth Engine or local processing]
-    E --&gt; F[Dataset metadata]
-    E --&gt; G[GeoServer publication]
-    E --&gt; H[STAC and public layer metadata]</code></pre>
+    A[Create a local isolated script] --&gt; B[Use external data or CoRE Stack Public APIs]
+    B --&gt; C[Do the calculation and data manipulation locally]
+    C --&gt; D{Working reliably?}
+    D --&gt;|Yes| E[Integrate with CoRE Stack modules or your own pipeline module]
+    E --&gt; F[Add backend wiring when needed]
+    F --&gt; G[Gradually add tasks, storage, registries, database, logs, and publication]</code></pre>
 <p>This shape changes in detail from workflow to workflow, but not in spirit.</p>
 <p>If your environment is not ready yet, complete <a href="../developers/installer/">Installer</a> and use <a href="../developers/setup-troubleshooting/">Setup Troubleshooting</a> before going deeper into pipeline internals.</p>
 <hr/>
@@ -1534,7 +1533,7 @@
 <li><a href="time-series-and-ops/">Time Series and Ops</a>: temporal vegetation outputs and the operational surfaces around them.</li>
 </ul>
 <hr/>
-<h2 id="key-backend-surfaces">Key Backend Surfaces<a class="headerlink" href="#key-backend-surfaces" title="Permanent link">¶</a></h2>
+<h2 id="key-backend-entry-points">Key Backend Entry Points<a class="headerlink" href="#key-backend-entry-points" title="Permanent link">¶</a></h2>
 <ul>
 <li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/computing/urls.py">computing/urls.py</a></li>
 <li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/computing/api.py">computing/api.py</a></li>
