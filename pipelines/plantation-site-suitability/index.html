@@ -6,35 +6,35 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Participation routes for contributors, challenge builders, stewards, and local institutions using CoRE Stack.">
+        <meta name="description" content="Understand the current plantation site-suitability workflow, its DB prerequisites, the effective year-window rules, and how it moves through GEE, GCS, and GeoServer.">
       
       
       
-        <link rel="canonical" href="https://core-stack-org.github.io/core-stack-docs/community/">
+        <link rel="canonical" href="https://core-stack-org.github.io/core-stack-docs/pipelines/plantation-site-suitability/">
       
       
-        <link rel="prev" href="../developers/coding-standards-and-guidelines/">
+        <link rel="prev" href="../terrain-analysis/">
       
       
-        <link rel="next" href="how-core-stack-is-used/">
+        <link rel="next" href="../boundary-and-enrichment/">
       
       
         
       
       
-      <link rel="icon" href="../assets/logo.png">
+      <link rel="icon" href="../../assets/logo.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.7.6">
     
     
       
-        <title>Community - CoRE Stack Documentation</title>
+        <title>Plantation Site Suitability - CoRE Stack Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,9 +53,9 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -63,17 +63,17 @@
     
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Community - CoRE Stack Documentation" />
-<meta property="og:description" content="Participation routes for contributors, challenge builders, stewards, and local institutions using CoRE Stack." />
-<meta property="og:image" content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/community/index.png" />
+<meta property="og:title" content="Plantation Site Suitability - CoRE Stack Documentation" />
+<meta property="og:description" content="Understand the current plantation site-suitability workflow, its DB prerequisites, the effective year-window rules, and how it moves through GEE, GCS, and GeoServer." />
+<meta property="og:image" content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/pipelines/plantation-site-suitability.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://core-stack-org.github.io/core-stack-docs/community/" />
+<meta property="og:url" content="https://core-stack-org.github.io/core-stack-docs/pipelines/plantation-site-suitability/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Community - CoRE Stack Documentation" />
-<meta property="twitter:description" content="Participation routes for contributors, challenge builders, stewards, and local institutions using CoRE Stack." />
-<meta property="twitter:image" content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/community/index.png" />
+<meta property="twitter:title" content="Plantation Site Suitability - CoRE Stack Documentation" />
+<meta property="twitter:description" content="Understand the current plantation site-suitability workflow, its DB prerequisites, the effective year-window rules, and how it moves through GEE, GCS, and GeoServer." />
+<meta property="twitter:image" content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/pipelines/plantation-site-suitability.png" />
 </head>
   
   
@@ -93,7 +93,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#community" class="md-skip">
+        <a href="#plantation-site-suitability" class="md-skip">
           Skip to content
         </a>
       
@@ -109,9 +109,9 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="CoRE Stack Documentation" class="md-header__button md-logo" aria-label="CoRE Stack Documentation" data-md-component="logo">
+    <a href="../.." title="CoRE Stack Documentation" class="md-header__button md-logo" aria-label="CoRE Stack Documentation" data-md-component="logo">
       
-  <img src="../assets/logo.png" alt="logo">
+  <img src="../../assets/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -128,7 +128,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Community
+              Plantation Site Suitability
             
           </span>
         </div>
@@ -250,7 +250,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -271,7 +271,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../pipelines/watershed-data-structure/" class="md-tabs__link">
+        <a href="../watershed-data-structure/" class="md-tabs__link">
           
   
   
@@ -293,7 +293,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../use-precomputed-data/" class="md-tabs__link">
+        <a href="../../use-precomputed-data/" class="md-tabs__link">
           
   
   
@@ -311,11 +311,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../developers/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../developers/" class="md-tabs__link">
           
   
   
@@ -333,13 +335,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../community/" class="md-tabs__link">
           
   
   
@@ -361,7 +361,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../reference/" class="md-tabs__link">
+        <a href="../../reference/" class="md-tabs__link">
           
   
   
@@ -383,7 +383,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../blog/" class="md-tabs__link">
+        <a href="../../blog/" class="md-tabs__link">
           
   
   
@@ -425,9 +425,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="CoRE Stack Documentation" class="md-nav__button md-logo" aria-label="CoRE Stack Documentation" data-md-component="logo">
+    <a href="../.." title="CoRE Stack Documentation" class="md-nav__button md-logo" aria-label="CoRE Stack Documentation" data-md-component="logo">
       
-  <img src="../assets/logo.png" alt="logo">
+  <img src="../../assets/logo.png" alt="logo">
 
     </a>
     CoRE Stack Documentation
@@ -454,7 +454,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -539,7 +539,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/watershed-data-structure/" class="md-nav__link">
+      <a href="../watershed-data-structure/" class="md-nav__link">
         
   
   
@@ -607,7 +607,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../use-precomputed-data/" class="md-nav__link ">
+            <a href="../../use-precomputed-data/" class="md-nav__link ">
               
   
   
@@ -651,7 +651,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../use-precomputed-data/how-current-data-was-computed/" class="md-nav__link">
+      <a href="../../use-precomputed-data/how-current-data-was-computed/" class="md-nav__link">
         
   
   
@@ -679,7 +679,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/geoadmin-noauth/" class="md-nav__link">
+      <a href="../../api/geoadmin-noauth/" class="md-nav__link">
         
   
   
@@ -707,7 +707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/public-apis/" class="md-nav__link">
+      <a href="../../api/public-apis/" class="md-nav__link">
         
   
   
@@ -735,7 +735,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/stac-specs/" class="md-nav__link">
+      <a href="../../api/stac-specs/" class="md-nav__link">
         
   
   
@@ -767,6 +767,8 @@
       
   
   
+    
+  
   
   
     
@@ -792,22 +794,23 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../developers/" class="md-nav__link ">
+            <a href="../../developers/" class="md-nav__link ">
               
   
   
@@ -825,13 +828,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -851,7 +854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../developers/installer/" class="md-nav__link">
+      <a href="../../developers/installer/" class="md-nav__link">
         
   
   
@@ -879,7 +882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../developers/setup-troubleshooting/" class="md-nav__link">
+      <a href="../../developers/setup-troubleshooting/" class="md-nav__link">
         
   
   
@@ -907,7 +910,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../developers/backend-code-map/" class="md-nav__link">
+      <a href="../../developers/backend-code-map/" class="md-nav__link">
         
   
   
@@ -955,10 +958,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -968,7 +974,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../developers/integrations/" class="md-nav__link ">
+            <a href="../../developers/integrations/" class="md-nav__link ">
               
   
   
@@ -986,7 +992,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -1012,7 +1018,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../developers/integrations/google-earth-engine/" class="md-nav__link">
+      <a href="../../developers/integrations/google-earth-engine/" class="md-nav__link">
         
   
   
@@ -1040,7 +1046,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../developers/integrations/gcs/" class="md-nav__link">
+      <a href="../../developers/integrations/gcs/" class="md-nav__link">
         
   
   
@@ -1068,7 +1074,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../developers/integrations/geoserver/" class="md-nav__link">
+      <a href="../../developers/integrations/geoserver/" class="md-nav__link">
         
   
   
@@ -1096,7 +1102,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../developers/integrations/aws/" class="md-nav__link">
+      <a href="../../developers/integrations/aws/" class="md-nav__link">
         
   
   
@@ -1129,6 +1135,8 @@
                 
   
   
+    
+  
   
   
     
@@ -1174,20 +1182,21 @@
       
       
         
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
+          
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_6" >
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../pipelines/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -1205,13 +1214,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1231,7 +1240,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/how-pipelines-work-algorithmically/" class="md-nav__link">
+      <a href="../how-pipelines-work-algorithmically/" class="md-nav__link">
         
   
   
@@ -1259,7 +1268,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/how-pipelines-work-programmatically/" class="md-nav__link">
+      <a href="../how-pipelines-work-programmatically/" class="md-nav__link">
         
   
   
@@ -1287,7 +1296,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/first-manual-api-run/" class="md-nav__link">
+      <a href="../first-manual-api-run/" class="md-nav__link">
         
   
   
@@ -1315,7 +1324,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/local-pipeline-first/" class="md-nav__link">
+      <a href="../local-pipeline-first/" class="md-nav__link">
         
   
   
@@ -1343,7 +1352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/django-computing-api-integration/" class="md-nav__link">
+      <a href="../django-computing-api-integration/" class="md-nav__link">
         
   
   
@@ -1371,7 +1380,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/celery-auth-and-task-integration/" class="md-nav__link">
+      <a href="../celery-auth-and-task-integration/" class="md-nav__link">
         
   
   
@@ -1399,7 +1408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/computing-endpoints/" class="md-nav__link">
+      <a href="../computing-endpoints/" class="md-nav__link">
         
   
   
@@ -1427,7 +1436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/common-design-and-integration-patterns/" class="md-nav__link">
+      <a href="../common-design-and-integration-patterns/" class="md-nav__link">
         
   
   
@@ -1455,7 +1464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/build-new-pipelines/" class="md-nav__link">
+      <a href="../build-new-pipelines/" class="md-nav__link">
         
   
   
@@ -1483,7 +1492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/pipeline-integrations/" class="md-nav__link">
+      <a href="../pipeline-integrations/" class="md-nav__link">
         
   
   
@@ -1511,7 +1520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/add-new-data-resources/" class="md-nav__link">
+      <a href="../add-new-data-resources/" class="md-nav__link">
         
   
   
@@ -1536,6 +1545,8 @@
                 
   
   
+    
+  
   
   
     
@@ -1564,17 +1575,15 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_6_13" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6_13" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../pipelines/core-workflows/" class="md-nav__link ">
+            <a href="../core-workflows/" class="md-nav__link ">
               
   
   
@@ -1598,7 +1607,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_6_13_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_6_13_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_6_13">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1618,7 +1627,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/lulc-generation/" class="md-nav__link">
+      <a href="../lulc-generation/" class="md-nav__link">
         
   
   
@@ -1646,7 +1655,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/swb-detection/" class="md-nav__link">
+      <a href="../swb-detection/" class="md-nav__link">
         
   
   
@@ -1674,7 +1683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/hydrology/" class="md-nav__link">
+      <a href="../hydrology/" class="md-nav__link">
         
   
   
@@ -1702,7 +1711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/terrain-analysis/" class="md-nav__link">
+      <a href="../terrain-analysis/" class="md-nav__link">
         
   
   
@@ -1727,10 +1736,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../pipelines/plantation-site-suitability/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantation Site Suitability
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1746,6 +1782,222 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-workflow-produces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What The Workflow Produces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-and-request-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route And Request Shape
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Route And Request Shape">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-backed-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project-backed request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admin-unit-backed-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin-unit-backed request
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#required-db-setup-for-project-backed-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required DB Setup For Project-Backed Runs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Required DB Setup For Project-Backed Runs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-create-an-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Create an organization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-create-a-project-linked-to-that-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Create a project linked to that organization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-upload-at-least-one-kml-file-for-that-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Upload at least one KML file for that project
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-create-a-plantation-profile-for-that-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Create a plantation profile for that project
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#year-range-the-important-constraint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Year Range: The Important Constraint
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code Path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Notes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operational Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#large-project-rois-use-the-helper-account-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Large project ROIs use the helper account path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plantation-outputs-also-depend-on-gcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plantation outputs also depend on GCS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-non-project-path-is-currently-partial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The non-project path is currently partial
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Docs
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1805,7 +2057,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../pipelines/boundary-and-enrichment/" class="md-nav__link ">
+            <a href="../boundary-and-enrichment/" class="md-nav__link ">
               
   
   
@@ -1849,7 +2101,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/admin-boundary/" class="md-nav__link">
+      <a href="../admin-boundary/" class="md-nav__link">
         
   
   
@@ -1877,7 +2129,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/facilities-proximity/" class="md-nav__link">
+      <a href="../facilities-proximity/" class="md-nav__link">
         
   
   
@@ -1905,7 +2157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/nrega-assets/" class="md-nav__link">
+      <a href="../nrega-assets/" class="md-nav__link">
         
   
   
@@ -1933,7 +2185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/agroecological-space/" class="md-nav__link">
+      <a href="../agroecological-space/" class="md-nav__link">
         
   
   
@@ -1961,7 +2213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/aquifer-vector/" class="md-nav__link">
+      <a href="../aquifer-vector/" class="md-nav__link">
         
   
   
@@ -1989,7 +2241,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/soge-vector/" class="md-nav__link">
+      <a href="../soge-vector/" class="md-nav__link">
         
   
   
@@ -2017,7 +2269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/pan-india-clip-modules/" class="md-nav__link">
+      <a href="../pan-india-clip-modules/" class="md-nav__link">
         
   
   
@@ -2092,7 +2344,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../pipelines/raster-and-drainage/" class="md-nav__link ">
+            <a href="../raster-and-drainage/" class="md-nav__link ">
               
   
   
@@ -2136,7 +2388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/drainage-lines/" class="md-nav__link">
+      <a href="../drainage-lines/" class="md-nav__link">
         
   
   
@@ -2164,7 +2416,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/catchment-area/" class="md-nav__link">
+      <a href="../catchment-area/" class="md-nav__link">
         
   
   
@@ -2192,7 +2444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/stream-order/" class="md-nav__link">
+      <a href="../stream-order/" class="md-nav__link">
         
   
   
@@ -2220,7 +2472,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/distance-to-nearest-drainage/" class="md-nav__link">
+      <a href="../distance-to-nearest-drainage/" class="md-nav__link">
         
   
   
@@ -2248,7 +2500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/natural-depression/" class="md-nav__link">
+      <a href="../natural-depression/" class="md-nav__link">
         
   
   
@@ -2276,7 +2528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/slope-percentage/" class="md-nav__link">
+      <a href="../slope-percentage/" class="md-nav__link">
         
   
   
@@ -2304,7 +2556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/restoration-opportunity/" class="md-nav__link">
+      <a href="../restoration-opportunity/" class="md-nav__link">
         
   
   
@@ -2369,7 +2621,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../pipelines/time-series-and-ops/" class="md-nav__link ">
+            <a href="../time-series-and-ops/" class="md-nav__link ">
               
   
   
@@ -2413,7 +2665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/ndvi-time-series/" class="md-nav__link">
+      <a href="../ndvi-time-series/" class="md-nav__link">
         
   
   
@@ -2441,7 +2693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/hls-interpolated-ndvi/" class="md-nav__link">
+      <a href="../hls-interpolated-ndvi/" class="md-nav__link">
         
   
   
@@ -2485,7 +2737,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../developers/coding-standards-and-guidelines/" class="md-nav__link">
+      <a href="../../developers/coding-standards-and-guidelines/" class="md-nav__link">
         
   
   
@@ -2517,8 +2769,6 @@
       
   
   
-    
-  
   
   
     
@@ -2540,23 +2790,22 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="./" class="md-nav__link md-nav__link--active">
+            <a href="../../community/" class="md-nav__link ">
               
   
   
@@ -2574,13 +2823,13 @@
             </a>
             
               
-              <label class="md-nav__link md-nav__link--active" for="__nav_5" id="__nav_5_label" tabindex="">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2600,7 +2849,7 @@
   
   
     <li class="md-nav__item">
-      <a href="how-core-stack-is-used/" class="md-nav__link">
+      <a href="../../community/how-core-stack-is-used/" class="md-nav__link">
         
   
   
@@ -2646,13 +2895,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -2662,7 +2908,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="innovation-challenges/" class="md-nav__link ">
+            <a href="../../community/innovation-challenges/" class="md-nav__link ">
               
   
   
@@ -2680,7 +2926,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="">
+              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -2706,7 +2952,7 @@
   
   
     <li class="md-nav__item">
-      <a href="core-stack-innovation-challenge/" class="md-nav__link">
+      <a href="../../community/core-stack-innovation-challenge/" class="md-nav__link">
         
   
   
@@ -2734,7 +2980,7 @@
   
   
     <li class="md-nav__item">
-      <a href="tessera-student-innovation-call/" class="md-nav__link">
+      <a href="../../community/tessera-student-innovation-call/" class="md-nav__link">
         
   
   
@@ -2762,7 +3008,7 @@
   
   
     <li class="md-nav__item">
-      <a href="contributions/" class="md-nav__link">
+      <a href="../../community/contributions/" class="md-nav__link">
         
   
   
@@ -2798,7 +3044,7 @@
   
   
     <li class="md-nav__item">
-      <a href="contributing/" class="md-nav__link">
+      <a href="../../community/contributing/" class="md-nav__link">
         
   
   
@@ -2826,7 +3072,7 @@
   
   
     <li class="md-nav__item">
-      <a href="code-of-conduct/" class="md-nav__link">
+      <a href="../../community/code-of-conduct/" class="md-nav__link">
         
   
   
@@ -2902,7 +3148,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../reference/" class="md-nav__link ">
+            <a href="../../reference/" class="md-nav__link ">
               
   
   
@@ -2946,7 +3192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/scientific-papers-and-research-repositories/" class="md-nav__link">
+      <a href="../../reference/scientific-papers-and-research-repositories/" class="md-nav__link">
         
   
   
@@ -2974,7 +3220,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/glossary/" class="md-nav__link">
+      <a href="../../reference/glossary/" class="md-nav__link">
         
   
   
@@ -3002,7 +3248,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/abbreviations/" class="md-nav__link">
+      <a href="../../reference/abbreviations/" class="md-nav__link">
         
   
   
@@ -3030,7 +3276,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/standardised-field-constant-variable-names/" class="md-nav__link">
+      <a href="../../reference/standardised-field-constant-variable-names/" class="md-nav__link">
         
   
   
@@ -3058,7 +3304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/geospatial-learning-resources/" class="md-nav__link">
+      <a href="../../reference/geospatial-learning-resources/" class="md-nav__link">
         
   
   
@@ -3086,7 +3332,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/wonderful-github-repos/" class="md-nav__link">
+      <a href="../../reference/wonderful-github-repos/" class="md-nav__link">
         
   
   
@@ -3114,7 +3360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/api-errors/" class="md-nav__link">
+      <a href="../../reference/api-errors/" class="md-nav__link">
         
   
   
@@ -3142,7 +3388,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/license/" class="md-nav__link">
+      <a href="../../reference/license/" class="md-nav__link">
         
   
   
@@ -3206,7 +3452,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../blog/" class="md-nav__link ">
+            <a href="../../blog/" class="md-nav__link ">
               
   
   
@@ -3310,7 +3556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../blog/archive/2026/" class="md-nav__link">
+      <a href="../../blog/archive/2026/" class="md-nav__link">
         
   
   
@@ -3408,7 +3654,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../blog/category/community/" class="md-nav__link">
+      <a href="../../blog/category/community/" class="md-nav__link">
         
   
   
@@ -3438,7 +3684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../blog/category/research/" class="md-nav__link">
+      <a href="../../blog/category/research/" class="md-nav__link">
         
   
   
@@ -3503,10 +3749,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#start-here" class="md-nav__link">
+  <a href="#what-the-workflow-produces" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Start Here
+        What The Workflow Produces
       
     </span>
   </a>
@@ -3514,10 +3760,182 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#community-routes" class="md-nav__link">
+  <a href="#route-and-request-shape" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Community Routes
+        Route And Request Shape
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Route And Request Shape">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-backed-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project-backed request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admin-unit-backed-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin-unit-backed request
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#required-db-setup-for-project-backed-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required DB Setup For Project-Backed Runs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Required DB Setup For Project-Backed Runs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-create-an-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Create an organization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-create-a-project-linked-to-that-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Create a project linked to that organization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-upload-at-least-one-kml-file-for-that-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Upload at least one KML file for that project
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-create-a-plantation-profile-for-that-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Create a plantation profile for that project
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#year-range-the-important-constraint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Year Range: The Important Constraint
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code Path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Notes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operational Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#large-project-rois-use-the-helper-account-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Large project ROIs use the helper account path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#plantation-outputs-also-depend-on-gcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plantation outputs also depend on GCS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-non-project-path-is-currently-partial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The non-project path is currently partial
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Docs
       
     </span>
   </a>
@@ -3549,7 +3967,7 @@
   
   
     <li class="md-path__item">
-      <a href=".." class="md-path__link">
+      <a href="../.." class="md-path__link">
         
   <span class="md-ellipsis">
     Home
@@ -3567,10 +3985,46 @@
     
     
       <li class="md-path__item">
-        <a href="./" class="md-path__link">
+        <a href="../../developers/" class="md-path__link">
           
   <span class="md-ellipsis">
-    Community
+    Develop CoRE Stack
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Pipeline Development
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../core-workflows/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Core Workflows
   </span>
 
         </a>
@@ -3592,50 +4046,171 @@
   
 
 
-<h1 id="community">Community<a class="headerlink" href="#community" title="Permanent link">&para;</a></h1>
-<p>CoRE Stack is not only a software/data stack. It is also a participation platform.</p>
-<p>This section helps different collaborators find a route into:</p>
+<h1 id="plantation-site-suitability">Plantation Site Suitability<a class="headerlink" href="#plantation-site-suitability" title="Permanent link">&para;</a></h1>
+<p>This workflow generates plantation site-suitability outputs from either:</p>
 <ul>
-<li>understanding how CoRE Stack is actually being used</li>
-<li>contributing</li>
-<li>innovation challenges</li>
-<li>community-oriented extension work</li>
+<li>a project ROI built from uploaded KML files</li>
+<li>an admin-unit ROI built from an existing MWS layer</li>
+</ul>
+<p>In the current backend, the project-backed path is the fuller and safer workflow to document and test first.</p>
+<p>Primary sources:</p>
+<ul>
+<li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/computing/api.py#L979-L1016">computing/api.py</a></li>
+<li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/computing/plantation/site_suitability.py">computing/plantation/site_suitability.py</a></li>
+<li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/computing/plantation/site_suitability_vector.py">computing/plantation/site_suitability_vector.py</a></li>
+<li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/computing/plantation/site_suitability_raster.py">computing/plantation/site_suitability_raster.py</a></li>
+<li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/computing/plantation/utils/process_profile.py">computing/plantation/utils/process_profile.py</a></li>
+<li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/plantations/models.py">plantations/models.py</a></li>
 </ul>
 <hr />
-<h2 id="start-here">Start Here<a class="headerlink" href="#start-here" title="Permanent link">&para;</a></h2>
-<p>Pick the route that matches what you want to do:</p>
+<h2 id="what-the-workflow-produces">What The Workflow Produces<a class="headerlink" href="#what-the-workflow-produces" title="Permanent link">&para;</a></h2>
+<p>The current code can produce:</p>
 <ul>
-<li><a href="how-core-stack-is-used/">How CoRE Stack Is Used</a> for real-world use cases, planning flows, and applied examples.</li>
-<li><a href="innovation-challenges/">Innovation Challenges</a> for challenge-led experimentation, tooling, and student or community projects.</li>
-<li><a href="contributing/">Contributing</a> for code, docs, issue reports, and community support pathways.</li>
+<li>a suitability raster with weighted Climate, Soil, Topography, Ecology, Socioeconomic, and final-score bands</li>
+<li>a suitability vector for project sites, enriched with patch score, patch suitability, confidence, NDVI, LULC, and site-property fields</li>
+<li>GeoServer-published outputs in the <code>plantation</code> workspace</li>
 </ul>
+<p>Project-backed outputs land under the plantation GEE path:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>projects/ee-corestackdev/assets/apps/plantation/&lt;organization&gt;/&lt;project&gt;/
+</span></code></pre></div>
+<p>Admin-unit-backed raster outputs land under the MWS path:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>projects/ee-corestackdev/assets/apps/mws/&lt;state&gt;/&lt;district&gt;/&lt;block&gt;/
+</span></code></pre></div>
 <hr />
-<h2 id="community-routes">Community Routes<a class="headerlink" href="#community-routes" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">I want to understand real-world use</label><label for="__tabbed_1_2">I want to build something</label><label for="__tabbed_1_3">I want to contribute generally</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
+<h2 id="route-and-request-shape">Route And Request Shape<a class="headerlink" href="#route-and-request-shape" title="Permanent link">&para;</a></h2>
+<p>The computing route is:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>POST /api/v1/plantation_site_suitability/
+</span></code></pre></div>
+<h3 id="project-backed-request">Project-backed request<a class="headerlink" href="#project-backed-request" title="Permanent link">&para;</a></h3>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;project_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">&quot;start_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2021</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">&quot;end_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2023</span><span class="p">,</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">&quot;gee_account_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="admin-unit-backed-request">Admin-unit-backed request<a class="headerlink" href="#admin-unit-backed-request" title="Permanent link">&para;</a></h3>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bihar&quot;</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">&quot;district&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nalanda&quot;</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">&quot;block&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hilsa&quot;</span><span class="p">,</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">&quot;start_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2021</span><span class="p">,</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="nt">&quot;end_year&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2023</span><span class="p">,</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="nt">&quot;gee_account_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The route accepts both request shapes, but the current backend only continues into full vector generation for the project-backed path. The non-project path still goes through raster generation in <code>get_pss(...)</code>, then returns early from <code>check_site_suitability(...)</code>.</p>
+</div>
+<hr />
+<h2 id="required-db-setup-for-project-backed-runs">Required DB Setup For Project-Backed Runs<a class="headerlink" href="#required-db-setup-for-project-backed-runs" title="Permanent link">&para;</a></h2>
+<p>This is the missing setup that tends to break fresh-install tests.</p>
+<h3 id="1-create-an-organization">1. Create an organization<a class="headerlink" href="#1-create-an-organization" title="Permanent link">&para;</a></h3>
+<p>The <code>Project</code> model requires an <code>Organization</code>, and the plantation task uses <code>project.organization.name</code> to build the Earth Engine asset path.</p>
+<h3 id="2-create-a-project-linked-to-that-organization">2. Create a project linked to that organization<a class="headerlink" href="#2-create-a-project-linked-to-that-organization" title="Permanent link">&para;</a></h3>
+<p>For this workflow, the project should be:</p>
 <ul>
-<li><a href="how-core-stack-is-used/">How CoRE Stack Is Used</a></li>
-<li><a href="../use-precomputed-data/">Use PreComputed Geospatial Data</a></li>
-<li><a href="../pipelines/watershed-data-structure/">CoRE Stack Data Structure</a></li>
+<li>linked to the organization above</li>
+<li><code>app_type=plantation</code></li>
+<li><code>enabled=True</code></li>
+<li>assigned to a valid <code>state</code></li>
 </ul>
-</div>
-<div class="tabbed-block">
+<p>The <code>project_id</code> you pass to <code>site_suitability()</code> comes from this record.</p>
+<h3 id="3-upload-at-least-one-kml-file-for-that-project">3. Upload at least one KML file for that project<a class="headerlink" href="#3-upload-at-least-one-kml-file-for-that-project" title="Permanent link">&para;</a></h3>
+<p>The project path builds the ROI by reading <code>KMLFile</code> records and combining them in <code>combine_kmls(...)</code>.</p>
+<p>Without project KMLs, the ROI assembly step has nothing to merge and the workflow cannot build a project footprint.</p>
+<h3 id="4-create-a-plantation-profile-for-that-project">4. Create a plantation profile for that project<a class="headerlink" href="#4-create-a-plantation-profile-for-that-project" title="Permanent link">&para;</a></h3>
+<p>The raster stage reads plantation profile configuration from the database.</p>
+<p>Current code behavior is slightly stricter than it first appears:</p>
 <ul>
-<li><a href="innovation-challenges/">Innovation Challenges</a></li>
-<li><a href="../pipelines/">Pipeline Development</a></li>
-<li><a href="../developers/">Develop CoRE Stack</a></li>
+<li><code>get_pss(...)</code> always loads <code>PlantationProfile.objects.get(profile_id=1)</code> as a default baseline</li>
+<li>if a project-specific <code>PlantationProfile</code> exists, its weights and variables are merged on top of that baseline</li>
 </ul>
-</div>
-<div class="tabbed-block">
+<p>On a fresh database, the safest setup is:</p>
+<ol>
+<li>create the plantation profile for the project before the first API run</li>
+<li>make sure at least one plantation profile exists at all, so the default <code>profile_id=1</code> lookup has something to load</li>
+</ol>
+<p>If you are doing this manually, Django admin is a straightforward path.
+The backend also exposes nested project-scoped plantation KML and plantation profile endpoints in <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/plantations/urls.py">plantations/urls.py</a>.</p>
+<hr />
+<h2 id="year-range-the-important-constraint">Year Range: The Important Constraint<a class="headerlink" href="#year-range-the-important-constraint" title="Permanent link">&para;</a></h2>
+<p>The plantation route accepts both <code>start_year</code> and <code>end_year</code>, but the main raster computation does not use the request's <code>start_year</code> directly.</p>
+<p>Inside <code>check_site_suitability(...)</code>, the raster stage calls:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">get_pss</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">start_year</span><span class="o">=</span><span class="n">end_year</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="n">end_year</span><span class="o">=</span><span class="n">end_year</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</span></code></pre></div>
+<p>So the effective raster window is always a three-year span anchored on <code>end_year</code>.</p>
+<p>This matters because the plantation helpers read the pan-India LULC dataset as:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>.../pan_india_lulc_v3_&lt;year&gt;_&lt;year+1&gt;
+</span></code></pre></div>
+<p>The practical consequence is:</p>
 <ul>
-<li><a href="contributing/">Contributing</a></li>
-<li><a href="code-of-conduct/">Code of Conduct</a></li>
-<li><a href="contributions/">Contributions</a></li>
+<li>minimum safe <code>end_year</code>: <code>2019</code></li>
+<li>why: <code>2019</code> resolves to a raster window starting at <code>2017</code></li>
+<li>risk: <code>2018</code> or lower resolves to <code>2016</code> internally, and that LULC asset path does not exist in the expected dataset window</li>
 </ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you pass <code>end_year=2018</code> or lower, expect a GEE asset-not-found error from the LULC-dependent portion of the plantation workflow.</p>
 </div>
-</div>
-</div>
+<hr />
+<h2 id="code-path">Code Path<a class="headerlink" href="#code-path" title="Permanent link">&para;</a></h2>
+<p>The current project-backed execution sequence is:</p>
+<ol>
+<li><code>computing/api.py</code> queues <code>site_suitability.apply_async(...)</code></li>
+<li><code>computing/plantation/site_suitability.py</code> initializes GEE and loads the project</li>
+<li>the task fetches project KMLs, creates or updates the project ROI asset in Earth Engine, and loads that ROI as a <code>FeatureCollection</code></li>
+<li><code>check_site_suitability(...)</code> calls <code>get_pss(...)</code> to build the weighted suitability raster</li>
+<li>the project path continues into vector generation, attaching NDVI, LULC, and site-property summaries to each feature</li>
+<li>outputs are exported to Earth Engine and then synced toward GeoServer</li>
+</ol>
+<p>At a high level, the weighted raster combines:</p>
+<ul>
+<li>Climate</li>
+<li>Soil</li>
+<li>Topography</li>
+<li>Ecology</li>
+<li>Socioeconomic factors</li>
+</ul>
+<p>The profile configuration that drives those weights is built in <code>process_project_profile(...)</code> and stored in <code>PlantationProfile</code>.</p>
+<hr />
+<h2 id="operational-notes">Operational Notes<a class="headerlink" href="#operational-notes" title="Permanent link">&para;</a></h2>
+<h3 id="large-project-rois-use-the-helper-account-path">Large project ROIs use the helper account path<a class="headerlink" href="#large-project-rois-use-the-helper-account-path" title="Permanent link">&para;</a></h3>
+<p>If the ROI contains more than <code>50</code> features, <code>site_suitability_vector.py</code> switches to chunked vector generation.</p>
+<p>That path uses:</p>
+<ul>
+<li><code>gee_account.helper_account</code></li>
+<li>helper asset folders for chunk export and merge</li>
+</ul>
+<p>If the <code>GEEAccount</code> was created by the installer import path, it is usually self-linked by default.
+If you created it manually and left <code>helper_account</code> blank, very large project runs can fail here.</p>
+<h3 id="plantation-outputs-also-depend-on-gcs">Plantation outputs also depend on GCS<a class="headerlink" href="#plantation-outputs-also-depend-on-gcs" title="Permanent link">&para;</a></h3>
+<p>The raster publication step calls:</p>
+<ul>
+<li><code>sync_raster_to_gcs(...)</code></li>
+<li><code>sync_raster_gcs_to_geoserver(...)</code></li>
+</ul>
+<p>So plantation site suitability is not only a GEE workflow.
+It also depends on working Google Cloud Storage and GeoServer configuration.</p>
+<p>See:</p>
+<ul>
+<li><a href="../../developers/integrations/gcs/">Google Cloud Storage</a></li>
+<li><a href="../../developers/integrations/google-earth-engine/">Google Earth Engine</a></li>
+<li><a href="../../developers/integrations/geoserver/">GeoServer</a></li>
+</ul>
+<h3 id="the-non-project-path-is-currently-partial">The non-project path is currently partial<a class="headerlink" href="#the-non-project-path-is-currently-partial" title="Permanent link">&para;</a></h3>
+<p>The request shape with <code>state</code>, <code>district</code>, and <code>block</code> is still useful for raster generation.
+But as of the current code, <code>check_site_suitability(...)</code> returns early when <code>project</code> is absent, so it does not continue into the full vector export branch.</p>
+<p>Treat project-backed execution as the main documented workflow until that behavior changes.</p>
+<hr />
+<h2 id="related-docs">Related Docs<a class="headerlink" href="#related-docs" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../computing-endpoints/">Computing API Endpoints</a></li>
+<li><a href="../common-design-and-integration-patterns/">Common Pipeline Design / Integration Patterns</a></li>
+<li><a href="../../developers/integrations/google-earth-engine/">Google Earth Engine</a></li>
+<li><a href="../../developers/integrations/gcs/">Google Cloud Storage</a></li>
+</ul>
 
 
 
@@ -3734,10 +4309,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.indexes", "navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.instant.preview", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.indexes", "navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.instant.preview", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

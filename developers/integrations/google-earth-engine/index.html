@@ -16,7 +16,7 @@
         <link rel="prev" href="../">
       
       
-        <link rel="next" href="../geoserver/">
+        <link rel="next" href="../gcs/">
       
       
         
@@ -952,6 +952,8 @@
       
         
       
+        
+      
     
     
     
@@ -1186,6 +1188,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gcs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Cloud Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1686,6 +1716,8 @@
       
         
       
+        
+      
     
     
     
@@ -1841,6 +1873,34 @@
     
   
     Terrain Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../pipelines/plantation-site-suitability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantation Site Suitability
   
 
     
@@ -3805,10 +3865,14 @@ Most computing pipelines, several authenticated compute APIs, and some publicati
 <li>a Google Cloud project with Earth Engine enabled</li>
 <li>a service account with the required Earth Engine permissions</li>
 <li>a downloaded JSON key for that service account</li>
-<li>write access for that same service account to the Google Cloud Storage bucket used by the backend</li>
+<li>a Google Cloud Storage bucket in <code>us-central1</code>, with read/write access for that same service account</li>
 <li>a Django <code>GEEAccount</code> entry, usually created through the installer or admin</li>
 <li>a usable <code>gee_account_id</code> for API calls, Celery tasks, and shell runs</li>
 </ol>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Some current backend import paths call <code>ee.Image.loadGeoTIFF()</code> through the GCS bridge in <code>utilities/gee_utils.py</code>. For those paths, the bucket used by <code>GCS_BUCKET_NAME</code> should be created in <code>us-central1</code>, not an arbitrary region. The bucket-side details live in <a href="../gcs/">Google Cloud Storage</a>.</p>
+</div>
 <hr />
 <h2 id="step-1-configure-google-cloud-for-earth-engine">Step 1: Configure Google Cloud For Earth Engine<a class="headerlink" href="#step-1-configure-google-cloud-for-earth-engine" title="Permanent link">&para;</a></h2>
 <ol>
@@ -3904,6 +3968,7 @@ Most computing pipelines, several authenticated compute APIs, and some publicati
 <li><code>setup-next-step</code>: the exact next fix the script thinks you should make</li>
 </ul>
 <p>If <code>gcs-upload-probe</code> fails, Earth Engine auth alone is not enough. The current first computing API uploads shapefile parts to Google Cloud Storage before importing them into Earth Engine.</p>
+<p>For the bucket region, IAM, and backend-side GCS usage patterns, continue into <a href="../gcs/">Google Cloud Storage</a>.</p>
 <hr />
 <h2 id="step-4-use-gee_account_id-when-running-pipelines">Step 4: Use <code>gee_account_id</code> When Running Pipelines<a class="headerlink" href="#step-4-use-gee_account_id-when-running-pipelines" title="Permanent link">&para;</a></h2>
 <p>Once the Django record exists, the ID becomes part of normal compute execution.</p>
@@ -3952,6 +4017,7 @@ Most computing pipelines, several authenticated compute APIs, and some publicati
 <hr />
 <h2 id="related-docs">Related Docs<a class="headerlink" href="#related-docs" title="Permanent link">&para;</a></h2>
 <ul>
+<li><a href="../gcs/">Google Cloud Storage</a></li>
 <li><a href="../../installer/">Installer</a></li>
 <li><a href="../../../pipelines/first-manual-api-run/">First Manual API Run</a></li>
 <li><a href="../../../pipelines/common-design-and-integration-patterns/">Common Pipeline Design / Integration Patterns</a></li>

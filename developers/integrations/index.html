@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Developer-facing integration docs for Earth Engine, GeoServer, AWS, and related CoRE Stack delivery surfaces.">
+        <meta name="description" content="Developer-facing integration docs for Earth Engine, Google Cloud Storage, GeoServer, AWS, and related CoRE Stack delivery surfaces.">
       
       
       
@@ -64,7 +64,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Integrations - CoRE Stack Documentation" />
-<meta property="og:description" content="Developer-facing integration docs for Earth Engine, GeoServer, AWS, and related CoRE Stack delivery surfaces." />
+<meta property="og:description" content="Developer-facing integration docs for Earth Engine, Google Cloud Storage, GeoServer, AWS, and related CoRE Stack delivery surfaces." />
 <meta property="og:image" content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/developers/integrations/index.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -72,7 +72,7 @@
 <meta property="og:url" content="https://core-stack-org.github.io/core-stack-docs/developers/integrations/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Integrations - CoRE Stack Documentation" />
-<meta property="twitter:description" content="Developer-facing integration docs for Earth Engine, GeoServer, AWS, and related CoRE Stack delivery surfaces." />
+<meta property="twitter:description" content="Developer-facing integration docs for Earth Engine, Google Cloud Storage, GeoServer, AWS, and related CoRE Stack delivery surfaces." />
 <meta property="twitter:image" content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/developers/integrations/index.png" />
 </head>
   
@@ -952,6 +952,8 @@
       
         
       
+        
+      
     
     
     
@@ -1024,6 +1026,34 @@
     
   
     Google Earth Engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gcs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Cloud Storage
   
 
     
@@ -1532,6 +1562,8 @@
       
         
       
+        
+      
     
     
     
@@ -1687,6 +1719,34 @@
     
   
     Terrain Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/plantation-site-suitability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantation Site Suitability
   
 
     
@@ -3529,6 +3589,7 @@
 <p>What changed in the current backend install flow:</p>
 <ul>
 <li>GEE can now be imported directly during <code>install.sh</code> with <code>--gee-json</code> or <code>--input gee_json=...</code>.</li>
+<li>GCS matters operationally because many GEE and GeoServer flows stage artifacts through Cloud Storage.</li>
 <li>GeoServer settings can be queued into the installer and are probed during <code>initialisation_check</code> when present.</li>
 <li>Public API credentials live in <code>nrm_app/.env</code> and can drive the installer-side <code>public_api_check</code>.</li>
 <li>AWS/S3 is still deployment-specific and is not part of the baseline installer validation.</li>

@@ -983,6 +983,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#gcs-prerequisite-for-gee-backed-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GCS prerequisite for GEE-backed workflows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#review-the-test-superuser" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1115,6 +1126,8 @@
       
         
       
+        
+      
     
     
     
@@ -1189,6 +1202,34 @@
     
   
     Google Earth Engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrations/gcs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Cloud Storage
   
 
     
@@ -1697,6 +1738,8 @@
       
         
       
+        
+      
     
     
     
@@ -1852,6 +1895,34 @@
     
   
     Terrain Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/plantation-site-suitability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantation Site Suitability
   
 
     
@@ -3678,6 +3749,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#gcs-prerequisite-for-gee-backed-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GCS prerequisite for GEE-backed workflows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#review-the-test-superuser" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3965,6 +4047,16 @@ The examples below assume you are in the backend repo root.</p>
 <li><code>GEE_DEFAULT_ACCOUNT_ID</code>, <code>GEE_HELPER_ACCOUNT_ID</code>, and the GEE key-path variables if you skipped GEE import during install</li>
 <li>S3, DPR S3, ODK, email, and similar service secrets only when your workflow actually uses them</li>
 </ul>
+<h3 id="gcs-prerequisite-for-gee-backed-workflows">GCS prerequisite for GEE-backed workflows<a class="headerlink" href="#gcs-prerequisite-for-gee-backed-workflows" title="Permanent link">&para;</a></h3>
+<p>The current backend uses Google Cloud Storage as part of several real compute paths, not just as optional storage.</p>
+<p>Before testing GEE-backed imports and publications, make sure:</p>
+<ul>
+<li>the bucket used by <code>GCS_BUCKET_NAME</code> exists</li>
+<li>that bucket is created in <code>us-central1</code></li>
+<li>the same GEE service account has bucket read access for Earth Engine and object write/delete access for backend uploads</li>
+</ul>
+<p>If you keep the current code defaults, the expected bucket name is <code>core_stack</code>.
+If you change it, also review the hardcoded <code>gs://core_stack/...</code> shapefile upload helper noted in <a href="../integrations/gcs/">Google Cloud Storage</a>.</p>
 <h3 id="review-the-test-superuser">Review the test superuser<a class="headerlink" href="#review-the-test-superuser" title="Permanent link">&para;</a></h3>
 <p>The installer ensures an active Django superuser exists so it can generate JWTs automatically during validation.</p>
 <p>If you plan to keep using that account beyond setup checks, change its password or create your own operator account:</p>

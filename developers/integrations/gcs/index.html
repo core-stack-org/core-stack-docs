@@ -6,35 +6,35 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Participation routes for contributors, challenge builders, stewards, and local institutions using CoRE Stack.">
+        <meta name="description" content="Why CoRE Stack needs GCS, how the current backend uses it, and the bucket and IAM setup required for GEE-backed pipelines.">
       
       
       
-        <link rel="canonical" href="https://core-stack-org.github.io/core-stack-docs/community/">
+        <link rel="canonical" href="https://core-stack-org.github.io/core-stack-docs/developers/integrations/gcs/">
       
       
-        <link rel="prev" href="../developers/coding-standards-and-guidelines/">
+        <link rel="prev" href="../google-earth-engine/">
       
       
-        <link rel="next" href="how-core-stack-is-used/">
+        <link rel="next" href="../geoserver/">
       
       
         
       
       
-      <link rel="icon" href="../assets/logo.png">
+      <link rel="icon" href="../../../assets/logo.png">
       <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.7.6">
     
     
       
-        <title>Community - CoRE Stack Documentation</title>
+        <title>Google Cloud Storage - CoRE Stack Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,9 +53,9 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -63,17 +63,17 @@
     
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Community - CoRE Stack Documentation" />
-<meta property="og:description" content="Participation routes for contributors, challenge builders, stewards, and local institutions using CoRE Stack." />
-<meta property="og:image" content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/community/index.png" />
+<meta property="og:title" content="Google Cloud Storage - CoRE Stack Documentation" />
+<meta property="og:description" content="Why CoRE Stack needs GCS, how the current backend uses it, and the bucket and IAM setup required for GEE-backed pipelines." />
+<meta property="og:image" content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/developers/integrations/gcs.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:url" content="https://core-stack-org.github.io/core-stack-docs/community/" />
+<meta property="og:url" content="https://core-stack-org.github.io/core-stack-docs/developers/integrations/gcs/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Community - CoRE Stack Documentation" />
-<meta property="twitter:description" content="Participation routes for contributors, challenge builders, stewards, and local institutions using CoRE Stack." />
-<meta property="twitter:image" content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/community/index.png" />
+<meta property="twitter:title" content="Google Cloud Storage - CoRE Stack Documentation" />
+<meta property="twitter:description" content="Why CoRE Stack needs GCS, how the current backend uses it, and the bucket and IAM setup required for GEE-backed pipelines." />
+<meta property="twitter:image" content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/developers/integrations/gcs.png" />
 </head>
   
   
@@ -93,7 +93,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#community" class="md-skip">
+        <a href="#google-cloud-storage" class="md-skip">
           Skip to content
         </a>
       
@@ -109,9 +109,9 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="CoRE Stack Documentation" class="md-header__button md-logo" aria-label="CoRE Stack Documentation" data-md-component="logo">
+    <a href="../../.." title="CoRE Stack Documentation" class="md-header__button md-logo" aria-label="CoRE Stack Documentation" data-md-component="logo">
       
-  <img src="../assets/logo.png" alt="logo">
+  <img src="../../../assets/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -128,7 +128,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Community
+              Google Cloud Storage
             
           </span>
         </div>
@@ -250,7 +250,7 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -271,7 +271,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../pipelines/watershed-data-structure/" class="md-tabs__link">
+        <a href="../../../pipelines/watershed-data-structure/" class="md-tabs__link">
           
   
   
@@ -293,7 +293,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../use-precomputed-data/" class="md-tabs__link">
+        <a href="../../../use-precomputed-data/" class="md-tabs__link">
           
   
   
@@ -311,11 +311,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../developers/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
           
   
   
@@ -333,13 +335,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../../community/" class="md-tabs__link">
           
   
   
@@ -361,7 +361,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../reference/" class="md-tabs__link">
+        <a href="../../../reference/" class="md-tabs__link">
           
   
   
@@ -383,7 +383,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../blog/" class="md-tabs__link">
+        <a href="../../../blog/" class="md-tabs__link">
           
   
   
@@ -425,9 +425,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="CoRE Stack Documentation" class="md-nav__button md-logo" aria-label="CoRE Stack Documentation" data-md-component="logo">
+    <a href="../../.." title="CoRE Stack Documentation" class="md-nav__button md-logo" aria-label="CoRE Stack Documentation" data-md-component="logo">
       
-  <img src="../assets/logo.png" alt="logo">
+  <img src="../../../assets/logo.png" alt="logo">
 
     </a>
     CoRE Stack Documentation
@@ -454,7 +454,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -539,7 +539,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/watershed-data-structure/" class="md-nav__link">
+      <a href="../../../pipelines/watershed-data-structure/" class="md-nav__link">
         
   
   
@@ -607,7 +607,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../use-precomputed-data/" class="md-nav__link ">
+            <a href="../../../use-precomputed-data/" class="md-nav__link ">
               
   
   
@@ -651,7 +651,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../use-precomputed-data/how-current-data-was-computed/" class="md-nav__link">
+      <a href="../../../use-precomputed-data/how-current-data-was-computed/" class="md-nav__link">
         
   
   
@@ -679,7 +679,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/geoadmin-noauth/" class="md-nav__link">
+      <a href="../../../api/geoadmin-noauth/" class="md-nav__link">
         
   
   
@@ -707,7 +707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/public-apis/" class="md-nav__link">
+      <a href="../../../api/public-apis/" class="md-nav__link">
         
   
   
@@ -735,7 +735,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/stac-specs/" class="md-nav__link">
+      <a href="../../../api/stac-specs/" class="md-nav__link">
         
   
   
@@ -767,6 +767,8 @@
       
   
   
+    
+  
   
   
     
@@ -792,22 +794,23 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../developers/" class="md-nav__link ">
+            <a href="../../" class="md-nav__link ">
               
   
   
@@ -825,13 +828,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -851,7 +854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../developers/installer/" class="md-nav__link">
+      <a href="../../installer/" class="md-nav__link">
         
   
   
@@ -879,7 +882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../developers/setup-troubleshooting/" class="md-nav__link">
+      <a href="../../setup-troubleshooting/" class="md-nav__link">
         
   
   
@@ -907,7 +910,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../developers/backend-code-map/" class="md-nav__link">
+      <a href="../../backend-code-map/" class="md-nav__link">
         
   
   
@@ -932,6 +935,8 @@
                 
   
   
+    
+  
   
   
     
@@ -955,20 +960,21 @@
       
       
         
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
+          
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_5" >
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../developers/integrations/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -986,13 +992,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1012,7 +1018,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../developers/integrations/google-earth-engine/" class="md-nav__link">
+      <a href="../google-earth-engine/" class="md-nav__link">
         
   
   
@@ -1037,10 +1043,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../developers/integrations/gcs/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Cloud Storage
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1056,6 +1089,150 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-the-backend-needs-gcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why The Backend Needs GCS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-bucket-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current Bucket Assumptions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Current Bucket Assumptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bucket-region-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bucket Region Matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#required-iam-for-the-current-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required IAM For The Current Backend
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Required IAM For The Current Backend">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-earth-engine-read-access-to-the-bucket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Earth Engine Read Access To The Bucket
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-backend-upload-download-cleanup-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Backend Upload / Download / Cleanup Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-gcs-is-used-in-the-current-codebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How GCS Is Used In The Current Codebase
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#object-prefixes-you-will-see" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object Prefixes You Will See
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimum-setup-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimum Setup Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Docs
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1068,7 +1245,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../developers/integrations/geoserver/" class="md-nav__link">
+      <a href="../geoserver/" class="md-nav__link">
         
   
   
@@ -1096,7 +1273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../developers/integrations/aws/" class="md-nav__link">
+      <a href="../aws/" class="md-nav__link">
         
   
   
@@ -1174,10 +1351,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1187,7 +1367,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../pipelines/" class="md-nav__link ">
+            <a href="../../../pipelines/" class="md-nav__link ">
               
   
   
@@ -1205,7 +1385,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -1231,7 +1411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/how-pipelines-work-algorithmically/" class="md-nav__link">
+      <a href="../../../pipelines/how-pipelines-work-algorithmically/" class="md-nav__link">
         
   
   
@@ -1259,7 +1439,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/how-pipelines-work-programmatically/" class="md-nav__link">
+      <a href="../../../pipelines/how-pipelines-work-programmatically/" class="md-nav__link">
         
   
   
@@ -1287,7 +1467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/first-manual-api-run/" class="md-nav__link">
+      <a href="../../../pipelines/first-manual-api-run/" class="md-nav__link">
         
   
   
@@ -1315,7 +1495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/local-pipeline-first/" class="md-nav__link">
+      <a href="../../../pipelines/local-pipeline-first/" class="md-nav__link">
         
   
   
@@ -1343,7 +1523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/django-computing-api-integration/" class="md-nav__link">
+      <a href="../../../pipelines/django-computing-api-integration/" class="md-nav__link">
         
   
   
@@ -1371,7 +1551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/celery-auth-and-task-integration/" class="md-nav__link">
+      <a href="../../../pipelines/celery-auth-and-task-integration/" class="md-nav__link">
         
   
   
@@ -1399,7 +1579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/computing-endpoints/" class="md-nav__link">
+      <a href="../../../pipelines/computing-endpoints/" class="md-nav__link">
         
   
   
@@ -1427,7 +1607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/common-design-and-integration-patterns/" class="md-nav__link">
+      <a href="../../../pipelines/common-design-and-integration-patterns/" class="md-nav__link">
         
   
   
@@ -1455,7 +1635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/build-new-pipelines/" class="md-nav__link">
+      <a href="../../../pipelines/build-new-pipelines/" class="md-nav__link">
         
   
   
@@ -1483,7 +1663,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/pipeline-integrations/" class="md-nav__link">
+      <a href="../../../pipelines/pipeline-integrations/" class="md-nav__link">
         
   
   
@@ -1511,7 +1691,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/add-new-data-resources/" class="md-nav__link">
+      <a href="../../../pipelines/add-new-data-resources/" class="md-nav__link">
         
   
   
@@ -1574,7 +1754,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../pipelines/core-workflows/" class="md-nav__link ">
+            <a href="../../../pipelines/core-workflows/" class="md-nav__link ">
               
   
   
@@ -1618,7 +1798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/lulc-generation/" class="md-nav__link">
+      <a href="../../../pipelines/lulc-generation/" class="md-nav__link">
         
   
   
@@ -1646,7 +1826,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/swb-detection/" class="md-nav__link">
+      <a href="../../../pipelines/swb-detection/" class="md-nav__link">
         
   
   
@@ -1674,7 +1854,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/hydrology/" class="md-nav__link">
+      <a href="../../../pipelines/hydrology/" class="md-nav__link">
         
   
   
@@ -1702,7 +1882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/terrain-analysis/" class="md-nav__link">
+      <a href="../../../pipelines/terrain-analysis/" class="md-nav__link">
         
   
   
@@ -1730,7 +1910,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/plantation-site-suitability/" class="md-nav__link">
+      <a href="../../../pipelines/plantation-site-suitability/" class="md-nav__link">
         
   
   
@@ -1805,7 +1985,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../pipelines/boundary-and-enrichment/" class="md-nav__link ">
+            <a href="../../../pipelines/boundary-and-enrichment/" class="md-nav__link ">
               
   
   
@@ -1849,7 +2029,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/admin-boundary/" class="md-nav__link">
+      <a href="../../../pipelines/admin-boundary/" class="md-nav__link">
         
   
   
@@ -1877,7 +2057,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/facilities-proximity/" class="md-nav__link">
+      <a href="../../../pipelines/facilities-proximity/" class="md-nav__link">
         
   
   
@@ -1905,7 +2085,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/nrega-assets/" class="md-nav__link">
+      <a href="../../../pipelines/nrega-assets/" class="md-nav__link">
         
   
   
@@ -1933,7 +2113,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/agroecological-space/" class="md-nav__link">
+      <a href="../../../pipelines/agroecological-space/" class="md-nav__link">
         
   
   
@@ -1961,7 +2141,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/aquifer-vector/" class="md-nav__link">
+      <a href="../../../pipelines/aquifer-vector/" class="md-nav__link">
         
   
   
@@ -1989,7 +2169,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/soge-vector/" class="md-nav__link">
+      <a href="../../../pipelines/soge-vector/" class="md-nav__link">
         
   
   
@@ -2017,7 +2197,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/pan-india-clip-modules/" class="md-nav__link">
+      <a href="../../../pipelines/pan-india-clip-modules/" class="md-nav__link">
         
   
   
@@ -2092,7 +2272,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../pipelines/raster-and-drainage/" class="md-nav__link ">
+            <a href="../../../pipelines/raster-and-drainage/" class="md-nav__link ">
               
   
   
@@ -2136,7 +2316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/drainage-lines/" class="md-nav__link">
+      <a href="../../../pipelines/drainage-lines/" class="md-nav__link">
         
   
   
@@ -2164,7 +2344,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/catchment-area/" class="md-nav__link">
+      <a href="../../../pipelines/catchment-area/" class="md-nav__link">
         
   
   
@@ -2192,7 +2372,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/stream-order/" class="md-nav__link">
+      <a href="../../../pipelines/stream-order/" class="md-nav__link">
         
   
   
@@ -2220,7 +2400,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/distance-to-nearest-drainage/" class="md-nav__link">
+      <a href="../../../pipelines/distance-to-nearest-drainage/" class="md-nav__link">
         
   
   
@@ -2248,7 +2428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/natural-depression/" class="md-nav__link">
+      <a href="../../../pipelines/natural-depression/" class="md-nav__link">
         
   
   
@@ -2276,7 +2456,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/slope-percentage/" class="md-nav__link">
+      <a href="../../../pipelines/slope-percentage/" class="md-nav__link">
         
   
   
@@ -2304,7 +2484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/restoration-opportunity/" class="md-nav__link">
+      <a href="../../../pipelines/restoration-opportunity/" class="md-nav__link">
         
   
   
@@ -2369,7 +2549,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../pipelines/time-series-and-ops/" class="md-nav__link ">
+            <a href="../../../pipelines/time-series-and-ops/" class="md-nav__link ">
               
   
   
@@ -2413,7 +2593,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/ndvi-time-series/" class="md-nav__link">
+      <a href="../../../pipelines/ndvi-time-series/" class="md-nav__link">
         
   
   
@@ -2441,7 +2621,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pipelines/hls-interpolated-ndvi/" class="md-nav__link">
+      <a href="../../../pipelines/hls-interpolated-ndvi/" class="md-nav__link">
         
   
   
@@ -2485,7 +2665,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../developers/coding-standards-and-guidelines/" class="md-nav__link">
+      <a href="../../coding-standards-and-guidelines/" class="md-nav__link">
         
   
   
@@ -2517,8 +2697,6 @@
       
   
   
-    
-  
   
   
     
@@ -2540,23 +2718,22 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="./" class="md-nav__link md-nav__link--active">
+            <a href="../../../community/" class="md-nav__link ">
               
   
   
@@ -2574,13 +2751,13 @@
             </a>
             
               
-              <label class="md-nav__link md-nav__link--active" for="__nav_5" id="__nav_5_label" tabindex="">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2600,7 +2777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="how-core-stack-is-used/" class="md-nav__link">
+      <a href="../../../community/how-core-stack-is-used/" class="md-nav__link">
         
   
   
@@ -2646,13 +2823,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -2662,7 +2836,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="innovation-challenges/" class="md-nav__link ">
+            <a href="../../../community/innovation-challenges/" class="md-nav__link ">
               
   
   
@@ -2680,7 +2854,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="">
+              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -2706,7 +2880,7 @@
   
   
     <li class="md-nav__item">
-      <a href="core-stack-innovation-challenge/" class="md-nav__link">
+      <a href="../../../community/core-stack-innovation-challenge/" class="md-nav__link">
         
   
   
@@ -2734,7 +2908,7 @@
   
   
     <li class="md-nav__item">
-      <a href="tessera-student-innovation-call/" class="md-nav__link">
+      <a href="../../../community/tessera-student-innovation-call/" class="md-nav__link">
         
   
   
@@ -2762,7 +2936,7 @@
   
   
     <li class="md-nav__item">
-      <a href="contributions/" class="md-nav__link">
+      <a href="../../../community/contributions/" class="md-nav__link">
         
   
   
@@ -2798,7 +2972,7 @@
   
   
     <li class="md-nav__item">
-      <a href="contributing/" class="md-nav__link">
+      <a href="../../../community/contributing/" class="md-nav__link">
         
   
   
@@ -2826,7 +3000,7 @@
   
   
     <li class="md-nav__item">
-      <a href="code-of-conduct/" class="md-nav__link">
+      <a href="../../../community/code-of-conduct/" class="md-nav__link">
         
   
   
@@ -2902,7 +3076,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../reference/" class="md-nav__link ">
+            <a href="../../../reference/" class="md-nav__link ">
               
   
   
@@ -2946,7 +3120,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/scientific-papers-and-research-repositories/" class="md-nav__link">
+      <a href="../../../reference/scientific-papers-and-research-repositories/" class="md-nav__link">
         
   
   
@@ -2974,7 +3148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/glossary/" class="md-nav__link">
+      <a href="../../../reference/glossary/" class="md-nav__link">
         
   
   
@@ -3002,7 +3176,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/abbreviations/" class="md-nav__link">
+      <a href="../../../reference/abbreviations/" class="md-nav__link">
         
   
   
@@ -3030,7 +3204,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/standardised-field-constant-variable-names/" class="md-nav__link">
+      <a href="../../../reference/standardised-field-constant-variable-names/" class="md-nav__link">
         
   
   
@@ -3058,7 +3232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/geospatial-learning-resources/" class="md-nav__link">
+      <a href="../../../reference/geospatial-learning-resources/" class="md-nav__link">
         
   
   
@@ -3086,7 +3260,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/wonderful-github-repos/" class="md-nav__link">
+      <a href="../../../reference/wonderful-github-repos/" class="md-nav__link">
         
   
   
@@ -3114,7 +3288,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/api-errors/" class="md-nav__link">
+      <a href="../../../reference/api-errors/" class="md-nav__link">
         
   
   
@@ -3142,7 +3316,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/license/" class="md-nav__link">
+      <a href="../../../reference/license/" class="md-nav__link">
         
   
   
@@ -3206,7 +3380,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../blog/" class="md-nav__link ">
+            <a href="../../../blog/" class="md-nav__link ">
               
   
   
@@ -3310,7 +3484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../blog/archive/2026/" class="md-nav__link">
+      <a href="../../../blog/archive/2026/" class="md-nav__link">
         
   
   
@@ -3408,7 +3582,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../blog/category/community/" class="md-nav__link">
+      <a href="../../../blog/category/community/" class="md-nav__link">
         
   
   
@@ -3438,7 +3612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../blog/category/research/" class="md-nav__link">
+      <a href="../../../blog/category/research/" class="md-nav__link">
         
   
   
@@ -3503,10 +3677,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#start-here" class="md-nav__link">
+  <a href="#why-the-backend-needs-gcs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Start Here
+        Why The Backend Needs GCS
       
     </span>
   </a>
@@ -3514,10 +3688,110 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#community-routes" class="md-nav__link">
+  <a href="#current-bucket-assumptions" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Community Routes
+        Current Bucket Assumptions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Current Bucket Assumptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bucket-region-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bucket Region Matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#required-iam-for-the-current-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required IAM For The Current Backend
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Required IAM For The Current Backend">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-earth-engine-read-access-to-the-bucket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Earth Engine Read Access To The Bucket
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-backend-upload-download-cleanup-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Backend Upload / Download / Cleanup Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-gcs-is-used-in-the-current-codebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How GCS Is Used In The Current Codebase
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#object-prefixes-you-will-see" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Object Prefixes You Will See
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimum-setup-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimum Setup Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-docs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related Docs
       
     </span>
   </a>
@@ -3549,7 +3823,7 @@
   
   
     <li class="md-path__item">
-      <a href=".." class="md-path__link">
+      <a href="../../.." class="md-path__link">
         
   <span class="md-ellipsis">
     Home
@@ -3567,10 +3841,28 @@
     
     
       <li class="md-path__item">
-        <a href="./" class="md-path__link">
+        <a href="../../" class="md-path__link">
           
   <span class="md-ellipsis">
-    Community
+    Develop CoRE Stack
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Integrations
   </span>
 
         </a>
@@ -3592,50 +3884,178 @@
   
 
 
-<h1 id="community">Community<a class="headerlink" href="#community" title="Permanent link">&para;</a></h1>
-<p>CoRE Stack is not only a software/data stack. It is also a participation platform.</p>
-<p>This section helps different collaborators find a route into:</p>
+<h1 id="google-cloud-storage">Google Cloud Storage<a class="headerlink" href="#google-cloud-storage" title="Permanent link">&para;</a></h1>
+<p>Google Cloud Storage is an operational bridge in the current CoRE Stack backend.</p>
+<p>It is used to move artifacts between:</p>
 <ul>
-<li>understanding how CoRE Stack is actually being used</li>
-<li>contributing</li>
-<li>innovation challenges</li>
-<li>community-oriented extension work</li>
+<li>local or server-side files</li>
+<li>Django-side helpers and Celery tasks</li>
+<li>Google Earth Engine</li>
+<li>GeoServer publication flows</li>
+</ul>
+<p>In practice, many real compute runs will fail without a working GCS bucket, even if Earth Engine authentication itself succeeds.</p>
+<p>Primary sources:</p>
+<ul>
+<li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/utilities/constants.py">utilities/constants.py</a></li>
+<li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/utilities/gee_utils.py">utilities/gee_utils.py</a></li>
+<li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/computing/misc/internal_api_initialisation_test.py">computing/misc/internal_api_initialisation_test.py</a></li>
 </ul>
 <hr />
-<h2 id="start-here">Start Here<a class="headerlink" href="#start-here" title="Permanent link">&para;</a></h2>
-<p>Pick the route that matches what you want to do:</p>
-<ul>
-<li><a href="how-core-stack-is-used/">How CoRE Stack Is Used</a> for real-world use cases, planning flows, and applied examples.</li>
-<li><a href="innovation-challenges/">Innovation Challenges</a> for challenge-led experimentation, tooling, and student or community projects.</li>
-<li><a href="contributing/">Contributing</a> for code, docs, issue reports, and community support pathways.</li>
-</ul>
+<h2 id="why-the-backend-needs-gcs">Why The Backend Needs GCS<a class="headerlink" href="#why-the-backend-needs-gcs" title="Permanent link">&para;</a></h2>
+<p>The current backend uses GCS for four recurring reasons:</p>
+<ol>
+<li>to stage local shapefile parts before importing them into Earth Engine</li>
+<li>to export rasters from Earth Engine before pushing them into GeoServer</li>
+<li>to upload local GeoTIFF files and then load them back into Earth Engine</li>
+<li>to fall back to GeoJSON-in-GCS when <code>FeatureCollection.getInfo()</code> is too large to move directly</li>
+</ol>
+<p>That means GCS is not just a storage add-on.
+It is part of the transport layer for several compute and publication paths.</p>
+<p>If you are wondering why this exists at all: the current backend does not treat large local vector and raster inputs as direct one-step uploads into Earth Engine.
+Instead, it stages them through Cloud Storage and then continues the workflow from there.</p>
 <hr />
-<h2 id="community-routes">Community Routes<a class="headerlink" href="#community-routes" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">I want to understand real-world use</label><label for="__tabbed_1_2">I want to build something</label><label for="__tabbed_1_3">I want to contribute generally</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
+<h2 id="current-bucket-assumptions">Current Bucket Assumptions<a class="headerlink" href="#current-bucket-assumptions" title="Permanent link">&para;</a></h2>
+<p>The current backend reads the main bucket name from <code>GCS_BUCKET_NAME</code> in <code>utilities/constants.py</code>.</p>
+<p>As checked in the current code, that constant is:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">GCS_BUCKET_NAME</span> <span class="o">=</span> <span class="s2">&quot;core_stack&quot;</span>
+</span></code></pre></div>
+<p>Two important implementation details follow from that:</p>
 <ul>
-<li><a href="how-core-stack-is-used/">How CoRE Stack Is Used</a></li>
-<li><a href="../use-precomputed-data/">Use PreComputed Geospatial Data</a></li>
-<li><a href="../pipelines/watershed-data-structure/">CoRE Stack Data Structure</a></li>
+<li>Most helper functions respect <code>GCS_BUCKET_NAME</code>.</li>
+<li>One shapefile import helper still hardcodes <code>gs://core_stack/...</code> inside <code>upload_shp_to_gee()</code>.</li>
 </ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you change the bucket name, update both <code>GCS_BUCKET_NAME</code> and the hardcoded <code>gs://core_stack/...</code> reference in <code>upload_shp_to_gee()</code> or shapefile-to-GEE imports will break.</p>
 </div>
-<div class="tabbed-block">
+<h3 id="bucket-region-matters">Bucket Region Matters<a class="headerlink" href="#bucket-region-matters" title="Permanent link">&para;</a></h3>
+<p>Some backend paths call <code>ee.Image.loadGeoTIFF()</code> through <code>upload_tif_from_gcs_to_gee(...)</code>.
+That path is used by modules such as:</p>
 <ul>
-<li><a href="innovation-challenges/">Innovation Challenges</a></li>
-<li><a href="../pipelines/">Pipeline Development</a></li>
-<li><a href="../developers/">Develop CoRE Stack</a></li>
+<li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/computing/clart/drainage_density.py">computing/clart/drainage_density.py</a></li>
+<li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/computing/clart/lithology.py">computing/clart/lithology.py</a></li>
+<li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/computing/clart/fes_clart_to_geoserver.py">computing/clart/fes_clart_to_geoserver.py</a></li>
 </ul>
-</div>
-<div class="tabbed-block">
+<p>For those flows, the bucket should be created in <code>us-central1</code>.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>create<span class="w"> </span>gs://core_stack<span class="w"> </span>--location<span class="o">=</span>us-central1
+</span></code></pre></div>
+<p>If the bucket is in another region, <code>loadGeoTIFF()</code>-backed imports can fail even though the object upload itself succeeded.</p>
+<hr />
+<h2 id="required-iam-for-the-current-backend">Required IAM For The Current Backend<a class="headerlink" href="#required-iam-for-the-current-backend" title="Permanent link">&para;</a></h2>
+<p>The same stored <code>GEEAccount</code> credentials are used for both Earth Engine and GCS access in <code>gcs_config(...)</code>.</p>
+<p>That creates two permission needs.</p>
+<h3 id="1-earth-engine-read-access-to-the-bucket">1. Earth Engine Read Access To The Bucket<a class="headerlink" href="#1-earth-engine-read-access-to-the-bucket" title="Permanent link">&para;</a></h3>
+<p>For <code>ee.Image.loadGeoTIFF()</code> and similar Earth Engine-side reads, grant the GEE service account these roles on the bucket:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>gs://&lt;bucket&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>--member<span class="o">=</span>serviceAccount:&lt;gee-service-account&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>--role<span class="o">=</span>roles/storage.objectViewer
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>gs://&lt;bucket&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span>--member<span class="o">=</span>serviceAccount:&lt;gee-service-account&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span>--role<span class="o">=</span>roles/storage.legacyBucketReader
+</span></code></pre></div>
+<h3 id="2-backend-upload-download-cleanup-access">2. Backend Upload / Download / Cleanup Access<a class="headerlink" href="#2-backend-upload-download-cleanup-access" title="Permanent link">&para;</a></h3>
+<p>The backend also uploads, downloads, and sometimes deletes objects through helpers such as:</p>
 <ul>
-<li><a href="contributing/">Contributing</a></li>
-<li><a href="code-of-conduct/">Code of Conduct</a></li>
-<li><a href="contributions/">Contributions</a></li>
+<li><code>probe_gcs_upload_access(...)</code></li>
+<li><code>upload_tif_to_gcs(...)</code></li>
+<li><code>upload_file_to_gcs(...)</code></li>
+<li><code>sync_raster_gcs_to_geoserver(...)</code></li>
+<li><code>get_geojson_from_gcs(...)</code></li>
 </ul>
-</div>
-</div>
-</div>
+<p>So the same account also needs object write and cleanup permissions.
+The simplest bucket-level grant is:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>gs://&lt;bucket&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>--member<span class="o">=</span>serviceAccount:&lt;gee-service-account&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>--role<span class="o">=</span>roles/storage.objectAdmin
+</span></code></pre></div>
+<p>This aligns with what the current initialization probe actually tests: object upload, and optionally object delete.</p>
+<hr />
+<h2 id="how-gcs-is-used-in-the-current-codebase">How GCS Is Used In The Current Codebase<a class="headerlink" href="#how-gcs-is-used-in-the-current-codebase" title="Permanent link">&para;</a></h2>
+<p>The backend sweep shows a few repeated patterns rather than one-off use.</p>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Main helper(s)</th>
+<th>Why GCS is involved</th>
+<th>Representative modules</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>readiness probe</td>
+<td><code>probe_gcs_upload_access()</code></td>
+<td>verify the configured GEE service account can write to the bucket before real compute runs</td>
+<td><code>computing/misc/internal_api_initialisation_test.py</code></td>
+</tr>
+<tr>
+<td>shapefile staging into GEE</td>
+<td><code>upload_file_to_gcs()</code>, <code>gcs_to_gee_asset_cli()</code>, <code>upload_shp_to_gee()</code></td>
+<td>upload <code>.shp/.dbf/.shx/.prj</code> components to <code>shapefiles/</code> and import them into Earth Engine through the CLI</td>
+<td><code>computing/misc/admin_boundary_v2.py</code>, <code>computing/misc/nrega.py</code>, <code>computing/mws/calculateG.py</code></td>
+</tr>
+<tr>
+<td>raster publication bridge</td>
+<td><code>sync_raster_to_gcs()</code>, <code>sync_raster_gcs_to_geoserver()</code></td>
+<td>export GeoTIFFs from Earth Engine to <code>nrm_raster/</code>, then download them into GeoServer publication</td>
+<td><code>computing/lulc/lulc_v3.py</code>, <code>computing/change_detection/change_detection.py</code>, <code>computing/tree_health/*</code>, <code>computing/terrain_descriptor/*</code>, <code>computing/plantation/site_suitability_raster.py</code></td>
+</tr>
+<tr>
+<td>local TIFF to GEE asset</td>
+<td><code>upload_tif_to_gcs()</code>, <code>upload_tif_from_gcs_to_gee()</code></td>
+<td>upload a server-side raster to GCS first, then read it back through <code>ee.Image.loadGeoTIFF()</code></td>
+<td><code>computing/clart/drainage_density.py</code>, <code>computing/clart/lithology.py</code>, <code>computing/clart/fes_clart_to_geoserver.py</code></td>
+</tr>
+<tr>
+<td>large vector fallback</td>
+<td><code>sync_vector_to_gcs()</code>, <code>get_geojson_from_gcs()</code></td>
+<td>when <code>getInfo()</code> is too large, export a <code>FeatureCollection</code> to <code>nrm_vector/</code> and download the GeoJSON from the bucket instead</td>
+<td><code>computing/utils.py</code>, <code>computing/surface_water_bodies/merge_swb_ponds.py</code>, <code>computing/clart/drainage_density.py</code></td>
+</tr>
+</tbody>
+</table>
+<p>The important practical point is that many modules share the same small set of helpers in <code>utilities/gee_utils.py</code>.
+If bucket setup is wrong, multiple pipeline families fail in similar ways.</p>
+<hr />
+<h2 id="object-prefixes-you-will-see">Object Prefixes You Will See<a class="headerlink" href="#object-prefixes-you-will-see" title="Permanent link">&para;</a></h2>
+<p>The current helpers write into predictable bucket prefixes:</p>
+<ul>
+<li><code>core-stack-initialisation-probe/</code> for setup validation</li>
+<li><code>shapefiles/</code> for shapefile uploads before Earth Engine table import</li>
+<li><code>nrm_raster/</code> for exported GeoTIFFs</li>
+<li><code>nrm_vector/</code> for exported vector files such as GeoJSON</li>
+</ul>
+<p>If you are inspecting bucket contents during debugging, these prefixes tell you which backend pattern produced the object.</p>
+<hr />
+<h2 id="minimum-setup-checklist">Minimum Setup Checklist<a class="headerlink" href="#minimum-setup-checklist" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Create the bucket in <code>us-central1</code>.</li>
+<li>Keep the name aligned with the current backend assumption, which is <code>core_stack</code> unless you also patch the hardcoded shapefile URI helper.</li>
+<li>Grant the GEE service account:</li>
+<li><code>roles/storage.objectViewer</code></li>
+<li><code>roles/storage.legacyBucketReader</code></li>
+<li>write and cleanup permissions, typically <code>roles/storage.objectAdmin</code></li>
+<li>Rerun the strict initialization check:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/miniconda3/etc/profile.d/conda.sh&quot;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nb">cd</span><span class="w"> </span>/path/to/core-stack-backend
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>python<span class="w"> </span>computing/misc/internal_api_initialisation_test.py<span class="w"> </span>--require-gee
+</span></code></pre></div>
+<p>The result to watch is:</p>
+<ul>
+<li><code>gcs-upload-probe</code></li>
+</ul>
+<p>If that probe fails, the service account still does not have the access the backend needs.</p>
+<hr />
+<h2 id="related-docs">Related Docs<a class="headerlink" href="#related-docs" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../google-earth-engine/">Google Earth Engine</a></li>
+<li><a href="../../installer/">Installer</a></li>
+<li><a href="../../setup-troubleshooting/">Setup Troubleshooting</a></li>
+<li><a href="../../../pipelines/pipeline-integrations/">Pipeline Integrations</a></li>
+</ul>
 
 
 
@@ -3734,10 +4154,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.indexes", "navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.instant.preview", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.indexes", "navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.instant.preview", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

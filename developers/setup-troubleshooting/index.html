@@ -1326,6 +1326,8 @@
       
         
       
+        
+      
     
     
     
@@ -1400,6 +1402,34 @@
     
   
     Google Earth Engine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integrations/gcs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google Cloud Storage
   
 
     
@@ -1908,6 +1938,8 @@
       
         
       
+        
+      
     
     
     
@@ -2063,6 +2095,34 @@
     
   
     Terrain Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/plantation-site-suitability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantation Site Suitability
   
 
     
@@ -4322,6 +4382,12 @@
 <h3 id="gcs-upload-probe-fails"><code>gcs-upload-probe</code> fails<a class="headerlink" href="#gcs-upload-probe-fails" title="Permanent link">&para;</a></h3>
 <p>This usually means the configured GEE service account can authenticate with Earth Engine, but it cannot write to the Google Cloud Storage bucket used by the first computing API.</p>
 <p>Grant bucket write access to that same service account. The current test output explicitly calls out <code>storage.objects.create</code>, and cleanup is smoother if it also has <code>storage.objects.delete</code>.</p>
+<p>Also confirm two setup details that the current backend depends on:</p>
+<ul>
+<li>the bucket used by <code>GCS_BUCKET_NAME</code> exists in <code>us-central1</code></li>
+<li>the service account has the bucket roles needed for Earth Engine-side reads, especially <code>roles/storage.objectViewer</code> and <code>roles/storage.legacyBucketReader</code></li>
+</ul>
+<p>For the full bucket checklist, see <a href="../integrations/gcs/">Google Cloud Storage</a>.</p>
 <h3 id="geoserver-probe-warns-or-fails"><code>geoserver-probe</code> warns or fails<a class="headerlink" href="#geoserver-probe-warns-or-fails" title="Permanent link">&para;</a></h3>
 <p>The current initialization check probes:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>${GEOSERVER_URL}/rest/about/version.json
