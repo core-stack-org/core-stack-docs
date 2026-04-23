@@ -3828,6 +3828,11 @@ Most computing pipelines, several authenticated compute APIs, and some publicati
 <p class="admonition-title">Warning</p>
 <p>For the current backend, you should assume GEE setup is required before trying to run most computing pipelines end-to-end. Without it, many local and queued compute paths will fail during <code>ee_initialize(...)</code>.</p>
 </div>
+<p>If the shared JSON key is not available during your first install, you can still finish the base backend setup and come back later with a targeted rerun:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>--only<span class="w"> </span>gee_configuration,initialisation_check<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>--gee-json<span class="w"> </span>/full/path/to/service-account.json
+</span></code></pre></div>
 <hr />
 <h2 id="what-you-need-before-running-gee-backed-pipelines">What You Need Before Running GEE-Backed Pipelines<a class="headerlink" href="#what-you-need-before-running-gee-backed-pipelines" title="Permanent link">&para;</a></h2>
 <p>Set up these pieces in order:</p>
@@ -3877,10 +3882,14 @@ Most computing pipelines, several authenticated compute APIs, and some publicati
 <h3 id="option-a-let-the-installer-do-it">Option A: Let The Installer Do It<a class="headerlink" href="#option-a-let-the-installer-do-it" title="Permanent link">&para;</a></h3>
 <p>This is now the fastest and most aligned path.</p>
 <p>Run the installer with the JSON path:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--from<span class="w"> </span>gee_configuration<span class="w"> </span>--gee-json<span class="w"> </span>/full/path/to/service-account.json
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>--only<span class="w"> </span>gee_configuration,initialisation_check<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>--gee-json<span class="w"> </span>/full/path/to/service-account.json
 </span></code></pre></div>
 <p>You can also use the generic input style:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--from<span class="w"> </span>gee_configuration<span class="w"> </span>--input<span class="w"> </span><span class="nv">gee_json</span><span class="o">=</span>/full/path/to/service-account.json
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>--only<span class="w"> </span>gee_configuration,initialisation_check<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">gee_json</span><span class="o">=</span>/full/path/to/service-account.json
 </span></code></pre></div>
 <p>What the current installer does during <code>gee_configuration</code>:</p>
 <ul>
@@ -3925,10 +3934,10 @@ Most computing pipelines, several authenticated compute APIs, and some publicati
 <li>the first authenticated computing API once GEE, GCS, GeoServer, and admin-boundary data are all ready</li>
 </ul>
 <p>Rerun it explicitly when you want a GEE-focused answer:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/miniconda3/etc/profile.d/conda.sh&quot;</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">cd</span><span class="w"> </span>/path/to/core-stack-backend
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>python<span class="w"> </span>computing/misc/internal_api_initialisation_test.py<span class="w"> </span>--require-gee
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/miniconda3/etc/profile.d/conda.sh&quot;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">cd</span><span class="w"> </span>/path/to/core-stack-backend
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>python<span class="w"> </span>computing/misc/internal_api_initialisation_test.py<span class="w"> </span>--require-gee
 </span></code></pre></div>
 <p>Interpret the most important result names like this:</p>
 <ul>
@@ -3943,15 +3952,15 @@ Most computing pipelines, several authenticated compute APIs, and some publicati
 <h2 id="step-4-use-gee_account_id-when-running-pipelines">Step 4: Use <code>gee_account_id</code> When Running Pipelines<a class="headerlink" href="#step-4-use-gee_account_id-when-running-pipelines" title="Permanent link">&para;</a></h2>
 <p>Once the Django record exists, the ID becomes part of normal compute execution.</p>
 <p>Example API body:</p>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;karnataka&quot;</span><span class="p">,</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">&quot;district&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;raichur&quot;</span><span class="p">,</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">&quot;block&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;devadurga&quot;</span><span class="p">,</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">&quot;gee_account_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">}</span>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;karnataka&quot;</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">&quot;district&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;raichur&quot;</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">&quot;block&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;devadurga&quot;</span><span class="p">,</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">&quot;gee_account_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">}</span>
 </span></code></pre></div>
 <p>Example direct Python usage:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">generate_facilities_proximity</span><span class="p">(</span><span class="s2">&quot;Odisha&quot;</span><span class="p">,</span> <span class="s2">&quot;Koraput&quot;</span><span class="p">,</span> <span class="s2">&quot;Jaypur&quot;</span><span class="p">,</span> <span class="n">gee_account_id</span><span class="o">=</span><span class="mi">21</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">generate_facilities_proximity</span><span class="p">(</span><span class="s2">&quot;Odisha&quot;</span><span class="p">,</span> <span class="s2">&quot;Koraput&quot;</span><span class="p">,</span> <span class="s2">&quot;Jaypur&quot;</span><span class="p">,</span> <span class="n">gee_account_id</span><span class="o">=</span><span class="mi">21</span><span class="p">)</span>
 </span></code></pre></div>
 <p>You will see this parameter throughout the docs because many handlers pass the GEE credential context into Celery-backed pipeline code.</p>
 <div class="admonition note">

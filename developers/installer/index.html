@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Install CoRE Stack locally, understand the installer behavior, and confirm the environment is ready for developer workflows.">
+        <meta name="description" content="Install CoRE Stack locally, understand the current installer behavior, and rerun only the parts you need later.">
       
       
       
@@ -64,7 +64,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Installer - CoRE Stack Documentation" />
-<meta property="og:description" content="Install CoRE Stack locally, understand the installer behavior, and confirm the environment is ready for developer workflows." />
+<meta property="og:description" content="Install CoRE Stack locally, understand the current installer behavior, and rerun only the parts you need later." />
 <meta property="og:image" content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/developers/installer.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -72,7 +72,7 @@
 <meta property="og:url" content="https://core-stack-org.github.io/core-stack-docs/developers/installer/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Installer - CoRE Stack Documentation" />
-<meta property="twitter:description" content="Install CoRE Stack locally, understand the installer behavior, and confirm the environment is ready for developer workflows." />
+<meta property="twitter:description" content="Install CoRE Stack locally, understand the current installer behavior, and rerun only the parts you need later." />
 <meta property="twitter:image" content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/developers/installer.png" />
 </head>
   
@@ -897,10 +897,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#review-the-installer-defaults" class="md-nav__link">
+  <a href="#what-the-installer-already-sets-up" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Review The Installer Defaults
+        What The Installer Already Sets Up
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimum-configuration-after-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimum Configuration After Install
       
     </span>
   </a>
@@ -919,10 +930,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#targeted-reruns-and-optional-inputs" class="md-nav__link">
+  <a href="#step-selection-and-optional-inputs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Targeted Reruns And Optional Inputs
+        Step Selection And Optional Inputs
       
     </span>
   </a>
@@ -930,10 +941,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-the-installer-automatically-sets-up" class="md-nav__link">
+  <a href="#rerun-impact-by-step" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What The Installer Automatically Sets Up
+        Rerun Impact By Step
       
     </span>
   </a>
@@ -941,22 +952,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-still-need-to-review" class="md-nav__link">
+  <a href="#when-it-is-fine-to-skip-something" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What You Still Need To Review
+        When It Is Fine To Skip Something
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="What You Still Need To Review">
+    <nav class="md-nav" aria-label="When It Is Fine To Skip Something">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#gcs-prerequisite-for-gee-backed-workflows" class="md-nav__link">
+  <a href="#no-gee-key-yet" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GCS prerequisite for GEE-backed workflows
+        No GEE key yet
       
     </span>
   </a>
@@ -964,10 +975,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#review-the-test-superuser" class="md-nav__link">
+  <a href="#no-geoserver-yet" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Review the test superuser
+        No GeoServer yet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-public-api-key-yet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No public API key yet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admin-boundary-download-failed-or-was-interrupted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin-boundary download failed or was interrupted
       
     </span>
   </a>
@@ -980,10 +1013,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#understand-the-built-in-validation" class="md-nav__link">
+  <a href="#what-the-built-in-validation-actually-proves" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Understand The Built-In Validation
+        What The Built-In Validation Actually Proves
       
     </span>
   </a>
@@ -991,10 +1024,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#start-the-app-manually" class="md-nav__link">
+  <a href="#start-the-app" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Start The App Manually
+        Start The App
       
     </span>
   </a>
@@ -1002,10 +1035,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-to-do-next" class="md-nav__link">
+  <a href="#next-pages" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What To Do Next
+        Next Pages
       
     </span>
   </a>
@@ -3663,10 +3696,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#review-the-installer-defaults" class="md-nav__link">
+  <a href="#what-the-installer-already-sets-up" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Review The Installer Defaults
+        What The Installer Already Sets Up
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimum-configuration-after-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minimum Configuration After Install
       
     </span>
   </a>
@@ -3685,10 +3729,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#targeted-reruns-and-optional-inputs" class="md-nav__link">
+  <a href="#step-selection-and-optional-inputs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Targeted Reruns And Optional Inputs
+        Step Selection And Optional Inputs
       
     </span>
   </a>
@@ -3696,10 +3740,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-the-installer-automatically-sets-up" class="md-nav__link">
+  <a href="#rerun-impact-by-step" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What The Installer Automatically Sets Up
+        Rerun Impact By Step
       
     </span>
   </a>
@@ -3707,22 +3751,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-you-still-need-to-review" class="md-nav__link">
+  <a href="#when-it-is-fine-to-skip-something" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What You Still Need To Review
+        When It Is Fine To Skip Something
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="What You Still Need To Review">
+    <nav class="md-nav" aria-label="When It Is Fine To Skip Something">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#gcs-prerequisite-for-gee-backed-workflows" class="md-nav__link">
+  <a href="#no-gee-key-yet" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GCS prerequisite for GEE-backed workflows
+        No GEE key yet
       
     </span>
   </a>
@@ -3730,10 +3774,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#review-the-test-superuser" class="md-nav__link">
+  <a href="#no-geoserver-yet" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Review the test superuser
+        No GeoServer yet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-public-api-key-yet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No public API key yet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admin-boundary-download-failed-or-was-interrupted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Admin-boundary download failed or was interrupted
       
     </span>
   </a>
@@ -3746,10 +3812,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#understand-the-built-in-validation" class="md-nav__link">
+  <a href="#what-the-built-in-validation-actually-proves" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Understand The Built-In Validation
+        What The Built-In Validation Actually Proves
       
     </span>
   </a>
@@ -3757,10 +3823,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#start-the-app-manually" class="md-nav__link">
+  <a href="#start-the-app" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Start The App Manually
+        Start The App
       
     </span>
   </a>
@@ -3768,10 +3834,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-to-do-next" class="md-nav__link">
+  <a href="#next-pages" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What To Do Next
+        Next Pages
       
     </span>
   </a>
@@ -3847,13 +3913,15 @@
 
 
 <h1 id="installer">Installer<a class="headerlink" href="#installer" title="Permanent link">&para;</a></h1>
-<p>This page tracks the current backend installation flow in <code>core-stack-backend/installation</code>.</p>
-<p>The backend now uses a three-part path:</p>
+<p><code>core-stack-backend/installation/install.sh</code> is now the main local setup path for the backend.</p>
+<p>For most developers, the happy path is short:</p>
 <ol>
-<li>clone the repo and open a Linux shell</li>
+<li>clone <code>core-stack-backend</code></li>
 <li>run <code>installation/install.sh</code></li>
-<li>review <code>nrm_app/.env</code>, optional credentials, and the installer validation output</li>
+<li>review <code>nrm_app/.env</code></li>
+<li>start Django and, when needed, Celery</li>
 </ol>
+<p>If the installer itself works and <code>initialisation_check</code> passes, you should not need more manual setup just to boot the backend. Add GEE, GeoServer, public API, ODK, S3, or email credentials only when you need the workflows that depend on them.</p>
 <p>Primary sources:</p>
 <ul>
 <li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/installation/install.sh">installation/install.sh</a></li>
@@ -3864,74 +3932,90 @@
 <h2 id="before-you-run-it">Before You Run It<a class="headerlink" href="#before-you-run-it" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Linux is the main target.</li>
-<li>Windows users should use WSL2 and run the installer from the Linux path such as <code>/mnt/y/...</code>.</li>
-<li>You need <code>sudo</code>, internet access, and enough disk for the admin-boundary dataset download.</li>
-<li>The current backend assumes PostgreSQL 15+, RabbitMQ, and Python via Miniconda.</li>
+<li>Windows users should use WSL2 and run the installer from the Linux path for the checkout.</li>
+<li>You need <code>sudo</code>, internet access, and enough free disk for the admin-boundary dataset download and extraction.</li>
+<li>The current installer manages Miniconda, PostgreSQL, RabbitMQ, the conda environment, and the main runtime <code>.env</code> file for you.</li>
 </ul>
-<p>If you are starting from a fresh machine, the usual baseline packages are:</p>
+<p>If you are on a fresh Ubuntu or WSL machine, this baseline is enough before the installer takes over:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>git<span class="w"> </span>wget<span class="w"> </span>curl<span class="w"> </span>build-essential<span class="w"> </span>libpq-dev<span class="w"> </span>rabbitmq-server<span class="w"> </span>unzip
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>git<span class="w"> </span>wget<span class="w"> </span>curl<span class="w"> </span>build-essential<span class="w"> </span>libpq-dev<span class="w"> </span>unzip
 </span></code></pre></div>
-<p><code>install.sh</code> installs and configures most runtime dependencies itself.</p>
 <hr />
-<h2 id="review-the-installer-defaults">Review The Installer Defaults<a class="headerlink" href="#review-the-installer-defaults" title="Permanent link">&para;</a></h2>
+<h2 id="what-the-installer-already-sets-up">What The Installer Already Sets Up<a class="headerlink" href="#what-the-installer-already-sets-up" title="Permanent link">&para;</a></h2>
+<p>In step order, the current installer:</p>
+<ol>
+<li>ensures <code>unzip</code></li>
+<li>installs or reuses Miniconda</li>
+<li>installs or reuses PostgreSQL</li>
+<li>installs or reuses RabbitMQ</li>
+<li>creates the <code>corestackenv</code> conda environment from <code>installation/environment.yml</code></li>
+<li>creates or updates <code>nrm_app/.env</code></li>
+<li>runs <code>collectstatic</code></li>
+<li>runs Django migrations</li>
+<li>loads seed data</li>
+<li>creates or refreshes an installer test superuser</li>
+<li>optionally imports a GEE service-account JSON</li>
+<li>downloads or normalizes admin-boundary data</li>
+<li>runs <code>computing/misc/internal_api_initialisation_test.py</code></li>
+<li>optionally runs the public API smoke test</li>
+</ol>
+<p>The installer also writes timestamps under <code>.installation_state/</code>, but reruns are controlled by the CLI flags below, not by automatic resume prompts.</p>
+<hr />
+<h2 id="minimum-configuration-after-install">Minimum Configuration After Install<a class="headerlink" href="#minimum-configuration-after-install" title="Permanent link">&para;</a></h2>
+<p>The installer fills the values required to get a local backend bootstrapped:</p>
+<ul>
+<li><code>SECRET_KEY</code></li>
+<li><code>DEBUG=True</code></li>
+<li><code>DB_NAME</code>, <code>DB_USER</code>, <code>DB_PASSWORD</code></li>
+<li><code>BACKEND_DIR</code>, <code>DEPLOYMENT_DIR</code>, <code>TMP_LOCATION</code></li>
+<li><code>FERNET_KEY</code></li>
+<li>a default <code>PUBLIC_API_BASE_URL</code></li>
+</ul>
+<p>That means the backend can usually start without you filling more secrets on day one.</p>
+<p>Use this table to decide what you actually need next:</p>
 <table>
 <thead>
 <tr>
-<th>Variable</th>
-<th>Default</th>
-<th>Meaning</th>
+<th>Goal</th>
+<th>Configure now?</th>
+<th>What to set</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>MINICONDA_DIR</code></td>
-<td><code>$HOME/miniconda3</code></td>
-<td>Miniconda install path</td>
+<td>Boot Django locally</td>
+<td>Usually no</td>
+<td>the installer-generated <code>nrm_app/.env</code> is normally enough</td>
 </tr>
 <tr>
-<td><code>CONDA_ENV_NAME</code></td>
-<td><code>corestackenv</code></td>
-<td>Conda environment name</td>
+<td>Run GEE-backed computing pipelines</td>
+<td>Yes, before real compute runs</td>
+<td>import a GEE JSON and make sure the linked GCS bucket works</td>
 </tr>
 <tr>
-<td><code>BACKEND_DIR</code></td>
-<td>derived from the repo root</td>
-<td>active backend checkout</td>
+<td>Validate GeoServer publish flows or geometry routes</td>
+<td>Yes, before those flows</td>
+<td><code>GEOSERVER_URL</code>, <code>GEOSERVER_USERNAME</code>, <code>GEOSERVER_PASSWORD</code></td>
 </tr>
 <tr>
-<td><code>APP_ENV_FILE</code></td>
-<td><code>nrm_app/.env</code></td>
-<td>single runtime env file</td>
+<td>Run the installer's remote public API smoke test</td>
+<td>Yes, before <code>public_api_check</code></td>
+<td><code>PUBLIC_API_X_API_KEY</code> and optionally <code>PUBLIC_API_BASE_URL</code></td>
 </tr>
 <tr>
-<td><code>POSTGRES_USER</code></td>
-<td><code>corestack_admin</code></td>
-<td>local PostgreSQL user</td>
-</tr>
-<tr>
-<td><code>POSTGRES_DB</code></td>
-<td><code>corestack_db</code></td>
-<td>local PostgreSQL database</td>
-</tr>
-<tr>
-<td><code>POSTGRES_PASSWORD</code></td>
-<td><code>corestack@123</code></td>
-<td>local PostgreSQL password</td>
-</tr>
-<tr>
-<td><code>DEFAULT_PUBLIC_API_BASE_URL</code></td>
-<td><code>https://geoserver.core-stack.org/api/v1</code></td>
-<td>public API smoke-test base URL</td>
+<td>Use ODK, S3, DPR S3, email, or CE integrations</td>
+<td>Only if your workflow uses them</td>
+<td>the matching <code>.env</code> secrets</td>
 </tr>
 </tbody>
 </table>
+<p>If shared keys are not available yet, skip those optional steps for now and come back to them with a targeted rerun.</p>
 <hr />
 <h2 id="run-the-installer">Run The Installer<a class="headerlink" href="#run-the-installer" title="Permanent link">&para;</a></h2>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Existing checkout</label><label for="__tabbed_1_2">Fresh clone</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>/mnt/y/core-stack-org/core-stack-backend/installation
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>/path/to/core-stack-backend/installation
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>chmod<span class="w"> </span>+x<span class="w"> </span>install.sh
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>./install.sh
 </span></code></pre></div>
@@ -3945,39 +4029,62 @@
 </div>
 </div>
 </div>
+<p>If you run it interactively and do not pass optional inputs up front, the installer shows the supported input keys first and lets you enter them before the step pipeline starts.</p>
+<p>Accepted path styles for <code>gee_json</code> include:</p>
+<ul>
+<li>absolute Linux paths such as <code>/home/name/Downloads/key.json</code></li>
+<li>relative paths such as <code>./key.json</code></li>
+<li>Windows-style paths such as <code>C:\Users\name\Downloads\key.json</code></li>
+</ul>
 <hr />
-<h2 id="targeted-reruns-and-optional-inputs">Targeted Reruns And Optional Inputs<a class="headerlink" href="#targeted-reruns-and-optional-inputs" title="Permanent link">&para;</a></h2>
-<p>The installer now supports step selection and queued optional inputs directly.
-The examples below assume you are in the backend repo root.</p>
-<p>Useful rerun patterns:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Continue from a later point</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--from<span class="w"> </span>gee_configuration
+<h2 id="step-selection-and-optional-inputs">Step Selection And Optional Inputs<a class="headerlink" href="#step-selection-and-optional-inputs" title="Permanent link">&para;</a></h2>
+<p>The main controls are:</p>
+<ul>
+<li><code>--list-steps</code>: print the step names</li>
+<li><code>--only A,B,C</code>: run only those steps</li>
+<li><code>--from STEP</code>: rerun from one step through the end</li>
+<li><code>--skip A,B,C</code>: skip selected steps during a larger rerun</li>
+<li><code>--input KEY=VALUE</code>: provide optional inputs without waiting for prompts</li>
+<li><code>--gee-json PATH</code>: shortcut for <code>--input gee_json=PATH</code></li>
+</ul>
+<p>Two practical rules matter:</p>
+<ol>
+<li>Use <code>--only</code> when you want the smallest possible rerun.</li>
+<li>Use <code>--from</code> when you want to rerun one step and everything after it.</li>
+</ol>
+<p>When you use <code>--only</code> or <code>--from</code>, the selected steps are treated as forced reruns. For some steps that means recreation rather than reuse, so pick the narrowest command that matches the problem you are fixing.</p>
+<p>Useful commands:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Show the exact step names</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--list-steps
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Only rerun validation</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>initialisation_check
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Rebuild only the env file</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>env_file
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Skip the large admin-boundary download on a partial rerun while starting the installation from env_file step.</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--from<span class="w"> </span>env_file<span class="w"> </span>--skip<span class="w"> </span>admin_boundary_data
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Rerun only the internal validation</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>initialisation_check
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1"># Add GEE later, then rerun validation</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">  </span>--only<span class="w"> </span>gee_configuration,initialisation_check<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span>--gee-json<span class="w"> </span>/full/path/to/service-account.json
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="c1"># Add GeoServer later and validate it in the same run</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">  </span>--only<span class="w"> </span>initialisation_check<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_url</span><span class="o">=</span>https://host/geoserver<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_username</span><span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_password</span><span class="o">=</span>your-password
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="c1"># Add public API credentials later and run only the smoke test</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">  </span>--only<span class="w"> </span>public_api_check<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">public_api_key</span><span class="o">=</span>your-public-api-key<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">public_api_base_url</span><span class="o">=</span>https://geoserver.core-stack.org/api/v1
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="c1"># Rerun from env generation onward, but keep the existing admin-boundary dataset</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--from<span class="w"> </span>env_file<span class="w"> </span>--skip<span class="w"> </span>admin_boundary_data
 </span></code></pre></div>
-<p>Useful optional-input patterns:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Import a GEE service-account JSON during the GEE step</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--gee-json<span class="w"> </span>/full/path/to/service-account.json
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Provide the same GEE path through the generic input mechanism</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--input<span class="w"> </span><span class="nv">gee_json</span><span class="o">=</span>/full/path/to/service-account.json
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Configure public API smoke-test credentials</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">public_api_key</span><span class="o">=</span>your-public-api-key<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">public_api_base_url</span><span class="o">=</span>https://geoserver.core-stack.org/api/v1
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="c1"># Configure GeoServer publish validation</span>
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_url</span><span class="o">=</span>https://host/geoserver<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_username</span><span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_password</span><span class="o">=</span>your-password
-</span></code></pre></div>
-<p>Supported optional input keys in the current installer:</p>
+<p>The current optional input keys are:</p>
 <ul>
 <li><code>gee_json</code></li>
 <li><code>public_api_key</code></li>
@@ -3986,103 +4093,137 @@ The examples below assume you are in the backend repo root.</p>
 <li><code>geoserver_username</code></li>
 <li><code>geoserver_password</code></li>
 </ul>
+<p><code>public_api_base_url</code> is normalized by the installer. If you pass <code>https://host</code>, it will be stored as <code>https://host/api/v1</code>.</p>
 <hr />
-<h2 id="what-the-installer-automatically-sets-up">What The Installer Automatically Sets Up<a class="headerlink" href="#what-the-installer-automatically-sets-up" title="Permanent link">&para;</a></h2>
+<h2 id="rerun-impact-by-step">Rerun Impact By Step<a class="headerlink" href="#rerun-impact-by-step" title="Permanent link">&para;</a></h2>
+<p>These are the steps most people actually rerun:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>What it does on rerun</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>conda_env</code></td>
+<td>recreates <code>corestackenv</code> from <code>installation/environment.yml</code></td>
+</tr>
+<tr>
+<td><code>env_file</code></td>
+<td>creates or updates <code>nrm_app/.env</code>, preserving existing values where possible and generating missing managed keys such as <code>FERNET_KEY</code></td>
+</tr>
+<tr>
+<td><code>seed_data</code></td>
+<td>forced rerun loads <code>installation/seed/seed_data.json</code> again</td>
+</tr>
+<tr>
+<td><code>gee_configuration</code></td>
+<td>imports or updates the GEE account and rewrites the related env pointers if you provide a JSON path</td>
+</tr>
+<tr>
+<td><code>admin_boundary_data</code></td>
+<td>forced rerun removes and re-downloads <code>data/admin-boundary/</code></td>
+</tr>
+<tr>
+<td><code>initialisation_check</code></td>
+<td>reruns the in-process backend validation without needing <code>runserver</code> or a Celery worker</td>
+</tr>
+<tr>
+<td><code>public_api_check</code></td>
+<td>reruns only the remote public API smoke test and skips cleanly if no API key is configured</td>
+</tr>
+</tbody>
+</table>
+<p>Everything else is effectively an ensure-or-refresh step:</p>
 <ul>
-<li>Miniconda installation</li>
-<li>conda environment creation from <code>installation/environment.yml</code></li>
-<li>PostgreSQL installation and database/user setup</li>
-<li>RabbitMQ installation and service startup</li>
-<li><code>nrm_app/.env</code> creation</li>
-<li><code>collectstatic</code></li>
-<li>Django migrations</li>
-<li>seed data loading from <code>installation/seed/seed_data.json</code></li>
-<li>creation or refresh of an installer test superuser</li>
-<li>optional GEE JSON staging into <code>data/gee_confs/</code> plus <code>GEEAccount</code> import</li>
-<li>admin-boundary dataset download or normalization into <code>data/admin-boundary/</code></li>
-<li>in-process backend validation via <code>computing/misc/internal_api_initialisation_test.py</code></li>
-<li>optional public API smoke testing via <code>installation/public_api_client.py</code></li>
-</ul>
-<p>Two details matter operationally:</p>
-<ul>
-<li>The installer-created superuser is a test account shaped like <code>test_user_####</code> with password <code>test_change_me</code>.</li>
-<li>The installer uses <code>nrm_app/.env</code> as the runtime source of truth.</li>
+<li><code>postgres</code> and <code>rabbitmq</code> install or start services if needed</li>
+<li><code>collectstatic</code> and <code>django_migrations</code> can be rerun safely</li>
+<li><code>superuser</code> refreshes the installer test user</li>
 </ul>
 <hr />
-<h2 id="what-you-still-need-to-review">What You Still Need To Review<a class="headerlink" href="#what-you-still-need-to-review" title="Permanent link">&para;</a></h2>
-<p>Review or fill the environment-specific values that depend on your deployment:</p>
-<ul>
-<li><code>GEOSERVER_URL</code>, <code>GEOSERVER_USERNAME</code>, <code>GEOSERVER_PASSWORD</code></li>
-<li><code>PUBLIC_API_X_API_KEY</code> and, if needed, <code>PUBLIC_API_BASE_URL</code></li>
-<li><code>GEE_DEFAULT_ACCOUNT_ID</code>, <code>GEE_HELPER_ACCOUNT_ID</code>, and the GEE key-path variables if you skipped GEE import during install</li>
-<li>S3, DPR S3, ODK, email, and similar service secrets only when your workflow actually uses them</li>
-</ul>
-<h3 id="gcs-prerequisite-for-gee-backed-workflows">GCS prerequisite for GEE-backed workflows<a class="headerlink" href="#gcs-prerequisite-for-gee-backed-workflows" title="Permanent link">&para;</a></h3>
-<p>The current backend uses Google Cloud Storage as part of several real compute paths, not just as optional storage.</p>
-<p>Before testing GEE-backed imports and publications, make sure:</p>
-<ul>
-<li>the bucket used by <code>GCS_BUCKET_NAME</code> exists</li>
-<li>that bucket is created in <code>us-central1</code></li>
-<li>the same GEE service account has bucket read access for Earth Engine and object write/delete access for backend uploads</li>
-</ul>
-<p>If you keep the current code defaults, the expected bucket name is <code>core_stack</code>.
-If you change it, also review the hardcoded <code>gs://core_stack/...</code> shapefile upload helper noted in <a href="../integrations/gcs/">Google Cloud Storage</a>.</p>
-<h3 id="review-the-test-superuser">Review the test superuser<a class="headerlink" href="#review-the-test-superuser" title="Permanent link">&para;</a></h3>
-<p>The installer ensures an active Django superuser exists so it can generate JWTs automatically during validation.</p>
-<p>If you plan to keep using that account beyond setup checks, change its password or create your own operator account:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/miniconda3/etc/profile.d/conda.sh&quot;</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
+<h2 id="when-it-is-fine-to-skip-something">When It Is Fine To Skip Something<a class="headerlink" href="#when-it-is-fine-to-skip-something" title="Permanent link">&para;</a></h2>
+<h3 id="no-gee-key-yet">No GEE key yet<a class="headerlink" href="#no-gee-key-yet" title="Permanent link">&para;</a></h3>
+<p>The install can still finish. Later, when the JSON is available, run:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>--only<span class="w"> </span>gee_configuration,initialisation_check<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span>--gee-json<span class="w"> </span>/full/path/to/service-account.json
 </span></code></pre></div>
+<h3 id="no-geoserver-yet">No GeoServer yet<a class="headerlink" href="#no-geoserver-yet" title="Permanent link">&para;</a></h3>
+<p>The install can still finish, but publish-path validation will warn or skip. Add the credentials later:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>--only<span class="w"> </span>initialisation_check<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_url</span><span class="o">=</span>https://host/geoserver<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_username</span><span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_password</span><span class="o">=</span>your-password
+</span></code></pre></div>
+<p>For a local Tomcat and GeoServer setup, continue into <a href="../integrations/geoserver/">GeoServer</a>.</p>
+<h3 id="no-public-api-key-yet">No public API key yet<a class="headerlink" href="#no-public-api-key-yet" title="Permanent link">&para;</a></h3>
+<p><code>public_api_check</code> is skipped cleanly when <code>PUBLIC_API_X_API_KEY</code> is blank. Add it later:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>--only<span class="w"> </span>public_api_check<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">public_api_key</span><span class="o">=</span>your-public-api-key<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">public_api_base_url</span><span class="o">=</span>https://geoserver.core-stack.org/api/v1
+</span></code></pre></div>
+<h3 id="admin-boundary-download-failed-or-was-interrupted">Admin-boundary download failed or was interrupted<a class="headerlink" href="#admin-boundary-download-failed-or-was-interrupted" title="Permanent link">&para;</a></h3>
+<p>Fix only that dataset and then rerun validation:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>admin_boundary_data,initialisation_check
+</span></code></pre></div>
+<p>If you already have a correct dataset and only want to test the backend again, use <code>--only initialisation_check</code> instead.</p>
 <hr />
-<h2 id="understand-the-built-in-validation">Understand The Built-In Validation<a class="headerlink" href="#understand-the-built-in-validation" title="Permanent link">&para;</a></h2>
-<p><code>install.sh</code> now performs the first serious backend verification itself.</p>
-<p>The <code>initialisation_check</code> step runs Django in-process and does not require <code>runserver</code> or a separate Celery worker. It checks:</p>
+<h2 id="what-the-built-in-validation-actually-proves">What The Built-In Validation Actually Proves<a class="headerlink" href="#what-the-built-in-validation-actually-proves" title="Permanent link">&para;</a></h2>
+<p><code>initialisation_check</code> is the main post-install confidence check.</p>
+<p>It runs Django in-process and does not require:</p>
+<ul>
+<li><code>python manage.py runserver</code></li>
+<li>a separate Celery worker</li>
+</ul>
+<p>It checks:</p>
 <ul>
 <li>database connectivity</li>
-<li>key env values from <code>nrm_app/.env</code></li>
+<li>env-file readability from <code>nrm_app/.env</code></li>
 <li>automatic JWT generation from an active Django user</li>
 <li>GEE authentication if <code>GEE_DEFAULT_ACCOUNT_ID</code> is configured</li>
-<li>GCS upload access for the same GEE service account</li>
+<li>GCS upload access for the same service account</li>
 <li>GeoServer REST reachability if GeoServer credentials are configured</li>
-<li>local admin-boundary compute artifact generation</li>
-<li><code>POST /api/v1/generate_block_layer/</code> in Celery eager mode when GEE, GCS, and GeoServer are ready</li>
-<li>route import and a curated endpoint probe set</li>
+<li>admin-boundary sample data and local artifact generation</li>
+<li><code>POST /api/v1/generate_block_layer/</code> in Celery eager mode when the full publish path is ready</li>
+<li>route import and a curated internal endpoint probe set</li>
 </ul>
-<p>To rerun the validation manually:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/miniconda3/etc/profile.d/conda.sh&quot;</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nb">cd</span><span class="w"> </span>/path/to/core-stack-backend
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>python<span class="w"> </span>computing/misc/internal_api_initialisation_test.py
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>python<span class="w"> </span>computing/misc/internal_api_initialisation_test.py<span class="w"> </span>--require-gee
-</span></code></pre></div>
-<p>If <code>PUBLIC_API_X_API_KEY</code> is configured, the installer can also run the public API smoke test:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>public_api_check
-</span></code></pre></div>
-<hr />
-<h2 id="start-the-app-manually">Start The App Manually<a class="headerlink" href="#start-the-app-manually" title="Permanent link">&para;</a></h2>
-<p>Once the installer and checks are done, the usual development runtime is uses two terminal runs.</p>
-<p><strong>Terminal 1</strong></p>
+<p>To rerun it manually outside the installer:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/miniconda3/etc/profile.d/conda.sh&quot;</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>python<span class="w"> </span>manage.py<span class="w"> </span>runserver<span class="w"> </span><span class="m">127</span>.0.0.1:8000
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nb">cd</span><span class="w"> </span>/path/to/core-stack-backend
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>python<span class="w"> </span>computing/misc/internal_api_initialisation_test.py
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>python<span class="w"> </span>computing/misc/internal_api_initialisation_test.py<span class="w"> </span>--require-gee
 </span></code></pre></div>
-<p><strong>Terminal 2</strong></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/miniconda3/etc/profile.d/conda.sh&quot;</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nb">cd</span><span class="w"> </span>/path/to/core-stack-backend
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>celery<span class="w"> </span>-A<span class="w"> </span>nrm_app<span class="w"> </span>worker<span class="w"> </span>-l<span class="w"> </span>info<span class="w"> </span>-Q<span class="w"> </span>nrm
+<p>If <code>PUBLIC_API_X_API_KEY</code> is configured, the installer can also run the separate public API smoke test:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>public_api_check
 </span></code></pre></div>
 <hr />
-<h2 id="what-to-do-next">What To Do Next<a class="headerlink" href="#what-to-do-next" title="Permanent link">&para;</a></h2>
-<p>If installation passed, continue in this order:</p>
-<ol>
-<li>read the validation output and clear any remaining warnings that matter for your workflow</li>
-<li>configure the integrations you actually need</li>
-<li>trace one real request path</li>
-<li>then move into pipeline development</li>
-</ol>
-<p>The most useful next pages are <a href="../setup-troubleshooting/">Setup Troubleshooting</a>, <a href="../integrations/">Integrations</a>, <a href="../../pipelines/first-manual-api-run/">First Manual API Run</a>, and <a href="../backend-code-map/">Backend Code Map</a>.</p>
+<h2 id="start-the-app">Start The App<a class="headerlink" href="#start-the-app" title="Permanent link">&para;</a></h2>
+<p>Once installation is done, the usual development runtime uses two terminals.</p>
+<p><strong>Terminal 1</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/miniconda3/etc/profile.d/conda.sh&quot;</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nb">cd</span><span class="w"> </span>/path/to/core-stack-backend
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>python<span class="w"> </span>manage.py<span class="w"> </span>runserver<span class="w"> </span><span class="m">127</span>.0.0.1:8000
+</span></code></pre></div>
+<p><strong>Terminal 2</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/miniconda3/etc/profile.d/conda.sh&quot;</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nb">cd</span><span class="w"> </span>/path/to/core-stack-backend
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>celery<span class="w"> </span>-A<span class="w"> </span>nrm_app<span class="w"> </span>worker<span class="w"> </span>-l<span class="w"> </span>info<span class="w"> </span>-Q<span class="w"> </span>nrm
+</span></code></pre></div>
+<hr />
+<h2 id="next-pages">Next Pages<a class="headerlink" href="#next-pages" title="Permanent link">&para;</a></h2>
+<p>The most useful follow-ups are:</p>
+<ul>
+<li><a href="../setup-troubleshooting/">Setup Troubleshooting</a></li>
+<li><a href="../integrations/">Integrations</a></li>
+<li><a href="../backend-code-map/">Backend Code Map</a></li>
+<li><a href="../../pipelines/first-manual-api-run/">First Manual API Run</a></li>
+</ul>
 
 
 

@@ -3556,12 +3556,16 @@
 <h1 id="integrations">Integrations<a class="headerlink" href="#integrations" title="Permanent link">&para;</a></h1>
 <p>These pages explain the external systems the current backend can connect to once the base install is working.</p>
 <p>Read this section after <a href="../installer/">Installer</a>, especially when the installer output names an integration blocker such as <code>gee-probe</code>, <code>gcs-upload-probe</code>, <code>geoserver-probe</code>, or <code>public_api_check</code>.</p>
-<p>What changed in the current backend install flow:</p>
+<p>You do not need every integration on day one. The current installer is designed so the base backend can come up first, and GEE, GeoServer, or public API credentials can be added later with targeted reruns.</p>
+<p><strong>Current backend install flow:</strong></p>
 <ul>
 <li>GEE can now be imported directly during <code>install.sh</code> with <code>--gee-json</code> or <code>--input gee_json=...</code>.</li>
+<li>GEE can also be skipped during first install and added later with <code>--only gee_configuration,initialisation_check</code>.</li>
 <li>GCS matters operationally because many GEE and GeoServer flows stage artifacts through Cloud Storage.</li>
 <li>GeoServer settings can be queued into the installer and are probed during <code>initialisation_check</code> when present.</li>
+<li>GeoServer can also be added later with <code>--only initialisation_check --input geoserver_url=...</code>.</li>
 <li>Public API credentials live in <code>nrm_app/.env</code> and can drive the installer-side <code>public_api_check</code>.</li>
+<li>Public API smoke tests can be rerun later with <code>--only public_api_check</code>.</li>
 <li>AWS/S3 is still deployment-specific and is not part of the baseline installer validation.</li>
 </ul>
 <p>When the computation itself is already understood, continue into <a href="../../pipelines/pipeline-integrations/">Pipeline Integrations</a> or <a href="../../pipelines/add-new-data-resources/">Add and Integrate Public / New Data Resources</a>.</p>
