@@ -284,7 +284,7 @@ path('my-pipeline/', views.my_pipeline, name='my-pipeline'),
 ### 5. Add Documentation
 
 - Add docstrings
-- Update [Computation Registry](../pipelines/computation-registry.md)
+- Update [Computing API Endpoints](../pipelines/computing-endpoints.md)
 - Create tutorial if user-facing
 
 ---

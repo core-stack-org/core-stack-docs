@@ -66,13 +66,4 @@ This section helps different collaborators find a route into:
 
     - [Contributing](contributing.md)
     - [Code of Conduct](code-of-conduct.md)
-    - [Contributions](contributions.md)
-
----
-
-## Next Paths
-
-- [How CoRE Stack Is Used](how-core-stack-is-used.md)
-- [Innovation Challenges](innovation-challenges/index.md)
-- [Contributing](contributing.md)
-- [Develop CoRE Stack](../developers/index.md)
+    - [Previous Contributions](contributions.md)
