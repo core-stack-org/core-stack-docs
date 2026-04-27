@@ -5,21 +5,7 @@ description: Install CoRE Stack locally, understand the installer behavior, and 
 
 # Installer
 
-This page is the developer installation path for CoRE Stack.
-
-It combines:
-
-- prerequisites
-- install commands
-- what the installer already verifies
-- the first local checks you should run after installation
-
-Primary sources:
-
-- [installation/install.sh](https://github.com/core-stack-org/core-stack-backend/blob/main/installation/install.sh)
-- [installation/INSTALLATION.md](https://github.com/core-stack-org/core-stack-backend/blob/main/installation/INSTALLATION.md)
-
----
+For fully integrated Core-Stack pipeline developments, the simplest pathway would be to install core-stack-backend Django app.
 
 ## Before You Run It
 
@@ -27,22 +13,17 @@ Primary sources:
 
 - Linux is the main target
 - Windows users should use WSL2
-- if your checkout lives on a mounted drive, use the WSL path while running commands
 
 ### Core packages
 
 ```bash
 sudo apt update
-sudo apt install -y git wget curl build-essential libpq-dev rabbitmq-server
-sudo systemctl enable rabbitmq-server
-sudo systemctl start rabbitmq-server
+sudo apt install -y git wget curl build-essential libpq-dev
 ```
-
-RabbitMQ matters because many computing workflows eventually run through Celery-backed async execution.
 
 ---
 
-## Review The Installer Defaults
+## Review Installer Defaults
 
 The installer script defines defaults for paths, environment, and database setup near the top of the file.
 
@@ -61,14 +42,6 @@ Defaults worth checking before you run it:
 
 ## Run The Installer
 
-=== "Existing checkout"
-
-    ```bash
-    cd /mnt/y/core-stack-org/core-stack-backend/installation
-    chmod +x install.sh
-    ./install.sh
-    ```
-
 === "Fresh clone"
 
     ```bash
@@ -77,25 +50,20 @@ Defaults worth checking before you run it:
     chmod +x install.sh
     ./install.sh
     ```
+=== "Existing checkout"
 
+    ```bash
+    cd /mnt/y/core-stack-org/core-stack-backend/installation
+    chmod +x install.sh
+    ./install.sh
+    ```
 ---
 
 ## What The Installer Sets Up
 
-Based on the current script, the installer takes care of most of the first environment lift:
+Based on the current script, the installer takes care of most of the initial setup.
 
-- Miniconda installation
-- conda environment creation
-- PostgreSQL installation and configured database creation
-- Apache and `mod_wsgi`
-- backend checkout placement or update
-- log directory creation
-- `.env` generation
-- migrations
-- static collection
-- Apache site configuration and reload
-
-It also performs the first API-run style verification as part of its own flow, so verification no longer needs its own separate docs page.
+It also performs some integation verifications  as part of its own flow, so verification no longer needs its own separate docs page.
 
 ---
 
