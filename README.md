@@ -12,7 +12,7 @@ To preview the documentation locally:
 uv run mkdocs serve
 ```
 
-Then open your browser at http://127.0.0.1:8000
+Then open your browser at http://127.0.0.1:8001
 
 ## Available Commands
 
