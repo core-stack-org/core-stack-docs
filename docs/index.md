@@ -2,7 +2,7 @@
 title: Welcome to CoRE Stack
 ---
 
-# CoRE Stack Documentation
+# CoRE Stack
 
 CoRE Stack is open geospatial infrastructure for landscape planning, public data access, and community-grounded decision-making.
 
