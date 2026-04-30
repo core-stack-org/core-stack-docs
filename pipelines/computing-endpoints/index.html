@@ -2386,25 +2386,15 @@
 
 <h1 id="computing-api-endpoints">Computing API Endpoints<a class="headerlink" href="#computing-api-endpoints" title="Permanent link">&para;</a></h1>
 <p>The Computing API is the developer-facing surface that triggers CoRE Stack computations. Most handlers queue work and return quickly while pipeline modules do the heavy tasks.</p>
-<p>This page is the API path guide. For implementation flow, export helpers, and reusable patterns, start with <a href="../">Build Pipelines</a> and the <a href="../#pipeline-patterns">Pipeline Patterns</a> section.</p>
+<p>This page is the API route guide. For implementation flow, export helpers, and reusable patterns, start with <a href="../">Build Pipelines</a> and the <a href="../#pipeline-patterns">Pipeline Patterns</a> section.</p>
 <hr />
 <h2 id="complete-computing-api-inventory">Complete Computing API Inventory<a class="headerlink" href="#complete-computing-api-inventory" title="Permanent link">&para;</a></h2>
 <p>The current <code>computing/urls.py</code> inventory contains the computing APIs under <code>/api/v1/</code>.</p>
-<p>Most API paths use <code>POST</code>. The <code>GET</code> API paths are:</p>
-<ul>
-<li><code>GET /api/v1/get_layers_in_workspace/</code></li>
-<li><code>GET /api/v1/missing_layers/</code></li>
-<li><code>GET /api/v1/get_stac_catalog/</code></li>
-<li><code>GET /api/v1/stac/</code></li>
-<li><code>GET /api/v1/stac/&lt;state&gt;/</code></li>
-<li><code>GET /api/v1/stac/&lt;state&gt;/&lt;district&gt;/</code></li>
-<li><code>GET /api/v1/stac/&lt;state&gt;/&lt;district&gt;/&lt;block&gt;/</code></li>
-<li><code>GET /api/v1/stac/&lt;state&gt;/&lt;district&gt;/&lt;block&gt;/items/&lt;item_id&gt;/</code></li>
-</ul>
 <div class="admonition important">
 <p class="admonition-title">Before you use these APIs</p>
-<p>Most <code>POST</code> request bodies include <code>gee_account_id</code>; configure Google Earth Engine first. Keep the Django server and Celery worker running for long computations. Project-backed plantation APIs also need database-side project, KML, and plantation-profile setup.</p>
 </div>
+<p>Most API paths use <code>POST</code>.
+  Most <code>POST</code> request bodies include <code>gee_account_id</code>; configure Google Earth Engine first. Keep the Django server and Celery worker running for long computations. Project-backed plantation APIs also need database-side project, KML, and plantation-profile setup.</p>
 <hr />
 <h2 id="api-path-reference">API Path Reference<a class="headerlink" href="#api-path-reference" title="Permanent link">&para;</a></h2>
 <h3 id="layer-utilities">Layer Utilities<a class="headerlink" href="#layer-utilities" title="Permanent link">&para;</a></h3>
