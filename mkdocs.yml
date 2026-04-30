@@ -150,7 +150,7 @@ nav:
       - Installer: developers/installer.md
       - Backend Code Map: developers/backend-code-map.md
       - Develop New Pipelines: pipelines/index.md
-      - Computing API Paths: pipelines/computing-endpoints.md
+      - Computing API Endpoints: pipelines/computing-endpoints.md
       - Setup Troubleshooting: developers/setup-troubleshooting.md
       - Explore CoRE Stack: developers/stack-platforms.md
       - Coding Standards and Guidelines: developers/coding-standards-and-guidelines.md

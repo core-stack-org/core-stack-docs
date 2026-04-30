@@ -1,13 +1,13 @@
 ---
-title: Computing API Paths
+title: Computing API Endpoints
 description: API-path view of the CoRE Stack Computing API, with links into the pipeline families each path belongs to.
 ---
 
-# Computing API Paths
+# Computing API Endpoints
 
 The Computing API is the developer-facing surface that triggers CoRE Stack computations. Most handlers queue work and return quickly while pipeline modules do the heavy tasks.
 
-This page is the API path guide. For implementation flow, export helpers, and reusable patterns, start with [Build Pipelines](index.md) and the [Pipeline Patterns](index.md#pipeline-patterns) section.
+This page is the API route guide. For implementation flow, export helpers, and reusable patterns, start with [Build Pipelines](index.md) and the [Pipeline Patterns](index.md#pipeline-patterns) section.
 
 ---
 
@@ -15,31 +15,10 @@ This page is the API path guide. For implementation flow, export helpers, and re
 
 The current `computing/urls.py` inventory contains the computing APIs under `/api/v1/`.
 
-Most API paths use `POST`. The `GET` API paths are:
-
-- `GET /api/v1/get_layers_in_workspace/`
-- `GET /api/v1/missing_layers/`
-- `GET /api/v1/get_stac_catalog/`
-- `GET /api/v1/stac/`
-- `GET /api/v1/stac/<state>/`
-- `GET /api/v1/stac/<state>/<district>/`
-- `GET /api/v1/stac/<state>/<district>/<block>/`
-- `GET /api/v1/stac/<state>/<district>/<block>/items/<item_id>/`
 
 !!! important "Before you use these APIs"
-    Most `POST` request bodies include `gee_account_id`; configure Google Earth Engine first. Keep the Django server and Celery worker running for long computations. Project-backed plantation APIs also need database-side project, KML, and plantation-profile setup.
-
-## How These APIs Map To Pipelines
-
-| API Purpose | What it does | Usual pattern |
-| --- | --- | --- |
-| Workspace, publication, and status | manages GeoServer workspaces, layer records, sync flags, and task status | integration/control APIs |
-| Boundary and MWS scaffolding | creates admin, MWS, centroid, connectivity, and zone-of-influence layers | vector generation |
-| Hydrology, land use, and time series | produces hydrology, LULC, cropping intensity, and NDVI outputs | raster, vector, and time-series generation |
-| Terrain, drought, change, tree health, and plantation | produces terrain derivatives, drought outputs, change products, tree-health layers, and plantation suitability | raster and mixed generation |
-| Water, drainage, and restoration | produces SWB, ponds, wells, drainage, stream order, restoration, and terrain-water derivatives | raster, vector, and mixed generation |
-| Enrichment and planning overlays | adds external planning overlays onto CoRE Stack landscape units | local/tabular data and vector generation |
-| Catalog and STAC | publishes or reads catalog metadata for generated layers | catalog publication |
+  Most API paths use `POST`.
+  Most `POST` request bodies include `gee_account_id`; configure Google Earth Engine first. Keep the Django server and Celery worker running for long computations. Project-backed plantation APIs also need database-side project, KML, and plantation-profile setup.
 
 ---
 
