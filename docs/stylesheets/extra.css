@@ -1,0 +1,119 @@
+/* Custom styles for CoRE Stack Documentation */
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom grid card styles */
+.md-grid.cards {
+  gap: 1rem;
+}
+
+.md-grid.cards > * {
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.md-grid.cards > *:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Custom admonition styles */
+.md-typeset .admonition {
+  border-radius: 0.5rem;
+}
+
+/* Code block improvements */
+.md-typeset div.highlight,
+.md-typeset pre,
+.md-typeset pre > code {
+  background-color: #0b0f14;
+}
+
+.md-typeset pre > code {
+  border-radius: 0.25rem;
+}
+
+.md-typeset .highlight code,
+.md-typeset .highlight pre {
+  color: #e6edf3;
+}
+
+.md-typeset .highlight span {
+  color: #e6edf3;
+}
+
+.md-typeset .highlight .k,
+.md-typeset .highlight .kn,
+.md-typeset .highlight .kd {
+  color: #ff7b72;
+}
+
+.md-typeset .highlight .s,
+.md-typeset .highlight .s1,
+.md-typeset .highlight .s2 {
+  color: #a5d6ff;
+}
+
+.md-typeset .highlight .c,
+.md-typeset .highlight .c1 {
+  color: #8b949e;
+}
+
+.md-typeset .highlight .nf,
+.md-typeset .highlight .fm {
+  color: #d2a8ff;
+}
+
+.md-typeset .highlight .mi,
+.md-typeset .highlight .mf {
+  color: #79c0ff;
+}
+
+/* Table styling improvements */
+.md-typeset table {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* Button enhancements */
+.md-button {
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+.md-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Custom colors for CoRE Stack branding */
+:root {
+  --core-teal: #009688;
+  --core-teal-light: #4db6ac;
+  --core-teal-dark: #00796b;
+}
+
+[data-md-color-primary="teal"] {
+  --md-primary-fg-color: var(--core-teal);
+  --md-primary-fg-color--light: var(--core-teal-light);
+  --md-primary-fg-color--dark: var(--core-teal-dark);
+}
+
+/* Mermaid diagram improvements */
+.mermaid {
+  display: flex;
+  justify-content: center;
+}
+
+/* Search result highlighting */
+.md-search-result mark {
+  background-color: rgba(255, 193, 7, 0.3);
+}
+
+/* Footer styling */
+.md-footer {
+  margin-top: 2rem;
+}

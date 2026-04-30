@@ -1,0 +1,192 @@
+site_name: CoRE Stack Documentation
+site_description: Community Resource Planning Stack - open geospatial infrastructure for public data access, computation pipelines, and grounded planning.
+site_url: !ENV [SITE_URL, https://core-stack-org.github.io/core-stack-docs/]
+copyright: CoRE Stack — A commoning approach — Tech stacks for communities; 2026; Released under the GNU AGPL v3.0 — ensuring freedom, transparency, and recognition of collective contributions.
+
+repo_name: core-stack-org/core-stack-backend
+repo_url: https://github.com/core-stack-org/core-stack-backend
+
+theme:
+  name: material
+  custom_dir: overrides
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.indexes
+    - navigation.top
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+    - navigation.instant.preview
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.tabs.link
+    - content.code.copy
+    - content.code.annotate
+  icon:
+    repo: fontawesome/brands/github
+  logo: assets/logo.png
+  favicon: assets/logo.png
+
+extra:
+  generator: false
+  offline_mode: !ENV [MKDOCS_OFFLINE, false]
+  giscus:
+    repo: core-stack-org/core-stack-backend
+    repo_id: ""
+    category: General
+    category_id: ""
+    mapping: pathname
+    strict: "0"
+    reactions_enabled: "1"
+    emit_metadata: "0"
+    input_position: bottom
+    lang: en
+    loading: lazy
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/core-stack-org
+      name: Build CoRE Stack with us
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/PSkZX4hvWx
+      name: Join discussions on Discord
+    - icon: fontawesome/solid/globe
+      link: https://core-stack.org
+      name: CoRE Stack website
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/company/core-stack
+      name: Connect on LinkedIn
+
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  - search
+  - blog
+  - social
+  - offline:
+      enabled: !ENV [MKDOCS_OFFLINE, false]
+  - mermaid2:
+      arguments:
+        theme: neutral
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+      title: On this page
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:pymdownx.emoji.twemoji
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg      
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+      use_pygments: true
+      pygments_style: material
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - pymdownx.blocks.caption
+
+nav:
+  - Home: index.md
+  - Understand CoRE Stack Data Structure:
+      - concepts/watershed-data-structure.md
+      - How Our Pipelines Work Algorithmically: concepts/how-pipelines-work-algorithmically.md           
+  - Use PreComputed Geospatial Data:
+      - use-precomputed-data/index.md
+      - How Current Data Was Computed: use-precomputed-data/how-current-data-was-computed.md
+      - Get and Explore Public APIs: use-precomputed-data/public-apis.md
+      - STAC Specs: use-precomputed-data/stac-specs.md
+  - Develop CoRE Stack:
+      - developers/index.md
+      - Installer: developers/installer.md
+      - Backend Code Map: developers/backend-code-map.md
+      - Develop New Pipelines: pipelines/index.md
+      - Computing API Paths: pipelines/computing-endpoints.md
+      - Setup Troubleshooting: developers/setup-troubleshooting.md
+      - Explore CoRE Stack: developers/stack-platforms.md
+      - Coding Standards and Guidelines: developers/coding-standards-and-guidelines.md
+  - Community:
+      - community/index.md
+      - How CoRE Stack Is Used: community/how-core-stack-is-used.md
+      - Innovation Challenges:
+          - community/innovation-challenges/index.md
+          - CoRE Stack Innovation Challenge: community/innovation-challenges/core-stack-innovation-challenge.md
+          - TESSERA Student Innovation Call: community/innovation-challenges/tessera-student-innovation-call.md
+          - Contributions: community/contributions.md
+      - Contributing: community/contributing.md
+      - Code of Conduct: community/code-of-conduct.md
+  - References / Learn:
+      - reference/index.md
+      - Scientific Papers and Research Repositories: reference/scientific-papers-and-research-repositories.md
+      - Glossary: reference/glossary.md
+      - Abbreviations: reference/abbreviations.md
+      - Standardised Field / Constant / Variable Names: reference/standardised-field-constant-variable-names.md
+      - Geospatial Learning Resources: reference/geospatial-learning-resources.md
+      - Wonderful GitHub Repos!: reference/wonderful-github-repos.md
+      - API Errors: reference/api-errors.md
+      - License: reference/license.md
+  - Blog:
+      - blog/index.md
+
+not_in_nav: |
+  developers/integrations/index.md
+  developers/integrations/aws.md
+  developers/integrations/gcs.md
+  developers/integrations/geoserver.md
+  developers/integrations/google-earth-engine.md
+
+dev_addr: 127.0.0.1:8001
+strict: false
+
+watch:
+  - docs
+  - overrides
