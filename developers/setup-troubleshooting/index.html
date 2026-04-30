@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Community Resource Planning Stack - open geospatial infrastructure for public data access, computation pipelines, and grounded planning.">
+        <meta name="description" content="Fix common local installation, runtime, GEE, GCS, GeoServer, API, and Celery issues.">
       
       
       
         <link rel="canonical" href="https://core-stack-org.github.io/core-stack-docs/developers/setup-troubleshooting/">
       
       
-        <link rel="prev" href="../installer/">
+        <link rel="prev" href="../../pipelines/computing-endpoints/">
       
       
-        <link rel="next" href="../backend-code-map/">
+        <link rel="next" href="../stack-platforms/">
       
       
         
@@ -64,7 +64,7 @@
   
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Setup Troubleshooting - CoRE Stack Documentation" />
-<meta property="og:description" content="Community Resource Planning Stack - open geospatial infrastructure for public data access, computation pipelines, and grounded planning." />
+<meta property="og:description" content="Fix common local installation, runtime, GEE, GCS, GeoServer, API, and Celery issues." />
 <meta property="og:image" content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/developers/setup-troubleshooting.png" />
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
@@ -72,7 +72,7 @@
 <meta property="og:url" content="https://core-stack-org.github.io/core-stack-docs/developers/setup-troubleshooting/" />
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:title" content="Setup Troubleshooting - CoRE Stack Documentation" />
-<meta property="twitter:description" content="Community Resource Planning Stack - open geospatial infrastructure for public data access, computation pipelines, and grounded planning." />
+<meta property="twitter:description" content="Fix common local installation, runtime, GEE, GCS, GeoServer, API, and Celery issues." />
 <meta property="twitter:image" content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/developers/setup-troubleshooting.png" />
 </head>
   
@@ -93,7 +93,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#troubleshooting-guide" class="md-skip">
+        <a href="#setup-troubleshooting" class="md-skip">
           Skip to content
         </a>
       
@@ -271,7 +271,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../pipelines/watershed-data-structure/" class="md-tabs__link">
+        <a href="../../concepts/watershed-data-structure/" class="md-tabs__link">
           
   
   
@@ -485,6 +485,8 @@
       
         
       
+        
+      
     
     
     
@@ -539,7 +541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../pipelines/watershed-data-structure/" class="md-nav__link">
+      <a href="../../concepts/watershed-data-structure/" class="md-nav__link">
         
   
   
@@ -547,6 +549,34 @@
     
   
     CoRE Stack Data Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/how-pipelines-work-algorithmically/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How Our Pipelines Work Algorithmically
   
 
     
@@ -677,7 +707,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/public-apis/" class="md-nav__link">
+      <a href="../../use-precomputed-data/public-apis/" class="md-nav__link">
         
   
   
@@ -705,7 +735,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api/stac-specs/" class="md-nav__link">
+      <a href="../../use-precomputed-data/stac-specs/" class="md-nav__link">
         
   
   
@@ -746,6 +776,8 @@
       
         
           
+        
+      
         
       
         
@@ -849,6 +881,90 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../backend-code-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend Code Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Develop New Pipelines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipelines/computing-endpoints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Computing API Paths
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -914,10 +1030,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rerun-rules-first" class="md-nav__link">
+  <a href="#rerun-the-smallest-step" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rerun Rules First
+        Rerun The Smallest Step
       
     </span>
   </a>
@@ -925,354 +1041,98 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-or-rerun-problems" class="md-nav__link">
+  <a href="#install-problems" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Install Or Rerun Problems
+        Install Problems
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Install Or Rerun Problems">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#conda-command-not-found" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        conda: command not found
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#postgresql-connection-errors" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PostgreSQL connection errors
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rabbitmq-is-missing-or-celery-cannot-connect" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        RabbitMQ is missing or Celery cannot connect
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#nrm_appenv-is-missing-or-you-still-have-a-repo-root-env" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        nrm_app/.env is missing or you still have a repo-root .env
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#you-changed-dependencies-and-want-a-clean-python-environment" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        You changed dependencies and want a clean Python environment
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#admin-boundary-download-or-extraction-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Admin-boundary download or extraction fails
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#seed-data-looks-incomplete" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Seed data looks incomplete
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#built-in-validation-failures" class="md-nav__link">
+  <a href="#validation-failures" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Built-In Validation Failures
+        Validation Failures
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Built-In Validation Failures">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#jwt-auth-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        jwt-auth fails
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gee_default_account_id-is-blank-or-gee-probe-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GEE_DEFAULT_ACCOUNT_ID is blank or gee-probe fails
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gcs-upload-probe-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        gcs-upload-probe fails
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#geoserver-probe-warns-or-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        geoserver-probe warns or fails
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#admin-boundary-compute-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        admin-boundary-compute fails
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#first-computing-api-is-skipped-or-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        first-computing-api is skipped or fails
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#optional-integrations-added-later" class="md-nav__link">
+  <a href="#gee-and-gcs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Optional Integrations Added Later
+        GEE And GCS
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Optional Integrations Added Later">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#shared-keys-were-unavailable-during-first-install" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Shared keys were unavailable during first install
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#you-want-to-update-env-values-without-rerunning-a-large-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        You want to update env values without rerunning a large setup
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#public-api-initialization-test-problems" class="md-nav__link">
+  <a href="#geoserver" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Public API Initialization Test Problems
+        GeoServer
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Public API Initialization Test Problems">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#the-public-api-test-is-skipped" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The public API test is skipped
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#you-want-to-debug-the-helper-directly" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        You want to debug the helper directly
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#auth-and-api-usage-errors" class="md-nav__link">
+  <a href="#django-runtime" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Auth And API Usage Errors
+        Django Runtime
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Auth And API Usage Errors">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#401-unauthorized-on-public-data-apis" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        401 Unauthorized on public-data APIs
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#jwt-route-confusion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        JWT route confusion
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#manual-runtime-problems" class="md-nav__link">
+  <a href="#celery-runtime" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Manual Runtime Problems
+        Celery Runtime
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Manual Runtime Problems">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#django-server-will-not-start" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Django server will not start
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#celery-worker-will-not-start" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Celery worker will not start
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#generated-layer-urls-return-nothing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Generated layer URLs return nothing
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-pages" class="md-nav__link">
+  <a href="#api-issues" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Next Pages
+        API Issues
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-api-helper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public API Helper
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-stop-debugging-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When To Stop Debugging Setup
       
     </span>
   </a>
@@ -1295,14 +1155,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../backend-code-map/" class="md-nav__link">
+      <a href="../stack-platforms/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Backend Code Map
+    Explore CoRE Stack
   
 
     
@@ -1311,1562 +1171,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-          
-          
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_5" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../integrations/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Integrations
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_5">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Integrations
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../integrations/google-earth-engine/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Google Earth Engine
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../integrations/gcs/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Google Cloud Storage
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../integrations/geoserver/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    GeoServer
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../integrations/aws/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    AWS
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-          
-          
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_6" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../pipelines/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Pipeline Development
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_6">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Pipeline Development
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/how-pipelines-work-algorithmically/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    How Our Pipelines Work Algorithmically
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/how-pipelines-work-programmatically/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    How They Work Programmatically
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/first-manual-api-run/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    First Manual API Run
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/local-pipeline-first/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Local Pipeline First
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/django-computing-api-integration/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Integrate With Django Computing API
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/celery-auth-and-task-integration/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add Celery / Auth / Task Integration
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/computing-endpoints/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Computing API Endpoints
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/common-design-and-integration-patterns/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Common Pipeline Design / Integration Patterns
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/build-new-pipelines/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Build New Pipelines
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/pipeline-integrations/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Pipeline Integrations
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/add-new-data-resources/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add and Integrate Public / New Data Resources
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_6_13" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../pipelines/core-workflows/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Core Workflows
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4_6_13" id="__nav_4_6_13_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_6_13_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_6_13">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Core Workflows
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/lulc-generation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    LULC Generation
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/swb-detection/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    SWB Detection
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/hydrology/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Hydrology
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/terrain-analysis/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Terrain Analysis
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/plantation-site-suitability/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Plantation Site Suitability
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_6_14" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../pipelines/boundary-and-enrichment/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Boundary and Enrichment Layers
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4_6_14" id="__nav_4_6_14_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_6_14_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_6_14">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Boundary and Enrichment Layers
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/admin-boundary/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Admin Boundary
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/facilities-proximity/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Facilities Proximity
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/nrega-assets/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    NREGA Assets
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/agroecological-space/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Agroecological Space
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/aquifer-vector/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Aquifer Vector
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/soge-vector/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    SOGE Vector
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/pan-india-clip-modules/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Pan-India Clip Modules
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_6_15" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../pipelines/raster-and-drainage/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Raster and Drainage Layers
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4_6_15" id="__nav_4_6_15_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_6_15_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_6_15">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Raster and Drainage Layers
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/drainage-lines/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Drainage Lines
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/catchment-area/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Catchment Area
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/stream-order/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Stream Order
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/distance-to-nearest-drainage/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Distance to Nearest Drainage
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/natural-depression/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Natural Depression
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/slope-percentage/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Slope Percentage
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/restoration-opportunity/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Restoration Opportunity
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_6_16" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../pipelines/time-series-and-ops/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Time Series and Ops
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4_6_16" id="__nav_4_6_16_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_6_16_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_6_16">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Time Series and Ops
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/ndvi-time-series/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    NDVI Time Series
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/hls-interpolated-ndvi/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    HLS Interpolated NDVI
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -3094,7 +1398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../community/core-stack-innovation-challenge/" class="md-nav__link">
+      <a href="../../community/innovation-challenges/core-stack-innovation-challenge/" class="md-nav__link">
         
   
   
@@ -3122,7 +1426,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../community/tessera-student-innovation-call/" class="md-nav__link">
+      <a href="../../community/innovation-challenges/tessera-student-innovation-call/" class="md-nav__link">
         
   
   
@@ -3891,10 +2195,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rerun-rules-first" class="md-nav__link">
+  <a href="#rerun-the-smallest-step" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rerun Rules First
+        Rerun The Smallest Step
       
     </span>
   </a>
@@ -3902,354 +2206,98 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#install-or-rerun-problems" class="md-nav__link">
+  <a href="#install-problems" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Install Or Rerun Problems
+        Install Problems
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Install Or Rerun Problems">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#conda-command-not-found" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        conda: command not found
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#postgresql-connection-errors" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        PostgreSQL connection errors
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rabbitmq-is-missing-or-celery-cannot-connect" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        RabbitMQ is missing or Celery cannot connect
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#nrm_appenv-is-missing-or-you-still-have-a-repo-root-env" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        nrm_app/.env is missing or you still have a repo-root .env
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#you-changed-dependencies-and-want-a-clean-python-environment" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        You changed dependencies and want a clean Python environment
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#admin-boundary-download-or-extraction-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Admin-boundary download or extraction fails
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#seed-data-looks-incomplete" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Seed data looks incomplete
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#built-in-validation-failures" class="md-nav__link">
+  <a href="#validation-failures" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Built-In Validation Failures
+        Validation Failures
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Built-In Validation Failures">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#jwt-auth-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        jwt-auth fails
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gee_default_account_id-is-blank-or-gee-probe-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        GEE_DEFAULT_ACCOUNT_ID is blank or gee-probe fails
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gcs-upload-probe-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        gcs-upload-probe fails
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#geoserver-probe-warns-or-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        geoserver-probe warns or fails
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#admin-boundary-compute-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        admin-boundary-compute fails
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#first-computing-api-is-skipped-or-fails" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        first-computing-api is skipped or fails
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#optional-integrations-added-later" class="md-nav__link">
+  <a href="#gee-and-gcs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Optional Integrations Added Later
+        GEE And GCS
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Optional Integrations Added Later">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#shared-keys-were-unavailable-during-first-install" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Shared keys were unavailable during first install
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#you-want-to-update-env-values-without-rerunning-a-large-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        You want to update env values without rerunning a large setup
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#public-api-initialization-test-problems" class="md-nav__link">
+  <a href="#geoserver" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Public API Initialization Test Problems
+        GeoServer
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Public API Initialization Test Problems">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#the-public-api-test-is-skipped" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The public API test is skipped
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#you-want-to-debug-the-helper-directly" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        You want to debug the helper directly
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#auth-and-api-usage-errors" class="md-nav__link">
+  <a href="#django-runtime" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Auth And API Usage Errors
+        Django Runtime
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Auth And API Usage Errors">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#401-unauthorized-on-public-data-apis" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        401 Unauthorized on public-data APIs
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#jwt-route-confusion" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        JWT route confusion
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#manual-runtime-problems" class="md-nav__link">
+  <a href="#celery-runtime" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Manual Runtime Problems
+        Celery Runtime
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Manual Runtime Problems">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#django-server-will-not-start" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Django server will not start
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#celery-worker-will-not-start" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Celery worker will not start
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#generated-layer-urls-return-nothing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Generated layer URLs return nothing
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#next-pages" class="md-nav__link">
+  <a href="#api-issues" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Next Pages
+        API Issues
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#public-api-helper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Public API Helper
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#when-to-stop-debugging-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When To Stop Debugging Setup
       
     </span>
   </a>
@@ -4324,314 +2372,216 @@
   
 
 
-<h1 id="troubleshooting-guide">Troubleshooting Guide<a class="headerlink" href="#troubleshooting-guide" title="Permanent link">&para;</a></h1>
-<p>Common issues when installing, validating, or starting the current CoRE Stack backend.</p>
-<p>This guide assumes the current flow:</p>
+<h1 id="setup-troubleshooting">Setup Troubleshooting<a class="headerlink" href="#setup-troubleshooting" title="Permanent link">&para;</a></h1>
+<p>Use this page when the installer, initialization check, Django server, or Celery worker names a specific failure. Keep the installer page clean; put the messy fixes here.</p>
+<h2 id="rerun-the-smallest-step">Rerun The Smallest Step<a class="headerlink" href="#rerun-the-smallest-step" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># See available steps</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--list-steps
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Validation only</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>initialisation_check
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Rebuild nrm_app/.env</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>env_file
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># Add GEE credentials later</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span>--only<span class="w"> </span>gee_configuration,initialisation_check<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span>--gee-json<span class="w"> </span>/full/path/to/service-account.json
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1"># Add GeoServer values later</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span>--only<span class="w"> </span>initialisation_check<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_url</span><span class="o">=</span>https://host/geoserver<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_username</span><span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_password</span><span class="o">=</span>your-password
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="c1"># Public API smoke test only</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>public_api_check
+</span></code></pre></div>
+<p>Use <code>--only</code> when you know the failing step. Use <code>--from</code> only when you want a broader rerun.</p>
+<h2 id="install-problems">Install Problems<a class="headerlink" href="#install-problems" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>conda: command not found</code></td>
+<td>shell has not loaded Miniconda yet</td>
+<td>open a new terminal or source your shell profile, then run <code>conda activate corestackenv</code></td>
+</tr>
+<tr>
+<td>PostgreSQL connection errors</td>
+<td>service is down, user/db missing, or <code>.env</code> mismatch</td>
+<td>check <code>sudo systemctl status postgresql</code>, then rerun <code>--only env_file,initialisation_check</code> if env values drifted</td>
+</tr>
+<tr>
+<td>RabbitMQ or Celery cannot connect</td>
+<td>RabbitMQ is not running</td>
+<td>check <code>sudo systemctl status rabbitmq-server</code>; start it before the worker</td>
+</tr>
+<tr>
+<td><code>nrm_app/.env</code> missing</td>
+<td>install stopped before env generation</td>
+<td>rerun <code>bash installation/install.sh --only env_file</code></td>
+</tr>
+<tr>
+<td>old repo-root <code>.env</code> confusion</td>
+<td>stale env file from earlier setup</td>
+<td>keep the real runtime env at <code>nrm_app/.env</code></td>
+</tr>
+<tr>
+<td>Python dependency breakage</td>
+<td>conda env is stale</td>
+<td>rerun <code>bash installation/install.sh --only conda_env</code></td>
+</tr>
+<tr>
+<td>admin-boundary download failed</td>
+<td>interrupted download or bad extracted layout</td>
+<td>rerun <code>bash installation/install.sh --only admin_boundary_data,initialisation_check</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="validation-failures">Validation Failures<a class="headerlink" href="#validation-failures" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>What it means</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>jwt-auth</code></td>
+<td>no active Django user or token setup failed</td>
+<td>create or activate a user, then rerun <code>initialisation_check</code></td>
+</tr>
+<tr>
+<td><code>gee-probe</code></td>
+<td><code>GEE_DEFAULT_ACCOUNT_ID</code> is missing or points to a bad <code>GEEAccount</code></td>
+<td>import a service-account JSON with <code>--gee-json</code></td>
+</tr>
+<tr>
+<td><code>gcs-upload-probe</code></td>
+<td>service account cannot write to the configured GCS bucket</td>
+<td>grant the service account bucket access and rerun validation</td>
+</tr>
+<tr>
+<td><code>geoserver-probe</code></td>
+<td>GeoServer URL or credentials are missing or invalid</td>
+<td>set <code>GEOSERVER_URL</code>, <code>GEOSERVER_USERNAME</code>, and <code>GEOSERVER_PASSWORD</code></td>
+</tr>
+<tr>
+<td><code>admin-boundary-compute</code></td>
+<td>sample admin boundary data is missing or invalid</td>
+<td>rerun the admin-boundary data step</td>
+</tr>
+<tr>
+<td><code>first-computing-api</code></td>
+<td>the internal test could not trigger the sample API</td>
+<td>check Django settings, Celery eager validation output, and admin-boundary artifacts</td>
+</tr>
+</tbody>
+</table>
+<h2 id="gee-and-gcs">GEE And GCS<a class="headerlink" href="#gee-and-gcs" title="Permanent link">&para;</a></h2>
+<p>A real compute run usually needs both Earth Engine and GCS access:</p>
 <ul>
-<li><code>installation/install.sh</code></li>
-<li><code>nrm_app/.env</code></li>
-<li><code>computing/misc/internal_api_initialisation_test.py</code></li>
+<li><code>GEEAccount</code> stores encrypted service-account JSON in the database.</li>
+<li><code>GEE_DEFAULT_ACCOUNT_ID</code> points the backend to the default account.</li>
+<li>Some raster publication paths export through the configured GCS bucket before GeoServer sees the file.</li>
 </ul>
-<hr />
-<h2 id="rerun-rules-first">Rerun Rules First<a class="headerlink" href="#rerun-rules-first" title="Permanent link">&para;</a></h2>
-<p>Before fixing anything, remember how the installer behaves:</p>
+<p>Common fixes:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Import or update the GEE account</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>--only<span class="w"> </span>gee_configuration,initialisation_check<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>--gee-json<span class="w"> </span>/full/path/to/service-account.json
+</span></code></pre></div>
+<p>If GEE works but GCS fails, check bucket permissions for the same service-account email. The integration notes are in <a href="../integrations/gcs/">Google Cloud Storage</a>.</p>
+<h2 id="geoserver">GeoServer<a class="headerlink" href="#geoserver" title="Permanent link">&para;</a></h2>
+<p>GeoServer failures normally show up during publication, layer listing, or generated layer URL checks.</p>
+<p>Check:</p>
 <ul>
-<li><code>--only</code> reruns only the named steps</li>
-<li><code>--from</code> reruns that step and everything after it</li>
-<li>selected steps are forced reruns</li>
-<li><code>.installation_state/*.done</code> files are only timestamps, not automatic resume controls</li>
+<li>the URL includes the GeoServer base, not a frontend URL</li>
+<li>username and password are correct</li>
+<li>the workspace exists or can be created</li>
+<li>the style name exists when the pipeline publishes a style</li>
+<li>the backend can reach GeoServer from the same machine</li>
 </ul>
-<p>Print the available step names first:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--list-steps
+<p>For a local setup path, see <a href="../integrations/geoserver/">GeoServer</a>.</p>
+<h2 id="django-runtime">Django Runtime<a class="headerlink" href="#django-runtime" title="Permanent link">&para;</a></h2>
+<p>If the server will not start:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>python<span class="w"> </span>manage.py<span class="w"> </span>check
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>python<span class="w"> </span>manage.py<span class="w"> </span>runserver<span class="w"> </span><span class="m">127</span>.0.0.1:8000
 </span></code></pre></div>
-<p>Use the smallest rerun that matches the issue:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Safest: validation only</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>initialisation_check
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Rebuild only the env file</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>env_file
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Add GEE later and validate it</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span>--only<span class="w"> </span>gee_configuration,initialisation_check<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span>--gee-json<span class="w"> </span>/full/path/to/service-account.json
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># Add GeoServer later and validate it</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span>--only<span class="w"> </span>initialisation_check<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_url</span><span class="o">=</span>https://host/geoserver<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_username</span><span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_password</span><span class="o">=</span>your-password
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="c1"># Run only the public API smoke test</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">  </span>--only<span class="w"> </span>public_api_check<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">public_api_key</span><span class="o">=</span>your-public-api-key<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">public_api_base_url</span><span class="o">=</span>https://geoserver.core-stack.org/api/v1
+<p>Look first for missing env values, database errors, and import errors from optional packages.</p>
+<h2 id="celery-runtime">Celery Runtime<a class="headerlink" href="#celery-runtime" title="Permanent link">&para;</a></h2>
+<p>Start the worker from the backend repo root:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>celery<span class="w"> </span>-A<span class="w"> </span>nrm_app<span class="w"> </span>worker<span class="w"> </span>-l<span class="w"> </span>info<span class="w"> </span>-Q<span class="w"> </span>nrm
 </span></code></pre></div>
-<p>Rerun impact that surprises people most often:</p>
+<p>If tasks never start:</p>
 <ul>
-<li><code>--only conda_env</code> recreates <code>corestackenv</code></li>
-<li><code>--only admin_boundary_data</code> replaces <code>data/admin-boundary/</code></li>
-<li><code>--only initialisation_check</code> is the safest recheck because it does not recreate either of those</li>
+<li>confirm RabbitMQ is running</li>
+<li>confirm the worker uses queue <code>nrm</code></li>
+<li>keep the Django server and Celery worker in separate terminals</li>
+<li>watch both logs while triggering an API</li>
 </ul>
-<hr />
-<h2 id="install-or-rerun-problems">Install Or Rerun Problems<a class="headerlink" href="#install-or-rerun-problems" title="Permanent link">&para;</a></h2>
-<h3 id="conda-command-not-found"><code>conda: command not found</code><a class="headerlink" href="#conda-command-not-found" title="Permanent link">&para;</a></h3>
-<p>The default installer values are:</p>
-<ul>
-<li><code>MINICONDA_DIR=$HOME/miniconda3</code></li>
-<li><code>CONDA_ENV_NAME=corestackenv</code></li>
-</ul>
-<p>Try:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/miniconda3/etc/profile.d/conda.sh&quot;</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
+<h2 id="api-issues">API Issues<a class="headerlink" href="#api-issues" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>401 Unauthorized</code> on public APIs</td>
+<td>send <code>X-API-Key</code> and verify the key is active</td>
+</tr>
+<tr>
+<td>JWT/API-key confusion</td>
+<td>use public API keys for public-data APIs; use JWT only where the backend API requires it</td>
+</tr>
+<tr>
+<td>generated layer URL returns nothing</td>
+<td>check that the layer metadata row exists and <code>is_sync_to_geoserver=True</code></td>
+</tr>
+<tr>
+<td>API returns fast but no layer appears</td>
+<td>inspect Celery logs and GEE task status</td>
+</tr>
+</tbody>
+</table>
+<h2 id="public-api-helper">Public API Helper<a class="headerlink" href="#public-api-helper" title="Permanent link">&para;</a></h2>
+<p>The backend ships a small helper for public API checks:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>python<span class="w"> </span>installation/public_api_client.py<span class="w"> </span>smoke-test
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>python<span class="w"> </span>installation/public_api_client.py<span class="w"> </span>download<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span>--state<span class="w"> </span>assam<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span>--district<span class="w"> </span>cachar<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span>--tehsil<span class="w"> </span>lakhipur
 </span></code></pre></div>
-<p>If you changed those defaults in <code>install.sh</code>, use your actual values instead.</p>
-<h3 id="postgresql-connection-errors">PostgreSQL connection errors<a class="headerlink" href="#postgresql-connection-errors" title="Permanent link">&para;</a></h3>
-<p>Check the service first:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>postgresql
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>postgresql
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>postgresql
-</span></code></pre></div>
-<p>The installer defaults are:</p>
-<ul>
-<li>database: <code>corestack_db</code></li>
-<li>user: <code>corestack_admin</code></li>
-</ul>
-<p>Test them directly:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>psql<span class="w"> </span>-h<span class="w"> </span>localhost<span class="w"> </span>-U<span class="w"> </span>corestack_admin<span class="w"> </span>-d<span class="w"> </span>corestack_db
-</span></code></pre></div>
-<p>If you changed the installer defaults, test the values you actually configured.</p>
-<h3 id="rabbitmq-is-missing-or-celery-cannot-connect">RabbitMQ is missing or Celery cannot connect<a class="headerlink" href="#rabbitmq-is-missing-or-celery-cannot-connect" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>rabbitmq-server
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>rabbitmq-server
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>rabbitmq-server
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>rabbitmq-server
-</span></code></pre></div>
-<h3 id="nrm_appenv-is-missing-or-you-still-have-a-repo-root-env"><code>nrm_app/.env</code> is missing or you still have a repo-root <code>.env</code><a class="headerlink" href="#nrm_appenv-is-missing-or-you-still-have-a-repo-root-env" title="Permanent link">&para;</a></h3>
-<p>The active runtime env file is:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>nrm_app/.env
-</span></code></pre></div>
-<p>The installer can migrate a legacy repo-root <code>.env</code>, but the current backend should read from <code>nrm_app/.env</code>.</p>
-<p>Rebuild just that file if needed:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>env_file
-</span></code></pre></div>
-<h3 id="you-changed-dependencies-and-want-a-clean-python-environment">You changed dependencies and want a clean Python environment<a class="headerlink" href="#you-changed-dependencies-and-want-a-clean-python-environment" title="Permanent link">&para;</a></h3>
-<p>Recreate the conda environment:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>conda_env
-</span></code></pre></div>
-<p>This removes and recreates <code>corestackenv</code> from <code>installation/environment.yml</code>.</p>
-<h3 id="admin-boundary-download-or-extraction-fails">Admin-boundary download or extraction fails<a class="headerlink" href="#admin-boundary-download-or-extraction-fails" title="Permanent link">&para;</a></h3>
-<p>The installer expects the final dataset under:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>data/admin-boundary/input/
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>data/admin-boundary/output/
-</span></code></pre></div>
-<p>Quick check:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>find<span class="w"> </span>data/admin-boundary<span class="w"> </span>-maxdepth<span class="w"> </span><span class="m">3</span><span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span><span class="p">|</span><span class="w"> </span>head
-</span></code></pre></div>
-<p>If you need a clean reinstall of that dataset:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>admin_boundary_data
-</span></code></pre></div>
-<p>If you already have a correct dataset and only want to continue with later steps, keep it and skip the download:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--from<span class="w"> </span>env_file<span class="w"> </span>--skip<span class="w"> </span>admin_boundary_data
-</span></code></pre></div>
-<h3 id="seed-data-looks-incomplete">Seed data looks incomplete<a class="headerlink" href="#seed-data-looks-incomplete" title="Permanent link">&para;</a></h3>
-<p>Reload it explicitly:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>seed_data
-</span></code></pre></div>
-<p>Because <code>--only</code> is a forced rerun, this reloads <code>installation/seed/seed_data.json</code>.</p>
-<hr />
-<h2 id="built-in-validation-failures">Built-In Validation Failures<a class="headerlink" href="#built-in-validation-failures" title="Permanent link">&para;</a></h2>
-<h3 id="jwt-auth-fails"><code>jwt-auth</code> fails<a class="headerlink" href="#jwt-auth-fails" title="Permanent link">&para;</a></h3>
-<p>The initialization test creates a Bearer token automatically from an active Django user.</p>
-<p>The installer normally handles this by creating or refreshing a test superuser like:</p>
-<ul>
-<li>username: <code>test_user_####</code></li>
-<li>password: <code>test_change_me</code></li>
-</ul>
-<p>Refresh that user, then rerun validation:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>superuser,initialisation_check
-</span></code></pre></div>
-<p>Or create your own user:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/miniconda3/etc/profile.d/conda.sh&quot;</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nb">cd</span><span class="w"> </span>/path/to/core-stack-backend
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
-</span></code></pre></div>
-<h3 id="gee_default_account_id-is-blank-or-gee-probe-fails"><code>GEE_DEFAULT_ACCOUNT_ID</code> is blank or <code>gee-probe</code> fails<a class="headerlink" href="#gee_default_account_id-is-blank-or-gee-probe-fails" title="Permanent link">&para;</a></h3>
-<p>The easiest recovery path is to import a GEE JSON through the installer:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span>--only<span class="w"> </span>gee_configuration,initialisation_check<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span>--gee-json<span class="w"> </span>/full/path/to/service-account.json
-</span></code></pre></div>
-<p>You can also use the generic input form:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span>--only<span class="w"> </span>gee_configuration,initialisation_check<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">gee_json</span><span class="o">=</span>/full/path/to/service-account.json
-</span></code></pre></div>
-<p>Then rerun the strict GEE check directly if needed:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/miniconda3/etc/profile.d/conda.sh&quot;</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="nb">cd</span><span class="w"> </span>/path/to/core-stack-backend
-</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>python<span class="w"> </span>computing/misc/internal_api_initialisation_test.py<span class="w"> </span>--require-gee
-</span></code></pre></div>
-<h3 id="gcs-upload-probe-fails"><code>gcs-upload-probe</code> fails<a class="headerlink" href="#gcs-upload-probe-fails" title="Permanent link">&para;</a></h3>
-<p>This usually means the configured GEE service account can authenticate with Earth Engine, but it cannot write to the Google Cloud Storage bucket used by the backend.</p>
-<p>Confirm these points:</p>
-<ul>
-<li>the bucket used by <code>GCS_BUCKET_NAME</code> exists</li>
-<li>that bucket is in <code>us-central1</code></li>
-<li>the same service account has object write access</li>
-<li>cleanup is easiest if it also has delete access</li>
-<li>Earth Engine-side reads work for the same account</li>
-</ul>
-<p>The bucket-side checklist lives in <a href="../integrations/gcs/">Google Cloud Storage</a>.</p>
-<h3 id="geoserver-probe-warns-or-fails"><code>geoserver-probe</code> warns or fails<a class="headerlink" href="#geoserver-probe-warns-or-fails" title="Permanent link">&para;</a></h3>
-<p>The current validation probes:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>${GEOSERVER_URL}/rest/about/version.json
-</span></code></pre></div>
-<p>Confirm <code>nrm_app/.env</code> contains:</p>
-<ul>
-<li><code>GEOSERVER_URL</code></li>
-<li><code>GEOSERVER_USERNAME</code></li>
-<li><code>GEOSERVER_PASSWORD</code></li>
-</ul>
-<p>Then rerun:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">  </span>--only<span class="w"> </span>initialisation_check<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_url</span><span class="o">=</span>https://host/geoserver<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_username</span><span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_password</span><span class="o">=</span>your-password
-</span></code></pre></div>
-<p>If you still need a local GeoServer instance, use the setup in <a href="../integrations/geoserver/">GeoServer</a>.</p>
-<h3 id="admin-boundary-compute-fails"><code>admin-boundary-compute</code> fails<a class="headerlink" href="#admin-boundary-compute-fails" title="Permanent link">&para;</a></h3>
-<p>The validation needs:</p>
-<ul>
-<li><code>data/admin-boundary/input/soi_tehsil.geojson</code></li>
-<li>state-wise district GeoJSON files under <code>data/admin-boundary/input/&lt;state&gt;/</code></li>
-</ul>
-<p>If those files are missing or corrupted:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>admin_boundary_data,initialisation_check
-</span></code></pre></div>
-<h3 id="first-computing-api-is-skipped-or-fails"><code>first-computing-api</code> is skipped or fails<a class="headerlink" href="#first-computing-api-is-skipped-or-fails" title="Permanent link">&para;</a></h3>
-<p>That check only runs fully when all of these are ready:</p>
-<ul>
-<li>an active Django user</li>
-<li><code>GEE_DEFAULT_ACCOUNT_ID</code></li>
-<li>working GEE authentication</li>
-<li>working GCS upload access</li>
-<li>reachable GeoServer REST credentials</li>
-<li>usable admin-boundary sample data</li>
-</ul>
-<p>When it fails, the highest-signal line is usually <code>setup-next-step</code> in the initialization output. Fix that first, then rerun <code>initialisation_check</code>.</p>
-<hr />
-<h2 id="optional-integrations-added-later">Optional Integrations Added Later<a class="headerlink" href="#optional-integrations-added-later" title="Permanent link">&para;</a></h2>
-<h3 id="shared-keys-were-unavailable-during-first-install">Shared keys were unavailable during first install<a class="headerlink" href="#shared-keys-were-unavailable-during-first-install" title="Permanent link">&para;</a></h3>
-<p>That is fine. The installer is designed to let the core setup complete first, then add the missing pieces later.</p>
-<p>Typical follow-up commands:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># GEE arrives later</span>
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">  </span>--only<span class="w"> </span>gee_configuration,initialisation_check<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">  </span>--gee-json<span class="w"> </span>/full/path/to/service-account.json
-</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>
-</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="c1"># GeoServer arrives later</span>
-</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="w">  </span>--only<span class="w"> </span>initialisation_check<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_url</span><span class="o">=</span>https://host/geoserver<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_username</span><span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_password</span><span class="o">=</span>your-password
-</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>
-</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="c1"># Public API key arrives later</span>
-</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="w">  </span>--only<span class="w"> </span>public_api_check<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-22-16"><a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">public_api_key</span><span class="o">=</span>your-public-api-key<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-22-17"><a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">public_api_base_url</span><span class="o">=</span>https://geoserver.core-stack.org/api/v1
-</span></code></pre></div>
-<h3 id="you-want-to-update-env-values-without-rerunning-a-large-setup">You want to update env values without rerunning a large setup<a class="headerlink" href="#you-want-to-update-env-values-without-rerunning-a-large-setup" title="Permanent link">&para;</a></h3>
-<p>Use:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>env_file
-</span></code></pre></div>
-<p>Or pass the optional inputs directly to the smaller validation step that uses them.</p>
-<hr />
-<h2 id="public-api-initialization-test-problems">Public API Initialization Test Problems<a class="headerlink" href="#public-api-initialization-test-problems" title="Permanent link">&para;</a></h2>
-<h3 id="the-public-api-test-is-skipped">The public API test is skipped<a class="headerlink" href="#the-public-api-test-is-skipped" title="Permanent link">&para;</a></h3>
-<p>The installer skips <code>public_api_check</code> when <code>PUBLIC_API_X_API_KEY</code> is blank.</p>
-<p>Provide it explicitly:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">  </span>--only<span class="w"> </span>public_api_check<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">public_api_key</span><span class="o">=</span>your-public-api-key<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">public_api_base_url</span><span class="o">=</span>https://geoserver.core-stack.org/api/v1
-</span></code></pre></div>
-<h3 id="you-want-to-debug-the-helper-directly">You want to debug the helper directly<a class="headerlink" href="#you-want-to-debug-the-helper-directly" title="Permanent link">&para;</a></h3>
-<p>The backend ships a standard-library helper at <code>installation/public_api_client.py</code>.</p>
-<p>Common checks:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Minimal smoke test</span>
-</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>python<span class="w"> </span>installation/public_api_client.py<span class="w"> </span>smoke-test
-</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
-</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="c1"># Resolve names against the active hierarchy</span>
-</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>python<span class="w"> </span>installation/public_api_client.py<span class="w"> </span>resolve<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">  </span>--state<span class="w"> </span>bihar<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="w">  </span>--district<span class="w"> </span>jamu<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="w">  </span>--tehsil<span class="w"> </span>jami
-</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>
-</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="c1"># Download one tehsil package</span>
-</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>python<span class="w"> </span>installation/public_api_client.py<span class="w"> </span>download<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="w">  </span>--state<span class="w"> </span>assam<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-25-13"><a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a><span class="w">  </span>--district<span class="w"> </span>cachar<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-25-14"><a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a><span class="w">  </span>--tehsil<span class="w"> </span>lakhipur
-</span></code></pre></div>
-<hr />
-<h2 id="auth-and-api-usage-errors">Auth And API Usage Errors<a class="headerlink" href="#auth-and-api-usage-errors" title="Permanent link">&para;</a></h2>
-<h3 id="401-unauthorized-on-public-data-apis"><code>401 Unauthorized</code> on public-data APIs<a class="headerlink" href="#401-unauthorized-on-public-data-apis" title="Permanent link">&para;</a></h3>
-<p>The <code>public_api</code> routes expect <code>X-API-Key</code>, not a Bearer token.</p>
-<p>Use:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>curl<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;X-API-Key: YOUR_API_KEY&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">  </span><span class="s2">&quot;http://127.0.0.1:8000/api/v1/get_generated_layer_urls/?state=karnataka&amp;district=raichur&amp;tehsil=devadurga&quot;</span>
-</span></code></pre></div>
-<h3 id="jwt-route-confusion">JWT route confusion<a class="headerlink" href="#jwt-route-confusion" title="Permanent link">&para;</a></h3>
-<p>If a route expects JWT auth, use:</p>
-<div class="language-http highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="err">Authorization: Bearer YOUR_JWT_TOKEN</span>
-</span></code></pre></div>
-<p>The installer validation generates that token automatically for its own checks, but manual API testing still needs a valid JWT for JWT-protected routes.</p>
-<hr />
-<h2 id="manual-runtime-problems">Manual Runtime Problems<a class="headerlink" href="#manual-runtime-problems" title="Permanent link">&para;</a></h2>
-<h3 id="django-server-will-not-start">Django server will not start<a class="headerlink" href="#django-server-will-not-start" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/miniconda3/etc/profile.d/conda.sh&quot;</span>
-</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
-</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="nb">cd</span><span class="w"> </span>/path/to/core-stack-backend
-</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>python<span class="w"> </span>manage.py<span class="w"> </span>check
-</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>python<span class="w"> </span>manage.py<span class="w"> </span>runserver<span class="w"> </span><span class="m">127</span>.0.0.1:8000
-</span></code></pre></div>
-<h3 id="celery-worker-will-not-start">Celery worker will not start<a class="headerlink" href="#celery-worker-will-not-start" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/miniconda3/etc/profile.d/conda.sh&quot;</span>
-</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
-</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="nb">cd</span><span class="w"> </span>/path/to/core-stack-backend
-</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>celery<span class="w"> </span>-A<span class="w"> </span>nrm_app<span class="w"> </span>worker<span class="w"> </span>-l<span class="w"> </span>info<span class="w"> </span>-Q<span class="w"> </span>nrm
-</span></code></pre></div>
-<h3 id="generated-layer-urls-return-nothing">Generated layer URLs return nothing<a class="headerlink" href="#generated-layer-urls-return-nothing" title="Permanent link">&para;</a></h3>
-<p>That usually means one of these is missing:</p>
-<ul>
-<li>the location is not activated</li>
-<li>the layer metadata was never written</li>
-<li>the layer was never published</li>
-<li>the public-data backing tables are incomplete</li>
-</ul>
-<hr />
-<h2 id="next-pages">Next Pages<a class="headerlink" href="#next-pages" title="Permanent link">&para;</a></h2>
-<ul>
-<li><a href="../installer/">Installer</a></li>
-<li><a href="../integrations/">Integrations</a></li>
-<li><a href="../../pipelines/first-manual-api-run/">First Manual API Run</a></li>
-<li><a href="../../api/public-apis/">Public APIs</a></li>
-</ul>
+<p>It can read credentials from command-line flags, environment variables, or an env file. It does not require the full <code>corestackenv</code>.</p>
+<h2 id="when-to-stop-debugging-setup">When To Stop Debugging Setup<a class="headerlink" href="#when-to-stop-debugging-setup" title="Permanent link">&para;</a></h2>
+<p>If Django starts, Celery connects, <code>initialisation_check</code> passes or names only optional integrations, and one small compute API can be triggered, move on to <a href="../../pipelines/">Build Pipelines</a>. Do not keep rerunning the whole installer unless you are fixing installation itself.</p>
 
 
 
 
 
 
+
+  
+  
 
 
 

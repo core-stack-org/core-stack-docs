@@ -2,377 +2,212 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/api/public-apis/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/api/stac-specs/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/blog/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/blog/2026/03/19/tessera-and-why-it-matters-for-earth-observation/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/community/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/community/code-of-conduct/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/community/contributing/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/community/contributions/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/community/core-stack-innovation-challenge/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/community/how-core-stack-is-used/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/community/tessera-student-innovation-call/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/community/innovation-challenges/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://core-stack-org.github.io/core-stack-docs/community/innovation-challenges/core-stack-innovation-challenge/</loc>
+         <lastmod>2026-04-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://core-stack-org.github.io/core-stack-docs/community/innovation-challenges/tessera-student-innovation-call/</loc>
+         <lastmod>2026-04-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://core-stack-org.github.io/core-stack-docs/concepts/how-pipelines-work-algorithmically/</loc>
+         <lastmod>2026-04-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://core-stack-org.github.io/core-stack-docs/concepts/watershed-data-structure/</loc>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/developers/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/developers/backend-code-map/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/developers/coding-standards-and-guidelines/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/developers/installer/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/developers/setup-troubleshooting/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://core-stack-org.github.io/core-stack-docs/developers/stack-platforms/</loc>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/developers/integrations/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/developers/integrations/aws/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/developers/integrations/gcs/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/developers/integrations/geoserver/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/developers/integrations/google-earth-engine/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/add-new-data-resources/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/admin-boundary/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/agroecological-space/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/aquifer-vector/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/build-new-pipelines/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/catchment-area/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/celery-auth-and-task-integration/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/common-design-and-integration-patterns/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/computing-endpoints/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/distance-to-nearest-drainage/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/django-computing-api-integration/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/drainage-lines/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/facilities-proximity/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/first-manual-api-run/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/hls-interpolated-ndvi/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/how-pipelines-work-algorithmically/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/how-pipelines-work-programmatically/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/hydrology/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/local-pipeline-first/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/lulc-generation/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/natural-depression/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/ndvi-time-series/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/nrega-assets/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/pan-india-clip-modules/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/pipeline-integrations/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/plantation-site-suitability/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/restoration-opportunity/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/slope-percentage/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/soge-vector/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/stream-order/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/swb-detection/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/terrain-analysis/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/watershed-data-structure/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/boundary-and-enrichment/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/core-workflows/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/raster-and-drainage/</loc>
-         <lastmod>2026-04-24</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://core-stack-org.github.io/core-stack-docs/pipelines/time-series-and-ops/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/reference/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/reference/abbreviations/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/reference/api-errors/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/reference/geospatial-learning-resources/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/reference/glossary/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/reference/license/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/reference/scientific-papers-and-research-repositories/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/reference/standardised-field-constant-variable-names/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/reference/wonderful-github-repos/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/use-precomputed-data/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/use-precomputed-data/how-current-data-was-computed/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://core-stack-org.github.io/core-stack-docs/use-precomputed-data/public-apis/</loc>
+         <lastmod>2026-04-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://core-stack-org.github.io/core-stack-docs/use-precomputed-data/stac-specs/</loc>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/blog/archive/2026/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/blog/category/research/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://core-stack-org.github.io/core-stack-docs/blog/category/community/</loc>
-         <lastmod>2026-04-24</lastmod>
+         <lastmod>2026-04-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

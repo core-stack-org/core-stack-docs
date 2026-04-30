@@ -5,9 +5,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="Understand the backend, architecture, integrations, and pipeline-development path used to extend CoRE Stack." name="description"/>
+<meta content="Install the backend, understand the codebase, and build useful geospatial pipelines on CoRE Stack." name="description"/>
 <link href="https://core-stack-org.github.io/core-stack-docs/developers/" rel="canonical"/>
-<link href="../api/stac-specs/" rel="prev"/>
+<link href="../use-precomputed-data/stac-specs/" rel="prev"/>
 <link href="installer/" rel="next"/>
 <link href="../assets/logo.png" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.7.6" name="generator"/>
@@ -21,7 +21,7 @@
 <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <meta content="website" property="og:type">
 <meta content="Develop CoRE Stack - CoRE Stack Documentation" property="og:title">
-<meta content="Understand the backend, architecture, integrations, and pipeline-development path used to extend CoRE Stack." property="og:description">
+<meta content="Install the backend, understand the codebase, and build useful geospatial pipelines on CoRE Stack." property="og:description">
 <meta content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/developers/index.png" property="og:image">
 <meta content="image/png" property="og:image:type"/>
 <meta content="1200" property="og:image:width"/>
@@ -29,7 +29,7 @@
 <meta content="https://core-stack-org.github.io/core-stack-docs/developers/" property="og:url"/>
 <meta content="summary_large_image" property="twitter:card"/>
 <meta content="Develop CoRE Stack - CoRE Stack Documentation" property="twitter:title"/>
-<meta content="Understand the backend, architecture, integrations, and pipeline-development path used to extend CoRE Stack." property="twitter:description"/>
+<meta content="Install the backend, understand the codebase, and build useful geospatial pipelines on CoRE Stack." property="twitter:description"/>
 <meta content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/developers/index.png" property="twitter:image"/>
 </meta></meta></meta></meta></head>
 <body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
@@ -142,7 +142,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../pipelines/watershed-data-structure/">
+<a class="md-tabs__link" href="../concepts/watershed-data-structure/">
           
   
   
@@ -271,11 +271,23 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/watershed-data-structure/">
+<a class="md-nav__link" href="../concepts/watershed-data-structure/">
 <span class="md-ellipsis">
     
   
     CoRE Stack Data Structure
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../concepts/how-pipelines-work-algorithmically/">
+<span class="md-ellipsis">
+    
+  
+    How Our Pipelines Work Algorithmically
   
 
     
@@ -325,7 +337,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../api/public-apis/">
+<a class="md-nav__link" href="../use-precomputed-data/public-apis/">
 <span class="md-ellipsis">
     
   
@@ -337,7 +349,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../api/stac-specs/">
+<a class="md-nav__link" href="../use-precomputed-data/stac-specs/">
 <span class="md-ellipsis">
     
   
@@ -391,6 +403,42 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="backend-code-map/">
+<span class="md-ellipsis">
+    
+  
+    Backend Code Map
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../pipelines/">
+<span class="md-ellipsis">
+    
+  
+    Develop New Pipelines
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../pipelines/computing-endpoints/">
+<span class="md-ellipsis">
+    
+  
+    Computing API Paths
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="setup-troubleshooting/">
 <span class="md-ellipsis">
     
@@ -403,628 +451,16 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="backend-code-map/">
+<a class="md-nav__link" href="stack-platforms/">
 <span class="md-ellipsis">
     
   
-    Backend Code Map
+    Explore CoRE Stack
   
 
     
   </span>
 </a>
-</li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_5" type="checkbox"/>
-<div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="integrations/">
-<span class="md-ellipsis">
-    
-  
-    Integrations
-  
-
-    
-  </span>
-</a>
-<label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="">
-<span class="md-nav__icon md-icon"></span>
-</label>
-</div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_5_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_4_5">
-<span class="md-nav__icon md-icon"></span>
-            
-  
-    Integrations
-  
-
-          </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="integrations/google-earth-engine/">
-<span class="md-ellipsis">
-    
-  
-    Google Earth Engine
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="integrations/gcs/">
-<span class="md-ellipsis">
-    
-  
-    Google Cloud Storage
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="integrations/geoserver/">
-<span class="md-ellipsis">
-    
-  
-    GeoServer
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="integrations/aws/">
-<span class="md-ellipsis">
-    
-  
-    AWS
-  
-
-    
-  </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_6" type="checkbox"/>
-<div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../pipelines/">
-<span class="md-ellipsis">
-    
-  
-    Pipeline Development
-  
-
-    
-  </span>
-</a>
-<label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="">
-<span class="md-nav__icon md-icon"></span>
-</label>
-</div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_6_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_4_6">
-<span class="md-nav__icon md-icon"></span>
-            
-  
-    Pipeline Development
-  
-
-          </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/how-pipelines-work-algorithmically/">
-<span class="md-ellipsis">
-    
-  
-    How Our Pipelines Work Algorithmically
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/how-pipelines-work-programmatically/">
-<span class="md-ellipsis">
-    
-  
-    How They Work Programmatically
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/first-manual-api-run/">
-<span class="md-ellipsis">
-    
-  
-    First Manual API Run
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/local-pipeline-first/">
-<span class="md-ellipsis">
-    
-  
-    Local Pipeline First
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/django-computing-api-integration/">
-<span class="md-ellipsis">
-    
-  
-    Integrate With Django Computing API
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/celery-auth-and-task-integration/">
-<span class="md-ellipsis">
-    
-  
-    Add Celery / Auth / Task Integration
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/computing-endpoints/">
-<span class="md-ellipsis">
-    
-  
-    Computing API Endpoints
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/common-design-and-integration-patterns/">
-<span class="md-ellipsis">
-    
-  
-    Common Pipeline Design / Integration Patterns
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/build-new-pipelines/">
-<span class="md-ellipsis">
-    
-  
-    Build New Pipelines
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/pipeline-integrations/">
-<span class="md-ellipsis">
-    
-  
-    Pipeline Integrations
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/add-new-data-resources/">
-<span class="md-ellipsis">
-    
-  
-    Add and Integrate Public / New Data Resources
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_6_13" type="checkbox"/>
-<div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../pipelines/core-workflows/">
-<span class="md-ellipsis">
-    
-  
-    Core Workflows
-  
-
-    
-  </span>
-</a>
-<label class="md-nav__link" for="__nav_4_6_13" id="__nav_4_6_13_label" tabindex="0">
-<span class="md-nav__icon md-icon"></span>
-</label>
-</div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_6_13_label" class="md-nav" data-md-level="3">
-<label class="md-nav__title" for="__nav_4_6_13">
-<span class="md-nav__icon md-icon"></span>
-            
-  
-    Core Workflows
-  
-
-          </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/lulc-generation/">
-<span class="md-ellipsis">
-    
-  
-    LULC Generation
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/swb-detection/">
-<span class="md-ellipsis">
-    
-  
-    SWB Detection
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/hydrology/">
-<span class="md-ellipsis">
-    
-  
-    Hydrology
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/terrain-analysis/">
-<span class="md-ellipsis">
-    
-  
-    Terrain Analysis
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/plantation-site-suitability/">
-<span class="md-ellipsis">
-    
-  
-    Plantation Site Suitability
-  
-
-    
-  </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_6_14" type="checkbox"/>
-<div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../pipelines/boundary-and-enrichment/">
-<span class="md-ellipsis">
-    
-  
-    Boundary and Enrichment Layers
-  
-
-    
-  </span>
-</a>
-<label class="md-nav__link" for="__nav_4_6_14" id="__nav_4_6_14_label" tabindex="0">
-<span class="md-nav__icon md-icon"></span>
-</label>
-</div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_6_14_label" class="md-nav" data-md-level="3">
-<label class="md-nav__title" for="__nav_4_6_14">
-<span class="md-nav__icon md-icon"></span>
-            
-  
-    Boundary and Enrichment Layers
-  
-
-          </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/admin-boundary/">
-<span class="md-ellipsis">
-    
-  
-    Admin Boundary
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/facilities-proximity/">
-<span class="md-ellipsis">
-    
-  
-    Facilities Proximity
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/nrega-assets/">
-<span class="md-ellipsis">
-    
-  
-    NREGA Assets
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/agroecological-space/">
-<span class="md-ellipsis">
-    
-  
-    Agroecological Space
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/aquifer-vector/">
-<span class="md-ellipsis">
-    
-  
-    Aquifer Vector
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/soge-vector/">
-<span class="md-ellipsis">
-    
-  
-    SOGE Vector
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/pan-india-clip-modules/">
-<span class="md-ellipsis">
-    
-  
-    Pan-India Clip Modules
-  
-
-    
-  </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_6_15" type="checkbox"/>
-<div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../pipelines/raster-and-drainage/">
-<span class="md-ellipsis">
-    
-  
-    Raster and Drainage Layers
-  
-
-    
-  </span>
-</a>
-<label class="md-nav__link" for="__nav_4_6_15" id="__nav_4_6_15_label" tabindex="0">
-<span class="md-nav__icon md-icon"></span>
-</label>
-</div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_6_15_label" class="md-nav" data-md-level="3">
-<label class="md-nav__title" for="__nav_4_6_15">
-<span class="md-nav__icon md-icon"></span>
-            
-  
-    Raster and Drainage Layers
-  
-
-          </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/drainage-lines/">
-<span class="md-ellipsis">
-    
-  
-    Drainage Lines
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/catchment-area/">
-<span class="md-ellipsis">
-    
-  
-    Catchment Area
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/stream-order/">
-<span class="md-ellipsis">
-    
-  
-    Stream Order
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/distance-to-nearest-drainage/">
-<span class="md-ellipsis">
-    
-  
-    Distance to Nearest Drainage
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/natural-depression/">
-<span class="md-ellipsis">
-    
-  
-    Natural Depression
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/slope-percentage/">
-<span class="md-ellipsis">
-    
-  
-    Slope Percentage
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/restoration-opportunity/">
-<span class="md-ellipsis">
-    
-  
-    Restoration Opportunity
-  
-
-    
-  </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_6_16" type="checkbox"/>
-<div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../pipelines/time-series-and-ops/">
-<span class="md-ellipsis">
-    
-  
-    Time Series and Ops
-  
-
-    
-  </span>
-</a>
-<label class="md-nav__link" for="__nav_4_6_16" id="__nav_4_6_16_label" tabindex="0">
-<span class="md-nav__icon md-icon"></span>
-</label>
-</div>
-<nav aria-expanded="false" aria-labelledby="__nav_4_6_16_label" class="md-nav" data-md-level="3">
-<label class="md-nav__title" for="__nav_4_6_16">
-<span class="md-nav__icon md-icon"></span>
-            
-  
-    Time Series and Ops
-  
-
-          </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/ndvi-time-series/">
-<span class="md-ellipsis">
-    
-  
-    NDVI Time Series
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pipelines/hls-interpolated-ndvi/">
-<span class="md-ellipsis">
-    
-  
-    HLS Interpolated NDVI
-  
-
-    
-  </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="coding-standards-and-guidelines/">
@@ -1108,7 +544,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../community/core-stack-innovation-challenge/">
+<a class="md-nav__link" href="../community/innovation-challenges/core-stack-innovation-challenge/">
 <span class="md-ellipsis">
     
   
@@ -1120,7 +556,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../community/tessera-student-innovation-call/">
+<a class="md-nav__link" href="../community/innovation-challenges/tessera-student-innovation-call/">
 <span class="md-ellipsis">
     
   
@@ -1432,71 +868,31 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#main-development-routes">
+<a class="md-nav__link" href="#quick-guide">
 <span class="md-ellipsis">
       
-        Main Development Routes
+        Quick Guide
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#request-routing">
+<a class="md-nav__link" href="#what-you-are-building-on">
 <span class="md-ellipsis">
       
-        Request Routing
+        What You Are Building On
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#runtime-layers">
+<a class="md-nav__link" href="#current-backend-reference">
 <span class="md-ellipsis">
       
-        Runtime Layers
+        Current Backend Reference
       
     </span>
 </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#what-each-app-does">
-<span class="md-ellipsis">
-      
-        What Each App Does
-      
-    </span>
-</a>
-<nav aria-label="What Each App Does" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#public_api">
-<span class="md-ellipsis">
-      
-        public_api
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#computing">
-<span class="md-ellipsis">
-      
-        computing
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#utilities">
-<span class="md-ellipsis">
-      
-        utilities
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
 </li>
 </ul>
 </nav>
@@ -1524,71 +920,37 @@
 </nav>
 <article class="md-content__inner md-typeset">
 <h1 id="develop-core-stack">Develop CoRE Stack<a class="headerlink" href="#develop-core-stack" title="Permanent link">¶</a></h1>
-<p>This section is the main developer chapter for CoRE Stack.</p>
-<p>If you are trying to get the backend running, start with <a href="installer/">Installer</a>.
-That page now separates the minimum local startup path from the optional integration setup you can add later.</p>
-<p>If you are already set up and want the computation path, continue into <a href="../pipelines/">Pipeline Development</a>.</p>
-<hr/>
-<h2 id="main-development-routes">Main Development Routes<a class="headerlink" href="#main-development-routes" title="Permanent link">¶</a></h2>
+<p>This section is for people who want to build with CoRE Stack, not only read about it.</p>
+<p>Start here if you want to install the backend, understand what data is available, trace how a computation runs, or add a new pipeline without getting lost in the older long-form notes.</p>
+<h2 id="quick-guide">Quick Guide<a class="headerlink" href="#quick-guide" title="Permanent link">¶</a></h2>
+<ol>
+<li><a href="installer/">Install the backend</a> and run Django locally.</li>
+<li>Read the <a href="backend-code-map/">Backend Code Map</a> so you know which scripts/functions to look for, in your repo.</li>
+<li>Move into <a href="../pipelines/">Build Pipelines</a> when you are ready to run or extend computations.</li>
+<li>Keep <a href="setup-troubleshooting/">Troubleshooting</a> and <a href="coding-standards-and-guidelines/">Coding Standards</a> open while you work.</li>
+</ol>
+<h2 id="what-you-are-building-on">What You Are Building On<a class="headerlink" href="#what-you-are-building-on" title="Permanent link">¶</a></h2>
+<p>CoRE Stack is a public geospatial computation stack. It brings together micro-watersheds, administrative boundaries, public datasets, satellite-derived layers, Earth Engine computation, GeoServer publication, and API access.</p>
+<p>For developers, the important idea is simple: a pipeline takes a place and some parameters, computes a geospatial product, stores its metadata, and publishes it so dashboards, notebooks, QGIS projects, and community platforms can use it.</p>
+<pre class="mermaid"><code>flowchart TB
+    A[Public data and base layers] --&gt; B[Backend APIs]
+    B --&gt; C[Celery tasks]
+    C --&gt; D[Pipeline code]
+    D --&gt; E[GEE, local files, or GCS]
+    E --&gt; F[GeoServer and PostGIS metadata]
+    F --&gt; G[Explorer, notebooks, QGIS, community apps]</code></pre>
+<h2 id="current-backend-reference">Current Backend Reference<a class="headerlink" href="#current-backend-reference" title="Permanent link">¶</a></h2>
+<p>The main source repository is <a href="https://github.com/core-stack-org/core-stack-backend">core-stack-org/core-stack-backend</a>.</p>
+<p>The developer docs in this section are grounded in the current backend structure:</p>
 <ul>
-<li>Start with <a href="installer/">Installer</a>, <a href="setup-troubleshooting/">Setup Troubleshooting</a>, and <a href="backend-code-map/">Backend Code Map</a> if you are getting the platform running.</li>
-<li>Continue into <a href="../pipelines/">Pipeline Development</a> once you want to understand or extend the computation workflows.</li>
-<li>Use <a href="integrations/">Integrations</a> when a working computation needs Earth Engine, GeoServer, or AWS-facing setup.</li>
-<li>Use <a href="coding-standards-and-guidelines/">Coding Standards and Guidelines</a> when you are preparing durable code or docs changes.</li>
+<li><code>nrm_app/urls.py</code> mounts the Django API apps under <code>/api/v1/</code>.</li>
+<li><code>computing/urls.py</code> lists computation API paths.</li>
+<li><code>computing/api.py</code> keeps HTTP handlers thin and usually queues Celery tasks.</li>
+<li><code>computing/</code> contains the actual geospatial pipeline modules.</li>
+<li><code>utilities/gee_utils.py</code> handles Earth Engine, GCS, asset paths, exports, and task polling.</li>
+<li><code>computing/utils.py</code> handles GeoServer publication and layer metadata bookkeeping.</li>
 </ul>
-<hr/>
-<h2 id="request-routing">Request Routing<a class="headerlink" href="#request-routing" title="Permanent link">¶</a></h2>
-<pre class="mermaid"><code>graph TB
-    A[Swagger or Client] --&gt; B[nrm_app/urls.py]
-    B --&gt; C[geoadmin]
-    B --&gt; D[public_api]
-    B --&gt; E[computing]
-    E --&gt; F[Celery-backed pipeline modules]
-    D --&gt; G[GeoServer and DB-backed metadata]
-    F --&gt; H[GEE utilities]
-    F --&gt; I[GeoServer publishing helpers]
-    C --&gt; J[State, district, block models]
-    D --&gt; J</code></pre>
-<p>The top-level Django router is <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/nrm_app/urls.py#L39-L66">nrm_app/urls.py</a>. It wires:</p>
-<ul>
-<li>API-key public-data routes from <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/urls.py#L4-L34">public_api/urls.py</a></li>
-<li>compute submission routes from <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/computing/urls.py#L7-L183">computing/urls.py</a></li>
-</ul>
-<hr/>
-<h2 id="runtime-layers">Runtime Layers<a class="headerlink" href="#runtime-layers" title="Permanent link">¶</a></h2>
-<pre class="mermaid"><code>sequenceDiagram
-    participant Client
-    participant Django as Django API handler
-    participant Celery as Celery task queue
-    participant Pipeline as pipeline module
-    participant GEE as GEE or GCS helpers
-    participant GeoServer as GeoServer publishing
-
-    Client-&gt;&gt;Django: request
-    Django-&gt;&gt;Celery: apply_async(...)
-    Celery-&gt;&gt;Pipeline: run compute pipeline
-    Pipeline-&gt;&gt;GEE: read or export assets when needed
-    Pipeline-&gt;&gt;GeoServer: publish output layer
-    Django--&gt;&gt;Client: immediate success response</code></pre>
-<hr/>
-<h2 id="what-each-app-does">What Each App Does<a class="headerlink" href="#what-each-app-does" title="Permanent link">¶</a></h2>
-<h3 id="public_api"><code>public_api</code><a class="headerlink" href="#public_api" title="Permanent link">¶</a></h3>
-<ul>
-<li>Exposes public-data lookups in <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L43-L487">public_api/api.py</a></li>
-<li>Builds layer download metadata in <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/views.py#L56-L114">public_api/views.py</a></li>
-<li>Fetches MWS and village geometries from GeoServer in <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/views.py#L378-L519">public_api/views.py</a></li>
-</ul>
-<h3 id="computing"><code>computing</code><a class="headerlink" href="#computing" title="Permanent link">¶</a></h3>
-<ul>
-<li>Declares the backend compute later in <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/computing/urls.py#L7-L183">computing/urls.py</a></li>
-<li>Queues SWB, LULC, hydrology, terrain, and other tasks from <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/computing/api.py#L76-L560">computing/api.py</a></li>
-<li>Publishes vector and raster outputs toward GeoServer via <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/computing/utils.py#L67-L190">computing/utils.py</a></li>
-</ul>
-<h3 id="utilities"><code>utilities</code><a class="headerlink" href="#utilities" title="Permanent link">¶</a></h3>
-<ul>
-<li>Handles auth mode parsing and headers in <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/utilities/auth_check_decorator.py#L22-L176">utilities/auth_check_decorator.py</a></li>
-<li>Handles Earth Engine initialization, task polling, and asset path helpers in <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/utilities/gee_utils.py#L30-L219">utilities/gee_utils.py</a></li>
-</ul>
+<p>That is the map to keep in mind while reading the rest of this section.</p>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>

@@ -5,13 +5,13 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="Community Resource Planning Stack - open geospatial infrastructure for public data access, computation pipelines, and grounded planning." name="description"/>
-<link href="https://core-stack-org.github.io/core-stack-docs/reference/api-errors/" rel="canonical"/>
-<link href="../wonderful-github-repos/" rel="prev"/>
-<link href="../license/" rel="next"/>
+<meta content="Conceptual explanation of the major CoRE Stack workflow families, their questions, their inputs, and their outputs." name="description"/>
+<link href="https://core-stack-org.github.io/core-stack-docs/concepts/how-pipelines-work-algorithmically/" rel="canonical"/>
+<link href="../watershed-data-structure/" rel="prev"/>
+<link href="../../use-precomputed-data/" rel="next"/>
 <link href="../../assets/logo.png" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.7.6" name="generator"/>
-<title>API Errors - CoRE Stack Documentation</title>
+<title>How Our Pipelines Work Algorithmically - CoRE Stack Documentation</title>
 <link href="../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -20,24 +20,24 @@
 <link href="../../stylesheets/extra.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 <meta content="website" property="og:type">
-<meta content="API Errors - CoRE Stack Documentation" property="og:title">
-<meta content="Community Resource Planning Stack - open geospatial infrastructure for public data access, computation pipelines, and grounded planning." property="og:description">
-<meta content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/reference/api-errors.png" property="og:image">
+<meta content="How Our Pipelines Work Algorithmically - CoRE Stack Documentation" property="og:title">
+<meta content="Conceptual explanation of the major CoRE Stack workflow families, their questions, their inputs, and their outputs." property="og:description">
+<meta content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/concepts/how-pipelines-work-algorithmically.png" property="og:image">
 <meta content="image/png" property="og:image:type"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
-<meta content="https://core-stack-org.github.io/core-stack-docs/reference/api-errors/" property="og:url"/>
+<meta content="https://core-stack-org.github.io/core-stack-docs/concepts/how-pipelines-work-algorithmically/" property="og:url"/>
 <meta content="summary_large_image" property="twitter:card"/>
-<meta content="API Errors - CoRE Stack Documentation" property="twitter:title"/>
-<meta content="Community Resource Planning Stack - open geospatial infrastructure for public data access, computation pipelines, and grounded planning." property="twitter:description"/>
-<meta content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/reference/api-errors.png" property="twitter:image"/>
+<meta content="How Our Pipelines Work Algorithmically - CoRE Stack Documentation" property="twitter:title"/>
+<meta content="Conceptual explanation of the major CoRE Stack workflow families, their questions, their inputs, and their outputs." property="twitter:description"/>
+<meta content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/concepts/how-pipelines-work-algorithmically.png" property="twitter:image"/>
 </meta></meta></meta></meta></head>
 <body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#api-errors-reference">
+<a class="md-skip" href="#how-our-pipelines-work-algorithmically">
           Skip to content
         </a>
 </div>
@@ -61,7 +61,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              API Errors
+              How Our Pipelines Work Algorithmically
             
           </span>
 </div>
@@ -141,8 +141,8 @@
 
       </a>
 </li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../../concepts/watershed-data-structure/">
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../watershed-data-structure/">
           
   
   
@@ -185,8 +185,8 @@
 
         </a>
 </li>
-<li class="md-tabs__item md-tabs__item--active">
-<a class="md-tabs__link" href="../">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../reference/">
           
   
   
@@ -247,9 +247,9 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
 <span class="md-ellipsis">
     
   
@@ -260,7 +260,7 @@
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
             
@@ -271,7 +271,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../concepts/watershed-data-structure/">
+<a class="md-nav__link" href="../watershed-data-structure/">
 <span class="md-ellipsis">
     
   
@@ -282,8 +282,20 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../concepts/how-pipelines-work-algorithmically/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    How Our Pipelines Work Algorithmically
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     
   
@@ -293,6 +305,126 @@
     
   </span>
 </a>
+<nav aria-label="On this page" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-core-pattern">
+<span class="md-ellipsis">
+      
+        The Core Pattern
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#why-core-stack-computes-in-this-shape">
+<span class="md-ellipsis">
+      
+        Why CoRE Stack Computes In This Shape
+      
+    </span>
+</a>
+<nav aria-label="Why CoRE Stack Computes In This Shape" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-water-planning-needs-hydrological-logic">
+<span class="md-ellipsis">
+      
+        1. Water planning needs hydrological logic
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-rasters-are-powerful-but-hard-to-use-directly">
+<span class="md-ellipsis">
+      
+        2. Rasters are powerful but hard to use directly
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-public-infrastructure-should-expose-reusable-building-blocks">
+<span class="md-ellipsis">
+      
+        3. Public infrastructure should expose reusable building blocks
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#scientific-ideas-already-embedded-in-the-stack">
+<span class="md-ellipsis">
+      
+        Scientific Ideas Already Embedded In The Stack
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-four-repeated-questions">
+<span class="md-ellipsis">
+      
+        The Four Repeated Questions
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#read-by-workflow-family">
+<span class="md-ellipsis">
+      
+        Read By Workflow Family
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#output-thinking">
+<span class="md-ellipsis">
+      
+        Output Thinking
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#why-public-data-looks-the-way-it-does">
+<span class="md-ellipsis">
+      
+        Why Public Data Looks The Way It Does
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-can-become-better">
+<span class="md-ellipsis">
+      
+        What Can Become Better
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#move-from-concepts-to-code">
+<span class="md-ellipsis">
+      
+        Move From Concepts To Code
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -609,10 +741,10 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_6" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../">
+<a class="md-nav__link" href="../../reference/">
 <span class="md-ellipsis">
     
   
@@ -622,11 +754,11 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
             
@@ -637,7 +769,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../scientific-papers-and-research-repositories/">
+<a class="md-nav__link" href="../../reference/scientific-papers-and-research-repositories/">
 <span class="md-ellipsis">
     
   
@@ -649,7 +781,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../glossary/">
+<a class="md-nav__link" href="../../reference/glossary/">
 <span class="md-ellipsis">
     
   
@@ -661,7 +793,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../abbreviations/">
+<a class="md-nav__link" href="../../reference/abbreviations/">
 <span class="md-ellipsis">
     
   
@@ -673,7 +805,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../standardised-field-constant-variable-names/">
+<a class="md-nav__link" href="../../reference/standardised-field-constant-variable-names/">
 <span class="md-ellipsis">
     
   
@@ -685,7 +817,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../geospatial-learning-resources/">
+<a class="md-nav__link" href="../../reference/geospatial-learning-resources/">
 <span class="md-ellipsis">
     
   
@@ -697,7 +829,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../wonderful-github-repos/">
+<a class="md-nav__link" href="../../reference/wonderful-github-repos/">
 <span class="md-ellipsis">
     
   
@@ -708,20 +840,8 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
-    
-  
-    API Errors
-  
-
-    
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../reference/api-errors/">
 <span class="md-ellipsis">
     
   
@@ -731,239 +851,9 @@
     
   </span>
 </a>
-<nav aria-label="On this page" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#error-response-format">
-<span class="md-ellipsis">
-      
-        Error Response Format
-      
-    </span>
-</a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#error-categories">
-<span class="md-ellipsis">
-      
-        Error Categories
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#400-bad-request">
-<span class="md-ellipsis">
-      
-        400 Bad Request
-      
-    </span>
-</a>
-<nav aria-label="400 Bad Request" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#invalid_parameter">
-<span class="md-ellipsis">
-      
-        INVALID_PARAMETER
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#invalid_json">
-<span class="md-ellipsis">
-      
-        INVALID_JSON
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#validation_error">
-<span class="md-ellipsis">
-      
-        VALIDATION_ERROR
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#missing_field">
-<span class="md-ellipsis">
-      
-        MISSING_FIELD
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#401-unauthorized">
-<span class="md-ellipsis">
-      
-        401 Unauthorized
-      
-    </span>
-</a>
-<nav aria-label="401 Unauthorized" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#unauthorized">
-<span class="md-ellipsis">
-      
-        UNAUTHORIZED
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#invalid_api_key">
-<span class="md-ellipsis">
-      
-        INVALID_API_KEY
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#expired_token">
-<span class="md-ellipsis">
-      
-        EXPIRED_TOKEN
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#403-forbidden">
-<span class="md-ellipsis">
-      
-        403 Forbidden
-      
-    </span>
-</a>
-<nav aria-label="403 Forbidden" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#insufficient_permissions">
-<span class="md-ellipsis">
-      
-        INSUFFICIENT_PERMISSIONS
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#404-not-found">
-<span class="md-ellipsis">
-      
-        404 Not Found
-      
-    </span>
-</a>
-<nav aria-label="404 Not Found" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#resource_not_found">
-<span class="md-ellipsis">
-      
-        RESOURCE_NOT_FOUND
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#429-rate-limited">
-<span class="md-ellipsis">
-      
-        429 Rate Limited
-      
-    </span>
-</a>
-<nav aria-label="429 Rate Limited" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#rate_limited">
-<span class="md-ellipsis">
-      
-        RATE_LIMITED
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#5xx-server-errors">
-<span class="md-ellipsis">
-      
-        5xx Server Errors
-      
-    </span>
-</a>
-<nav aria-label="5xx Server Errors" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#internal_error">
-<span class="md-ellipsis">
-      
-        INTERNAL_ERROR
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#upstream_failure">
-<span class="md-ellipsis">
-      
-        UPSTREAM_FAILURE
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#timeout">
-<span class="md-ellipsis">
-      
-        TIMEOUT
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#practical-debug-order">
-<span class="md-ellipsis">
-      
-        Practical Debug Order
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../license/">
+<a class="md-nav__link" href="../../reference/license/">
 <span class="md-ellipsis">
     
   
@@ -1110,65 +1000,47 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#error-response-format">
+<a class="md-nav__link" href="#the-core-pattern">
 <span class="md-ellipsis">
       
-        Error Response Format
+        The Core Pattern
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#error-categories">
+<a class="md-nav__link" href="#why-core-stack-computes-in-this-shape">
 <span class="md-ellipsis">
       
-        Error Categories
+        Why CoRE Stack Computes In This Shape
       
     </span>
 </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#400-bad-request">
-<span class="md-ellipsis">
-      
-        400 Bad Request
-      
-    </span>
-</a>
-<nav aria-label="400 Bad Request" class="md-nav">
+<nav aria-label="Why CoRE Stack Computes In This Shape" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#invalid_parameter">
+<a class="md-nav__link" href="#1-water-planning-needs-hydrological-logic">
 <span class="md-ellipsis">
       
-        INVALID_PARAMETER
+        1. Water planning needs hydrological logic
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#invalid_json">
+<a class="md-nav__link" href="#2-rasters-are-powerful-but-hard-to-use-directly">
 <span class="md-ellipsis">
       
-        INVALID_JSON
+        2. Rasters are powerful but hard to use directly
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#validation_error">
+<a class="md-nav__link" href="#3-public-infrastructure-should-expose-reusable-building-blocks">
 <span class="md-ellipsis">
       
-        VALIDATION_ERROR
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#missing_field">
-<span class="md-ellipsis">
-      
-        MISSING_FIELD
+        3. Public infrastructure should expose reusable building blocks
       
     </span>
 </a>
@@ -1177,156 +1049,64 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#401-unauthorized">
+<a class="md-nav__link" href="#scientific-ideas-already-embedded-in-the-stack">
 <span class="md-ellipsis">
       
-        401 Unauthorized
-      
-    </span>
-</a>
-<nav aria-label="401 Unauthorized" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#unauthorized">
-<span class="md-ellipsis">
-      
-        UNAUTHORIZED
+        Scientific Ideas Already Embedded In The Stack
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#invalid_api_key">
+<a class="md-nav__link" href="#the-four-repeated-questions">
 <span class="md-ellipsis">
       
-        INVALID_API_KEY
+        The Four Repeated Questions
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#expired_token">
+<a class="md-nav__link" href="#read-by-workflow-family">
 <span class="md-ellipsis">
       
-        EXPIRED_TOKEN
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#403-forbidden">
-<span class="md-ellipsis">
-      
-        403 Forbidden
-      
-    </span>
-</a>
-<nav aria-label="403 Forbidden" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#insufficient_permissions">
-<span class="md-ellipsis">
-      
-        INSUFFICIENT_PERMISSIONS
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#404-not-found">
-<span class="md-ellipsis">
-      
-        404 Not Found
-      
-    </span>
-</a>
-<nav aria-label="404 Not Found" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#resource_not_found">
-<span class="md-ellipsis">
-      
-        RESOURCE_NOT_FOUND
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#429-rate-limited">
-<span class="md-ellipsis">
-      
-        429 Rate Limited
-      
-    </span>
-</a>
-<nav aria-label="429 Rate Limited" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#rate_limited">
-<span class="md-ellipsis">
-      
-        RATE_LIMITED
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#5xx-server-errors">
-<span class="md-ellipsis">
-      
-        5xx Server Errors
-      
-    </span>
-</a>
-<nav aria-label="5xx Server Errors" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#internal_error">
-<span class="md-ellipsis">
-      
-        INTERNAL_ERROR
+        Read By Workflow Family
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#upstream_failure">
+<a class="md-nav__link" href="#output-thinking">
 <span class="md-ellipsis">
       
-        UPSTREAM_FAILURE
+        Output Thinking
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#timeout">
+<a class="md-nav__link" href="#why-public-data-looks-the-way-it-does">
 <span class="md-ellipsis">
       
-        TIMEOUT
+        Why Public Data Looks The Way It Does
       
     </span>
 </a>
 </li>
-</ul>
-</nav>
-</li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#practical-debug-order">
+<a class="md-nav__link" href="#what-can-become-better">
 <span class="md-ellipsis">
       
-        Practical Debug Order
+        What Can Become Better
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#move-from-concepts-to-code">
+<span class="md-ellipsis">
+      
+        Move From Concepts To Code
       
     </span>
 </a>
@@ -1347,152 +1127,257 @@
 </a>
 </li>
 <li class="md-path__item">
-<a class="md-path__link" href="../">
+<a class="md-path__link" href="../watershed-data-structure/">
 <span class="md-ellipsis">
-    References / Learn
+    Understand CoRE Stack Data Structure
   </span>
 </a>
 </li>
 </ol>
 </nav>
 <article class="md-content__inner md-typeset">
-<h1 id="api-errors-reference">API Errors Reference<a class="headerlink" href="#api-errors-reference" title="Permanent link">¶</a></h1>
-<p>Complete reference for common error shapes and categories documented for the CoRE Stack API.</p>
+<h1 id="how-our-pipelines-work-algorithmically">How Our Pipelines Work Algorithmically<a class="headerlink" href="#how-our-pipelines-work-algorithmically" title="Permanent link">¶</a></h1>
+<p>This page is about the scientific and analytical logic behind the pipeline families.</p>
+<p>It answers:</p>
+<ul>
+<li>what question does each workflow family answer?</li>
+<li>why did CoRE Stack choose to compute these things this way?</li>
+<li>what are the key inputs and modeling moves?</li>
+<li>what kind of outputs come out?</li>
+<li>where can future contributors improve the science or extend the stack?</li>
+</ul>
 <hr/>
-<h2 id="error-response-format">Error Response Format<a class="headerlink" href="#error-response-format" title="Permanent link">¶</a></h2>
-<p>All errors should be understandable enough for both API users and maintainers to debug quickly.</p>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="p">{</span>
-</span><span id="__span-0-2"><a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span>
-</span><span id="__span-0-3"><a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">  </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-4"><a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ERROR_CODE"</span><span class="p">,</span>
-</span><span id="__span-0-5"><a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Human-readable description"</span><span class="p">,</span>
-</span><span id="__span-0-6"><a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">    </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
-</span><span id="__span-0-7"><a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">    </span><span class="nt">"request_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req-uuid-for-support"</span>
-</span><span id="__span-0-8"><a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">  </span><span class="p">}</span>
-</span><span id="__span-0-9"><a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="p">}</span>
-</span></code></pre></div>
+<h2 id="the-core-pattern">The Core Pattern<a class="headerlink" href="#the-core-pattern" title="Permanent link">¶</a></h2>
+<p>Most CoRE Stack pipelines follow the same conceptual shape:</p>
+<pre class="mermaid"><code>flowchart LR
+    A[Source rasters, time series, boundaries, or networks] --&gt; B[Scientific or analytical transformation]
+    B --&gt; C[Vectorization or aggregation onto standard units]
+    C --&gt; D[Joinable outputs keyed to watersheds, villages, or other entities]
+    D --&gt; E[APIs, STAC, dashboards, and reports]</code></pre>
+<p>This matters because CoRE Stack is not trying to answer one question once. It is trying to build reusable public infrastructure.</p>
+<p>So the stack favors:</p>
+<ul>
+<li>standard units</li>
+<li>repeatable computations</li>
+<li>outputs that are interpretable outside the original notebook or script</li>
+<li>data that can be recombined later</li>
+</ul>
 <hr/>
-<h2 id="error-categories">Error Categories<a class="headerlink" href="#error-categories" title="Permanent link">¶</a></h2>
-<pre class="mermaid"><code>graph TD
-    A[API Errors] --&gt; B[Client Errors 4xx]
-    A --&gt; C[Server Errors 5xx]
-
-    B --&gt; D[400 Bad Request]
-    B --&gt; E[401 Unauthorized]
-    B --&gt; F[403 Forbidden]
-    B --&gt; G[404 Not Found]
-    B --&gt; H[429 Rate Limited]
-
-    C --&gt; I[500 Internal Error]
-    C --&gt; J[502 Bad Gateway]
-    C --&gt; K[504 Timeout]</code></pre>
+<h2 id="why-core-stack-computes-in-this-shape">Why CoRE Stack Computes In This Shape<a class="headerlink" href="#why-core-stack-computes-in-this-shape" title="Permanent link">¶</a></h2>
+<h3 id="1-water-planning-needs-hydrological-logic">1. Water planning needs hydrological logic<a class="headerlink" href="#1-water-planning-needs-hydrological-logic" title="Permanent link">¶</a></h3>
+<p>Administrative names are useful for people, but water moves through catchments, drainage lines, and watershed networks.</p>
+<p>That is why CoRE Stack starts from hydrological units and then crosswalks back to administrative ones.</p>
+<h3 id="2-rasters-are-powerful-but-hard-to-use-directly">2. Rasters are powerful but hard to use directly<a class="headerlink" href="#2-rasters-are-powerful-but-hard-to-use-directly" title="Permanent link">¶</a></h3>
+<p>Many foundational inputs are raster-like:</p>
+<ul>
+<li>elevation</li>
+<li>rainfall</li>
+<li>satellite observations</li>
+<li>land-cover predictions</li>
+<li>derived terrain surfaces</li>
+</ul>
+<p>But most downstream users want:</p>
+<ul>
+<li>tables</li>
+<li>vector layers</li>
+<li>ranked units</li>
+<li>reports</li>
+</ul>
+<p>So CoRE Stack repeatedly turns raster evidence into vectorized, indexed, joinable outputs.</p>
+<h3 id="3-public-infrastructure-should-expose-reusable-building-blocks">3. Public infrastructure should expose reusable building blocks<a class="headerlink" href="#3-public-infrastructure-should-expose-reusable-building-blocks" title="Permanent link">¶</a></h3>
+<p>The stack does not try to centrally publish every possible policy question.</p>
+<p>Instead it publishes canonical layers and indicators that others can recombine for:</p>
+<ul>
+<li>river rejuvenation</li>
+<li>restoration planning</li>
+<li>drought analysis</li>
+<li>irrigation and cropping questions</li>
+<li>community-facing tools</li>
+</ul>
 <hr/>
-<h2 id="400-bad-request">400 Bad Request<a class="headerlink" href="#400-bad-request" title="Permanent link">¶</a></h2>
-<h3 id="invalid_parameter"><code>INVALID_PARAMETER</code><a class="headerlink" href="#invalid_parameter" title="Permanent link">¶</a></h3>
-<p>The request contains invalid or missing parameters.</p>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="p">{</span>
-</span><span id="__span-1-2"><a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="p">,</span>
-</span><span id="__span-1-3"><a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">  </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-4"><a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INVALID_PARAMETER"</span><span class="p">,</span>
-</span><span id="__span-1-5"><a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid or missing required parameters"</span><span class="p">,</span>
-</span><span id="__span-1-6"><a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">    </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-7"><a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">      </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"State 'unknown' not found"</span><span class="p">,</span>
-</span><span id="__span-1-8"><a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">      </span><span class="nt">"year"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Year must be between 2015 and 2024"</span>
-</span><span id="__span-1-9"><a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-1-10"><a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">  </span><span class="p">}</span>
-</span><span id="__span-1-11"><a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="p">}</span>
-</span></code></pre></div>
-<h3 id="invalid_json"><code>INVALID_JSON</code><a class="headerlink" href="#invalid_json" title="Permanent link">¶</a></h3>
-<p>The request body contains malformed JSON.</p>
-<h3 id="validation_error"><code>VALIDATION_ERROR</code><a class="headerlink" href="#validation_error" title="Permanent link">¶</a></h3>
-<p>Request parameters failed validation rules.</p>
-<h3 id="missing_field"><code>MISSING_FIELD</code><a class="headerlink" href="#missing_field" title="Permanent link">¶</a></h3>
-<p>Required field is missing from the request.</p>
+<h2 id="scientific-ideas-already-embedded-in-the-stack">Scientific Ideas Already Embedded In The Stack<a class="headerlink" href="#scientific-ideas-already-embedded-in-the-stack" title="Permanent link">¶</a></h2>
 <table>
 <thead>
 <tr>
-<th>Field</th>
-<th>Description</th>
+<th>Idea</th>
+<th>How it shows up in CoRE Stack</th>
+<th>Why it matters</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>state</code></td>
-<td>State name is required</td>
+<td>watershed hydrology</td>
+<td>micro-watershed registry, catchments, drainage, runoff-oriented reasoning</td>
+<td>water moves through connected landscapes</td>
 </tr>
 <tr>
-<td><code>district</code></td>
-<td>District name is required</td>
+<td>land-surface classification</td>
+<td>LULC workflows and change layers</td>
+<td>many planning questions begin with what is on the land now and how it changed</td>
 </tr>
 <tr>
-<td><code>block</code></td>
-<td>Block name is required</td>
+<td>water balance reasoning</td>
+<td>rainfall, evapotranspiration, runoff, and related hydrology layers</td>
+<td>gives a first planning lens on water availability and stress</td>
 </tr>
 <tr>
-<td><code>year</code></td>
-<td>Year is required for temporal analyses</td>
+<td>zonal statistics</td>
+<td>raster signals summarized onto MWS, villages, or other units</td>
+<td>makes outputs comparable and joinable</td>
+</tr>
+<tr>
+<td>network analysis</td>
+<td>upstream and downstream watershed connectivity</td>
+<td>important for river and catchment-scale interventions</td>
+</tr>
+<tr>
+<td>spatial enrichment</td>
+<td>admin overlays, aquifer joins, facilities proximity, asset layers</td>
+<td>connects hydrological analysis to implementation reality</td>
 </tr>
 </tbody>
 </table>
 <hr/>
-<h2 id="401-unauthorized">401 Unauthorized<a class="headerlink" href="#401-unauthorized" title="Permanent link">¶</a></h2>
-<h3 id="unauthorized"><code>UNAUTHORIZED</code><a class="headerlink" href="#unauthorized" title="Permanent link">¶</a></h3>
-<p>Request lacks valid authentication credentials.</p>
-<p>Typical fixes:</p>
-<ul>
-<li>add <code>X-API-Key</code> for public data APIs</li>
-<li>add <code>Authorization: Bearer ...</code> for JWT-protected APIs</li>
-<li>confirm which auth mode the target API actually uses</li>
-</ul>
-<h3 id="invalid_api_key"><code>INVALID_API_KEY</code><a class="headerlink" href="#invalid_api_key" title="Permanent link">¶</a></h3>
-<p>The provided API key is invalid or malformed.</p>
-<h3 id="expired_token"><code>EXPIRED_TOKEN</code><a class="headerlink" href="#expired_token" title="Permanent link">¶</a></h3>
-<p>The provided bearer token has expired and needs refresh or re-login.</p>
-<hr/>
-<h2 id="403-forbidden">403 Forbidden<a class="headerlink" href="#403-forbidden" title="Permanent link">¶</a></h2>
-<h3 id="insufficient_permissions"><code>INSUFFICIENT_PERMISSIONS</code><a class="headerlink" href="#insufficient_permissions" title="Permanent link">¶</a></h3>
-<p>The caller is authenticated but not allowed to perform the requested action.</p>
-<p>Common causes:</p>
-<ul>
-<li>a user is outside the required organization scope</li>
-<li>an API requires superadmin or organization admin privileges</li>
-<li>a project assignment does not match the user's organization</li>
-</ul>
-<hr/>
-<h2 id="404-not-found">404 Not Found<a class="headerlink" href="#404-not-found" title="Permanent link">¶</a></h2>
-<h3 id="resource_not_found"><code>RESOURCE_NOT_FOUND</code><a class="headerlink" href="#resource_not_found" title="Permanent link">¶</a></h3>
-<p>The requested API path, object, or dataset does not exist.</p>
-<p>Typical examples:</p>
-<ul>
-<li>wrong district or block name</li>
-<li>wrong organization or project identifier</li>
-<li>stale layer or dataset URL</li>
-</ul>
-<hr/>
-<h2 id="429-rate-limited">429 Rate Limited<a class="headerlink" href="#429-rate-limited" title="Permanent link">¶</a></h2>
-<h3 id="rate_limited"><code>RATE_LIMITED</code><a class="headerlink" href="#rate_limited" title="Permanent link">¶</a></h3>
-<p>The caller has sent too many requests in a short period.</p>
-<p>Typical response guidance:</p>
-<ul>
-<li>retry after waiting</li>
-<li>reduce polling frequency</li>
-<li>batch requests where possible</li>
-</ul>
-<hr/>
-<h2 id="5xx-server-errors">5xx Server Errors<a class="headerlink" href="#5xx-server-errors" title="Permanent link">¶</a></h2>
-<h3 id="internal_error"><code>INTERNAL_ERROR</code><a class="headerlink" href="#internal_error" title="Permanent link">¶</a></h3>
-<p>The backend failed in an unexpected way.</p>
-<h3 id="upstream_failure"><code>UPSTREAM_FAILURE</code><a class="headerlink" href="#upstream_failure" title="Permanent link">¶</a></h3>
-<p>A dependency such as GeoServer, Earth Engine, or another external system failed or returned an invalid response.</p>
-<h3 id="timeout"><code>TIMEOUT</code><a class="headerlink" href="#timeout" title="Permanent link">¶</a></h3>
-<p>The backend or an upstream job exceeded a time limit.</p>
-<hr/>
-<h2 id="practical-debug-order">Practical Debug Order<a class="headerlink" href="#practical-debug-order" title="Permanent link">¶</a></h2>
+<h2 id="the-four-repeated-questions">The Four Repeated Questions<a class="headerlink" href="#the-four-repeated-questions" title="Permanent link">¶</a></h2>
+<p>Most CoRE Stack computations are trying to answer one of four broad questions:</p>
 <ol>
-<li>Confirm and test the API path, as documented in <a href="../../use-precomputed-data/public-apis/">Public APIs</a>.</li>
-<li>Check spelling and case for geographic names and IDs.</li>
-<li>For developer-side task flows, compare against the manual run path in <a href="../../pipelines/#first-manual-run">Build Pipelines</a>.</li>
+<li>What is on the land or water surface now or over time?</li>
+<li>How does water move, accumulate, or become available across a landscape?</li>
+<li>Which administrative or ecological boundaries matter for planning?</li>
+<li>Which places deserve attention, restoration, protection, or follow-up action?</li>
 </ol>
+<hr/>
+<h2 id="read-by-workflow-family">Read By Workflow Family<a class="headerlink" href="#read-by-workflow-family" title="Permanent link">¶</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><input id="__tabbed_1_4" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Core Workflows</label><label for="__tabbed_1_2">Boundary and Enrichment</label><label for="__tabbed_1_3">Raster and Drainage</label><label for="__tabbed_1_4">Time Series and Ops</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>LULC generation</strong></p>
+<ul>
+<li>Inputs: satellite imagery, time windows, region of interest</li>
+<li>Logic: classify land into stable categories over a place and period, then use those classes to support later derived indicators such as cropping intensity and change</li>
+<li>Outputs: land-use rasters, class summaries, downstream planning layers</li>
+</ul>
+<p><strong>Surface water body detection</strong></p>
+<ul>
+<li>Inputs: imagery and water-sensitive signals over time</li>
+<li>Logic: identify waterbody extent and track changes or supporting measures, then attach those measurements back to stable hydrological units</li>
+<li>Outputs: vector waterbodies, area summaries, waterbody analytics</li>
+</ul>
+<p><strong>Hydrology</strong></p>
+<ul>
+<li>Inputs: rainfall, terrain, watershed boundaries, derived coefficients</li>
+<li>Logic: estimate runoff, recharge, evapotranspiration, and related watershed behavior so that water availability can be reasoned about at watershed scale</li>
+<li>Outputs: MWS-level indicators, seasonal summaries, hydrological layers</li>
+</ul>
+<p><strong>Terrain analysis</strong></p>
+<ul>
+<li>Inputs: DEM-derived surfaces</li>
+<li>Logic: derive slope, depressions, terrain classes, drainage support layers</li>
+<li>Outputs: terrain rasters and planning-oriented derived layers</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p><strong>Administrative and clipping workflows</strong></p>
+<ul>
+<li>Inputs: state, district, block, watershed, or pan-India source layers</li>
+<li>Logic: clip, filter, and normalize boundaries or thematic datasets to the requested geography while preserving stable keys</li>
+<li>Outputs: ready-to-publish vector layers and metadata</li>
+</ul>
+<p><strong>Enrichment workflows</strong></p>
+<ul>
+<li>Inputs: base geometries plus tabular or external thematic sources</li>
+<li>Logic: attach nearest-distance, class, dominant condition, or joined statistics</li>
+<li>Outputs: enriched vector layers and planning-ready attributes</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p><strong>Drainage and stream derivatives</strong></p>
+<ul>
+<li>Inputs: DEM, hydrological derivatives, watershed context</li>
+<li>Logic: derive drainage lines, stream order, catchment structure, connectivity support, and proximity surfaces</li>
+<li>Outputs: raster or vector drainage-support layers</li>
+</ul>
+<p><strong>Raster planning derivatives</strong></p>
+<ul>
+<li>Inputs: terrain, hydrology, and related modeled inputs</li>
+<li>Logic: produce interpretable surfaces for restoration or prioritization</li>
+<li>Outputs: clipped rasters and summary-ready layers</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p><strong>Temporal vegetation workflows</strong></p>
+<ul>
+<li>Inputs: NDVI-like series, interpolation support, seasonal time windows</li>
+<li>Logic: summarize vegetation dynamics over time so that seasonality, change, and resilience can be compared between units</li>
+<li>Outputs: time-series tables, class summaries, comparison-ready outputs</li>
+</ul>
+<p><strong>Operational helpers</strong></p>
+<ul>
+<li>Inputs: credentials, service wiring, reusable pipeline inputs</li>
+<li>Logic: make the analytical workflows runnable and publishable</li>
+<li>Outputs: successful execution, not new science by itself</li>
+</ul>
+</div>
+</div>
+</input></input></input></input></div>
+<hr/>
+<h2 id="output-thinking">Output Thinking<a class="headerlink" href="#output-thinking" title="Permanent link">¶</a></h2>
+<p>One useful way to think about the pipeline families is by output type:</p>
+<table>
+<thead>
+<tr>
+<th>Output type</th>
+<th>Typical families</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>raster</td>
+<td>LULC, terrain, drought, slope, restoration</td>
+<td>good for continuous or classified surfaces</td>
+</tr>
+<tr>
+<td>vector</td>
+<td>waterbodies, boundaries, facilities, aquifer joins</td>
+<td>good for inspection, download, and attribute tables</td>
+</tr>
+<tr>
+<td>tabular</td>
+<td>tehsil summaries, MWS indicators, time series</td>
+<td>good for ranking, reporting, and joins</td>
+</tr>
+<tr>
+<td>mixed</td>
+<td>hydrology, restoration, proximity, SWB ecosystems</td>
+<td>most useful public products combine multiple output types</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="why-public-data-looks-the-way-it-does">Why Public Data Looks The Way It Does<a class="headerlink" href="#why-public-data-looks-the-way-it-does" title="Permanent link">¶</a></h2>
+<p>The public API is not a random collection of endpoints.</p>
+<p>It reflects the fact that CoRE Stack’s pipeline families naturally create:</p>
+<ul>
+<li>stable geometries</li>
+<li>joinable tables keyed by watershed identifiers</li>
+<li>downloadable layers</li>
+<li>metadata that points onward to GeoServer, reports, STAC items, or Earth Engine assets</li>
+</ul>
+<hr/>
+<h2 id="what-can-become-better">What Can Become Better<a class="headerlink" href="#what-can-become-better" title="Permanent link">¶</a></h2>
+<p>If you think an algorithm, assumptions, data output, or modeling choices can be improved, that is a feature request for the stack, not a problem to hide.</p>
+<p>Possible examples:</p>
+<ul>
+<li>richer groundwater-aware modeling</li>
+<li>clearer uncertainty reporting and validation notes</li>
+<li>more open truthing datasets for classification and waterbody workflows</li>
+<li>reliable administrative and hydrological intersection for village and panchayat-level planning</li>
+<li>new standard outputs where the public value is high enough to justify long-term maintenance</li>
+</ul>
+<hr/>
+<h2 id="move-from-concepts-to-code">Move From Concepts To Code<a class="headerlink" href="#move-from-concepts-to-code" title="Permanent link">¶</a></h2>
+<p>When you are comfortable with the analytical logic, the next useful section usually is to use <a href="../../use-precomputed-data/public-apis/">public data</a> extend the stack, continue into <a href="../../pipelines/">Build New Pipelines</a>.</p>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>

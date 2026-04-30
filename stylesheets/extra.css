@@ -26,8 +26,50 @@ html {
 }
 
 /* Code block improvements */
+.md-typeset div.highlight,
+.md-typeset pre,
+.md-typeset pre > code {
+  background-color: #0b0f14;
+}
+
 .md-typeset pre > code {
   border-radius: 0.25rem;
+}
+
+.md-typeset .highlight code,
+.md-typeset .highlight pre {
+  color: #e6edf3;
+}
+
+.md-typeset .highlight span {
+  color: #e6edf3;
+}
+
+.md-typeset .highlight .k,
+.md-typeset .highlight .kn,
+.md-typeset .highlight .kd {
+  color: #ff7b72;
+}
+
+.md-typeset .highlight .s,
+.md-typeset .highlight .s1,
+.md-typeset .highlight .s2 {
+  color: #a5d6ff;
+}
+
+.md-typeset .highlight .c,
+.md-typeset .highlight .c1 {
+  color: #8b949e;
+}
+
+.md-typeset .highlight .nf,
+.md-typeset .highlight .fm {
+  color: #d2a8ff;
+}
+
+.md-typeset .highlight .mi,
+.md-typeset .highlight .mf {
+  color: #79c0ff;
 }
 
 /* Table styling improvements */
