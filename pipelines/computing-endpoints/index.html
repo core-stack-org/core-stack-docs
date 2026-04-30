@@ -27,7 +27,7 @@
     
     
       
-        <title>Computing API Paths - CoRE Stack Documentation</title>
+        <title>Computing API Endpoints - CoRE Stack Documentation</title>
       
     
     
@@ -63,7 +63,7 @@
     
   
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Computing API Paths - CoRE Stack Documentation" />
+<meta property="og:title" content="Computing API Endpoints - CoRE Stack Documentation" />
 <meta property="og:description" content="API-path view of the CoRE Stack Computing API, with links into the pipeline families each path belongs to." />
 <meta property="og:image" content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/pipelines/computing-endpoints.png" />
 <meta property="og:image:type" content="image/png" />
@@ -71,7 +71,7 @@
 <meta property="og:image:height" content="630" />
 <meta property="og:url" content="https://core-stack-org.github.io/core-stack-docs/pipelines/computing-endpoints/" />
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:title" content="Computing API Paths - CoRE Stack Documentation" />
+<meta property="twitter:title" content="Computing API Endpoints - CoRE Stack Documentation" />
 <meta property="twitter:description" content="API-path view of the CoRE Stack Computing API, with links into the pipeline families each path belongs to." />
 <meta property="twitter:image" content="https://core-stack-org.github.io/core-stack-docs/assets/images/social/pipelines/computing-endpoints.png" />
 </head>
@@ -93,7 +93,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#computing-api-paths" class="md-skip">
+        <a href="#computing-api-endpoints" class="md-skip">
           Skip to content
         </a>
       
@@ -128,7 +128,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Computing API Paths
+              Computing API Endpoints
             
           </span>
         </div>
@@ -1006,17 +1006,6 @@
     <span class="md-ellipsis">
       
         Complete Computing API Inventory
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-these-apis-map-to-pipelines" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How These APIs Map To Pipelines
       
     </span>
   </a>
@@ -2223,17 +2212,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-these-apis-map-to-pipelines" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How These APIs Map To Pipelines
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#api-path-reference" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2406,7 +2384,7 @@
   
 
 
-<h1 id="computing-api-paths">Computing API Paths<a class="headerlink" href="#computing-api-paths" title="Permanent link">&para;</a></h1>
+<h1 id="computing-api-endpoints">Computing API Endpoints<a class="headerlink" href="#computing-api-endpoints" title="Permanent link">&para;</a></h1>
 <p>The Computing API is the developer-facing surface that triggers CoRE Stack computations. Most handlers queue work and return quickly while pipeline modules do the heavy tasks.</p>
 <p>This page is the API path guide. For implementation flow, export helpers, and reusable patterns, start with <a href="../">Build Pipelines</a> and the <a href="../#pipeline-patterns">Pipeline Patterns</a> section.</p>
 <hr />
@@ -2427,53 +2405,6 @@
 <p class="admonition-title">Before you use these APIs</p>
 <p>Most <code>POST</code> request bodies include <code>gee_account_id</code>; configure Google Earth Engine first. Keep the Django server and Celery worker running for long computations. Project-backed plantation APIs also need database-side project, KML, and plantation-profile setup.</p>
 </div>
-<h2 id="how-these-apis-map-to-pipelines">How These APIs Map To Pipelines<a class="headerlink" href="#how-these-apis-map-to-pipelines" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>API Purpose</th>
-<th>What it does</th>
-<th>Usual pattern</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Workspace, publication, and status</td>
-<td>manages GeoServer workspaces, layer records, sync flags, and task status</td>
-<td>integration/control APIs</td>
-</tr>
-<tr>
-<td>Boundary and MWS scaffolding</td>
-<td>creates admin, MWS, centroid, connectivity, and zone-of-influence layers</td>
-<td>vector generation</td>
-</tr>
-<tr>
-<td>Hydrology, land use, and time series</td>
-<td>produces hydrology, LULC, cropping intensity, and NDVI outputs</td>
-<td>raster, vector, and time-series generation</td>
-</tr>
-<tr>
-<td>Terrain, drought, change, tree health, and plantation</td>
-<td>produces terrain derivatives, drought outputs, change products, tree-health layers, and plantation suitability</td>
-<td>raster and mixed generation</td>
-</tr>
-<tr>
-<td>Water, drainage, and restoration</td>
-<td>produces SWB, ponds, wells, drainage, stream order, restoration, and terrain-water derivatives</td>
-<td>raster, vector, and mixed generation</td>
-</tr>
-<tr>
-<td>Enrichment and planning overlays</td>
-<td>adds external planning overlays onto CoRE Stack landscape units</td>
-<td>local/tabular data and vector generation</td>
-</tr>
-<tr>
-<td>Catalog and STAC</td>
-<td>publishes or reads catalog metadata for generated layers</td>
-<td>catalog publication</td>
-</tr>
-</tbody>
-</table>
 <hr />
 <h2 id="api-path-reference">API Path Reference<a class="headerlink" href="#api-path-reference" title="Permanent link">&para;</a></h2>
 <h3 id="layer-utilities">Layer Utilities<a class="headerlink" href="#layer-utilities" title="Permanent link">&para;</a></h3>
