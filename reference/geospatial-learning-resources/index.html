@@ -1820,6 +1820,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#climate-and-sustainability-platforms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Climate and Sustainability Platforms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#climate-ai-and-geospatial-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Climate AI and Geospatial Embeddings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Climate AI and Geospatial Embeddings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beta-earth-global" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beta Earth Global
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#agriculture-and-land-systems" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2508,6 +2547,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#climate-and-sustainability-platforms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Climate and Sustainability Platforms
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#climate-ai-and-geospatial-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Climate AI and Geospatial Embeddings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Climate AI and Geospatial Embeddings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beta-earth-global" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Beta Earth Global
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#agriculture-and-land-systems" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2744,6 +2822,28 @@
 <h2 id="hydrology-and-water-learning">Hydrology and Water Learning<a class="headerlink" href="#hydrology-and-water-learning" title="Permanent link">&para;</a></h2>
 <h3 id="usgs-water-science-school"><a href="https://www.usgs.gov/water-science-school">USGS Water Science School</a><a class="headerlink" href="#usgs-water-science-school" title="Permanent link">&para;</a></h3>
 <p>Useful for foundational concepts around the water cycle, groundwater, surface water, and water quality.</p>
+<hr />
+<hr />
+<h2 id="climate-and-sustainability-platforms">Climate and Sustainability Platforms<a class="headerlink" href="#climate-and-sustainability-platforms" title="Permanent link">&para;</a></h2>
+<hr />
+<h2 id="climate-ai-and-geospatial-embeddings">Climate AI and Geospatial Embeddings<a class="headerlink" href="#climate-ai-and-geospatial-embeddings" title="Permanent link">&para;</a></h2>
+<h3 id="beta-earth-global"><a href="https://www.betaearth.global/">Beta Earth Global</a><a class="headerlink" href="#beta-earth-global" title="Permanent link">&para;</a></h3>
+<p>Beta Earth Global is an open platform for climate and sustainability data, with a strong developer focus. It provides tools, models, and pipelines for generating geospatial embeddings from Sentinel‑1 and Sentinel‑2 imagery, emulating Google’s AlphaEarth Foundations but running fully locally.</p>
+<p>Why it fits CoRE Stack:</p>
+<ul>
+<li><strong>Open pipeline</strong> — training data, weights, and inference code are all public, making it a reference for multimodal Earth‑observation embeddings.</li>
+<li><strong>Local generation</strong> — unlike AlphaEarth’s annual rasters inside Earth Engine, BetaEarth can run on any Sentinel scene locally, useful for custom temporal windows or offline deployments.</li>
+<li><strong>Developer‑ready</strong> — installable via <code>pip install betaearth</code>, with CLI (<code>betaearth-generate</code>), Colab notebooks, and a Streamlit app for quick experiments.</li>
+<li><strong>Flexible inputs</strong> — supports Sentinel‑2 L1C/L2A, Sentinel‑1 RTC, DEM, and day‑of‑year conditioning; handles missing modalities gracefully.</li>
+<li><strong>Research utility</strong> — useful for studying modality attribution, temporal aggregation, compression, and downstream land‑use classification accuracy.</li>
+</ul>
+<p>Start here:</p>
+<ul>
+<li><a href="https://github.com/asterisk-labs/beta-earth">GitHub Repository</a></li>
+<li><a href="https://huggingface.co/spaces/asterisk-labs/beta-earth">Quickstart Notebook</a></li>
+<li><code>pip install betaearth</code> → <code>from betaearth import BetaEarth</code></li>
+</ul>
+<p>This resource is especially relevant for developers who want to explore embedding‑based workflows, test multimodal fusion strategies, or integrate open climate AI models into CoRE Stack pipelines.</p>
 <hr />
 <h2 id="agriculture-and-land-systems">Agriculture and Land Systems<a class="headerlink" href="#agriculture-and-land-systems" title="Permanent link">&para;</a></h2>
 <h3 id="arset-agriculture-trainings"><a href="https://www.earthdata.nasa.gov/data/projects/arset">ARSET agriculture trainings</a><a class="headerlink" href="#arset-agriculture-trainings" title="Permanent link">&para;</a></h3>
