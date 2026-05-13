@@ -1,0 +1,4 @@
+required-version = ">=0.10.0"
+link-mode = "copy"
+python-preference = "managed"
+python-downloads = "manual"

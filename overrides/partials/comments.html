@@ -1,0 +1,44 @@
+{% if not config.extra.offline_mode and page.meta.comments and config.extra.giscus.repo and config.extra.giscus.repo_id and config.extra.giscus.category_id %}
+  <h2 id="__comments">{{ lang.t("meta.comments") }}</h2>
+  <script
+    src="https://giscus.app/client.js"
+    data-repo="{{ config.extra.giscus.repo }}"
+    data-repo-id="{{ config.extra.giscus.repo_id }}"
+    data-category="{{ config.extra.giscus.category }}"
+    data-category-id="{{ config.extra.giscus.category_id }}"
+    data-mapping="{{ config.extra.giscus.mapping }}"
+    data-strict="{{ config.extra.giscus.strict }}"
+    data-reactions-enabled="{{ config.extra.giscus.reactions_enabled }}"
+    data-emit-metadata="{{ config.extra.giscus.emit_metadata }}"
+    data-input-position="{{ config.extra.giscus.input_position }}"
+    data-lang="{{ config.extra.giscus.lang }}"
+    data-loading="{{ config.extra.giscus.loading }}"
+    crossorigin="anonymous"
+    async
+  ></script>
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate" ? "transparent_dark" : "light"
+      giscus.setAttribute("data-theme", theme)
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      if (!ref) return
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate" ? "transparent_dark" : "light"
+          var frame = document.querySelector(".giscus-frame")
+          if (frame && frame.contentWindow) {
+            frame.contentWindow.postMessage(
+              { giscus: { setConfig: { theme: theme } } },
+              "https://giscus.app"
+            )
+          }
+        }
+      })
+    })
+  </script>
+{% endif %}

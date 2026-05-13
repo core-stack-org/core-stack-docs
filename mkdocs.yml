@@ -1,6 +1,6 @@
 site_name: CoRE Stack Documentation
 site_description: Community Resource Planning Stack - open geospatial infrastructure for public data access, computation pipelines, and grounded planning.
-site_url: !ENV [SITE_URL, https://core-stack-org.github.io/core-stack-docs/]
+site_url: !ENV [SITE_URL, https://docs.core-stack.org/]
 copyright: CoRE Stack — A commoning approach — Tech stacks for communities; 2026; Released under the GNU AGPL v3.0 — ensuring freedom, transparency, and recognition of collective contributions.
 
 repo_name: core-stack-org/core-stack-backend
