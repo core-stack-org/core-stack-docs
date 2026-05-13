@@ -18,7 +18,6 @@ https://github.com/core-stack-org/core-stack-docs/
 
 Use `main` as the GitHub default branch.
 
-Do not use `gh-pages` as the default branch. It contains generated static files only. Developers should land on `main`, where the source docs, README, `mkdocs.yml`, lockfile, and release SOP live.
 
 ```text
 developer branch -> dev -> staging -> main -> gh-pages
