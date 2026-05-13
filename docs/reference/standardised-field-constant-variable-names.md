@@ -23,7 +23,6 @@ Use this page to reduce naming drift across new development, APIs, pipeline outp
 | Prefer | Avoid | Why |
 |--------|-------|-----|
 | `uid` | `id` for watershed-specific joins | clearer for shared spatial joins |
-| `village_census2011_id` | unique census2011 based village `id` for village joins | standardised uid key |
 | `state`, `district`, `block` | mixed admin naming in the same example | keeps request examples consistent |
 | `gee_asset_path` | ad hoc GEE path field names | matches public metadata already exposed |
 | `layer_url` | multiple vague download field names | keeps delivery surfaces understandable |
