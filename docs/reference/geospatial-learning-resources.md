@@ -105,6 +105,36 @@ Useful for foundational concepts around the water cycle, groundwater, surface wa
 
 ---
 
+---
+
+## Climate and Sustainability Platforms
+
+---
+
+## Climate AI and Geospatial Embeddings
+
+### [Beta Earth Global](https://www.betaearth.global/)
+
+Beta Earth Global is an open platform for climate and sustainability data, with a strong developer focus. It provides tools, models, and pipelines for generating geospatial embeddings from Sentinel‑1 and Sentinel‑2 imagery, emulating Google’s AlphaEarth Foundations but running fully locally.
+
+Why it fits CoRE Stack:
+
+- **Open pipeline** — training data, weights, and inference code are all public, making it a reference for multimodal Earth‑observation embeddings.
+- **Local generation** — unlike AlphaEarth’s annual rasters inside Earth Engine, BetaEarth can run on any Sentinel scene locally, useful for custom temporal windows or offline deployments.
+- **Developer‑ready** — installable via `pip install betaearth`, with CLI (`betaearth-generate`), Colab notebooks, and a Streamlit app for quick experiments.
+- **Flexible inputs** — supports Sentinel‑2 L1C/L2A, Sentinel‑1 RTC, DEM, and day‑of‑year conditioning; handles missing modalities gracefully.
+- **Research utility** — useful for studying modality attribution, temporal aggregation, compression, and downstream land‑use classification accuracy.
+
+Start here:
+
+- [GitHub Repository](https://github.com/asterisk-labs/beta-earth)
+- [Quickstart Notebook](https://huggingface.co/spaces/asterisk-labs/beta-earth)
+- `pip install betaearth` → `from betaearth import BetaEarth`
+
+This resource is especially relevant for developers who want to explore embedding‑based workflows, test multimodal fusion strategies, or integrate open climate AI models into CoRE Stack pipelines.
+
+---
+
 ## Agriculture and Land Systems
 
 ### [ARSET agriculture trainings](https://www.earthdata.nasa.gov/data/projects/arset)
