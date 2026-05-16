@@ -137,6 +137,8 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Server:
+      - server/index.md
   - Understand CoRE Stack Data Structure:
       - concepts/watershed-data-structure.md
       - How Our Pipelines Work Algorithmically: concepts/how-pipelines-work-algorithmically.md           
