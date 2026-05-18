@@ -14,110 +14,156 @@ Shared topics (integrations, troubleshooting, installer flags) apply to both pat
 
 ## Installation
 
+Both paths use the **same backend installer** (`installation/install.sh` in [core-stack-backend](https://github.com/core-stack-org/core-stack-backend)) for configuration, credentials, and the API test user. Steps 1–8 below match between native and Docker; only Step 3 (how the runtime is provisioned) and Step 8 (where you run processes) differ.
+
+| Step | What you do |
+| --- | --- |
+| 1 | Prerequisites |
+| 2 | Clone the backend repository |
+| 3 | Provision the runtime — native full install **or** Docker containers |
+| 4 | GEE service account JSON key (optional) |
+| 5 | GCS bucket (optional) |
+| 6 | GeoServer (optional) |
+| 7 | Data paths in `nrm_app/.env` |
+| 8 | Start the runtime |
+| 9 | [Log in and invoke APIs](#step-9-log-in-and-invoke-apis) (shared below) |
+
 === "Native (Linux)"
 
-    ### Prerequisites
+    #### Step 1 — Prerequisites
 
     - Ubuntu or another Linux environment. On Windows, use WSL2.
-    - `sudo` access.
-    - Internet access.
-    - Git.
+    - `sudo` access, internet access, Git.
     - Enough disk space for dependencies and the admin-boundary dataset.
-
-    On a fresh machine, install the small base set first:
 
     ```bash
     sudo apt update
     sudo apt install -y git wget curl build-essential libpq-dev unzip
     ```
 
-    ### Install
+    #### Step 2 — Clone the backend repository
 
     ```bash
     git clone https://github.com/core-stack-org/core-stack-backend.git
-    cd core-stack-backend/installation
+    cd core-stack-backend
+    ```
+
+    #### Step 3 — Provision the runtime
+
+    Run the full backend installer from the repo root:
+
+    ```bash
+    cd installation
     chmod +x install.sh
     ./install.sh
     ```
 
-    The installer writes the runtime environment to:
+    This creates the conda env, PostgreSQL, RabbitMQ, `nrm_app/.env`, migrations, seed data, the installer test user (`superuser` step), and optional integrations if you pass flags (for example `--gee-json`).
 
-    ```text
-    nrm_app/.env
+    Review `nrm_app/.env` after the run. Do not create a competing repo-root `.env`.
+
+    #### Step 4 — GEE service account JSON key
+
+    Skip if you already passed `--gee-json` during Step 3.
+
+    1. Create and download a [Google Cloud service account JSON key](integrations/google-earth-engine.md#step-1-configure-google-cloud-for-earth-engine) with Earth Engine access.
+    2. Import it into the backend:
+
+    ```bash
+    bash installation/install.sh \
+      --only gee_configuration \
+      --gee-json /full/path/to/service-account.json
     ```
 
-    Review that file after the run. Do not create a competing repo-root `.env`; the current backend expects `nrm_app/.env`.
+    #### Step 5 — GCS bucket
 
-    ### Start local runtime
+    Skip if you do not need GEE-backed raster publication yet.
 
-    Use two terminals.
+    Create a bucket in `us-central1` and grant IAM to the **same** service account as Step 4. See [Google Cloud Storage — bucket setup](integrations/gcs.md#current-bucket-assumptions) and [Required IAM](integrations/gcs.md#required-iam-for-the-current-backend).
 
-    Terminal 1:
+    ```bash
+    bash installation/install.sh \
+      --only gcs_bucket_configuration \
+      --input gcs_bucket_name=your-gcs-bucket
+    ```
+
+    #### Step 6 — GeoServer
+
+    Skip if GeoServer was configured during Step 3. Otherwise register your instance:
+
+    ```bash
+    bash installation/install.sh \
+      --only initialisation_check \
+      --input geoserver_url=https://host/geoserver \
+      --input geoserver_username=admin \
+      --input geoserver_password=your-password
+    ```
+
+    For Docker + container GeoServer, use `http://geoserver:8080/geoserver` from inside the app container, or see the Docker tab Step 6.
+
+    #### Step 7 — Data paths in `nrm_app/.env`
+
+    The installer sets paths in `nrm_app/.env`. Confirm they match your layout:
+
+    - **`DATA_DIR`** — source and working data used by pipelines (inputs to generate other layers).
+    - **`EXCEL_DIR`** / **`EXCEL_PATH`** — exported spreadsheet outputs.
+
+    On native Linux these usually sit under the backend tree (for example `$BACKEND_DIR/data/...`). Only edit `nrm_app/.env` if the installer defaults are wrong for your machine.
+
+    #### Step 8 — Start the runtime
+
+    From `core-stack-backend`, use two terminals.
+
+    **Terminal 1 — Django:**
 
     ```bash
     conda activate corestackenv
     python manage.py runserver
     ```
 
-    Terminal 2, when you need async compute APIs:
+    **Terminal 2 — Celery** (required for computing APIs):
 
     ```bash
     conda activate corestackenv
     celery -A nrm_app worker -l info -Q nrm
     ```
 
-    Then open:
+    **Access (native):**
 
-    - API docs: `http://127.0.0.1:8000/`
-    - Django admin: `http://127.0.0.1:8000/admin/`
+    | Service | URL |
+    | --- | --- |
+    | API / docs | `http://127.0.0.1:8000/` |
+    | Django admin | `http://127.0.0.1:8000/admin/` |
 
-    For Django admin login, use the test account created by the installer if it is available. If you need your own admin user, run:
-
-    ```bash
-    python manage.py createsuperuser
-    ```
-
-    Then restart Django and Celery, and log in at `http://127.0.0.1:8000/admin/`.
+    Django admin can use the same installer test user as the API, or run `python manage.py createsuperuser` for a separate admin account.
 
 === "Docker"
 
-    This guide walks through a full CoRE Stack environment using Docker. Follow each step in order — skipping or reordering steps may cause failures.
+    Follow steps in order. Steps 4–7 use the same `installation/install.sh` commands as native, run **inside** the CoRE Stack container.
 
-    **Host requirements:** Docker Engine, Git, and enough disk space for images and data.
+    #### Step 1 — Prerequisites
 
-    ### Step 1 — Pull latest Docker image
+    - Docker Engine, Git, internet access.
+    - Enough disk space for images and data.
 
-    Downloads the pre-built CoRE Stack Docker image from Docker Hub. The image contains the full application runtime (OS, dependencies, services) so you do not need to install them on the host.
-
-    ```bash
-    docker pull kapildadheechgv/core-stack-dev:latest
-    ```
-
-    ### Step 2 — Clone repository
-
-    Clones the backend source so installation scripts, configuration, and application code are available on the host (and via the volume mount in Step 4).
+    #### Step 2 — Clone the backend repository
 
     ```bash
     git clone https://github.com/core-stack-org/core-stack-backend.git
     ```
 
-    ### Step 3 — Create Docker network
+    Use the clone directory as the host path in Step 3 (example: `~/dev/docker` if you clone there).
 
-    Creates a dedicated bridge network (`corestack-network`) so the CoRE Stack and GeoServer containers can reach each other by name (for example `geoserver:8080`).
+    #### Step 3 — Provision the runtime
+
+    **Pull image and create network:**
 
     ```bash
+    docker pull kapildadheechgv/core-stack-dev:latest
     docker network create corestack-network
     ```
 
-    ### Step 4 — Run CoRE Stack container
-
-    Starts the main application container in detached mode.
-
-    - `--network corestack-network` — connects to the shared network from Step 3
-    - `-p 9000:80` and `-p 9001:8000` — exposes the web server and API on the host
-    - `-v ~/dev/docker:/core-stack-backend` — mounts a host directory into the container for code, config, and files such as the GEE JSON key
-
-    Adjust the volume path (`~/dev/docker`) to a directory on your machine that should hold the mounted backend tree.
+    **Start CoRE Stack** — mount the **codebase** only (`install.sh`, `nrm_app/.env`, service account JSON). Pipeline data (inputs and exports) lives under `/root/core-stack-data` inside the image, not in this mount.
 
     ```bash
     docker run -dit \
@@ -129,9 +175,9 @@ Shared topics (integrations, troubleshooting, installer flags) apply to both pat
       kapildadheechgv/core-stack-dev:latest
     ```
 
-    ### Step 5 — Run GeoServer container
+    Replace `~/dev/docker` with your clone path from Step 2.
 
-    Starts GeoServer, which CoRE Stack uses to serve and render map layers. It must share `corestack-network` so the backend can reach it at `http://geoserver:8080`.
+    **Start GeoServer:**
 
     ```bash
     docker run -dit \
@@ -141,113 +187,182 @@ Shared topics (integrations, troubleshooting, installer flags) apply to both pat
       docker.osgeo.org/geoserver:2.28.0
     ```
 
-    ### Step 6 — Copy GEE JSON into the container
-
-    Copies your Google Earth Engine service account JSON from the host into the running CoRE Stack container. Required before GEE configuration in Step 13.
-
-    Create a GEE service account and download its JSON key first — see [Google Earth Engine — configure Google Cloud](integrations/google-earth-engine.md#step-1-configure-google-cloud-for-earth-engine) (includes IAM and service account setup).
-
-    Replace `your-gee-service-account.json` with your actual key filename:
-
-    ```bash
-    docker cp your-gee-service-account.json core-stack:/core-stack-backend/.
-    ```
-
-    ### Step 7 — Enter the container
-
-    Opens an interactive shell inside the CoRE Stack container. Steps 8 onward run inside this environment.
+    **Prepare the backend inside the container:**
 
     ```bash
     docker exec -it core-stack bash
-    ```
-
-    ### Step 8 — Start PostgreSQL
-
-    Starts PostgreSQL inside the container. The database must be running before installation scripts execute migrations or seed data.
-
-    ```bash
     sudo service postgresql start
-    ```
-
-    ### Step 9 — Generate environment file
-
-    Creates the `.env` configuration (database credentials, API keys, paths, and related settings) without running the full installer.
-
-    ```bash
     cd /core-stack-backend
-    bash installation/install.sh --only env_file
+    bash installation/install.sh --only env_file,superuser
     ```
 
-    ### Step 10 — Configure GeoServer
+    #### Step 4 — GEE service account JSON key
 
-    Registers the GeoServer instance with the backend using its URL, username, and password so CoRE Stack can manage workspaces and layers through the REST API.
+    1. Create and download a [Google Cloud service account JSON key](integrations/google-earth-engine.md#step-1-configure-google-cloud-for-earth-engine).
+    2. Copy it into the mounted backend directory (host or container path):
 
     ```bash
-    bash installation/install.sh --geoserver-config http://geoserver:8080/geoserver,admin,geoserver
+    docker cp /path/on/host/service-account.json core-stack:/core-stack-backend/
     ```
 
-    ### Step 11 — Set data directory paths
-
-    Set the filesystem paths inside the container where CoRE Stack reads and writes local data. These paths are mapped to persistent storage on the host through the volume mount from Step 4.
-
-    - **Source and working data** — files the backend needs to run pipelines and generate new outputs (for example boundary datasets, uploads, and other inputs under `DATA_DIR`).
-    - **Exported outputs** — locations where pipelines and exports write finished results (for example Excel files under `EXCEL_DIR` and `EXCEL_PATH`).
-
-    Add or update these values in the runtime environment file (for example `nrm_app/.env` after Step 9). Create each directory inside the container before starting the application.
-
-    ```env
-    # Root for source and working data used by pipelines
-    DATA_DIR="/root/core-stack-data"
-
-    # Exported Excel and similar pipeline outputs
-    EXCEL_DIR="/root/core-stack-data/excel_files"
-    EXCEL_PATH="/root/core-stack-data/excel_files"
-    ```
-
-    ### Step 12 — Configure GCS bucket
-
-    Links the application to your Google Cloud Storage bucket for large geospatial assets and processed outputs.
-
-    Create the bucket in `us-central1` and grant IAM to the same GEE service account — see [Google Cloud Storage — bucket setup](integrations/gcs.md#current-bucket-assumptions) and [Required IAM](integrations/gcs.md#required-iam-for-the-current-backend).
-
-    Replace `your-gcs-bucket` with your bucket name:
-
-    ```bash
-    bash installation/install.sh --only gcs_bucket_configuration --input gcs_bucket_name=your-gcs-bucket
-    ```
-
-    ### Step 13 — Configure Google Earth Engine (GEE)
-
-    Registers the service account JSON copied in Step 6 so the backend can compute asset on earth engine and store it as GEE asset.
-
-    See [Google Earth Engine — import credentials](integrations/google-earth-engine.md#step-2-import-the-credentials-into-the-backend).
-
-    Use the same filename you copied in Step 6:
+    3. Inside the container:
 
     ```bash
     bash installation/install.sh \
       --only gee_configuration \
-      --gee-json /core-stack-backend/your-gee-service-account.json
+      --gee-json /core-stack-backend/service-account.json
     ```
 
-    ### Step 14 — Test login (Postman / API)
+    Use your real filename in place of `service-account.json`.
 
-    Confirms the stack is running, the database is connected, and authentication works.
+    #### Step 5 — GCS bucket
 
-    Example test credentials (if created by your install/seed data):
+    Same command as native. Inside the container:
 
-    ```json
-    {
-      "username": "test_user_4272",
-      "password": "test_change_me"
-    }
+    ```bash
+    bash installation/install.sh \
+      --only gcs_bucket_configuration \
+      --input gcs_bucket_name=your-gcs-bucket
     ```
 
-    ### Access after Docker setup
+    See [Google Cloud Storage — bucket setup](integrations/gcs.md#current-bucket-assumptions) and [Required IAM](integrations/gcs.md#required-iam-for-the-current-backend).
 
-    - Web (container port 80): `http://127.0.0.1:9000/`
-    - API (container port 8000): `http://127.0.0.1:9001/`
-    - GeoServer admin: `http://127.0.0.1:8080/geoserver`
+    #### Step 6 — GeoServer
+
+    Inside the container:
+
+    ```bash
+    bash installation/install.sh \
+      --geoserver-config http://geoserver:8080/geoserver,admin,geoserver
+    ```
+
+    #### Step 7 — Data paths in `nrm_app/.env`
+
+    Paths are already set under `/root/core-stack-data` in the image. Step 3 (`env_file`) should write these into `nrm_app/.env`. Only if they are missing or wrong, set:
+
+    ```env
+    DATA_DIR=/root/core-stack-data
+    EXCEL_DIR=/root/core-stack-data/excel_files
+    EXCEL_PATH=/root/core-stack-data/excel_files
+    ```
+
+    - **`DATA_DIR`** — source and working data for pipelines.
+    - **`EXCEL_DIR`** / **`EXCEL_PATH`** — exported spreadsheet outputs.
+
+    No need to create directories manually.
+
+    #### Step 8 — Start the runtime
+
+    Inside the container (or separate `docker exec` sessions):
+
+    **Terminal 1 — Django:**
+
+    ```bash
+    docker exec -it core-stack bash
+    conda activate corestackenv
+    cd /core-stack-backend
+    python manage.py runserver 0.0.0.0:8000
+    ```
+
+    **Terminal 2 — Celery:**
+
+    ```bash
+    docker exec -it core-stack bash
+    conda activate corestackenv
+    cd /core-stack-backend
+    celery -A nrm_app worker -l info -Q nrm
+    ```
+
+    **Access (Docker on host):**
+
+    | Service | URL |
+    | --- | --- |
+    | Web | `http://127.0.0.1:9000/` |
+    | API / docs | `http://127.0.0.1:9001/` |
+    | Django admin | `http://127.0.0.1:9001/admin/` |
+    | GeoServer admin | `http://127.0.0.1:8080/geoserver` |
+
+### Step 9 — Log in and invoke APIs { #step-9-log-in-and-invoke-apis }
+
+Same flow for **native** and **Docker**. Computing APIs use **JWT bearer tokens**, not the Django admin session.
+
+**Base URL**
+
+| Install | `base_url` for API calls |
+| --- | --- |
+| Native | `http://127.0.0.1:8000` |
+| Docker | `http://127.0.0.1:9001` |
+
+**1. Installer test user**
+
+Created by the `superuser` installer step (full native install, or Docker Step 3). To recreate:
+
+```bash
+bash installation/install.sh --only superuser
+```
+
+Note the log line `Installer test superuser ... username=test_user_XXXX` and password `test_change_me`.
+
+**2. Log in (JWT)**
+
+```bash
+curl -s -X POST http://127.0.0.1:8000/api/v1/auth/login/ \
+  -H "Content-Type: application/json" \
+  -d '{"username":"test_user_4272","password":"test_change_me"}'
+```
+
+On Docker, replace the host with `http://127.0.0.1:9001`. The response includes `access` (use on API calls), `refresh`, and `user`.
+
+**3. List `GEEAccount` records**
+
+After Step 4 (`gee_configuration`):
+
+```bash
+curl -s http://127.0.0.1:8000/api/v1/geeaccounts/ \
+  -H "Authorization: Bearer <access-token>"
+```
+
+Use the numeric `id` as `gee_account_id` in computing requests.
+
+**4. Call a computing API**
+
+Keep **Django and Celery running** (Step 8). Example:
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/v1/lulc_for_tehsil/ \
+  -H "Authorization: Bearer <access-token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "state": "karnataka",
+    "district": "raichur",
+    "block": "devadurga",
+    "start_year": 2022,
+    "end_year": 2023,
+    "gee_account_id": 1
+  }'
+```
+
+More routes: [Computing API Endpoints](../pipelines/computing-endpoints.md) and [First manual run](../pipelines/index.md#first-manual-run). Auth errors: [API Errors](../reference/api-errors.md).
+
+**5. Postman**
+
+Import from this docs repository:
+
+| Asset | File |
+| --- | --- |
+| Collection | [core-stack-api.postman_collection.json](../assets/postman/core-stack-api.postman_collection.json) |
+| Environment (native) | [core-stack-local.postman_environment.json](../assets/postman/core-stack-local.postman_environment.json) |
+| Environment (Docker) | [core-stack-docker.postman_environment.json](../assets/postman/core-stack-docker.postman_environment.json) |
+
+Run requests in order:
+
+| Order | Request | Purpose |
+| --- | --- | --- |
+| 1 | **Auth — Login** | `POST /api/v1/auth/login/` → saves JWT `access` |
+| 2 | **GEE — List accounts** | `GET /api/v1/geeaccounts/` → read `gee_account_id` |
+| 3 | **Computing — LULC for tehsil** | Sample `POST`; needs Celery on queue `nrm` |
+
+![Postman login example](../assets/postman-auth.png)
 
 ## What you need immediately
 
