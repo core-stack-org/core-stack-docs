@@ -10,7 +10,7 @@ Choose how you want to run the backend:
 - **Native (Linux)** — uses the backend installer on Ubuntu or WSL2. It sets up Python, PostgreSQL, RabbitMQ, the runtime `.env`, migrations, seed data, optional Earth Engine credentials, admin-boundary data, and the built-in initialization check.
 - **Docker** — runs the application and GeoServer in containers. Best when you want a pre-built runtime without installing dependencies on the host.
 
-Shared topics (integrations, troubleshooting, installer flags) apply to both paths and are documented after the installation tabs.
+Optional integrations (GEE, GCS, GeoServer) are Steps 4–6 above. Installer flags and troubleshooting are documented below.
 
 ## Installation
 
@@ -313,16 +313,16 @@ curl -s -X POST http://127.0.0.1:8000/api/v1/auth/login/ \
 
 On Docker, replace the host with `http://127.0.0.1:9001`. The response includes `access` (use on API calls), `refresh`, and `user`.
 
-**3. List `GEEAccount` records**
+**3. Get `gee_account_id`**
 
-After Step 4 (`gee_configuration`):
+Most computing `POST` bodies need a `gee_account_id`. List configured Earth Engine accounts (requires a valid JWT from step 2):
 
 ```bash
 curl -s http://127.0.0.1:8000/api/v1/geeaccounts/ \
   -H "Authorization: Bearer <access-token>"
 ```
 
-Use the numeric `id` as `gee_account_id` in computing requests.
+On Docker, use `http://127.0.0.1:9001` as the host. Use the numeric `id` from the response. If the list is empty, complete Step 4 in the Native or Docker tab above, or see [Google Earth Engine](integrations/google-earth-engine.md).
 
 **4. Call a computing API**
 
@@ -363,27 +363,6 @@ Run requests in order:
 | 3 | **Computing — LULC for tehsil** | Sample `POST`; needs Celery on queue `nrm` |
 
 ![Postman login example](../assets/postman-auth.png)
-
-## What you need immediately
-
-The installer can create enough configuration to boot the backend locally. Add external credentials when your work needs them.
-
-| Goal | Configure now? | What matters |
-| --- | --- | --- |
-| Run Django locally | Usually no | installer-generated `nrm_app/.env` |
-| Run GEE-backed pipelines | Yes | [`GEEAccount`](integrations/google-earth-engine.md) from a service-account JSON |
-| Publish rasters through GeoServer | Yes | [GEE](integrations/google-earth-engine.md), [GCS bucket + IAM](integrations/gcs.md), GeoServer credentials |
-| Publish vectors through GeoServer | Usually yes | GeoServer credentials, valid workspace |
-| Run public API tests | Only if testing that surface | `PUBLIC_API_X_API_KEY` |
-
-For detailed guidance:
-
-- [Google Earth Engine](integrations/google-earth-engine.md) — GCP project, Earth Engine registration, IAM, service account, and `GEEAccount` import
-- [Google Cloud Storage](integrations/gcs.md) — bucket creation (`us-central1`), IAM bindings, and backend usage
-- [GeoServer](integrations/geoserver.md)
-- [Integrations overview](integrations/index.md)
-
-For installation troubleshooting, see [Troubleshooting](setup-troubleshooting.md).
 
 ## Useful installer controls
 
@@ -433,5 +412,6 @@ The installer currently accepts:
 ## After install
 
 1. Read the [Backend Code Map](backend-code-map.md).
-2. Run one request from [Build Pipelines](../pipelines/index.md#first-manual-run).
-3. Use [Troubleshooting](setup-troubleshooting.md) only when the installer or runtime names a failing step.
+2. Complete [Step 9 — Log in and invoke APIs](#step-9-log-in-and-invoke-apis) if you have not already.
+3. For integration deep-dives: [Integrations](integrations/index.md) (GEE, GCS, GeoServer).
+4. Use [Troubleshooting](setup-troubleshooting.md) when the installer or runtime names a failing step.
