@@ -58,18 +58,32 @@ python3 -c "import sys; sys.exit(0 if sys.version_info >= (3, 10) else 1)" || {
 
 cd "$REPO_ROOT"
 
-if [[ ! -d "$VENV_DIR" ]]; then
+function venv_is_valid() {
+  [[ -x "$VENV_DIR/bin/python" ]]
+}
+
+function ensure_venv() {
+  if venv_is_valid; then
+    echo "Using existing virtual environment at .venv"
+    return 0
+  fi
+  if [[ -e "$VENV_DIR" ]]; then
+    echo "Removing incomplete or broken .venv (missing bin/python)"
+    rm -rf "$VENV_DIR"
+  fi
   echo "Creating virtual environment at .venv"
   python3 -m venv "$VENV_DIR"
-else
-  echo "Using existing virtual environment at .venv"
-fi
+  if ! venv_is_valid; then
+    echo "Error: failed to create a working virtual environment at .venv" >&2
+    exit 1
+  fi
+}
 
-# shellcheck disable=SC1091
-source "$VENV_DIR/bin/activate"
+ensure_venv
+VENV_PYTHON="$VENV_DIR/bin/python"
 
-python -m pip install --upgrade pip
-python -m pip install -r "$REQUIREMENTS_FILE"
+"$VENV_PYTHON" -m pip install --upgrade pip
+"$VENV_PYTHON" -m pip install -r "$REQUIREMENTS_FILE"
 
 echo ""
 echo "Done. Virtual environment is ready."
@@ -81,5 +95,5 @@ echo "Build static site:"
 echo "  mkdocs build --clean"
 
 if ((RUN_SERVE == 1)); then
-  mkdocs serve -a "${MKDOCS_HOST}:${MKDOCS_PORT}"
+  "$VENV_DIR/bin/mkdocs" serve -a "${MKDOCS_HOST}:${MKDOCS_PORT}"
 fi
