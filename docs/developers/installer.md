@@ -218,7 +218,7 @@ Shared topics (integrations, troubleshooting, installer flags) apply to both pat
 
     ### Step 13 — Configure Google Earth Engine (GEE)
 
-    Registers the service account JSON copied in Step 6 so the backend can call GEE for satellite imagery and analysis.
+    Registers the service account JSON copied in Step 6 so the backend can compute asset on earth engine and store it as GEE asset.
 
     See [Google Earth Engine — import credentials](integrations/google-earth-engine.md#step-2-import-the-credentials-into-the-backend).
 
