@@ -99,7 +99,7 @@ Default credentials:
 - Password: `geoserver`
 
 > Bootstrap defaults are for first login only. Change these immediately and store production credentials in the approved secret manager.
-> See `credentials-and-secrets.md`.
+> See [Credentials and secrets](../../index.md#credentials-and-secrets).
 
 ## 5. Configure HTTPS on 8443
 
@@ -176,4 +176,4 @@ Client -> HTTPS `8443` -> Tomcat -> GeoServer
 
 If Tomcat performance degrades under load, use:
 
-- `os-memory-tuning.md`
+- [Linux memory and swap tuning](../../index.md#os-memory-tuning)

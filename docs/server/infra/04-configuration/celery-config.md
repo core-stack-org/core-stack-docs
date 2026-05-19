@@ -207,11 +207,11 @@ Expected:
 
 - Worker exits immediately: run the same `celery` command manually in shell.
 - Tasks stuck in queue: verify queue name used by producer and worker.
-- High memory usage: reduce queue concurrency and use `os-memory-tuning.md`.
+- High memory usage: reduce queue concurrency and use [Linux memory and swap tuning](../../index.md#os-memory-tuning).
 - Flower not reachable: check port `5555` firewall/security group rules.
 
 ## Related: OS Memory Tuning
 
 For deciding worker concurrency based on available RAM, swap size, swappiness values, and OOM troubleshooting:
 
-- `os-memory-tuning.md`
+- [Linux memory and swap tuning](../../index.md#os-memory-tuning)

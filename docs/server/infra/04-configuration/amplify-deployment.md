@@ -272,4 +272,4 @@ After that, pay-as-you-go pricing applies.
 
 Amplify-hosted React apps do not need host-level memory tuning, but backend services they call often do. See:
 
-- `os-memory-tuning.md`
+- [Linux memory and swap tuning](../../index.md#os-memory-tuning)

@@ -106,7 +106,7 @@ POSTGRES_DBNAME=stacdb
 Save file.
 
 > Never keep production credentials in this repository. Store and retrieve them from your organization's secret manager.  
-> See `credentials-and-secrets.md`.
+> See [Credentials and secrets](../../index.md#credentials-and-secrets).
 
 ---
 
@@ -302,7 +302,7 @@ Expected:
 - Service fails to start: check `journalctl -u stac-api -f`.
 - DB connection errors: validate Postgres credentials and extensions.
 - `502/503` via Apache: verify `ProxyPass` target and service health.
-- High memory usage: apply `os-memory-tuning.md` and reduce worker count.
+- High memory usage: apply [Linux memory and swap tuning](../../index.md#os-memory-tuning) and reduce worker count.
 
 ---
 
@@ -310,6 +310,6 @@ Expected:
 
 For API performance issues caused by memory pressure (high RSS, OOM kills, swap thrashing), use:
 
-- `os-memory-tuning.md`
+- [Linux memory and swap tuning](../../index.md#os-memory-tuning)
 
 

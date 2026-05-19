@@ -252,6 +252,6 @@ Create invalidation:
 
 STAC UI itself is static, but STAC backend/API memory tuning guidance is available at:
 
-- `os-memory-tuning.md`
+- [Linux memory and swap tuning](../../index.md#os-memory-tuning)
 
 

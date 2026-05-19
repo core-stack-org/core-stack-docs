@@ -84,7 +84,7 @@ Do not copy values between LE, KYL, Dashboard, and CC by assumption. For each ap
 
 For production Linux host-level tuning and troubleshooting (including `vm.swappiness`, swap sizing decisions, and memory incident steps), use:
 
-- `../04-configuration/os-memory-tuning.md`
+- [Linux memory and swap tuning](../../index.md#os-memory-tuning)
 
 ## Quick Verification Checklist
 

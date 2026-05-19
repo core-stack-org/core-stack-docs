@@ -272,4 +272,4 @@ HTTPS → Apache → mod_wsgi → Conda (corestack-backend) → Django → Datab
 
 If Apache or Django workers are restarted due to memory pressure, use:
 
-- `os-memory-tuning.md`
+- [Linux memory and swap tuning](../../index.md#os-memory-tuning)
