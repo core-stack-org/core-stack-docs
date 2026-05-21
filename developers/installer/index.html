@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A short, linear local setup path for the CoRE Stack backend.">
+        <meta name="description" content="Local setup for the CoRE Stack backend — native Linux installer or Docker.">
       
       
       
@@ -905,46 +905,206 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
+  <a href="#installation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Prerequisites
+        Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 — Prerequisites
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#install" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#step-2-clone-the-backend-repository" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Install
+        Step 2 — Clone the backend repository
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#start-local-runtime" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#step-3-provision-the-runtime" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Start Local Runtime
+        Step 3 — Provision the runtime
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#what-you-need-immediately" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#step-4-gee-service-account-json-key" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What You Need Immediately
+        Step 4 — GEE service account JSON key
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-gcs-bucket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5 — GCS bucket
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-geoserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6 — GeoServer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-data-paths-in-nrm_appenv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7 — Data paths in nrm_app/.env
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-8-start-the-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8 — Start the runtime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-1-prerequisites_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 — Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-clone-the-backend-repository_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 — Clone the backend repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-provision-the-runtime_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 — Provision the runtime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-gee-service-account-json-key_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 — GEE service account JSON key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-gcs-bucket_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5 — GCS bucket
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-geoserver_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6 — GeoServer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-data-paths-in-nrm_appenv_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7 — Data paths in nrm_app/.env
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-8-start-the-runtime_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8 — Start the runtime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-9-log-in-and-invoke-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 9 — Log in and invoke APIs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -952,7 +1112,7 @@
   <a href="#useful-installer-controls" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Useful Installer Controls
+        Useful installer controls
       
     </span>
   </a>
@@ -963,7 +1123,7 @@
   <a href="#optional-inputs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Optional Inputs
+        Optional inputs
       
     </span>
   </a>
@@ -974,7 +1134,7 @@
   <a href="#after-install" class="md-nav__link">
     <span class="md-ellipsis">
       
-        After Install
+        After install
       
     </span>
   </a>
@@ -2149,46 +2309,206 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
+  <a href="#installation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Prerequisites
+        Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 — Prerequisites
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#install" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#step-2-clone-the-backend-repository" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Install
+        Step 2 — Clone the backend repository
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#start-local-runtime" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#step-3-provision-the-runtime" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Start Local Runtime
+        Step 3 — Provision the runtime
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#what-you-need-immediately" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#step-4-gee-service-account-json-key" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What You Need Immediately
+        Step 4 — GEE service account JSON key
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-gcs-bucket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5 — GCS bucket
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-geoserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6 — GeoServer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-data-paths-in-nrm_appenv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7 — Data paths in nrm_app/.env
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-8-start-the-runtime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8 — Start the runtime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-1-prerequisites_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 — Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-clone-the-backend-repository_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 — Clone the backend repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-provision-the-runtime_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 — Provision the runtime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-gee-service-account-json-key_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 — GEE service account JSON key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-gcs-bucket_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5 — GCS bucket
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-geoserver_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6 — GeoServer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-data-paths-in-nrm_appenv_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7 — Data paths in nrm_app/.env
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-8-start-the-runtime_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8 — Start the runtime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-9-log-in-and-invoke-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 9 — Log in and invoke APIs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2196,7 +2516,7 @@
   <a href="#useful-installer-controls" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Useful Installer Controls
+        Useful installer controls
       
     </span>
   </a>
@@ -2207,7 +2527,7 @@
   <a href="#optional-inputs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Optional Inputs
+        Optional inputs
       
     </span>
   </a>
@@ -2218,7 +2538,7 @@
   <a href="#after-install" class="md-nav__link">
     <span class="md-ellipsis">
       
-        After Install
+        After install
       
     </span>
   </a>
@@ -2294,116 +2614,403 @@
 
 
 <h1 id="installer">Installer<a class="headerlink" href="#installer" title="Permanent link">&para;</a></h1>
-<p>Use the backend installer first. It sets up the Python environment, PostgreSQL, RabbitMQ, the runtime <code>.env</code>, migrations, seed data, optional Earth Engine credentials, admin-boundary data, and the built-in initialization check.</p>
-<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>Choose how you want to run the backend:</p>
 <ul>
-<li>Ubuntu or another Linux environment. On Windows, use WSL2.</li>
-<li><code>sudo</code> access.</li>
-<li>Internet access.</li>
-<li>Git.</li>
-<li>Enough disk space for dependencies and the admin-boundary dataset.</li>
+<li><strong>Native (Linux)</strong> — uses the backend installer on Ubuntu or WSL2. It sets up Python, PostgreSQL, RabbitMQ, the runtime <code>.env</code>, migrations, seed data, optional Earth Engine credentials, admin-boundary data, and the built-in initialization check.</li>
+<li><strong>Docker</strong> — runs the application and GeoServer in containers. Best when you want a pre-built runtime without installing dependencies on the host.</li>
 </ul>
-<p>On a fresh machine, install the small base set first:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>git<span class="w"> </span>wget<span class="w"> </span>curl<span class="w"> </span>build-essential<span class="w"> </span>libpq-dev<span class="w"> </span>unzip
-</span></code></pre></div>
-<h2 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/core-stack-org/core-stack-backend.git
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>core-stack-backend/installation
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>chmod<span class="w"> </span>+x<span class="w"> </span>install.sh
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>./install.sh
-</span></code></pre></div>
-<p>The installer writes the runtime environment to:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>nrm_app/.env
-</span></code></pre></div>
-<p>Review that file after the run. Do not create a competing repo-root <code>.env</code>; the current backend expects <code>nrm_app/.env</code>.</p>
-<h2 id="start-local-runtime">Start Local Runtime<a class="headerlink" href="#start-local-runtime" title="Permanent link">&para;</a></h2>
-<p>Use two terminals.</p>
-<p>Terminal 1:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>python<span class="w"> </span>manage.py<span class="w"> </span>runserver
-</span></code></pre></div>
-<p>Terminal 2, when you need async compute APIs:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>celery<span class="w"> </span>-A<span class="w"> </span>nrm_app<span class="w"> </span>worker<span class="w"> </span>-l<span class="w"> </span>info<span class="w"> </span>-Q<span class="w"> </span>nrm
-</span></code></pre></div>
-<p>Then open:</p>
-<ul>
-<li>API docs: <code>http://127.0.0.1:8000/</code></li>
-<li>Django admin: <code>http://127.0.0.1:8000/admin/</code></li>
-</ul>
-<p>For Django admin login, use the test account created by the installer if it is available. If you need your own admin user, run:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
-</span></code></pre></div>
-<p>Then restart Django and Celery, and log in at <code>http://127.0.0.1:8000/admin/</code>.</p>
-<h2 id="what-you-need-immediately">What You Need Immediately<a class="headerlink" href="#what-you-need-immediately" title="Permanent link">&para;</a></h2>
-<p>The installer can create enough configuration to boot the backend locally. Add external credentials when your work needs them.</p>
+<p>Optional integrations (GEE, GCS, GeoServer) are Steps 4–6 above. Installer flags and troubleshooting are documented below.</p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<p>Both paths use the <strong>same backend installer</strong> (<code>installation/install.sh</code> in <a href="https://github.com/core-stack-org/core-stack-backend">core-stack-backend</a>) for configuration, credentials, and the API test user. Steps 1–8 below match between native and Docker; only Step 3 (how the runtime is provisioned) and Step 8 (where you run processes) differ.</p>
 <table>
 <thead>
 <tr>
-<th>Goal</th>
-<th>Configure now?</th>
-<th>What matters</th>
+<th>Step</th>
+<th>What you do</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Run Django locally</td>
-<td>Usually no</td>
-<td>installer-generated <code>nrm_app/.env</code></td>
+<td>1</td>
+<td>Prerequisites</td>
 </tr>
 <tr>
-<td>Run GEE-backed pipelines</td>
-<td>Yes</td>
-<td><code>GEEAccount</code> from a service-account JSON</td>
+<td>2</td>
+<td>Clone the backend repository</td>
 </tr>
 <tr>
-<td>Publish rasters through GeoServer</td>
-<td>Yes</td>
-<td>GEE, GCS bucket access, GeoServer credentials</td>
+<td>3</td>
+<td>Provision the runtime — native full install <strong>or</strong> Docker containers</td>
 </tr>
 <tr>
-<td>Publish vectors through GeoServer</td>
-<td>Usually yes</td>
-<td>GeoServer credentials, valid workspace</td>
+<td>4</td>
+<td>GEE service account JSON key (optional)</td>
 </tr>
 <tr>
-<td>Run public API tests</td>
-<td>Only if testing that surface</td>
-<td><code>PUBLIC_API_X_API_KEY</code></td>
+<td>5</td>
+<td>GCS bucket (optional)</td>
+</tr>
+<tr>
+<td>6</td>
+<td>GeoServer (optional)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Data paths in <code>nrm_app/.env</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td>Start the runtime</td>
+</tr>
+<tr>
+<td>9</td>
+<td><a href="#step-9-log-in-and-invoke-apis">Log in and invoke APIs</a> (shared below)</td>
 </tr>
 </tbody>
 </table>
-<p>For detailed guidance on setting up GEE, GCS, GeoServer <a href="../integrations/">Integrations</a>. For installation troubleshooting, find corresponding section in <a href="../setup-troubleshooting/">Troubleshooting</a>.</p>
-<h2 id="useful-installer-controls">Useful Installer Controls<a class="headerlink" href="#useful-installer-controls" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Show exact step names</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--list-steps
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Rebuild only nrm_app/.env</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>env_file
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># Rerun only backend validation</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>initialisation_check
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="c1"># Add Earth Engine credentials later</span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">  </span>--only<span class="w"> </span>gee_configuration,initialisation_check<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">  </span>--gee-json<span class="w"> </span>/full/path/to/service-account.json
-</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
-</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="c1"># Add GeoServer values later and validate</span>
-</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">  </span>--only<span class="w"> </span>initialisation_check<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_url</span><span class="o">=</span>https://host/geoserver<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_username</span><span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_password</span><span class="o">=</span>your-password
-</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>
-</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="c1"># Rerun the public API smoke test</span>
-</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="w">  </span>--only<span class="w"> </span>public_api_check<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-25"><a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">public_api_key</span><span class="o">=</span>your-public-api-key
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Native (Linux)</label><label for="__tabbed_1_2">Docker</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h4 id="step-1-prerequisites">Step 1 — Prerequisites<a class="headerlink" href="#step-1-prerequisites" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Ubuntu or another Linux environment. On Windows, use WSL2.</li>
+<li><code>sudo</code> access, internet access, Git.</li>
+<li>Enough disk space for dependencies and the admin-boundary dataset.</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>git<span class="w"> </span>wget<span class="w"> </span>curl<span class="w"> </span>build-essential<span class="w"> </span>libpq-dev<span class="w"> </span>unzip
+</span></code></pre></div>
+<h4 id="step-2-clone-the-backend-repository">Step 2 — Clone the backend repository<a class="headerlink" href="#step-2-clone-the-backend-repository" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/core-stack-org/core-stack-backend.git
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>core-stack-backend
+</span></code></pre></div>
+<h4 id="step-3-provision-the-runtime">Step 3 — Provision the runtime<a class="headerlink" href="#step-3-provision-the-runtime" title="Permanent link">&para;</a></h4>
+<p>Run the full backend installer from the repo root:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>installation
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>chmod<span class="w"> </span>+x<span class="w"> </span>install.sh
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>./install.sh
+</span></code></pre></div>
+<p>This creates the conda env, PostgreSQL, RabbitMQ, <code>nrm_app/.env</code>, migrations, seed data, the installer test user (<code>superuser</code> step), and optional integrations if you pass flags (for example <code>--gee-json</code>).</p>
+<p>Review <code>nrm_app/.env</code> after the run. Do not create a competing repo-root <code>.env</code>.</p>
+<h4 id="step-4-gee-service-account-json-key">Step 4 — GEE service account JSON key<a class="headerlink" href="#step-4-gee-service-account-json-key" title="Permanent link">&para;</a></h4>
+<p>Skip if you already passed <code>--gee-json</code> during Step 3.</p>
+<ol>
+<li>Create and download a <a href="../integrations/google-earth-engine/#step-1-configure-google-cloud-for-earth-engine">Google Cloud service account JSON key</a> with Earth Engine access.</li>
+<li>Import it into the backend:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>--only<span class="w"> </span>gee_configuration<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>--gee-json<span class="w"> </span>/full/path/to/service-account.json
+</span></code></pre></div>
+<h4 id="step-5-gcs-bucket">Step 5 — GCS bucket<a class="headerlink" href="#step-5-gcs-bucket" title="Permanent link">&para;</a></h4>
+<p>Skip if you do not need GEE-backed raster publication yet.</p>
+<p>Create a bucket in <code>us-central1</code> and grant IAM to the <strong>same</strong> service account as Step 4. See <a href="../integrations/gcs/#current-bucket-assumptions">Google Cloud Storage — bucket setup</a> and <a href="../integrations/gcs/#required-iam-for-the-current-backend">Required IAM</a>.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>--only<span class="w"> </span>gcs_bucket_configuration<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">gcs_bucket_name</span><span class="o">=</span>your-gcs-bucket
+</span></code></pre></div>
+<h4 id="step-6-geoserver">Step 6 — GeoServer<a class="headerlink" href="#step-6-geoserver" title="Permanent link">&para;</a></h4>
+<p>Skip if GeoServer was configured during Step 3. Otherwise register your instance:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>--only<span class="w"> </span>initialisation_check<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_url</span><span class="o">=</span>https://host/geoserver<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_username</span><span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_password</span><span class="o">=</span>your-password
+</span></code></pre></div>
+<p>For Docker + container GeoServer, use <code>http://geoserver:8080/geoserver</code> from inside the app container, or see the Docker tab Step 6.</p>
+<h4 id="step-7-data-paths-in-nrm_appenv">Step 7 — Data paths in <code>nrm_app/.env</code><a class="headerlink" href="#step-7-data-paths-in-nrm_appenv" title="Permanent link">&para;</a></h4>
+<p>The installer sets paths in <code>nrm_app/.env</code>. Confirm they match your layout:</p>
+<ul>
+<li><strong><code>DATA_DIR</code></strong> — source and working data used by pipelines (inputs to generate other layers).</li>
+<li><strong><code>EXCEL_DIR</code></strong> / <strong><code>EXCEL_PATH</code></strong> — exported spreadsheet outputs.</li>
+</ul>
+<p>On native Linux these usually sit under the backend tree (for example <code>$BACKEND_DIR/data/...</code>). Only edit <code>nrm_app/.env</code> if the installer defaults are wrong for your machine.</p>
+<h4 id="step-8-start-the-runtime">Step 8 — Start the runtime<a class="headerlink" href="#step-8-start-the-runtime" title="Permanent link">&para;</a></h4>
+<p>From <code>core-stack-backend</code>, use two terminals.</p>
+<p><strong>Terminal 1 — Django:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>python<span class="w"> </span>manage.py<span class="w"> </span>runserver
+</span></code></pre></div>
+<p><strong>Terminal 2 — Celery</strong> (required for computing APIs):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>celery<span class="w"> </span>-A<span class="w"> </span>nrm_app<span class="w"> </span>worker<span class="w"> </span>-l<span class="w"> </span>info<span class="w"> </span>-Q<span class="w"> </span>nrm
+</span></code></pre></div>
+<p><strong>Access (native):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API / docs</td>
+<td><code>http://127.0.0.1:8000/</code></td>
+</tr>
+<tr>
+<td>Django admin</td>
+<td><code>http://127.0.0.1:8000/admin/</code></td>
+</tr>
+</tbody>
+</table>
+<p>Django admin can use the same installer test user as the API, or run <code>python manage.py createsuperuser</code> for a separate admin account.</p>
+</div>
+<div class="tabbed-block">
+<p>Follow steps in order. Steps 4–7 use the same <code>installation/install.sh</code> commands as native, run <strong>inside</strong> the CoRE Stack container.</p>
+<h4 id="step-1-prerequisites_1">Step 1 — Prerequisites<a class="headerlink" href="#step-1-prerequisites_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Docker Engine, Git, internet access.</li>
+<li>Enough disk space for images and data.</li>
+</ul>
+<h4 id="step-2-clone-the-backend-repository_1">Step 2 — Clone the backend repository<a class="headerlink" href="#step-2-clone-the-backend-repository_1" title="Permanent link">&para;</a></h4>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/core-stack-org/core-stack-backend.git
+</span></code></pre></div>
+<p>Use the clone directory as the host path in Step 3 (example: <code>~/dev/docker</code> if you clone there).</p>
+<h4 id="step-3-provision-the-runtime_1">Step 3 — Provision the runtime<a class="headerlink" href="#step-3-provision-the-runtime_1" title="Permanent link">&para;</a></h4>
+<p><strong>Pull image and create network:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>kapildadheechgv/core-stack-dev:latest
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>docker<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>corestack-network
+</span></code></pre></div>
+<p><strong>Start CoRE Stack</strong> — mount the <strong>codebase</strong> only (<code>install.sh</code>, <code>nrm_app/.env</code>, service account JSON). Pipeline data (inputs and exports) lives under <code>/root/core-stack-data</code> inside the image, not in this mount.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-dit<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span>--name<span class="w"> </span>core-stack<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span>--network<span class="w"> </span>corestack-network<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">9000</span>:80<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">9001</span>:8000<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">  </span>-v<span class="w"> </span>~/dev/docker:/core-stack-backend<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">  </span>kapildadheechgv/core-stack-dev:latest
+</span></code></pre></div>
+<p>Replace <code>~/dev/docker</code> with your clone path from Step 2.</p>
+<p><strong>Start GeoServer:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-dit<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span>--name<span class="w"> </span>geoserver<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span>--network<span class="w"> </span>corestack-network<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span>-p<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">  </span>docker.osgeo.org/geoserver:2.28.0
+</span></code></pre></div>
+<p><strong>Prepare the backend inside the container:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>core-stack<span class="w"> </span>bash
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>sudo<span class="w"> </span>service<span class="w"> </span>postgresql<span class="w"> </span>start
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nb">cd</span><span class="w"> </span>/core-stack-backend
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>env_file,superuser
+</span></code></pre></div>
+<h4 id="step-4-gee-service-account-json-key_1">Step 4 — GEE service account JSON key<a class="headerlink" href="#step-4-gee-service-account-json-key_1" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Create and download a <a href="../integrations/google-earth-engine/#step-1-configure-google-cloud-for-earth-engine">Google Cloud service account JSON key</a>.</li>
+<li>Copy it into the mounted backend directory (host or container path):</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>docker<span class="w"> </span>cp<span class="w"> </span>/path/on/host/service-account.json<span class="w"> </span>core-stack:/core-stack-backend/
+</span></code></pre></div>
+<ol>
+<li>Inside the container:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">  </span>--only<span class="w"> </span>gee_configuration<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">  </span>--gee-json<span class="w"> </span>/core-stack-backend/service-account.json
+</span></code></pre></div>
+<p>Use your real filename in place of <code>service-account.json</code>.</p>
+<h4 id="step-5-gcs-bucket_1">Step 5 — GCS bucket<a class="headerlink" href="#step-5-gcs-bucket_1" title="Permanent link">&para;</a></h4>
+<p>Same command as native. Inside the container:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span>--only<span class="w"> </span>gcs_bucket_configuration<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">gcs_bucket_name</span><span class="o">=</span>your-gcs-bucket
+</span></code></pre></div>
+<p>See <a href="../integrations/gcs/#current-bucket-assumptions">Google Cloud Storage — bucket setup</a> and <a href="../integrations/gcs/#required-iam-for-the-current-backend">Required IAM</a>.</p>
+<h4 id="step-6-geoserver_1">Step 6 — GeoServer<a class="headerlink" href="#step-6-geoserver_1" title="Permanent link">&para;</a></h4>
+<p>Inside the container:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span>--geoserver-config<span class="w"> </span>http://geoserver:8080/geoserver,admin,geoserver
+</span></code></pre></div>
+<h4 id="step-7-data-paths-in-nrm_appenv_1">Step 7 — Data paths in <code>nrm_app/.env</code><a class="headerlink" href="#step-7-data-paths-in-nrm_appenv_1" title="Permanent link">&para;</a></h4>
+<p>Paths are already set under <code>/root/core-stack-data</code> in the image. Step 3 (<code>env_file</code>) should write these into <code>nrm_app/.env</code>. Only if they are missing or wrong, set:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>DATA_DIR=/root/core-stack-data
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>EXCEL_DIR=/root/core-stack-data/excel_files
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>EXCEL_PATH=/root/core-stack-data/excel_files
+</span></code></pre></div>
+<ul>
+<li><strong><code>DATA_DIR</code></strong> — source and working data for pipelines.</li>
+<li><strong><code>EXCEL_DIR</code></strong> / <strong><code>EXCEL_PATH</code></strong> — exported spreadsheet outputs.</li>
+</ul>
+<p>No need to create directories manually.</p>
+<h4 id="step-8-start-the-runtime_1">Step 8 — Start the runtime<a class="headerlink" href="#step-8-start-the-runtime_1" title="Permanent link">&para;</a></h4>
+<p>Inside the container (or separate <code>docker exec</code> sessions):</p>
+<p><strong>Terminal 1 — Django:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>core-stack<span class="w"> </span>bash
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="nb">cd</span><span class="w"> </span>/core-stack-backend
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>python<span class="w"> </span>manage.py<span class="w"> </span>runserver<span class="w"> </span><span class="m">0</span>.0.0.0:8000
+</span></code></pre></div>
+<p><strong>Terminal 2 — Celery:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>core-stack<span class="w"> </span>bash
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="nb">cd</span><span class="w"> </span>/core-stack-backend
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>celery<span class="w"> </span>-A<span class="w"> </span>nrm_app<span class="w"> </span>worker<span class="w"> </span>-l<span class="w"> </span>info<span class="w"> </span>-Q<span class="w"> </span>nrm
+</span></code></pre></div>
+<p><strong>Access (Docker on host):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Web</td>
+<td><code>http://127.0.0.1:9000/</code></td>
+</tr>
+<tr>
+<td>API / docs</td>
+<td><code>http://127.0.0.1:9001/</code></td>
+</tr>
+<tr>
+<td>Django admin</td>
+<td><code>http://127.0.0.1:9001/admin/</code></td>
+</tr>
+<tr>
+<td>GeoServer admin</td>
+<td><code>http://127.0.0.1:8080/geoserver</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<h3 id="step-9-log-in-and-invoke-apis">Step 9 — Log in and invoke APIs<a class="headerlink" href="#step-9-log-in-and-invoke-apis" title="Permanent link">&para;</a></h3>
+<p>Same flow for <strong>native</strong> and <strong>Docker</strong>. Computing APIs use <strong>JWT bearer tokens</strong>, not the Django admin session.</p>
+<p><strong>Base URL</strong></p>
+<table>
+<thead>
+<tr>
+<th>Install</th>
+<th><code>base_url</code> for API calls</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Native</td>
+<td><code>http://127.0.0.1:8000</code></td>
+</tr>
+<tr>
+<td>Docker</td>
+<td><code>http://127.0.0.1:9001</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>1. Installer test user</strong></p>
+<p>Created by the <code>superuser</code> installer step (full native install, or Docker Step 3). To recreate:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>superuser
+</span></code></pre></div>
+<p>Note the log line <code>Installer test superuser ... username=test_user_XXXX</code> and password <code>test_change_me</code>.</p>
+<p><strong>2. Log in (JWT)</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://127.0.0.1:8000/api/v1/auth/login/<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;username&quot;:&quot;test_user_4272&quot;,&quot;password&quot;:&quot;test_change_me&quot;}&#39;</span>
+</span></code></pre></div>
+<p>On Docker, replace the host with <code>http://127.0.0.1:9001</code>. The response includes <code>access</code> (use on API calls), <code>refresh</code>, and <code>user</code>.</p>
+<p><strong>3. Get <code>gee_account_id</code></strong></p>
+<p>Most computing <code>POST</code> bodies need a <code>gee_account_id</code>. List configured Earth Engine accounts (requires a valid JWT from step 2):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>http://127.0.0.1:8000/api/v1/geeaccounts/<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;access-token&gt;&quot;</span>
+</span></code></pre></div>
+<p>On Docker, use <code>http://127.0.0.1:9001</code> as the host. Use the numeric <code>id</code> from the response. If the list is empty, complete Step 4 in the Native or Docker tab above, or see <a href="../integrations/google-earth-engine/">Google Earth Engine</a>.</p>
+<p><strong>4. Call a computing API</strong></p>
+<p>Keep <strong>Django and Celery running</strong> (Step 8). Example:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://127.0.0.1:8000/api/v1/lulc_for_tehsil/<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;access-token&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="s1">    &quot;state&quot;: &quot;karnataka&quot;,</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="s1">    &quot;district&quot;: &quot;raichur&quot;,</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="s1">    &quot;block&quot;: &quot;devadurga&quot;,</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="s1">    &quot;start_year&quot;: 2022,</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="s1">    &quot;end_year&quot;: 2023,</span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="s1">    &quot;gee_account_id&quot;: 1</span>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="s1">  }&#39;</span>
+</span></code></pre></div>
+<p>More routes: <a href="../../pipelines/computing-endpoints/">Computing API Endpoints</a> and <a href="../../pipelines/#first-manual-run">First manual run</a>. Auth errors: <a href="../../reference/api-errors/">API Errors</a>.</p>
+<p><strong>5. Postman</strong></p>
+<p>Import from this docs repository:</p>
+<table>
+<thead>
+<tr>
+<th>Asset</th>
+<th>File</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Collection</td>
+<td><a href="../../assets/postman/core-stack-api.postman_collection.json">core-stack-api.postman_collection.json</a></td>
+</tr>
+<tr>
+<td>Environment (native)</td>
+<td><a href="../../assets/postman/core-stack-local.postman_environment.json">core-stack-local.postman_environment.json</a></td>
+</tr>
+<tr>
+<td>Environment (Docker)</td>
+<td><a href="../../assets/postman/core-stack-docker.postman_environment.json">core-stack-docker.postman_environment.json</a></td>
+</tr>
+</tbody>
+</table>
+<p>Run requests in order:</p>
+<table>
+<thead>
+<tr>
+<th>Order</th>
+<th>Request</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Auth — Login</strong></td>
+<td><code>POST /api/v1/auth/login/</code> → saves JWT <code>access</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>GEE — List accounts</strong></td>
+<td><code>GET /api/v1/geeaccounts/</code> → read <code>gee_account_id</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Computing — LULC for tehsil</strong></td>
+<td>Sample <code>POST</code>; needs Celery on queue <code>nrm</code></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Postman login example" src="../../assets/postman-auth.png" /></p>
+<h2 id="useful-installer-controls">Useful installer controls<a class="headerlink" href="#useful-installer-controls" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># Show exact step names</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--list-steps
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="c1"># Rebuild only nrm_app/.env</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>env_file
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="c1"># Rerun only backend validation</span>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>initialisation_check
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="c1"># Add Earth Engine credentials later</span>
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="w">  </span>--only<span class="w"> </span>gee_configuration,initialisation_check<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a><span class="w">  </span>--gee-json<span class="w"> </span>/full/path/to/service-account.json
+</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a>
+</span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="c1"># Add GeoServer values later and validate</span>
+</span><span id="__span-24-16"><a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-17"><a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a><span class="w">  </span>--only<span class="w"> </span>initialisation_check<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-18"><a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_url</span><span class="o">=</span>https://host/geoserver<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-19"><a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_username</span><span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-20"><a id="__codelineno-24-20" name="__codelineno-24-20" href="#__codelineno-24-20"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_password</span><span class="o">=</span>your-password
+</span><span id="__span-24-21"><a id="__codelineno-24-21" name="__codelineno-24-21" href="#__codelineno-24-21"></a>
+</span><span id="__span-24-22"><a id="__codelineno-24-22" name="__codelineno-24-22" href="#__codelineno-24-22"></a><span class="c1"># Rerun the public API smoke test</span>
+</span><span id="__span-24-23"><a id="__codelineno-24-23" name="__codelineno-24-23" href="#__codelineno-24-23"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-24"><a id="__codelineno-24-24" name="__codelineno-24-24" href="#__codelineno-24-24"></a><span class="w">  </span>--only<span class="w"> </span>public_api_check<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-24-25"><a id="__codelineno-24-25" name="__codelineno-24-25" href="#__codelineno-24-25"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">public_api_key</span><span class="o">=</span>your-public-api-key
 </span></code></pre></div>
 <p>Use <code>--only</code> for the smallest safe rerun. Use <code>--from STEP</code> when you deliberately want to rerun a step and everything after it.</p>
-<h2 id="optional-inputs">Optional Inputs<a class="headerlink" href="#optional-inputs" title="Permanent link">&para;</a></h2>
+<h2 id="optional-inputs">Optional inputs<a class="headerlink" href="#optional-inputs" title="Permanent link">&para;</a></h2>
 <p>The installer currently accepts:</p>
 <ul>
 <li><code>gee_json</code></li>
@@ -2414,11 +3021,12 @@
 <li><code>geoserver_password</code></li>
 </ul>
 <p><code>--gee-json PATH</code> is a shortcut for <code>--input gee_json=PATH</code>.</p>
-<h2 id="after-install">After Install<a class="headerlink" href="#after-install" title="Permanent link">&para;</a></h2>
+<h2 id="after-install">After install<a class="headerlink" href="#after-install" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Read the <a href="../backend-code-map/">Backend Code Map</a>.</li>
-<li>Run one request from <a href="../../pipelines/#first-manual-run">Build Pipelines</a>.</li>
-<li>Use <a href="../setup-troubleshooting/">Troubleshooting</a> only when the installer or runtime names a failing step.</li>
+<li>Complete <a href="#step-9-log-in-and-invoke-apis">Step 9 — Log in and invoke APIs</a> if you have not already.</li>
+<li>For integration deep-dives: <a href="../integrations/">Integrations</a> (GEE, GCS, GeoServer).</li>
+<li>Use <a href="../setup-troubleshooting/">Troubleshooting</a> when the installer or runtime names a failing step.</li>
 </ol>
 
 
