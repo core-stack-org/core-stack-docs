@@ -1,0 +1,108 @@
+{
+  "info": {
+    "name": "CoRE Stack API (local)",
+    "description": "Starter requests for a local CoRE Stack backend after installation.\n\n1. Run **Auth — Login** and save the `access` token.\n2. Set the collection variable `access_token` (or use the test script if enabled).\n3. Run **GEE — List accounts** to read `gee_account_id` for computing APIs.\n4. Run a computing API (for example **Computing — LULC for tehsil**). Keep Django and Celery running.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
+    },
+    {
+      "key": "access_token",
+      "value": ""
+    },
+    {
+      "key": "gee_account_id",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth — Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"test_user_4272\",\n  \"password\": \"test_change_me\"\n}"
+        },
+        "url": "{{base_url}}/api/v1/auth/login/",
+        "description": "Returns JWT `access` and `refresh` tokens plus a `user` object. Use the installer test superuser credentials printed during `install.sh`, or your own Django user."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const json = pm.response.json();",
+              "if (json.access) {",
+              "  pm.collectionVariables.set('access_token', json.access);",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth — Refresh token",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"refresh\": \"<paste-refresh-token-from-login>\"\n}"
+        },
+        "url": "{{base_url}}/api/v1/auth/token/refresh/"
+      }
+    },
+    {
+      "name": "GEE — List accounts",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          }
+        ],
+        "url": "{{base_url}}/api/v1/geeaccounts/",
+        "description": "Lists visible `GEEAccount` records. Use the numeric `id` as `gee_account_id` in computing API bodies."
+      }
+    },
+    {
+      "name": "Computing — LULC for tehsil",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{access_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"state\": \"karnataka\",\n  \"district\": \"raichur\",\n  \"block\": \"devadurga\",\n  \"start_year\": 2022,\n  \"end_year\": 2023,\n  \"gee_account_id\": {{gee_account_id}}\n}"
+        },
+        "url": "{{base_url}}/api/v1/lulc_for_tehsil/",
+        "description": "Small sample computing API. Requires Celery worker on queue `nrm`. See docs/pipelines/index.md."
+      }
+    }
+  ]
+}

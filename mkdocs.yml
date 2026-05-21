@@ -177,7 +177,11 @@ nav:
   - Blog:
       - blog/index.md
 
+exclude_docs: |
+  server/infra/
+
 not_in_nav: |
+  server/index.md
   developers/integrations/index.md
   developers/integrations/aws.md
   developers/integrations/gcs.md
