@@ -192,8 +192,9 @@ Both paths use the **same backend installer** (`installation/install.sh` in [cor
     ```bash
     docker exec -it core-stack bash
     sudo service postgresql start
+    sudo service rabbitmq-server start
     cd /core-stack-backend
-    bash installation/install.sh --only env_file,superuser
+    bash installation/install.sh --only django_migrations,env_file,superuser
     ```
 
     #### Step 4 — GEE service account JSON key
