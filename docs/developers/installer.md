@@ -194,6 +194,7 @@ Both paths use the **same backend installer** (`installation/install.sh` in [cor
     sudo service postgresql start
     sudo service rabbitmq-server start
     cd /core-stack-backend
+    export User=root
     bash installation/install.sh --only django_migrations,env_file,superuser
     ```
 
