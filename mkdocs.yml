@@ -182,6 +182,7 @@ exclude_docs: |
 
 not_in_nav: |
   server/index.md
+  server/cluster-docker-services.md
   developers/integrations/index.md
   developers/integrations/aws.md
   developers/integrations/gcs.md
