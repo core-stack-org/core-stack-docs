@@ -7,7 +7,7 @@ description: Developer-facing integration docs for Earth Engine, Google Cloud St
 
 These pages explain the external systems the current backend can connect to once the base install is working.
 
-Read this section after [Installer](../installer.md), especially when the installer output names an integration blocker such as `gee-probe`, `gcs-upload-probe`, `geoserver-probe`, or `public_api_check`.
+Read this section after [Installer](../installer.md) or [Docker](../docker.md), especially when the installer output names an integration blocker such as `gee-probe`, `gcs-upload-probe`, `geoserver-probe`, or `public_api_check`.
 
 You do not need every integration on day one. The current installer is designed so the base backend can come up first, and GEE, GeoServer, or public API credentials can be added later with targeted reruns.
 

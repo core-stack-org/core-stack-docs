@@ -14,7 +14,7 @@ It helps people move from scattered public datasets to usable planning evidence:
 | --- | --- |
 | understand the core stack data structure | [CoRE Stack Data Structure](concepts/watershed-data-structure.md) |
 | inspect public APIs and get data | [Public APIs](use-precomputed-data/public-apis.md) |
-| install core stack backend | [Installer](developers/installer.md) |
+| install core stack backend | [Installer](developers/installer.md) (native) or [Docker](developers/docker.md) |
 | understand how current data was computed | [How Current Data Was Computed](use-precomputed-data/how-current-data-was-computed.md) |
 | install the backend and build pipelines | [Develop CoRE Stack](developers/index.md) |
 | run current pipelines on your ROI | [computing api endpoints](pipelines/computing-endpoints.md) |

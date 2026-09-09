@@ -147,7 +147,9 @@ nav:
       - STAC Specs: use-precomputed-data/stac-specs.md
   - Develop CoRE Stack:
       - developers/index.md
-      - Installer: developers/installer.md
+      - Installation:
+          - Native (Linux): developers/installer.md
+          - Docker: developers/docker.md
       - Backend Code Map: developers/backend-code-map.md
       - Develop New Pipelines: pipelines/index.md
       - Computing API Endpoints: pipelines/computing-endpoints.md

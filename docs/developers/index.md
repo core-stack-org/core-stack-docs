@@ -11,7 +11,7 @@ Start here if you want to install the backend, understand what data is available
 
 ## Quick Guide
 
-1. [Install the backend](installer.md) and run Django locally.
+1. [Install the backend](installer.md) (native Linux) or [run it with Docker](docker.md), then reach Django at `http://127.0.0.1:8000`.
 2. Read the [Backend Code Map](backend-code-map.md) so you know which scripts/functions to look for, in your repo.
 3. Move into [Build Pipelines](../pipelines/index.md) when you are ready to run or extend computations.
 4. Keep [Troubleshooting](setup-troubleshooting.md) and [Coding Standards](coding-standards-and-guidelines.md) open while you work.

@@ -122,6 +122,22 @@ If tasks never start:
 - keep the Django server and Celery worker in separate terminals
 - watch both logs while triggering an API
 
+Docker Compose runs compute **in-process** (`CELERY_TASK_ALWAYS_EAGER`). Do not start a Celery worker on the host for that path. See [Docker installation](docker.md).
+
+## Docker
+
+Use [Docker installation](docker.md) for Compose commands. Common first-run issues:
+
+| Symptom | Fix |
+| --- | --- |
+| Port already in use | Stop whatever is bound to 8000, 8080, or 5432, or set `BACKEND_PORT` / `GEOSERVER_PORT` / `POSTGRES_PORT` in a `.env` next to `docker-compose.yml` |
+| `denied` or `unauthorized` pulling the image | The package should be public. Confirm [ghcr.io/core-stack-org/core-stack-backend](https://github.com/core-stack-org/core-stack-backend/pkgs/container/core-stack-backend) opens without signing in, then retry `docker compose pull` |
+| `no matching manifest for linux/arm64` | Use `docker compose pull`, not a bare `docker pull` on Apple Silicon. Compose sets `platform: linux/amd64` |
+| Backend keeps restarting | `docker compose logs backend`. Common first-run waits: GeoServer health, the 8 GB admin-boundary download, or seed load |
+| GEE jobs fail after a successful start | Mount JSON at `gee_confs/gee-service-account.json`, add the account in Django admin, then `docker compose up -d --force-recreate backend` if the file was added after the first start |
+
+Wipe volumes (re-downloads ~8 GB next start): `docker compose down -v`.
+
 ## API Issues
 
 | Symptom | Fix |

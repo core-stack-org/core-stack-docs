@@ -97,7 +97,7 @@ What the current installer does during `gee_configuration`:
 
 ### Option B: Create The `GEEAccount` In Django Admin
 
-Use this path if you skipped the installer GEE step or want to inspect the account manually.
+Use this path if you skipped the installer GEE step, are on [Docker Compose](../docker.md#2-optional-google-earth-engine-credentials), or want to inspect the account manually.
 
 1. Open the Django admin add form for GEE accounts:
    `http://127.0.0.1:8000/admin/gee_computing/geeaccount/add/`

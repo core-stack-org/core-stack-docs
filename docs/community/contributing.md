@@ -39,7 +39,7 @@ cd core-stack-backend
 
 ### 2. Set Up Development Environment
 
-Follow the [backend Installation Guide](https://github.com/core-stack-org/core-stack-backend/blob/main/installation/INSTALLATION.md).
+Follow the [backend Installation Guide](https://github.com/core-stack-org/core-stack-backend/blob/main/installation/INSTALLATION.md), or run the published image with [Docker](../developers/docker.md).
 
 ### 3. Create a Branch
 
