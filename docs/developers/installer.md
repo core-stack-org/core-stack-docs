@@ -220,7 +220,7 @@ The **Native** tab uses `installation/install.sh` in [core-stack-backend](https:
 
     #### Step 5 — GCS bucket
 
-    Skip if you do not need GEE-backed raster publication yet. See [Google Cloud Storage — bucket setup](integrations/gcs.md#current-bucket-assumptions) and [Required IAM](integrations/gcs.md#required-iam-for-the-current-backend).
+    Skip if you do not need GEE-backed raster publication yet. Create a bucket in `us-central1` and grant the GEE service account `roles/storage.objectViewer`, `roles/storage.legacyBucketReader`, and `roles/storage.objectAdmin`. Put the name in a Compose `.env` as `GCS_BUCKET_NAME=your-gcs-bucket`, then `docker compose up -d --force-recreate gee-config backend`. Full walkthrough: [Docker installation — GCS](docker.md#3-optional-google-cloud-storage) and [Google Cloud Storage](integrations/gcs.md).
 
     #### Step 6 — GeoServer
 
@@ -251,6 +251,12 @@ The **Native** tab uses `installation/install.sh` in [core-stack-backend](https:
     | GeoServer admin | `http://127.0.0.1:8080/geoserver` |
 
     Day-to-day commands, optional ports/passwords, and troubleshooting: [Docker installation](docker.md).
+
+    Create a named Django admin (optional):
+
+    ```bash
+    docker compose exec -it backend python manage.py createsuperuser --skip-checks
+    ```
 
 ### Step 9 — Log in and invoke APIs { #step-9-log-in-and-invoke-apis }
 

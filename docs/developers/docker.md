@@ -13,7 +13,7 @@ For the native Linux installer, see [Installer](installer.md).
 
 | Service | URL | Login |
 | --- | --- | --- |
-| Django / API | http://localhost:8000 | Superuser `test_user_XXXX` / `test_change_me` (see [First start](#4-first-start)) |
+| Django / API | http://localhost:8000 | Superuser `test_user_XXXX` / `test_change_me` (see [First start](#5-first-start)) |
 | Django admin | http://localhost:8000/admin/ | Same superuser |
 | GeoServer | http://localhost:8080/geoserver | `admin` / `geoserver` |
 
@@ -50,7 +50,45 @@ cp /path/to/your-gee-service-account.json gee_confs/gee-service-account.json
 
 After Django is up, add the account in admin: [http://localhost:8000/admin/gee_computing/geeaccount/add/](http://localhost:8000/admin/gee_computing/geeaccount/add/). Use the service-account email from the JSON. Full GEE project steps are in [Google Earth Engine](integrations/google-earth-engine.md).
 
-## 3. Pull and start
+## 3. Optional: Google Cloud Storage
+
+Raster publish (GEE → GeoTIFF → GeoServer) needs a GCS bucket. Use the **same** service account as the GEE JSON. Create the bucket in **`us-central1`** (`ee.Image.loadGeoTIFF` fails in other regions). Details and IAM notes: [Google Cloud Storage](integrations/gcs.md).
+
+```bash
+# Pick a unique bucket name (GCS names are global)
+export GCS_BUCKET=your-gcs-bucket
+export GEE_SA=name@project-id.iam.gserviceaccount.com
+
+gcloud storage buckets create "gs://${GCS_BUCKET}" --location=us-central1
+
+gcloud storage buckets add-iam-policy-binding "gs://${GCS_BUCKET}" \
+  --member="serviceAccount:${GEE_SA}" \
+  --role=roles/storage.objectViewer
+
+gcloud storage buckets add-iam-policy-binding "gs://${GCS_BUCKET}" \
+  --member="serviceAccount:${GEE_SA}" \
+  --role=roles/storage.legacyBucketReader
+
+gcloud storage buckets add-iam-policy-binding "gs://${GCS_BUCKET}" \
+  --member="serviceAccount:${GEE_SA}" \
+  --role=roles/storage.objectAdmin
+```
+
+Put the bucket name in a `.env` next to `docker-compose.yml`:
+
+```bash
+GCS_BUCKET_NAME=your-gcs-bucket
+```
+
+If Compose is already running:
+
+```bash
+docker compose up -d --force-recreate gee-config backend
+```
+
+Skip this section if you only need Django/GeoServer without layer jobs.
+
+## 4. Pull and start
 
 ```bash
 mkdir -p gee_confs
@@ -66,7 +104,7 @@ ghcr.io/core-stack-org/core-stack-backend:latest
 
 No `docker login` is required. On Apple Silicon a plain `docker pull` of that tag can fail with “no matching manifest for linux/arm64”; Compose already pins `linux/amd64`.
 
-## 4. First start
+## 5. First start
 
 The first `docker compose up` does extra work. Later starts reuse Docker volumes and skip most of it.
 
@@ -96,9 +134,21 @@ The superuser name is `test_user_` plus four digits. Find it with:
 docker compose logs backend | grep -E 'created\||updated\|'
 ```
 
-Change that password after first login.
+Change that password after first login. Admin: http://localhost:8000/admin/
 
-## 5. Check that it is running
+### Create your own superuser
+
+The `test_user_XXXX` account is only for first login. Create a named admin when Django is running:
+
+```bash
+docker compose exec -it backend python manage.py createsuperuser --skip-checks
+```
+
+You will be prompted for username, email, and password. Log in at http://localhost:8000/admin/ with that account.
+
+To reset the installer test user’s password back to `test_change_me`, recreate the backend container (`docker compose up -d --force-recreate backend`). First start always resets that test user.
+
+## 6. Check that it is running
 
 ```bash
 curl -s -o /dev/null -w "%{http_code}\n" http://localhost:8000/
@@ -193,7 +243,7 @@ docker compose down -v
 
 ## Optional settings
 
-Create a `.env` next to `docker-compose.yml` if you need to change ports or passwords:
+Create a `.env` next to `docker-compose.yml` if you need to change ports, passwords, or GCP settings:
 
 ```bash
 BACKEND_PORT=8000
@@ -204,7 +254,13 @@ POSTGRES_USER=corestack_admin
 POSTGRES_PASSWORD=corestack@123
 GEOSERVER_USERNAME=admin
 GEOSERVER_PASSWORD=geoserver
+GEOSERVER_URL=http://geoserver:8080/geoserver/
+GCS_BUCKET_NAME=your-gcs-bucket
+GEE_STORAGE_PROJECT=ee-your-project
+GEE_STORAGE_PROJECT_HELPER=ee-your-helper-project
 ```
+
+`GEOSERVER_URL` defaults to the Compose GeoServer service. `GEE_STORAGE_PROJECT` defaults to `project_id` in `gee_confs/gee-service-account.json` when unset.
 
 Force a fresh admin-boundary download:
 
