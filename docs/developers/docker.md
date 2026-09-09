@@ -1,11 +1,13 @@
 ---
 title: Docker
-description: Run the CoRE Stack backend with Docker Compose — Postgres, GeoServer, and Django from the published image.
+description: Run the CoRE Stack backend with Docker Compose — Postgres, GeoServer, and Django from the published runtime image, with the git checkout bind-mounted onto /app.
 ---
 
 # Run CoRE Stack Backend with Docker
 
-Pull the published image and start Postgres, GeoServer, and Django. You do not need Conda, a local Postgres install, or a GitHub password.
+Pull the published **runtime** image and start Postgres, GeoServer, and Django. You do not need Conda, a local Postgres install, or a GitHub password.
+
+The image has the Python/Conda environment and helper scripts only. It does **not** contain the Django app. Compose bind-mounts your [core-stack-backend](https://github.com/core-stack-org/core-stack-backend) checkout onto `/app`, so Django runs the code on your machine. Edit files in that clone; `runserver` reloads them. You do not rebuild the image for app changes.
 
 For the native Linux installer, see [Installer](installer.md).
 
@@ -26,7 +28,7 @@ Computing APIs run **in-process** inside the backend container (`CELERY_TASK_ALW
 - [Docker](https://docs.docker.com/get-docker/) with Compose v2 (`docker compose version`)
 - About **20 GB** free disk (images plus the first-run admin-boundary download, ~8 GB)
 - Ports **8000**, **8080**, and **5432** free on your machine
-- Git, to clone [core-stack-backend](https://github.com/core-stack-org/core-stack-backend) (Compose mounts helper scripts from `installation/docker`)
+- Git, to clone [core-stack-backend](https://github.com/core-stack-org/core-stack-backend) (required: Compose bind-mounts the checkout onto `/app`)
 
 The backend and GeoServer images are **linux/amd64**. Docker Desktop on Apple Silicon runs them with emulation. You do not need extra flags when using `docker compose`.
 
@@ -37,7 +39,25 @@ git clone https://github.com/core-stack-org/core-stack-backend.git
 cd core-stack-backend
 ```
 
-You only need the repo for `docker-compose.yml` and `installation/docker/`. You do not build the backend image yourself.
+A full clone is required. Compose mounts `.` (the backend directory) onto `/app` in `backend`, `geoserver-init`, and `gee-config`.
+
+```yaml
+volumes:
+  - ${BACKEND_CODE_DIR:-.}:/app
+```
+
+That is the default in `docker-compose.yml`. To mount a different tree, set `BACKEND_CODE_DIR` in a `.env` next to `docker-compose.yml` (see [Optional settings](#optional-settings)), then recreate:
+
+```bash
+# .env next to docker-compose.yml
+BACKEND_CODE_DIR=/path/to/other/checkout
+```
+
+```bash
+docker compose up -d --force-recreate backend geoserver-init gee-config
+```
+
+You do not build the backend image yourself. Pull `ghcr.io/core-stack-org/core-stack-backend:latest` for Conda, GDAL, and the entrypoint scripts.
 
 ## 2. Optional: Google Earth Engine credentials
 
@@ -96,7 +116,7 @@ docker compose pull
 docker compose up -d
 ```
 
-The image is public:
+The image is public (runtime only — no app source):
 
 ```text
 ghcr.io/core-stack-org/core-stack-backend:latest
@@ -232,7 +252,13 @@ docker compose logs -f     # all services
 docker compose stop        # stop, keep data
 docker compose start       # start again
 docker compose down        # remove containers, keep volumes
-docker compose pull && docker compose up -d   # update to the latest published image
+docker compose pull && docker compose up -d   # update the runtime image (not app code)
+```
+
+App edits on the host are what Django runs. Recreate the backend container only if you change Compose mounts or `.env`:
+
+```bash
+docker compose up -d --force-recreate backend
 ```
 
 Wipe the database, GeoServer data, and admin-boundary download (you will re-download ~8 GB next start):
@@ -258,9 +284,11 @@ GEOSERVER_URL=http://geoserver:8080/geoserver/
 GCS_BUCKET_NAME=your-gcs-bucket
 GEE_STORAGE_PROJECT=ee-your-project
 GEE_STORAGE_PROJECT_HELPER=ee-your-helper-project
+# Optional; defaults to this checkout (.)
+# BACKEND_CODE_DIR=/path/to/other/checkout
 ```
 
-`GEOSERVER_URL` defaults to the Compose GeoServer service. `GEE_STORAGE_PROJECT` defaults to `project_id` in `gee_confs/gee-service-account.json` when unset.
+`GEOSERVER_URL` defaults to the Compose GeoServer service. `GEE_STORAGE_PROJECT` defaults to `project_id` in `gee_confs/gee-service-account.json` when unset. `BACKEND_CODE_DIR` defaults to `.` (the backend repository).
 
 Force a fresh admin-boundary download:
 
@@ -281,6 +309,13 @@ Use Compose (`docker compose pull`), not a bare `docker pull` on Apple Silicon. 
 
 **Backend keeps restarting**  
 `docker compose logs backend`. Common first-run waits: GeoServer health, the 8 GB download, or seed load.
+
+**`manage.py` not found / empty `/app`**  
+The image has no app source. You must start Compose from a clone of [core-stack-backend](https://github.com/core-stack-org/core-stack-backend) (or set `BACKEND_CODE_DIR` to one). Recreate after changing the mount:
+
+```bash
+docker compose up -d --force-recreate backend geoserver-init gee-config
+```
 
 **GEE jobs fail after a successful start**  
 Mount the JSON under `gee_confs/gee-service-account.json` and add the account in Django admin. Restart is not required for the file mount if the directory already existed; recreate the backend container if you added the file later:

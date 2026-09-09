@@ -8,7 +8,7 @@ description: Local setup for the CoRE Stack backend — native Linux installer o
 Choose how you want to run the backend:
 
 - **Native (Linux)** — this page. Uses the backend installer on Ubuntu or WSL2. It sets up Python, PostgreSQL, RabbitMQ, the runtime `.env`, migrations, seed data, optional Earth Engine credentials, admin-boundary data, and the built-in initialization check.
-- **Docker** — [Docker installation](docker.md). Pulls the published image and starts Postgres, GeoServer, and Django with Compose. No Conda, local Postgres, or GitHub password.
+- **Docker** — [Docker installation](docker.md). Pulls the published runtime image and bind-mounts the backend checkout onto `/app`. No Conda, local Postgres, or GitHub password.
 
 Optional integrations (GEE, GCS, GeoServer) are Steps 4–6 below. Installer flags and troubleshooting are documented at the bottom of this page.
 
@@ -137,7 +137,7 @@ The **Native** tab uses `installation/install.sh` in [core-stack-backend](https:
 
 === "Docker"
 
-    Pull the published image and start Postgres, GeoServer, and Django. You do not need Conda, a local Postgres install, or a GitHub password. Full walkthrough: [Docker installation](docker.md).
+    Pull the published **runtime** image and start Postgres, GeoServer, and Django. You do not need Conda, a local Postgres install, or a GitHub password. The image does not include the Django app; Compose bind-mounts this checkout onto `/app`. Full walkthrough: [Docker installation](docker.md).
 
     #### What you get
 
@@ -154,7 +154,7 @@ The **Native** tab uses `installation/install.sh` in [core-stack-backend](https:
     - [Docker](https://docs.docker.com/get-docker/) with Compose v2 (`docker compose version`)
     - About **20 GB** free disk (images plus the first-run admin-boundary download, ~8 GB)
     - Ports **8000**, **8080**, and **5432** free
-    - Git, to clone the backend repo (Compose mounts helper scripts from `installation/docker`)
+    - Git, to clone the backend repo (required: Compose bind-mounts the checkout onto `/app`)
 
     The backend and GeoServer images are **linux/amd64**. Docker Desktop on Apple Silicon runs them with emulation.
 
@@ -165,7 +165,7 @@ The **Native** tab uses `installation/install.sh` in [core-stack-backend](https:
     cd core-stack-backend
     ```
 
-    You only need the repo for `docker-compose.yml` and `installation/docker/`. You do not build the backend image yourself.
+    A full clone is required. Compose mounts `.` onto `/app` in `backend`, `geoserver-init`, and `gee-config`. To use another tree, set `BACKEND_CODE_DIR` in a `.env` next to `docker-compose.yml`. You do not build the backend image yourself.
 
     #### Step 3 — Provision the runtime
 
@@ -184,7 +184,7 @@ The **Native** tab uses `installation/install.sh` in [core-stack-backend](https:
     docker compose up -d
     ```
 
-    The image is public: `ghcr.io/core-stack-org/core-stack-backend:latest`. No `docker login` is required. On Apple Silicon use Compose, not a bare `docker pull` (Compose pins `linux/amd64`).
+    The image is public (runtime only — no app source): `ghcr.io/core-stack-org/core-stack-backend:latest`. No `docker login` is required. On Apple Silicon use Compose, not a bare `docker pull` (Compose pins `linux/amd64`).
 
     The first start downloads admin-boundary data (~8 GB), creates GeoServer workspaces/styles, runs migrations, and loads seed data. Watch progress:
 
@@ -228,7 +228,7 @@ The **Native** tab uses `installation/install.sh` in [core-stack-backend](https:
 
     #### Step 7 — Data paths
 
-    Data lives on the `core_stack_data` Docker volume (`DATA_DIR=/var/tmp/core-stack-data` inside the container). You do not edit `nrm_app/.env` on the host for the published image.
+    App code is the host checkout bind-mounted at `/app`. Data lives on the `core_stack_data` Docker volume (`DATA_DIR=/var/tmp/core-stack-data` inside the container). After first start, `nrm_app/.env` is written on the mounted tree (the host clone).
 
     #### Step 8 — Start the runtime
 
