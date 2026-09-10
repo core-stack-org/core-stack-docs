@@ -23,7 +23,7 @@
       
       
       <link rel="icon" href="../../assets/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.7.6">
     
     
       
@@ -842,6 +842,69 @@
   
   
   
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../installer/" class="md-nav__link">
         
@@ -850,7 +913,7 @@
   <span class="md-ellipsis">
     
   
-    Installer
+    Native (Linux)
   
 
     
@@ -859,6 +922,42 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1087,6 +1186,17 @@
     <span class="md-ellipsis">
       
         Celery Runtime
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker
       
     </span>
   </a>
@@ -2259,6 +2369,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#api-issues" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2521,6 +2642,40 @@
 <li>keep the Django server and Celery worker in separate terminals</li>
 <li>watch both logs while triggering an API</li>
 </ul>
+<p>Docker Compose runs compute <strong>in-process</strong> (<code>CELERY_TASK_ALWAYS_EAGER</code>). Do not start a Celery worker on the host for that path. See <a href="../docker/">Docker installation</a>.</p>
+<h2 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h2>
+<p>Use <a href="../docker/">Docker installation</a> for Compose commands. Common first-run issues:</p>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Port already in use</td>
+<td>Stop whatever is bound to 8000, 8080, or 5432, or set <code>BACKEND_PORT</code> / <code>GEOSERVER_PORT</code> / <code>POSTGRES_PORT</code> in a <code>.env</code> next to <code>docker-compose.yml</code></td>
+</tr>
+<tr>
+<td><code>denied</code> or <code>unauthorized</code> pulling the image</td>
+<td>The package should be public. Confirm <a href="https://github.com/core-stack-org/core-stack-backend/pkgs/container/core-stack-backend">ghcr.io/core-stack-org/core-stack-backend</a> opens without signing in, then retry <code>docker compose pull</code></td>
+</tr>
+<tr>
+<td><code>no matching manifest for linux/arm64</code></td>
+<td>Use <code>docker compose pull</code>, not a bare <code>docker pull</code> on Apple Silicon. Compose sets <code>platform: linux/amd64</code></td>
+</tr>
+<tr>
+<td>Backend keeps restarting</td>
+<td><code>docker compose logs backend</code>. Common first-run waits: GeoServer health, the 8 GB admin-boundary download, or seed load</td>
+</tr>
+<tr>
+<td>GEE jobs fail after a successful start</td>
+<td>Mount JSON at <code>gee_confs/gee-service-account.json</code>, add the account in Django admin, then <code>docker compose up -d --force-recreate backend</code> if the file was added after the first start</td>
+</tr>
+</tbody>
+</table>
+<p>Wipe volumes (re-downloads ~8 GB next start): <code>docker compose down -v</code>.</p>
 <h2 id="api-issues">API Issues<a class="headerlink" href="#api-issues" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

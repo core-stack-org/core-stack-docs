@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../../assets/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.7.6">
     
     
       
@@ -833,6 +833,66 @@
   
   
   
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../installer/" class="md-nav__link">
         
@@ -841,7 +901,7 @@
   <span class="md-ellipsis">
     
   
-    Installer
+    Native (Linux)
   
 
     
@@ -850,6 +910,42 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2226,7 +2322,7 @@ Most computing pipelines, several authenticated compute APIs, and some publicati
 <li>marks later validation as GEE-required so the initialization test fails fast on missing GEE readiness</li>
 </ul>
 <h3 id="option-b-create-the-geeaccount-in-django-admin">Option B: Create The <code>GEEAccount</code> In Django Admin<a class="headerlink" href="#option-b-create-the-geeaccount-in-django-admin" title="Permanent link">&para;</a></h3>
-<p>Use this path if you skipped the installer GEE step or want to inspect the account manually.</p>
+<p>Use this path if you skipped the installer GEE step, are on <a href="../../docker/#2-optional-google-earth-engine-credentials">Docker Compose</a>, or want to inspect the account manually.</p>
 <ol>
 <li>Open the Django admin add form for GEE accounts:
    <code>http://127.0.0.1:8000/admin/gee_computing/geeaccount/add/</code></li>

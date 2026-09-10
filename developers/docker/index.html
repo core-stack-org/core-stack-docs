@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Naming conventions for identifiers, fields, variables, and dataset labels used across CoRE Stack docs and code.">
+        <meta name="description" content="Run the CoRE Stack backend with Docker Compose — Postgres, GeoServer, and Django from the published runtime image, with the git checkout bind-mounted onto /app.">
       
       
       
-        <link rel="canonical" href="https://docs.core-stack.org/reference/standardised-field-constant-variable-names/">
+        <link rel="canonical" href="https://docs.core-stack.org/developers/docker/">
       
       
-        <link rel="prev" href="../abbreviations/">
+        <link rel="prev" href="../installer/">
       
       
-        <link rel="next" href="../geospatial-learning-resources/">
+        <link rel="next" href="../backend-code-map/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Standardised Field / Constant / Variable Names - CoRE Stack Documentation</title>
+        <title>Docker - CoRE Stack Documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#standardised-field-constant-variable-names" class="md-skip">
+        <a href="#run-core-stack-backend-with-docker" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Standardised Field / Constant / Variable Names
+              Docker
             
           </span>
         </div>
@@ -298,11 +298,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../developers/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -342,13 +344,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../reference/" class="md-tabs__link">
           
   
   
@@ -754,6 +754,8 @@
       
   
   
+    
+  
   
   
     
@@ -781,22 +783,23 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../developers/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -814,13 +817,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -837,8 +840,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -851,20 +856,21 @@
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
         
           
+          
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
             
   
   
@@ -882,7 +888,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -900,7 +906,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../developers/installer/" class="md-nav__link">
+      <a href="../installer/" class="md-nav__link">
         
   
   
@@ -925,10 +931,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../developers/docker/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -944,6 +977,177 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-get" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What you get
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-clone-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Clone the repository
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-optional-google-earth-engine-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Optional: Google Earth Engine credentials
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-optional-google-cloud-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Optional: Google Cloud Storage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pull-and-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Pull and start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-first-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. First start
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. First start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-your-own-superuser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create your own superuser
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-check-that-it-is-running" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Check that it is running
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-in-and-invoke-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log in and invoke APIs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#day-to-day-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Day-to-day commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -964,7 +1168,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../developers/backend-code-map/" class="md-nav__link">
+      <a href="../backend-code-map/" class="md-nav__link">
         
   
   
@@ -1048,7 +1252,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../developers/setup-troubleshooting/" class="md-nav__link">
+      <a href="../setup-troubleshooting/" class="md-nav__link">
         
   
   
@@ -1076,7 +1280,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../developers/stack-platforms/" class="md-nav__link">
+      <a href="../stack-platforms/" class="md-nav__link">
         
   
   
@@ -1104,7 +1308,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../developers/coding-standards-and-guidelines/" class="md-nav__link">
+      <a href="../coding-standards-and-guidelines/" class="md-nav__link">
         
   
   
@@ -1471,8 +1675,6 @@
       
   
   
-    
-  
   
   
     
@@ -1502,23 +1704,22 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../reference/" class="md-nav__link ">
               
   
   
@@ -1536,13 +1737,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="">
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1562,7 +1763,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../scientific-papers-and-research-repositories/" class="md-nav__link">
+      <a href="../../reference/scientific-papers-and-research-repositories/" class="md-nav__link">
         
   
   
@@ -1590,7 +1791,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../glossary/" class="md-nav__link">
+      <a href="../../reference/glossary/" class="md-nav__link">
         
   
   
@@ -1618,7 +1819,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../abbreviations/" class="md-nav__link">
+      <a href="../../reference/abbreviations/" class="md-nav__link">
         
   
   
@@ -1643,37 +1844,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Standardised Field / Constant / Variable Names
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../reference/standardised-field-constant-variable-names/" class="md-nav__link">
         
   
   
@@ -1689,50 +1863,6 @@
   
 
       </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#general-rules" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        General Rules
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Examples
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1745,7 +1875,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../geospatial-learning-resources/" class="md-nav__link">
+      <a href="../../reference/geospatial-learning-resources/" class="md-nav__link">
         
   
   
@@ -1773,7 +1903,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../wonderful-github-repos/" class="md-nav__link">
+      <a href="../../reference/wonderful-github-repos/" class="md-nav__link">
         
   
   
@@ -1801,7 +1931,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-errors/" class="md-nav__link">
+      <a href="../../reference/api-errors/" class="md-nav__link">
         
   
   
@@ -1829,7 +1959,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../license/" class="md-nav__link">
+      <a href="../../reference/license/" class="md-nav__link">
         
   
   
@@ -2190,10 +2320,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#general-rules" class="md-nav__link">
+  <a href="#what-you-get" class="md-nav__link">
     <span class="md-ellipsis">
       
-        General Rules
+        What you get
       
     </span>
   </a>
@@ -2201,10 +2331,137 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#common-examples" class="md-nav__link">
+  <a href="#requirements" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Common Examples
+        Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-clone-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Clone the repository
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-optional-google-earth-engine-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Optional: Google Earth Engine credentials
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-optional-google-cloud-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Optional: Google Cloud Storage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pull-and-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Pull and start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-first-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. First start
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. First start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-your-own-superuser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create your own superuser
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-check-that-it-is-running" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Check that it is running
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log-in-and-invoke-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log in and invoke APIs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#day-to-day-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Day-to-day commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optional settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
       
     </span>
   </a>
@@ -2257,7 +2514,25 @@
         <a href="../" class="md-path__link">
           
   <span class="md-ellipsis">
-    References / Learn
+    Develop CoRE Stack
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../installer/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Installation
   </span>
 
         </a>
@@ -2279,54 +2554,267 @@
   
 
 
-<h1 id="standardised-field-constant-variable-names">Standardised Field / Constant / Variable Names<a class="headerlink" href="#standardised-field-constant-variable-names" title="Permanent link">&para;</a></h1>
-<p>Use this page to reduce naming drift across new development, APIs, pipeline outputs, and code.</p>
-<hr />
-<h2 id="general-rules">General Rules<a class="headerlink" href="#general-rules" title="Permanent link">&para;</a></h2>
-<ul>
-<li>prefer stable, lower-case, machine-friendly field names</li>
-<li>use the same join key names across all repos and code when they mean the same thing</li>
-<li>do not rename the same idea differently across API docs, pipeline docs, and lessons without a strong reason</li>
-<li>document the public-facing name when internal code differs</li>
-</ul>
-<hr />
-<h2 id="common-examples">Common Examples<a class="headerlink" href="#common-examples" title="Permanent link">&para;</a></h2>
+<h1 id="run-core-stack-backend-with-docker">Run CoRE Stack Backend with Docker<a class="headerlink" href="#run-core-stack-backend-with-docker" title="Permanent link">&para;</a></h1>
+<p>Pull the published <strong>runtime</strong> image and start Postgres, GeoServer, and Django. You do not need Conda, a local Postgres install, or a GitHub password.</p>
+<p>The image has the Python/Conda environment and helper scripts only. It does <strong>not</strong> contain the Django app. Compose bind-mounts your <a href="https://github.com/core-stack-org/core-stack-backend">core-stack-backend</a> checkout onto <code>/app</code>, so Django runs the code on your machine. Edit files in that clone; <code>runserver</code> reloads them. You do not rebuild the image for app changes.</p>
+<p>For the native Linux installer, see <a href="../installer/">Installer</a>.</p>
+<h2 id="what-you-get">What you get<a class="headerlink" href="#what-you-get" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Prefer</th>
-<th>Avoid</th>
-<th>Why</th>
+<th>Service</th>
+<th>URL</th>
+<th>Login</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>uid</code></td>
-<td><code>id</code> for watershed-specific joins</td>
-<td>clearer for shared spatial joins</td>
+<td>Django / API</td>
+<td>http://localhost:8000</td>
+<td>Superuser <code>test_user_XXXX</code> / <code>test_change_me</code> (see <a href="#5-first-start">First start</a>)</td>
 </tr>
 <tr>
-<td><code>state</code>, <code>district</code>, <code>block</code></td>
-<td>mixed admin naming in the same example</td>
-<td>keeps request examples consistent</td>
+<td>Django admin</td>
+<td>http://localhost:8000/admin/</td>
+<td>Same superuser</td>
 </tr>
 <tr>
-<td><code>gee_asset_path</code></td>
-<td>ad hoc GEE path field names</td>
-<td>matches public metadata already exposed</td>
-</tr>
-<tr>
-<td><code>layer_url</code></td>
-<td>multiple vague download field names</td>
-<td>keeps delivery surfaces understandable</td>
-</tr>
-<tr>
-<td><code>dataset_name</code></td>
-<td>shifting labels for the same output</td>
-<td>makes inventories easier to scan</td>
+<td>GeoServer</td>
+<td>http://localhost:8080/geoserver</td>
+<td><code>admin</code> / <code>geoserver</code></td>
 </tr>
 </tbody>
 </table>
+<p>Postgres listens on <code>localhost:5432</code> (<code>corestack_admin</code> / <code>corestack@123</code>, database <code>corestack_db</code>).</p>
+<p>Computing APIs run <strong>in-process</strong> inside the backend container (<code>CELERY_TASK_ALWAYS_EAGER</code>). You do not start a separate Celery worker.</p>
+<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://docs.docker.com/get-docker/">Docker</a> with Compose v2 (<code>docker compose version</code>)</li>
+<li>About <strong>20 GB</strong> free disk (images plus the first-run admin-boundary download, ~8 GB)</li>
+<li>Ports <strong>8000</strong>, <strong>8080</strong>, and <strong>5432</strong> free on your machine</li>
+<li>Git, to clone <a href="https://github.com/core-stack-org/core-stack-backend">core-stack-backend</a> (required: Compose bind-mounts the checkout onto <code>/app</code>)</li>
+</ul>
+<p>The backend and GeoServer images are <strong>linux/amd64</strong>. Docker Desktop on Apple Silicon runs them with emulation. You do not need extra flags when using <code>docker compose</code>.</p>
+<h2 id="1-clone-the-repository">1. Clone the repository<a class="headerlink" href="#1-clone-the-repository" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/core-stack-org/core-stack-backend.git
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>core-stack-backend
+</span></code></pre></div>
+<p>A full clone is required. Compose mounts <code>.</code> (the backend directory) onto <code>/app</code> in <code>backend</code>, <code>geoserver-init</code>, and <code>gee-config</code>.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${BACKEND_CODE_DIR:-.}:/app</span>
+</span></code></pre></div>
+<p>That is the default in <code>docker-compose.yml</code>. To mount a different tree, set <code>BACKEND_CODE_DIR</code> in a <code>.env</code> next to <code>docker-compose.yml</code> (see <a href="#optional-settings">Optional settings</a>), then recreate:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># .env next to docker-compose.yml</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nv">BACKEND_CODE_DIR</span><span class="o">=</span>/path/to/other/checkout
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate<span class="w"> </span>backend<span class="w"> </span>geoserver-init<span class="w"> </span>gee-config
+</span></code></pre></div>
+<p>You do not build the backend image yourself. Pull <code>ghcr.io/core-stack-org/core-stack-backend:latest</code> for Conda, GDAL, and the entrypoint scripts.</p>
+<h2 id="2-optional-google-earth-engine-credentials">2. Optional: Google Earth Engine credentials<a class="headerlink" href="#2-optional-google-earth-engine-credentials" title="Permanent link">&para;</a></h2>
+<p>The stack starts without GEE. Layer jobs that call Earth Engine need a service-account JSON.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>gee_confs
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>cp<span class="w"> </span>/path/to/your-gee-service-account.json<span class="w"> </span>gee_confs/gee-service-account.json
+</span></code></pre></div>
+<p>After Django is up, add the account in admin: <a href="http://localhost:8000/admin/gee_computing/geeaccount/add/">http://localhost:8000/admin/gee_computing/geeaccount/add/</a>. Use the service-account email from the JSON. Full GEE project steps are in <a href="../integrations/google-earth-engine/">Google Earth Engine</a>.</p>
+<h2 id="3-optional-google-cloud-storage">3. Optional: Google Cloud Storage<a class="headerlink" href="#3-optional-google-cloud-storage" title="Permanent link">&para;</a></h2>
+<p>Raster publish (GEE → GeoTIFF → GeoServer) needs a GCS bucket. Use the <strong>same</strong> service account as the GEE JSON. Create the bucket in <strong><code>us-central1</code></strong> (<code>ee.Image.loadGeoTIFF</code> fails in other regions). Details and IAM notes: <a href="../integrations/gcs/">Google Cloud Storage</a>.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Pick a unique bucket name (GCS names are global)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GCS_BUCKET</span><span class="o">=</span>your-gcs-bucket
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GEE_SA</span><span class="o">=</span>name@project-id.iam.gserviceaccount.com
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>create<span class="w"> </span><span class="s2">&quot;gs://</span><span class="si">${</span><span class="nv">GCS_BUCKET</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>--location<span class="o">=</span>us-central1
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>add-iam-policy-binding<span class="w"> </span><span class="s2">&quot;gs://</span><span class="si">${</span><span class="nv">GCS_BUCKET</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:</span><span class="si">${</span><span class="nv">GEE_SA</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span>--role<span class="o">=</span>roles/storage.objectViewer
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>add-iam-policy-binding<span class="w"> </span><span class="s2">&quot;gs://</span><span class="si">${</span><span class="nv">GCS_BUCKET</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">  </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:</span><span class="si">${</span><span class="nv">GEE_SA</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">  </span>--role<span class="o">=</span>roles/storage.legacyBucketReader
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>add-iam-policy-binding<span class="w"> </span><span class="s2">&quot;gs://</span><span class="si">${</span><span class="nv">GCS_BUCKET</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">  </span>--member<span class="o">=</span><span class="s2">&quot;serviceAccount:</span><span class="si">${</span><span class="nv">GEE_SA</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">  </span>--role<span class="o">=</span>roles/storage.objectAdmin
+</span></code></pre></div>
+<p>Put the bucket name in a <code>.env</code> next to <code>docker-compose.yml</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nv">GCS_BUCKET_NAME</span><span class="o">=</span>your-gcs-bucket
+</span></code></pre></div>
+<p>If Compose is already running:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate<span class="w"> </span>gee-config<span class="w"> </span>backend
+</span></code></pre></div>
+<p>Skip this section if you only need Django/GeoServer without layer jobs.</p>
+<h2 id="4-pull-and-start">4. Pull and start<a class="headerlink" href="#4-pull-and-start" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>gee_confs
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>pull
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</span></code></pre></div>
+<p>The image is public (runtime only — no app source):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>ghcr.io/core-stack-org/core-stack-backend:latest
+</span></code></pre></div>
+<p>No <code>docker login</code> is required. On Apple Silicon a plain <code>docker pull</code> of that tag can fail with “no matching manifest for linux/arm64”; Compose already pins <code>linux/amd64</code>.</p>
+<h2 id="5-first-start">5. First start<a class="headerlink" href="#5-first-start" title="Permanent link">&para;</a></h2>
+<p>The first <code>docker compose up</code> does extra work. Later starts reuse Docker volumes and skip most of it.</p>
+<ol>
+<li><strong>Admin-boundary data</strong> (~8 GB) downloads into the <code>core_stack_data</code> volume. This is the slow step.</li>
+<li>GeoServer comes up and workspaces/styles are created.</li>
+<li>Django runs migrations, loads seed data, and starts on port 8000.</li>
+</ol>
+<p>Watch progress:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>ps
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>backend
+</span></code></pre></div>
+<p>GeoServer can take a few minutes. Seed load can also take several minutes.</p>
+<p>When Django is ready you will see:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Starting development server at http://0.0.0.0:8000/
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Django is ready. Superuser password is test_change_me
+</span></code></pre></div>
+<p>The superuser name is <code>test_user_</code> plus four digits. Find it with:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>backend<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;created\||updated\|&#39;</span>
+</span></code></pre></div>
+<p>Change that password after first login. Admin: http://localhost:8000/admin/</p>
+<h3 id="create-your-own-superuser">Create your own superuser<a class="headerlink" href="#create-your-own-superuser" title="Permanent link">&para;</a></h3>
+<p>The <code>test_user_XXXX</code> account is only for first login. Create a named admin when Django is running:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>docker<span class="w"> </span>compose<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>backend<span class="w"> </span>python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser<span class="w"> </span>--skip-checks
+</span></code></pre></div>
+<p>You will be prompted for username, email, and password. Log in at http://localhost:8000/admin/ with that account.</p>
+<p>To reset the installer test user’s password back to <code>test_change_me</code>, recreate the backend container (<code>docker compose up -d --force-recreate backend</code>). First start always resets that test user.</p>
+<h2 id="6-check-that-it-is-running">6. Check that it is running<a class="headerlink" href="#6-check-that-it-is-running" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-o<span class="w"> </span>/dev/null<span class="w"> </span>-w<span class="w"> </span><span class="s2">&quot;%{http_code}\n&quot;</span><span class="w"> </span>http://localhost:8000/
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>curl<span class="w"> </span>-s<span class="w"> </span>-o<span class="w"> </span>/dev/null<span class="w"> </span>-w<span class="w"> </span><span class="s2">&quot;%{http_code}\n&quot;</span><span class="w"> </span>http://localhost:8000/admin/login/
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>curl<span class="w"> </span>-s<span class="w"> </span>-o<span class="w"> </span>/dev/null<span class="w"> </span>-w<span class="w"> </span><span class="s2">&quot;%{http_code}\n&quot;</span><span class="w"> </span>http://localhost:8080/geoserver/web/
+</span></code></pre></div>
+<p>Expect <code>200</code> from Django and <code>200</code> or <code>302</code> from GeoServer.</p>
+<h2 id="log-in-and-invoke-apis">Log in and invoke APIs<a class="headerlink" href="#log-in-and-invoke-apis" title="Permanent link">&para;</a></h2>
+<p>Computing APIs use <strong>JWT bearer tokens</strong>, not the Django admin session. Base URL: <code>http://127.0.0.1:8000</code>.</p>
+<p><strong>1. Log in (JWT)</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://127.0.0.1:8000/api/v1/auth/login/<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;username&quot;:&quot;test_user_XXXX&quot;,&quot;password&quot;:&quot;test_change_me&quot;}&#39;</span>
+</span></code></pre></div>
+<p>Replace <code>test_user_XXXX</code> with the name from the backend logs. The response includes <code>access</code> (use on API calls), <code>refresh</code>, and <code>user</code>.</p>
+<p><strong>2. Get <code>gee_account_id</code></strong></p>
+<p>Most computing <code>POST</code> bodies need a <code>gee_account_id</code>. List configured Earth Engine accounts (requires a valid JWT):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>http://127.0.0.1:8000/api/v1/geeaccounts/<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;access-token&gt;&quot;</span>
+</span></code></pre></div>
+<p>Use the numeric <code>id</code> from the response. If the list is empty, complete <a href="#2-optional-google-earth-engine-credentials">GEE credentials</a> and add the account in Django admin. See <a href="../integrations/google-earth-engine/">Google Earth Engine</a>.</p>
+<p><strong>3. Call a computing API</strong></p>
+<p>The backend container runs compute tasks in-process. Example:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://127.0.0.1:8000/api/v1/lulc_for_tehsil/<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;access-token&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="s1">    &quot;state&quot;: &quot;karnataka&quot;,</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="s1">    &quot;district&quot;: &quot;raichur&quot;,</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="s1">    &quot;block&quot;: &quot;devadurga&quot;,</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="s1">    &quot;start_year&quot;: 2022,</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="s1">    &quot;end_year&quot;: 2023,</span>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="s1">    &quot;gee_account_id&quot;: 1</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="s1">  }&#39;</span>
+</span></code></pre></div>
+<p>More routes: <a href="../../pipelines/computing-endpoints/">Computing API Endpoints</a> and <a href="../../pipelines/#first-manual-run">First computing API test-run</a>. Auth errors: <a href="../../reference/api-errors/">API Errors</a>.</p>
+<p><strong>4. Postman</strong></p>
+<p>Import from this docs repository:</p>
+<table>
+<thead>
+<tr>
+<th>Asset</th>
+<th>File</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Collection</td>
+<td><a href="../../assets/postman/core-stack-api.postman_collection.json">core-stack-api.postman_collection.json</a></td>
+</tr>
+<tr>
+<td>Environment (Docker)</td>
+<td><a href="../../assets/postman/core-stack-docker.postman_environment.json">core-stack-docker.postman_environment.json</a></td>
+</tr>
+</tbody>
+</table>
+<p>Run requests in order:</p>
+<table>
+<thead>
+<tr>
+<th>Order</th>
+<th>Request</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Auth — Login</strong></td>
+<td><code>POST /api/v1/auth/login/</code> → saves JWT <code>access</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>GEE — List accounts</strong></td>
+<td><code>GET /api/v1/geeaccounts/</code> → read <code>gee_account_id</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Computing — LULC for tehsil</strong></td>
+<td>Sample <code>POST</code></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Postman login example" src="../../assets/postman-auth.png" /></p>
+<p>Optional GCS setup for raster publication: <a href="../integrations/gcs/">Google Cloud Storage</a>.</p>
+<h2 id="day-to-day-commands">Day-to-day commands<a class="headerlink" href="#day-to-day-commands" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>ps<span class="w">          </span><span class="c1"># status</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w">     </span><span class="c1"># all services</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>stop<span class="w">        </span><span class="c1"># stop, keep data</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>docker<span class="w"> </span>compose<span class="w"> </span>start<span class="w">       </span><span class="c1"># start again</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w">        </span><span class="c1"># remove containers, keep volumes</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>docker<span class="w"> </span>compose<span class="w"> </span>pull<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w">   </span><span class="c1"># update the runtime image (not app code)</span>
+</span></code></pre></div>
+<p>App edits on the host are what Django runs. Recreate the backend container only if you change Compose mounts or <code>.env</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate<span class="w"> </span>backend
+</span></code></pre></div>
+<p>Wipe the database, GeoServer data, and admin-boundary download (you will re-download ~8 GB next start):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span>-v
+</span></code></pre></div>
+<h2 id="optional-settings">Optional settings<a class="headerlink" href="#optional-settings" title="Permanent link">&para;</a></h2>
+<p>Create a <code>.env</code> next to <code>docker-compose.yml</code> if you need to change ports, passwords, or GCP settings:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nv">BACKEND_PORT</span><span class="o">=</span><span class="m">8000</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="nv">GEOSERVER_PORT</span><span class="o">=</span><span class="m">8080</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="nv">POSTGRES_PORT</span><span class="o">=</span><span class="m">5432</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="nv">POSTGRES_DB</span><span class="o">=</span>corestack_db
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="nv">POSTGRES_USER</span><span class="o">=</span>corestack_admin
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>corestack@123
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="nv">GEOSERVER_USERNAME</span><span class="o">=</span>admin
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="nv">GEOSERVER_PASSWORD</span><span class="o">=</span>geoserver
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="nv">GEOSERVER_URL</span><span class="o">=</span>http://geoserver:8080/geoserver/
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="nv">GCS_BUCKET_NAME</span><span class="o">=</span>your-gcs-bucket
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="nv">GEE_STORAGE_PROJECT</span><span class="o">=</span>ee-your-project
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="nv">GEE_STORAGE_PROJECT_HELPER</span><span class="o">=</span>ee-your-helper-project
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="c1"># Optional; defaults to this checkout (.)</span>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="c1"># BACKEND_CODE_DIR=/path/to/other/checkout</span>
+</span></code></pre></div>
+<p><code>GEOSERVER_URL</code> defaults to the Compose GeoServer service. <code>GEE_STORAGE_PROJECT</code> defaults to <code>project_id</code> in <code>gee_confs/gee-service-account.json</code> when unset. <code>BACKEND_CODE_DIR</code> defaults to <code>.</code> (the backend repository).</p>
+<p>Force a fresh admin-boundary download:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nv">FORCE_DATA_DOWNLOAD</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</span></code></pre></div>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<p><strong>Port already in use</strong><br />
+Stop whatever is bound to 8000, 8080, or 5432, or set <code>BACKEND_PORT</code> / <code>GEOSERVER_PORT</code> / <code>POSTGRES_PORT</code> in <code>.env</code>.</p>
+<p><strong><code>denied</code> or <code>unauthorized</code> pulling the image</strong><br />
+The package should be public. Confirm you can open <a href="https://github.com/core-stack-org/core-stack-backend/pkgs/container/core-stack-backend">ghcr.io/core-stack-org/core-stack-backend</a> without signing in. Then retry <code>docker compose pull</code>.</p>
+<p><strong><code>no matching manifest for linux/arm64</code></strong><br />
+Use Compose (<code>docker compose pull</code>), not a bare <code>docker pull</code> on Apple Silicon. Compose sets <code>platform: linux/amd64</code>.</p>
+<p><strong>Backend keeps restarting</strong><br />
+<code>docker compose logs backend</code>. Common first-run waits: GeoServer health, the 8 GB download, or seed load.</p>
+<p><strong><code>manage.py</code> not found / empty <code>/app</code></strong><br />
+The image has no app source. You must start Compose from a clone of <a href="https://github.com/core-stack-org/core-stack-backend">core-stack-backend</a> (or set <code>BACKEND_CODE_DIR</code> to one). Recreate after changing the mount:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate<span class="w"> </span>backend<span class="w"> </span>geoserver-init<span class="w"> </span>gee-config
+</span></code></pre></div>
+<p><strong>GEE jobs fail after a successful start</strong><br />
+Mount the JSON under <code>gee_confs/gee-service-account.json</code> and add the account in Django admin. Restart is not required for the file mount if the directory already existed; recreate the backend container if you added the file later:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate<span class="w"> </span>backend
+</span></code></pre></div>
+<p>More setup fixes: <a href="../setup-troubleshooting/">Setup Troubleshooting</a>.</p>
 
 
 

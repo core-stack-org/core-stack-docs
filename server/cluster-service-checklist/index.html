@@ -5,13 +5,11 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="Conceptual explanation of the major CoRE Stack workflow families, their questions, their inputs, and their outputs." name="description"/>
-<link href="https://docs.core-stack.org/concepts/how-pipelines-work-algorithmically/" rel="canonical"/>
-<link href="../watershed-data-structure/" rel="prev"/>
-<link href="../../use-precomputed-data/" rel="next"/>
+<meta content="Acceptance checklist — code/models/data mounts, Airflow vs local, GHCR or Docker Hub, Google SSO, log levels, central Postgres, and output retention modes." name="description"/>
+<link href="https://docs.core-stack.org/server/cluster-service-checklist/" rel="canonical"/>
 <link href="../../assets/logo.png" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.7.6" name="generator"/>
-<title>How Our Pipelines Work Algorithmically - CoRE Stack Documentation</title>
+<title>Cluster Service Checklist - CoRE Stack Documentation</title>
 <link href="../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -25,7 +23,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#how-our-pipelines-work-algorithmically">
+<a class="md-skip" href="#cluster-service-checklist">
           Skip to content
         </a>
 </div>
@@ -49,7 +47,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              How Our Pipelines Work Algorithmically
+              Cluster Service Checklist
             
           </span>
 </div>
@@ -129,8 +127,8 @@
 
       </a>
 </li>
-<li class="md-tabs__item md-tabs__item--active">
-<a class="md-tabs__link" href="../watershed-data-structure/">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../concepts/watershed-data-structure/">
           
   
   
@@ -235,9 +233,9 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
 <span class="md-ellipsis">
     
   
@@ -248,7 +246,7 @@
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
             
@@ -259,7 +257,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../watershed-data-structure/">
+<a class="md-nav__link" href="../../concepts/watershed-data-structure/">
 <span class="md-ellipsis">
     
   
@@ -270,20 +268,8 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
-    
-  
-    How Our Pipelines Work Algorithmically
-  
-
-    
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../concepts/how-pipelines-work-algorithmically/">
 <span class="md-ellipsis">
     
   
@@ -293,126 +279,6 @@
     
   </span>
 </a>
-<nav aria-label="On this page" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#the-core-pattern">
-<span class="md-ellipsis">
-      
-        The Core Pattern
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#why-core-stack-computes-in-this-shape">
-<span class="md-ellipsis">
-      
-        Why CoRE Stack Computes In This Shape
-      
-    </span>
-</a>
-<nav aria-label="Why CoRE Stack Computes In This Shape" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#1-water-planning-needs-hydrological-logic">
-<span class="md-ellipsis">
-      
-        1. Water planning needs hydrological logic
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#2-rasters-are-powerful-but-hard-to-use-directly">
-<span class="md-ellipsis">
-      
-        2. Rasters are powerful but hard to use directly
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#3-public-infrastructure-should-expose-reusable-building-blocks">
-<span class="md-ellipsis">
-      
-        3. Public infrastructure should expose reusable building blocks
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#scientific-ideas-already-embedded-in-the-stack">
-<span class="md-ellipsis">
-      
-        Scientific Ideas Already Embedded In The Stack
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#the-four-repeated-questions">
-<span class="md-ellipsis">
-      
-        The Four Repeated Questions
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#read-by-workflow-family">
-<span class="md-ellipsis">
-      
-        Read By Workflow Family
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#output-thinking">
-<span class="md-ellipsis">
-      
-        Output Thinking
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#why-public-data-looks-the-way-it-does">
-<span class="md-ellipsis">
-      
-        Why Public Data Looks The Way It Does
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#what-can-become-better">
-<span class="md-ellipsis">
-      
-        What Can Become Better
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#move-from-concepts-to-code">
-<span class="md-ellipsis">
-      
-        Move From Concepts To Code
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
 </li>
 </ul>
 </nav>
@@ -1026,113 +892,109 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#the-core-pattern">
+<a class="md-nav__link" href="#how-to-use-this-page">
 <span class="md-ellipsis">
       
-        The Core Pattern
+        How to use this page
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#why-core-stack-computes-in-this-shape">
+<a class="md-nav__link" href="#1-store-all-relevant-data-and-compute-output-in-data">
 <span class="md-ellipsis">
       
-        Why CoRE Stack Computes In This Shape
-      
-    </span>
-</a>
-<nav aria-label="Why CoRE Stack Computes In This Shape" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#1-water-planning-needs-hydrological-logic">
-<span class="md-ellipsis">
-      
-        1. Water planning needs hydrological logic
+        1. Store all relevant data and compute output in data/
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2-rasters-are-powerful-but-hard-to-use-directly">
+<a class="md-nav__link" href="#2-compute-via-airflow-if-airflow_base_api_url-is-set-otherwise-local">
 <span class="md-ellipsis">
       
-        2. Rasters are powerful but hard to use directly
+        2. Compute via Airflow if AIRFLOW_BASE_API_URL is set, otherwise local
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#3-public-infrastructure-should-expose-reusable-building-blocks">
+<a class="md-nav__link" href="#3-docker-image-pushed-to-ghcr-or-docker-hub">
 <span class="md-ellipsis">
       
-        3. Public infrastructure should expose reusable building blocks
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#scientific-ideas-already-embedded-in-the-stack">
-<span class="md-ellipsis">
-      
-        Scientific Ideas Already Embedded In The Stack
+        3. Docker image pushed to GHCR or Docker Hub
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#the-four-repeated-questions">
+<a class="md-nav__link" href="#4-google-sso-is-implemented">
 <span class="md-ellipsis">
       
-        The Four Repeated Questions
+        4. Google SSO is implemented
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#read-by-workflow-family">
+<a class="md-nav__link" href="#5-logging-enabled-logs-mounted-from-datalogsapplication_name">
 <span class="md-ellipsis">
       
-        Read By Workflow Family
+        5. Logging enabled; logs mounted from data/logs/&lt;application_name&gt;
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#output-thinking">
+<a class="md-nav__link" href="#6-backend-and-frontend-in-the-same-docker-no-separate-frontend-container">
 <span class="md-ellipsis">
       
-        Output Thinking
+        6. Backend and frontend in the same Docker — no separate frontend container
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#why-public-data-looks-the-way-it-does">
+<a class="md-nav__link" href="#7-frontend-api-base-url-from-env-not-hardcoded">
 <span class="md-ellipsis">
       
-        Why Public Data Looks The Way It Does
+        7. Frontend API base URL from .env, not hardcoded
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#what-can-become-better">
+<a class="md-nav__link" href="#8-architecture-diagram-how-compute-is-triggered-and-from-where">
 <span class="md-ellipsis">
       
-        What Can Become Better
+        8. Architecture diagram — how compute is triggered and from where
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#move-from-concepts-to-code">
+<a class="md-nav__link" href="#9-database-postgres-on-the-central-server">
 <span class="md-ellipsis">
       
-        Move From Concepts To Code
+        9. Database — Postgres on the central server
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#10-output-retention-public-private-persistent-or-delete">
+<span class="md-ellipsis">
+      
+        10. Output retention — public, private-persistent, or delete
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sign-off">
+<span class="md-ellipsis">
+      
+        Sign-off
       
     </span>
 </a>
@@ -1143,267 +1005,327 @@
 </div>
 </div>
 <div class="md-content" data-md-component="content">
-<nav aria-label="Navigation" class="md-path">
-<ol class="md-path__list">
-<li class="md-path__item">
-<a class="md-path__link" href="../..">
-<span class="md-ellipsis">
-    Home
-  </span>
-</a>
-</li>
-<li class="md-path__item">
-<a class="md-path__link" href="../watershed-data-structure/">
-<span class="md-ellipsis">
-    Understand CoRE Stack Data Structure
-  </span>
-</a>
-</li>
-</ol>
-</nav>
 <article class="md-content__inner md-typeset">
-<h1 id="how-our-pipelines-work-algorithmically">How Our Pipelines Work Algorithmically<a class="headerlink" href="#how-our-pipelines-work-algorithmically" title="Permanent link">¶</a></h1>
-<p>This page is about the scientific and analytical logic behind the pipeline families.</p>
-<p>It answers:</p>
-<ul>
-<li>what question does each workflow family answer?</li>
-<li>why did CoRE Stack choose to compute these things this way?</li>
-<li>what are the key inputs and modeling moves?</li>
-<li>what kind of outputs come out?</li>
-<li>where can future contributors improve the science or extend the stack?</li>
-</ul>
+<h1 id="cluster-service-checklist">Cluster Service Checklist<a class="headerlink" href="#cluster-service-checklist" title="Permanent link">¶</a></h1>
+<p>Acceptance checklist for every project that ships as a Docker service on the CoRE Stack cluster. Complete this page <strong>before</strong> asking for a cluster deploy.</p>
+<p>This page is <strong>not linked from the public site navigation</strong>. Bookmark the URL directly.</p>
+<p><strong>Direct URL:</strong> <code>/server/cluster-service-checklist/</code></p>
+<p>Cluster-wide Docker, STACD, and Airflow standards: <a href="../cluster-docker-services/">Cluster Docker Services</a>.</p>
 <hr/>
-<h2 id="the-core-pattern">The Core Pattern<a class="headerlink" href="#the-core-pattern" title="Permanent link">¶</a></h2>
-<p>Most CoRE Stack pipelines follow the same conceptual shape:</p>
-<pre class="mermaid"><code>flowchart LR
-    A[Source rasters, time series, boundaries, or networks] --&gt; B[Scientific or analytical transformation]
-    B --&gt; C[Vectorization or aggregation onto standard units]
-    C --&gt; D[Joinable outputs keyed to watersheds, villages, or other entities]
-    D --&gt; E[APIs, STAC, dashboards, and reports]</code></pre>
-<p>This matters because CoRE Stack is not trying to answer one question once. It is trying to build reusable public infrastructure.</p>
-<p>So the stack favors:</p>
-<ul>
-<li>standard units</li>
-<li>repeatable computations</li>
-<li>outputs that are interpretable outside the original notebook or script</li>
-<li>data that can be recombined later</li>
-</ul>
+<h2 id="how-to-use-this-page">How to use this page<a class="headerlink" href="#how-to-use-this-page" title="Permanent link">¶</a></h2>
+<p>Copy the boxes into the service GitHub issue or README. Tick an item only when the <strong>acceptance</strong> line is true.</p>
 <hr/>
-<h2 id="why-core-stack-computes-in-this-shape">Why CoRE Stack Computes In This Shape<a class="headerlink" href="#why-core-stack-computes-in-this-shape" title="Permanent link">¶</a></h2>
-<h3 id="1-water-planning-needs-hydrological-logic">1. Water planning needs hydrological logic<a class="headerlink" href="#1-water-planning-needs-hydrological-logic" title="Permanent link">¶</a></h3>
-<p>Administrative names are useful for people, but water moves through catchments, drainage lines, and watershed networks.</p>
-<p>That is why CoRE Stack starts from hydrological units and then crosswalks back to administrative ones.</p>
-<h3 id="2-rasters-are-powerful-but-hard-to-use-directly">2. Rasters are powerful but hard to use directly<a class="headerlink" href="#2-rasters-are-powerful-but-hard-to-use-directly" title="Permanent link">¶</a></h3>
-<p>Many foundational inputs are raster-like:</p>
-<ul>
-<li>elevation</li>
-<li>rainfall</li>
-<li>satellite observations</li>
-<li>land-cover predictions</li>
-<li>derived terrain surfaces</li>
-</ul>
-<p>But most downstream users want:</p>
-<ul>
-<li>tables</li>
-<li>vector layers</li>
-<li>ranked units</li>
-<li>reports</li>
-</ul>
-<p>So CoRE Stack repeatedly turns raster evidence into vectorized, indexed, joinable outputs.</p>
-<h3 id="3-public-infrastructure-should-expose-reusable-building-blocks">3. Public infrastructure should expose reusable building blocks<a class="headerlink" href="#3-public-infrastructure-should-expose-reusable-building-blocks" title="Permanent link">¶</a></h3>
-<p>The stack does not try to centrally publish every possible policy question.</p>
-<p>Instead it publishes canonical layers and indicators that others can recombine for:</p>
-<ul>
-<li>river rejuvenation</li>
-<li>restoration planning</li>
-<li>drought analysis</li>
-<li>irrigation and cropping questions</li>
-<li>community-facing tools</li>
-</ul>
-<hr/>
-<h2 id="scientific-ideas-already-embedded-in-the-stack">Scientific Ideas Already Embedded In The Stack<a class="headerlink" href="#scientific-ideas-already-embedded-in-the-stack" title="Permanent link">¶</a></h2>
+<h2 id="1-store-all-relevant-data-and-compute-output-in-data">1. Store all relevant data and compute output in <code>data/</code><a class="headerlink" href="#1-store-all-relevant-data-and-compute-output-in-data" title="Permanent link">¶</a></h2>
+<p>Bind-mount <strong>three</strong> host folders. Do not bake code, models, or outputs into the image.</p>
 <table>
 <thead>
 <tr>
-<th>Idea</th>
-<th>How it shows up in CoRE Stack</th>
-<th>Why it matters</th>
+<th>Host folder</th>
+<th>Typical container path</th>
+<th>Contents</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>watershed hydrology</td>
-<td>micro-watershed registry, catchments, drainage, runoff-oriented reasoning</td>
-<td>water moves through connected landscapes</td>
+<td><code>code/</code></td>
+<td><code>/app</code> or <code>/app/code</code></td>
+<td>Application source (git checkout). Update with <code>git pull</code> + restart.</td>
 </tr>
 <tr>
-<td>land-surface classification</td>
-<td>LULC workflows and change layers</td>
-<td>many planning questions begin with what is on the land now and how it changed</td>
+<td><code>models/</code></td>
+<td><code>/app/models</code></td>
+<td>Model weights, checkpoints, <code>.pt</code> / <code>.onnx</code> / <code>.joblib</code>.</td>
 </tr>
 <tr>
-<td>water balance reasoning</td>
-<td>rainfall, evapotranspiration, runoff, and related hydrology layers</td>
-<td>gives a first planning lens on water availability and stress</td>
-</tr>
-<tr>
-<td>zonal statistics</td>
-<td>raster signals summarized onto MWS, villages, or other units</td>
-<td>makes outputs comparable and joinable</td>
-</tr>
-<tr>
-<td>network analysis</td>
-<td>upstream and downstream watershed connectivity</td>
-<td>important for river and catchment-scale interventions</td>
-</tr>
-<tr>
-<td>spatial enrichment</td>
-<td>admin overlays, aquifer joins, facilities proximity, asset layers</td>
-<td>connects hydrological analysis to implementation reality</td>
+<td><code>data/</code></td>
+<td><code>/app/data</code></td>
+<td>Inputs, caches, <strong>and all compute output</strong>.</td>
 </tr>
 </tbody>
 </table>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Compose (or <code>docker run</code>) mounts <code>code/</code>, <code>models/</code>, and <code>data/</code> separately; none of them is copied in the <code>Dockerfile</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Job outputs (rasters, vectors, STAC JSON, exports, temp working files) are written under <code>data/</code> only — not into <code>code/</code> or the container layer.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Models live under <code>models/</code>, not under <code>data/</code> or the image.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <code>.gitignore</code> excludes generated data and large weights; only small fixtures or empty placeholders are committed.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> README documents each host path and container path.</li>
+</ul>
+<p><strong>Acceptance:</strong> Restarting the container keeps models and compute results; <code>git pull</code> updates code without touching <code>data/</code> or <code>models/</code>.</p>
 <hr/>
-<h2 id="the-four-repeated-questions">The Four Repeated Questions<a class="headerlink" href="#the-four-repeated-questions" title="Permanent link">¶</a></h2>
-<p>Most CoRE Stack computations are trying to answer one of four broad questions:</p>
-<ol>
-<li>What is on the land or water surface now or over time?</li>
-<li>How does water move, accumulate, or become available across a landscape?</li>
-<li>Which administrative or ecological boundaries matter for planning?</li>
-<li>Which places deserve attention, restoration, protection, or follow-up action?</li>
-</ol>
-<hr/>
-<h2 id="read-by-workflow-family">Read By Workflow Family<a class="headerlink" href="#read-by-workflow-family" title="Permanent link">¶</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio"><input id="__tabbed_1_2" name="__tabbed_1" type="radio"><input id="__tabbed_1_3" name="__tabbed_1" type="radio"><input id="__tabbed_1_4" name="__tabbed_1" type="radio"><div class="tabbed-labels"><label for="__tabbed_1_1">Core Workflows</label><label for="__tabbed_1_2">Boundary and Enrichment</label><label for="__tabbed_1_3">Raster and Drainage</label><label for="__tabbed_1_4">Time Series and Ops</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<p><strong>LULC generation</strong></p>
-<ul>
-<li>Inputs: satellite imagery, time windows, region of interest</li>
-<li>Logic: classify land into stable categories over a place and period, then use those classes to support later derived indicators such as cropping intensity and change</li>
-<li>Outputs: land-use rasters, class summaries, downstream planning layers</li>
-</ul>
-<p><strong>Surface water body detection</strong></p>
-<ul>
-<li>Inputs: imagery and water-sensitive signals over time</li>
-<li>Logic: identify waterbody extent and track changes or supporting measures, then attach those measurements back to stable hydrological units</li>
-<li>Outputs: vector waterbodies, area summaries, waterbody analytics</li>
-</ul>
-<p><strong>Hydrology</strong></p>
-<ul>
-<li>Inputs: rainfall, terrain, watershed boundaries, derived coefficients</li>
-<li>Logic: estimate runoff, recharge, evapotranspiration, and related watershed behavior so that water availability can be reasoned about at watershed scale</li>
-<li>Outputs: MWS-level indicators, seasonal summaries, hydrological layers</li>
-</ul>
-<p><strong>Terrain analysis</strong></p>
-<ul>
-<li>Inputs: DEM-derived surfaces</li>
-<li>Logic: derive slope, depressions, terrain classes, drainage support layers</li>
-<li>Outputs: terrain rasters and planning-oriented derived layers</li>
-</ul>
-</div>
-<div class="tabbed-block">
-<p><strong>Administrative and clipping workflows</strong></p>
-<ul>
-<li>Inputs: state, district, block, watershed, or pan-India source layers</li>
-<li>Logic: clip, filter, and normalize boundaries or thematic datasets to the requested geography while preserving stable keys</li>
-<li>Outputs: ready-to-publish vector layers and metadata</li>
-</ul>
-<p><strong>Enrichment workflows</strong></p>
-<ul>
-<li>Inputs: base geometries plus tabular or external thematic sources</li>
-<li>Logic: attach nearest-distance, class, dominant condition, or joined statistics</li>
-<li>Outputs: enriched vector layers and planning-ready attributes</li>
-</ul>
-</div>
-<div class="tabbed-block">
-<p><strong>Drainage and stream derivatives</strong></p>
-<ul>
-<li>Inputs: DEM, hydrological derivatives, watershed context</li>
-<li>Logic: derive drainage lines, stream order, catchment structure, connectivity support, and proximity surfaces</li>
-<li>Outputs: raster or vector drainage-support layers</li>
-</ul>
-<p><strong>Raster planning derivatives</strong></p>
-<ul>
-<li>Inputs: terrain, hydrology, and related modeled inputs</li>
-<li>Logic: produce interpretable surfaces for restoration or prioritization</li>
-<li>Outputs: clipped rasters and summary-ready layers</li>
-</ul>
-</div>
-<div class="tabbed-block">
-<p><strong>Temporal vegetation workflows</strong></p>
-<ul>
-<li>Inputs: NDVI-like series, interpolation support, seasonal time windows</li>
-<li>Logic: summarize vegetation dynamics over time so that seasonality, change, and resilience can be compared between units</li>
-<li>Outputs: time-series tables, class summaries, comparison-ready outputs</li>
-</ul>
-<p><strong>Operational helpers</strong></p>
-<ul>
-<li>Inputs: credentials, service wiring, reusable pipeline inputs</li>
-<li>Logic: make the analytical workflows runnable and publishable</li>
-<li>Outputs: successful execution, not new science by itself</li>
-</ul>
-</div>
-</div>
-</input></input></input></input></div>
-<hr/>
-<h2 id="output-thinking">Output Thinking<a class="headerlink" href="#output-thinking" title="Permanent link">¶</a></h2>
-<p>One useful way to think about the pipeline families is by output type:</p>
+<h2 id="2-compute-via-airflow-if-airflow_base_api_url-is-set-otherwise-local">2. Compute via Airflow if <code>AIRFLOW_BASE_API_URL</code> is set, otherwise local<a class="headerlink" href="#2-compute-via-airflow-if-airflow_base_api_url-is-set-otherwise-local" title="Permanent link">¶</a></h2>
+<p>Do <strong>not</strong> use a separate <code>COMPUTE_MODE</code> flag. The Airflow URL is the switch:</p>
 <table>
 <thead>
 <tr>
-<th>Output type</th>
-<th>Typical families</th>
-<th>Why it matters</th>
+<th><code>AIRFLOW_BASE_API_URL</code> in <code>.env</code></th>
+<th>Behaviour</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>raster</td>
-<td>LULC, terrain, drought, slope, restoration</td>
-<td>good for continuous or classified surfaces</td>
+<td><strong>Set</strong> (non-empty)</td>
+<td>Trigger and poll Airflow (<code>/api/v1/dags/...</code>). Follow <a href="../cluster-docker-services/#8-compute-and-processing--always-via-airflow">Cluster Docker Services §8</a>.</td>
 </tr>
 <tr>
-<td>vector</td>
-<td>waterbodies, boundaries, facilities, aquifer joins</td>
-<td>good for inspection, download, and attribute tables</td>
-</tr>
-<tr>
-<td>tabular</td>
-<td>tehsil summaries, MWS indicators, time series</td>
-<td>good for ranking, reporting, and joins</td>
-</tr>
-<tr>
-<td>mixed</td>
-<td>hydrology, restoration, proximity, SWB ecosystems</td>
-<td>most useful public products combine multiple output types</td>
+<td><strong>Unset / empty</strong></td>
+<td>Run compute <strong>locally</strong> in the same container (in-process).</td>
 </tr>
 </tbody>
 </table>
-<hr/>
-<h2 id="why-public-data-looks-the-way-it-does">Why Public Data Looks The Way It Does<a class="headerlink" href="#why-public-data-looks-the-way-it-does" title="Permanent link">¶</a></h2>
-<p>The public API is not a random collection of endpoints.</p>
-<p>It reflects the fact that CoRE Stack’s pipeline families naturally create:</p>
-<ul>
-<li>stable geometries</li>
-<li>joinable tables keyed by watershed identifiers</li>
-<li>downloadable layers</li>
-<li>metadata that points onward to GeoServer, reports, STAC items, or Earth Engine assets</li>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <code>.env.example</code> lists <code>AIRFLOW_BASE_API_URL</code> with a comment: leave empty for local compute.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Backend reads that variable at runtime; empty means local, no Airflow client calls.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> When set: same-origin proxy so the browser never talks to Airflow; <code>AIRFLOW_DAG_ID</code> and worker callback URL (<code>CORESTACK_API_BASE</code> or equivalent) are also documented.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Local path does not require an Airflow host.</li>
 </ul>
+<p><strong>Acceptance:</strong> The same image runs local jobs on a laptop (URL unset) and Airflow jobs on the cluster (URL set) by changing <code>.env</code> only.</p>
 <hr/>
-<h2 id="what-can-become-better">What Can Become Better<a class="headerlink" href="#what-can-become-better" title="Permanent link">¶</a></h2>
-<p>If you think an algorithm, assumptions, data output, or modeling choices can be improved, that is a feature request for the stack, not a problem to hide.</p>
-<p>Possible examples:</p>
-<ul>
-<li>richer groundwater-aware modeling</li>
-<li>clearer uncertainty reporting and validation notes</li>
-<li>more open truthing datasets for classification and waterbody workflows</li>
-<li>reliable administrative and hydrological intersection for village and panchayat-level planning</li>
-<li>new standard outputs where the public value is high enough to justify long-term maintenance</li>
+<h2 id="3-docker-image-pushed-to-ghcr-or-docker-hub">3. Docker image pushed to GHCR <strong>or</strong> Docker Hub<a class="headerlink" href="#3-docker-image-pushed-to-ghcr-or-docker-hub" title="Permanent link">¶</a></h2>
+<p>The image must be in a registry others can pull. Use <strong>GitHub Container Registry</strong> (<code>ghcr.io/...</code>) or <strong>Docker Hub</strong> (<code>docker.io/...</code>).</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <code>Dockerfile</code> is deps-oriented; <code>code/</code>, <code>models/</code>, and <code>data/</code> are mounted at runtime (<a href="../cluster-docker-services/#2-code-and-models-live-on-the-host-mount-do-not-copy">Cluster Docker Services §2</a>).</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Image is tagged with a version (and optionally <code>latest</code>).</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Image is <strong>pushed</strong> to <code>ghcr.io/&lt;org&gt;/&lt;name&gt;:&lt;tag&gt;</code> <strong>or</strong> <code>&lt;dockerhub-user&gt;/&lt;name&gt;:&lt;tag&gt;</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> README has the exact <code>docker pull</code> line.</li>
 </ul>
+<p><strong>Acceptance:</strong> A clean host can <code>docker pull</code> and start the service without building from source.</p>
 <hr/>
-<h2 id="move-from-concepts-to-code">Move From Concepts To Code<a class="headerlink" href="#move-from-concepts-to-code" title="Permanent link">¶</a></h2>
-<p>When you are comfortable with the analytical logic, the next useful section usually is to use <a href="../../use-precomputed-data/public-apis/">public data</a> extend the stack, continue into <a href="../../pipelines/">Build New Pipelines</a>.</p>
+<h2 id="4-google-sso-is-implemented">4. Google SSO is implemented<a class="headerlink" href="#4-google-sso-is-implemented" title="Permanent link">¶</a></h2>
+<p>Users sign in with <strong>Google Single Sign-On</strong>. Protected APIs and compute triggers require a valid Google session/token.</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Google SSO (OAuth / Google Identity) is implemented on the frontend and validated on the backend.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Client id/secret (and redirect URIs) come from <strong>env</strong>, not source.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Unauthenticated users cannot start compute or mutate data.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <code>.env.example</code> lists <code>GOOGLE_CLIENT_ID</code> / <code>GOOGLE_CLIENT_SECRET</code> (or the names you use), no real secrets.</li>
+</ul>
+<p>GEE service-account keys are separate from SSO — see <a href="../cluster-docker-services/#1-no-hardcoded-configuration">Cluster Docker Services §1</a>.</p>
+<p><strong>Acceptance:</strong> Compute and write APIs reject requests without Google SSO; credentials are not in git.</p>
+<hr/>
+<h2 id="5-logging-enabled-logs-mounted-from-datalogsapplication_name">5. Logging enabled; logs mounted from <code>data/logs/&lt;application_name&gt;</code><a class="headerlink" href="#5-logging-enabled-logs-mounted-from-datalogsapplication_name" title="Permanent link">¶</a></h2>
+<p>Every container writes application logs. The log directory is a bind-mount from the host:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>data/logs/&lt;application_name&gt;/
+</span></code></pre></div>
+<p>Example: service <code>corestack-lulc</code> → <code>data/logs/corestack-lulc/</code>.</p>
+<p>API / application logs must support <strong>three levels</strong>, selected from env (<code>LOG_LEVEL</code>):</p>
+<table>
+<thead>
+<tr>
+<th><code>LOG_LEVEL</code></th>
+<th>What is written</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>debug</code></td>
+<td>Verbose: request/response traces, job params, Airflow poll, filesystem paths. Development and incident debug only.</td>
+</tr>
+<tr>
+<td><code>info</code></td>
+<td>Default: start-up, auth success/fail (no secrets), compute trigger, job start/complete, DAG id / run id.</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td>Failures only: exceptions, failed jobs, Airflow <code>failed</code>, SSO/config errors.</td>
+</tr>
+</tbody>
+</table>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Logging is enabled in the process that runs in the container (file and/or stdout).</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Compose mounts <code>./data/logs/&lt;application_name&gt;</code> into the container log path.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Log files land under that directory (not only inside the ephemeral container FS).</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <code>.env.example</code> lists <code>LOG_LEVEL=info</code> with allowed values <code>debug</code> | <code>info</code> | <code>error</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> No tokens, passwords, or Google client secrets in any level.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> README shows the host path and how to tail (<code>tail -f data/logs/&lt;application_name&gt;/...</code> and <code>docker compose logs -f</code>).</li>
+</ul>
+<p><strong>Acceptance:</strong> After a container recreate, logs remain under <code>data/logs/&lt;application_name&gt;/</code>. Changing <code>LOG_LEVEL</code> switches granularity without a code change.</p>
+<hr/>
+<h2 id="6-backend-and-frontend-in-the-same-docker-no-separate-frontend-container">6. Backend and frontend in the <strong>same</strong> Docker — no separate frontend container<a class="headerlink" href="#6-backend-and-frontend-in-the-same-docker-no-separate-frontend-container" title="Permanent link">¶</a></h2>
+<p>One image, one container, one port. Do <strong>not</strong> run a second Docker service for the UI (no separate Nginx/SPA container).</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> A single Compose service (or <code>docker run</code>) serves backend <strong>and</strong> frontend.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> The backend serves the built UI (same origin), or both processes run in that one container.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> There is no <code>frontend:</code> service in Compose.</li>
+</ul>
+<p><strong>Acceptance:</strong> <code>docker compose up</code> starts one app container; the browser talks only to that host:port.</p>
+<hr/>
+<h2 id="7-frontend-api-base-url-from-env-not-hardcoded">7. Frontend API base URL from <code>.env</code>, not hardcoded<a class="headerlink" href="#7-frontend-api-base-url-from-env-not-hardcoded" title="Permanent link">¶</a></h2>
+<p>The backend API URL the frontend calls must come from environment config. No <code>localhost:8000</code>, production hostname, or path prefix committed in JS/TS.</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <code>.env.example</code> has the API base (<code>API_BASE_URL</code>, <code>VITE_API_BASE_URL</code>, <code>REACT_APP_API_URL</code>, or equivalent).</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> All frontend <code>fetch</code> / axios calls use that value.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Changing <code>.env</code> retargets the UI without editing source (rebuild the UI only if the framework inlines env at build time — document that).</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Default is a relative base (<code>/</code> or <code>/api</code>) so the same-container deploy works.</li>
+</ul>
+<p><strong>Acceptance:</strong> Pointing the UI at another backend is an env change, not a code edit.</p>
+<hr/>
+<h2 id="8-architecture-diagram-how-compute-is-triggered-and-from-where">8. Architecture diagram — how compute is triggered and from where<a class="headerlink" href="#8-architecture-diagram-how-compute-is-triggered-and-from-where" title="Permanent link">¶</a></h2>
+<p>Every project README (or <code>docs/architecture.md</code>) includes a diagram of <strong>how compute is triggered and from where</strong>.</p>
+<p>Must show:</p>
+<ul>
+<li>Frontend and backend in the <strong>same Docker</strong></li>
+<li>Mounts: <code>code/</code>, <code>models/</code>, <code>data/</code></li>
+<li>Decision: <code>AIRFLOW_BASE_API_URL</code> set → Airflow; unset → local</li>
+<li>Who calls whom (UI → backend → local job <strong>or</strong> Airflow DAG → callback/worker)</li>
+<li><code>data/logs/&lt;application_name&gt;/</code> for logs</li>
+<li>Central Postgres if the service uses a database (§9)</li>
+<li>Output retention mode(s) (§10)</li>
+<li>External systems if used (GEE, GeoServer, object storage)</li>
+</ul>
+<p>Mermaid in the README is enough:</p>
+<pre class="mermaid"><code>flowchart TD
+  UI[Frontend] --&gt; API[Backend - same Docker]
+  API --&gt;|AIRFLOW_BASE_API_URL empty| Local[Local compute]
+  API --&gt;|AIRFLOW_BASE_API_URL set| AF[Airflow]
+  AF --&gt;|DAG callback / task| API
+  Local --&gt; Data[(data/ outputs)]
+  AF --&gt; Data
+  API --&gt; Logs[data/logs/application_name]
+  API --&gt; PG[(central Postgres)]
+  Data --&gt; HostDS[Host data service - public / private / delete]</code></pre>
+<p><strong>Acceptance:</strong> A new operator can see, from the diagram alone, whether a UI action runs locally or via Airflow, where files and logs land, and how outputs are retained.</p>
+<hr/>
+<h2 id="9-database-postgres-on-the-central-server">9. Database — Postgres on the central server<a class="headerlink" href="#9-database-postgres-on-the-central-server" title="Permanent link">¶</a></h2>
+<p>If the service needs a database, <strong>do not</strong> run a per-project Postgres (or SQLite file) in the application container for cluster deploys.</p>
+<p>Use <strong>PostgreSQL</strong> on the <strong>central Postgres</strong> instance on the cluster host. Persist state through a <strong>connection string</strong> in env; the server DBA provisions the database/role.</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Cluster deploys use Postgres only (no SQLite as the production store).</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <code>.env.example</code> has a connection string, for example:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nv">DATABASE_URL</span><span class="o">=</span>postgresql://USER:PASSWORD@POSTGRES_HOST:5432/DBNAME
+</span></code></pre></div>
+  Split vars (<code>PGHOST</code>, <code>PGPORT</code>, <code>PGUSER</code>, <code>PGPASSWORD</code>, <code>PGDATABASE</code>) are fine if the app prefers them — document one style.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> The host in that string is the <strong>central Postgres</strong> on the server (Docker network DNS or host IP), not <code>postgres</code> from a sidecar Compose file unless that sidecar <strong>is</strong> the shared instance.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> No database files under the image; schema migrations run against the shared server.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> README states database name, who owns the role, and how to request access.</li>
+</ul>
+<p>If the service has <strong>no</strong> database, tick N/A in the sign-off table and skip this item.</p>
+<p><strong>Acceptance:</strong> Recreating the app container does not wipe application data; rows live in central Postgres. Credentials are only in <code>.env</code>.</p>
+<hr/>
+<h2 id="10-output-retention-public-private-persistent-or-delete">10. Output retention — public, private-persistent, or delete<a class="headerlink" href="#10-output-retention-public-private-persistent-or-delete" title="Permanent link">¶</a></h2>
+<p>Each project must declare what happens to <strong>compute outputs</strong> under <code>data/</code>. A <strong>data service on the host</strong> enforces the policy. Project teams do not invent ad-hoc cleanup; they <strong>publish the policy in a standard file</strong> the host service reads.</p>
+<p>Three modes:</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>public</strong></td>
+<td>Outputs may be published (catalog, GeoServer, open download). Host data service treats them as shareable.</td>
+</tr>
+<tr>
+<td><strong>private_persistent</strong></td>
+<td>Keep on the workstation/cluster disk; <strong>not</strong> made public. Survives job and container restarts.</td>
+</tr>
+<tr>
+<td><strong>delete</strong></td>
+<td>Remove after a stated duration (<code>ttl_days</code>). Host data service zaps expired paths.</td>
+</tr>
+</tbody>
+</table>
+<p>Standard publish path — commit <code>outputs.yaml</code> at the repo root (or <code>deploy/outputs.yaml</code>). One entry per output tree:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1"># outputs.yaml — read by the host data service</span>
+</span><span id="__span-2-2"><a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nt">application</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">corestack-lulc</span>
+</span><span id="__span-2-3"><a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="nt">outputs</span><span class="p">:</span>
+</span><span id="__span-2-4"><a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/results/</span>
+</span><span id="__span-2-5"><a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">public</span><span class="w">                 </span><span class="c1"># public | private_persistent | delete</span>
+</span><span id="__span-2-6"><a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">    </span><span class="nt">ttl_days</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+</span><span id="__span-2-7"><a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Final LULC rasters and STAC items</span>
+</span><span id="__span-2-8"><a href="#__codelineno-2-8" id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/work/</span>
+</span><span id="__span-2-9"><a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">private_persistent</span>
+</span><span id="__span-2-10"><a href="#__codelineno-2-10" id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">    </span><span class="nt">ttl_days</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+</span><span id="__span-2-11"><a href="#__codelineno-2-11" id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Intermediate tiles kept on the workstation</span>
+</span><span id="__span-2-12"><a href="#__codelineno-2-12" id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data/scratch/</span>
+</span><span id="__span-2-13"><a href="#__codelineno-2-13" id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">delete</span>
+</span><span id="__span-2-14"><a href="#__codelineno-2-14" id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">    </span><span class="nt">ttl_days</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7</span>
+</span><span id="__span-2-15"><a href="#__codelineno-2-15" id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Temp files; host data service deletes after 7 days</span>
+</span></code></pre></div>
+<p>Rules:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Every output path under <code>data/</code> is listed; uncovered paths are not allowed on the cluster.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <code>mode</code> is one of <code>public</code>, <code>private_persistent</code>, <code>delete</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <code>delete</code> <strong>requires</strong> <code>ttl_days</code> (integer ≥ 1).</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> README points at <code>outputs.yaml</code> and restates the modes in one paragraph.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Architecture diagram (§8) mentions the host data service.</li>
+</ul>
+<p><strong>Acceptance:</strong> An operator (or the host data service) can read <code>outputs.yaml</code> and know, for each folder, whether to publish, keep private, or delete after N days.</p>
+<hr/>
+<h2 id="sign-off">Sign-off<a class="headerlink" href="#sign-off" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Item</th>
+<th>Owner</th>
+<th>Done</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Mount <code>code/</code>, <code>models/</code>, <code>data/</code>; compute output in <code>data/</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>AIRFLOW_BASE_API_URL</code> set → Airflow; unset → local</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>Image pushed to GHCR or Docker Hub</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Google SSO</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>Logs under <code>data/logs/&lt;application_name&gt;/</code>; <code>LOG_LEVEL</code> debug/info/error</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Frontend + backend in one Docker</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Frontend API base URL from <code>.env</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td>Architecture diagram (compute trigger + from where)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td>Postgres via connection string to central server (or N/A)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>outputs.yaml</code> — public / private_persistent / delete</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Service: _______________ Date: _______________ Reviewer: _______________</p>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
