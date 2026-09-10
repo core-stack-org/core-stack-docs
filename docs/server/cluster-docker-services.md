@@ -15,7 +15,7 @@ This page is one document:
 2. **Worked example: Custom LULC** — a complete deps-only image + Airflow REST + STACD API-mode pipeline you can copy.
 3. **Service catalog** and **IITD proxy** notes.
 
-Project acceptance boxes (data/, Airflow URL vs local, GHCR/Docker Hub, Google SSO, `data/logs/<app>`, one-container UI/API): [Cluster Service Checklist](cluster-service-checklist.md).
+Project acceptance boxes (code/models/data mounts, Airflow URL vs local, GHCR/Docker Hub, Google SSO, log levels, central Postgres, output modes): [Cluster Service Checklist](cluster-service-checklist.md).
 
 The LULC walkthrough is adapted from [Custom LULC — Dockerisation & Airflow Integration](https://github.com/SaharshLaud/STACD_framework/blob/dev/report/custom_lulc_deployment_and_airflow_pipeline.md) in [STACD_framework](https://github.com/SaharshLaud/STACD_framework) (`dev`).
 
@@ -478,7 +478,7 @@ When running in Docker mode (§7), the JSON between `===RESULT_JSON_START===` / 
 
 ### 10. Checklist before adding a cluster service
 
-Also complete the [Cluster Service Checklist](cluster-service-checklist.md) (`data/` outputs, `AIRFLOW_BASE_API_URL`, GHCR or Docker Hub, Google SSO, logs under `data/logs/<app>`, one-container UI/API, API base from `.env`, architecture diagram).
+Also complete the [Cluster Service Checklist](cluster-service-checklist.md) (`code/` / `models/` / `data/` mounts, `AIRFLOW_BASE_API_URL`, GHCR or Docker Hub, Google SSO, `LOG_LEVEL`, one-container UI/API, API base from `.env`, architecture diagram, central Postgres, `outputs.yaml` retention).
 
 - [ ] GitHub repo linked; README has full install steps
 - [ ] `.env.example` complete; no secrets in repo; empty Airflow base turns DAG path off

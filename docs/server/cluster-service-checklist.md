@@ -1,6 +1,6 @@
 ---
 title: Cluster Service Checklist
-description: Acceptance checklist — data and compute output in data/, Airflow vs local from AIRFLOW_BASE_API_URL, GHCR or Docker Hub, Google SSO, logs under data/logs/<app>, one container for UI and API.
+description: Acceptance checklist — code/models/data mounts, Airflow vs local, GHCR or Docker Hub, Google SSO, log levels, central Postgres, and output retention modes.
 ---
 
 # Cluster Service Checklist
@@ -23,15 +23,21 @@ Copy the boxes into the service GitHub issue or README. Tick an item only when t
 
 ## 1. Store all relevant data and compute output in `data/`
 
-Inputs, models, caches, **and compute outputs** go under a host **`data/`** directory (mounted into the container, typically `/app/data`). Do not write results into the image filesystem or into the git checkout outside `data/`.
+Bind-mount **three** host folders. Do not bake code, models, or outputs into the image.
 
-- [ ] Repo uses `data/` (or `CORESTACK_DATA_DIR` pointing at one).
-- [ ] Compose bind-mounts that directory; it is **not** baked into the image.
-- [ ] Job outputs (rasters, vectors, STAC JSON, exports, temp working files) are written under `data/`.
-- [ ] `.gitignore` excludes generated data; only small fixtures or empty placeholders are committed.
-- [ ] README documents host path and container path.
+| Host folder | Typical container path | Contents |
+| --- | --- | --- |
+| `code/` | `/app` or `/app/code` | Application source (git checkout). Update with `git pull` + restart. |
+| `models/` | `/app/models` | Model weights, checkpoints, `.pt` / `.onnx` / `.joblib`. |
+| `data/` | `/app/data` | Inputs, caches, **and all compute output**. |
 
-**Acceptance:** Compute results survive a container restart because they live on the `data/` mount, not in the container layer.
+- [ ] Compose (or `docker run`) mounts `code/`, `models/`, and `data/` separately; none of them is copied in the `Dockerfile`.
+- [ ] Job outputs (rasters, vectors, STAC JSON, exports, temp working files) are written under `data/` only — not into `code/` or the container layer.
+- [ ] Models live under `models/`, not under `data/` or the image.
+- [ ] `.gitignore` excludes generated data and large weights; only small fixtures or empty placeholders are committed.
+- [ ] README documents each host path and container path.
+
+**Acceptance:** Restarting the container keeps models and compute results; `git pull` updates code without touching `data/` or `models/`.
 
 ---
 
@@ -57,7 +63,7 @@ Do **not** use a separate `COMPUTE_MODE` flag. The Airflow URL is the switch:
 
 The image must be in a registry others can pull. Use **GitHub Container Registry** (`ghcr.io/...`) or **Docker Hub** (`docker.io/...`).
 
-- [ ] `Dockerfile` is deps-oriented; code and `data/` are mounted at runtime ([Cluster Docker Services §2](cluster-docker-services.md#2-code-and-models-live-on-the-host-mount-do-not-copy)).
+- [ ] `Dockerfile` is deps-oriented; `code/`, `models/`, and `data/` are mounted at runtime ([Cluster Docker Services §2](cluster-docker-services.md#2-code-and-models-live-on-the-host-mount-do-not-copy)).
 - [ ] Image is tagged with a version (and optionally `latest`).
 - [ ] Image is **pushed** to `ghcr.io/<org>/<name>:<tag>` **or** `<dockerhub-user>/<name>:<tag>`.
 - [ ] README has the exact `docker pull` line.
@@ -91,13 +97,22 @@ data/logs/<application_name>/
 
 Example: service `corestack-lulc` → `data/logs/corestack-lulc/`.
 
+API / application logs must support **three levels**, selected from env (`LOG_LEVEL`):
+
+| `LOG_LEVEL` | What is written |
+| --- | --- |
+| `debug` | Verbose: request/response traces, job params, Airflow poll, filesystem paths. Development and incident debug only. |
+| `info` | Default: start-up, auth success/fail (no secrets), compute trigger, job start/complete, DAG id / run id. |
+| `error` | Failures only: exceptions, failed jobs, Airflow `failed`, SSO/config errors. |
+
 - [ ] Logging is enabled in the process that runs in the container (file and/or stdout).
-- [ ] Compose (or `docker run`) mounts `./data/logs/<application_name>` into the container log path.
+- [ ] Compose mounts `./data/logs/<application_name>` into the container log path.
 - [ ] Log files land under that directory (not only inside the ephemeral container FS).
-- [ ] Log level is env-driven (`LOG_LEVEL`). No tokens or passwords in log lines.
+- [ ] `.env.example` lists `LOG_LEVEL=info` with allowed values `debug` \| `info` \| `error`.
+- [ ] No tokens, passwords, or Google client secrets in any level.
 - [ ] README shows the host path and how to tail (`tail -f data/logs/<application_name>/...` and `docker compose logs -f`).
 
-**Acceptance:** After a container recreate, logs for that application are still on disk under `data/logs/<application_name>/`.
+**Acceptance:** After a container recreate, logs remain under `data/logs/<application_name>/`. Changing `LOG_LEVEL` switches granularity without a code change.
 
 ---
 
@@ -133,10 +148,12 @@ Every project README (or `docs/architecture.md`) includes a diagram of **how com
 Must show:
 
 - Frontend and backend in the **same Docker**
+- Mounts: `code/`, `models/`, `data/`
 - Decision: `AIRFLOW_BASE_API_URL` set → Airflow; unset → local
 - Who calls whom (UI → backend → local job **or** Airflow DAG → callback/worker)
-- `data/` for inputs and compute output
 - `data/logs/<application_name>/` for logs
+- Central Postgres if the service uses a database (§9)
+- Output retention mode(s) (§10)
 - External systems if used (GEE, GeoServer, object storage)
 
 Mermaid in the README is enough:
@@ -150,9 +167,77 @@ flowchart TD
   Local --> Data[(data/ outputs)]
   AF --> Data
   API --> Logs[data/logs/application_name]
+  API --> PG[(central Postgres)]
+  Data --> HostDS[Host data service - public / private / delete]
 ```
 
-**Acceptance:** A new operator can see, from the diagram alone, whether a UI action runs locally or via Airflow, and where files and logs land.
+**Acceptance:** A new operator can see, from the diagram alone, whether a UI action runs locally or via Airflow, where files and logs land, and how outputs are retained.
+
+---
+
+## 9. Database — Postgres on the central server
+
+If the service needs a database, **do not** run a per-project Postgres (or SQLite file) in the application container for cluster deploys.
+
+Use **PostgreSQL** on the **central Postgres** instance on the cluster host. Persist state through a **connection string** in env; the server DBA provisions the database/role.
+
+- [ ] Cluster deploys use Postgres only (no SQLite as the production store).
+- [ ] `.env.example` has a connection string, for example:
+  ```bash
+  DATABASE_URL=postgresql://USER:PASSWORD@POSTGRES_HOST:5432/DBNAME
+  ```
+  Split vars (`PGHOST`, `PGPORT`, `PGUSER`, `PGPASSWORD`, `PGDATABASE`) are fine if the app prefers them — document one style.
+- [ ] The host in that string is the **central Postgres** on the server (Docker network DNS or host IP), not `postgres` from a sidecar Compose file unless that sidecar **is** the shared instance.
+- [ ] No database files under the image; schema migrations run against the shared server.
+- [ ] README states database name, who owns the role, and how to request access.
+
+If the service has **no** database, tick N/A in the sign-off table and skip this item.
+
+**Acceptance:** Recreating the app container does not wipe application data; rows live in central Postgres. Credentials are only in `.env`.
+
+---
+
+## 10. Output retention — public, private-persistent, or delete
+
+Each project must declare what happens to **compute outputs** under `data/`. A **data service on the host** enforces the policy. Project teams do not invent ad-hoc cleanup; they **publish the policy in a standard file** the host service reads.
+
+Three modes:
+
+| Mode | Meaning |
+| --- | --- |
+| **public** | Outputs may be published (catalog, GeoServer, open download). Host data service treats them as shareable. |
+| **private_persistent** | Keep on the workstation/cluster disk; **not** made public. Survives job and container restarts. |
+| **delete** | Remove after a stated duration (`ttl_days`). Host data service zaps expired paths. |
+
+Standard publish path — commit `outputs.yaml` at the repo root (or `deploy/outputs.yaml`). One entry per output tree:
+
+```yaml
+# outputs.yaml — read by the host data service
+application: corestack-lulc
+outputs:
+  - path: data/results/
+    mode: public                 # public | private_persistent | delete
+    ttl_days: null
+    description: Final LULC rasters and STAC items
+  - path: data/work/
+    mode: private_persistent
+    ttl_days: null
+    description: Intermediate tiles kept on the workstation
+  - path: data/scratch/
+    mode: delete
+    ttl_days: 7
+    description: Temp files; host data service deletes after 7 days
+```
+
+Rules:
+
+- [ ] Every output path under `data/` is listed; uncovered paths are not allowed on the cluster.
+- [ ] `mode` is one of `public`, `private_persistent`, `delete`.
+- [ ] `delete` **requires** `ttl_days` (integer ≥ 1).
+- [ ] README points at `outputs.yaml` and restates the modes in one paragraph.
+- [ ] Architecture diagram (§8) mentions the host data service.
+
+**Acceptance:** An operator (or the host data service) can read `outputs.yaml` and know, for each folder, whether to publish, keep private, or delete after N days.
 
 ---
 
@@ -160,13 +245,15 @@ flowchart TD
 
 | # | Item | Owner | Done |
 | --- | --- | --- | --- |
-| 1 | All data and compute output in `data/` | | |
+| 1 | Mount `code/`, `models/`, `data/`; compute output in `data/` | | |
 | 2 | `AIRFLOW_BASE_API_URL` set → Airflow; unset → local | | |
 | 3 | Image pushed to GHCR or Docker Hub | | |
 | 4 | Google SSO | | |
-| 5 | Logs under `data/logs/<application_name>/` | | |
+| 5 | Logs under `data/logs/<application_name>/`; `LOG_LEVEL` debug/info/error | | |
 | 6 | Frontend + backend in one Docker | | |
 | 7 | Frontend API base URL from `.env` | | |
 | 8 | Architecture diagram (compute trigger + from where) | | |
+| 9 | Postgres via connection string to central server (or N/A) | | |
+| 10 | `outputs.yaml` — public / private_persistent / delete | | |
 
 Service: _______________ Date: _______________ Reviewer: _______________
