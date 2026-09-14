@@ -6,13 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Production deployment, SSH access, service configuration, OS tuning, and monitoring for CoRE Stack infrastructure.">
+        <meta name="description" content="Production deployment, SSH access, service configuration, OS tuning, and monitoring for CoRE Stack on AWS.">
       
       
       
         <link rel="canonical" href="https://docs.core-stack.org/server/">
       
       
+        <link rel="prev" href="../infra/">
+      
+      
+        <link rel="next" href="../infra/tower-services/">
       
       
         
@@ -23,7 +27,7 @@
     
     
       
-        <title>Server - CoRE Stack Documentation</title>
+        <title>AWS Server - CoRE Stack Documentation</title>
       
     
     
@@ -76,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#server" class="md-skip">
+        <a href="#aws-server" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Server
+              AWS Server
             
           </span>
         </div>
@@ -349,6 +353,30 @@
     
   
   References / Learn
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../infra/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Infra
 
         </a>
       </li>
@@ -1781,6 +1809,2070 @@
       
   
   
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../infra/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infra
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Infra
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS Server
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#production-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Production deployment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Production deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-use-this-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Use This Document
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#corestack-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CoreStack Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#landscape-explorer-le-and-kyl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Landscape Explorer (LE) and KYL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commons-connect-react-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commons Connect React App
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-mapping-guardrail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend Mapping Guardrail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#os-operations-baseline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OS Operations Baseline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-verification-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Verification Checklist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws-server-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS server access and roles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS server access and roles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#server-topology" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Server Topology
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh-access-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH Access Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access Notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apache-mod_wsgi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Apache + mod_wsgi + SSL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Apache + mod_wsgi + SSL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-install-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Install Apache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-install-mod_wsgi-in-conda-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Install mod_wsgi in Conda Environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-collect-static-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Collect Static Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-set-proper-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Set Proper Permissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-create-apache-virtual-host-http-https" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Create Apache Virtual Host (HTTP + HTTPS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-enable-site" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Enable Site
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-install-ssl-certificate-lets-encrypt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Install SSL Certificate (Let's Encrypt)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-update-django-production-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Update Django Production Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-restart-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Restart Apache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-logs-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Logs Location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#final-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#related-os-memory-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related: OS Memory Tuning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#celery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Celery + RabbitMQ + Flower
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Celery + RabbitMQ + Flower">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installer-boundary-installsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installer Boundary (install.sh)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-install-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Install Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-install-and-start-rabbitmq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Install and Start RabbitMQ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-celery-app-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Celery App Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-manual-worker-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Manual Worker Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-create-logs-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Create Logs Directory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-create-queue-worker-service-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Create Queue Worker Service Template
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-queue-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Queue Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Queue Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-reconfigured-celery-queues-means" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What "reconfigured celery queues" means
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-flower-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Flower Monitoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-useful-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Useful Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#related-os-memory-tuning_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related: OS Memory Tuning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geoserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GeoServer + Tomcat + SSL (8443)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GeoServer + Tomcat + SSL (8443)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-install-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Install Java
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-install-apache-tomcat-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Install Apache Tomcat 10
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-create-tomcat-systemd-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Create Tomcat systemd Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-install-geoserver-war" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Install GeoServer (WAR)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-configure-https-on-8443" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Configure HTTPS on 8443
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-open-firewall-port" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Open Firewall Port
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#final-architecture_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#related-os-memory-tuning_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related: OS Memory Tuning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amplify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Amplify (frontend hosting)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AWS Amplify (frontend hosting)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#corestack-app-examples-le-kyl-dashboard-cc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CoreStack App Examples (LE / KYL / Dashboard / CC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-deploy-using-aws-amplify-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Deploy Using AWS Amplify Console
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-build-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Build Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-wait-for-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Wait for Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-access-your-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Access Your App
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-configure-custom-domain-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Configure Custom Domain (Optional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-environment-variables-if-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Environment Variables (If Needed)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-enable-spa-redirect-important-for-react-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Enable SPA Redirect (Important for React Router)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-manual-deployment-without-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Manual Deployment (Without GitHub)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#build-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build Fails
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-final-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Final Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Cost
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-recommended-for-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Recommended for Production
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#related-os-memory-tuning_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related: OS Memory Tuning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stac-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STAC API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="STAC API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-install-system-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Install System Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-configure-postgresql-postgis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Configure PostgreSQL + PostGIS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-create-python-virtual-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Create Python Virtual Environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-install-stac-api-stac-fastapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Install STAC API (stac-fastapi)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-configure-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Configure Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-initialize-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Initialize Database
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-start-stac-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Start STAC API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-run-as-systemd-service-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Run as systemd Service (Production)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-open-firewall-if-enabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Open Firewall (If Enabled)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-example-stac-search-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Example STAC Search Request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-configure-apache-reverse-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Configure Apache Reverse Proxy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-install-ssl-certificate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Install SSL Certificate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#related-os-memory-tuning_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related: OS Memory Tuning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stac-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STAC UI and catalog
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="STAC UI and catalog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-create-s3-bucket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Create S3 Bucket
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-upload-build-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Upload Build Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-create-cloudfront-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Create CloudFront Distribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-update-s3-bucket-policy-important" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Update S3 Bucket Policy (Important)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-enable-default-root-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Enable Default Root Object
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-enable-spa-routing-react-router-fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Enable SPA Routing (React Router Fix)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-access-your-website" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Access Your Website
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-add-custom-domain-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Add Custom Domain (Optional)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Add Custom Domain (Optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-request-ssl-certificate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Request SSL Certificate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-attach-certificate-to-cloudfront" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Attach Certificate to CloudFront
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-update-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Update DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-cache-invalidation-after-new-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Cache Invalidation (After New Deployment)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-recommended-security-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Recommended Security Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#troubleshooting_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#related-os-memory-tuning_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related: OS Memory Tuning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#credentials-and-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Credentials and secrets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Credentials and secrets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-must-be-in-the-secret-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Must Be in the Secret Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incidentserver-response-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incident/Server Response Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotation-guidance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rotation Guidance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation Rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#os-memory-tuning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux memory and swap tuning
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Linux memory and swap tuning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-this-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-quick-health-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Quick Health Checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-how-to-decide-swap-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. How to Decide Swap Size
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-create-or-resize-swap-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Create or Resize Swap File
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-vmswappiness-what-and-how-to-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. vm.swappiness: What and How to Set
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. vm.swappiness: What and How to Set">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-drives-swappiness-choice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Drives Swappiness Choice
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-pick-the-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Pick the Value
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-troubleshooting-memory-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Troubleshooting Memory Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Troubleshooting Memory Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-a-oom-kill-happened" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario A: OOM Kill Happened
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-b-high-swap-use-but-no-oom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario B: High Swap Use but No OOM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-c-memory-slowly-climbs-over-days" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario C: Memory Slowly Climbs Over Days
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-service-specific-guidance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Service-Specific Guidance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-minimal-incident-runbook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Minimal Incident Runbook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-recommended-starting-point-corestack-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Recommended Starting Point (CoreStack Hosts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-common-infra-troubleshooting-non-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Common Infra Troubleshooting (Non-Memory)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Common Infra Troubleshooting (Non-Memory)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#geoservertomcat-hangs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GeoServer/Tomcat Hangs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-unreachable-intermittent-api-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Unreachable / Intermittent API Failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nagios-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nagios monitoring
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Nagios monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-monitoring-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Monitoring Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#process-health-meaning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Process Health Meaning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alert-frequency-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alert Frequency Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-alert-timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email Alert Timeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-amazon-cloudwatch-detects-high-swap-usage-but-nagios-may-not" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Amazon CloudWatch Detects High Swap Usage but Nagios May Not
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Why Amazon CloudWatch Detects High Swap Usage but Nagios May Not">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Scenario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-this-happens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Happens
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cpu-load-threshold-explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CPU Load Threshold Explanation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tower Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tower Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../infra/tower-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tower Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cluster-docker-services/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cluster Docker Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cluster-service-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cluster Service Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
   
   
     
@@ -1809,7 +3901,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -1831,14 +3923,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1876,10 +3968,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_2" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_2" >
         
           
-          <label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
             
   
   
@@ -1897,8 +3989,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1974,10 +4066,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7_3" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_3" >
         
           
-          <label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
             
   
   
@@ -1995,8 +4087,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3874,6 +5966,46 @@
   
 
 
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../infra/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Infra
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
               
               <article class="md-content__inner md-typeset">
                 
@@ -3884,8 +6016,9 @@
   
 
 
-<h1 id="server">Server<a class="headerlink" href="#server" title="Permanent link">&para;</a></h1>
-<p>Production infrastructure for CoRE Stack: deployment footprint, secure access, per-service runbooks, OS tuning, and monitoring. Scroll this page or use the table of contents — everything is in one place.</p>
+<h1 id="aws-server">AWS Server<a class="headerlink" href="#aws-server" title="Permanent link">&para;</a></h1>
+<p>Production infrastructure for CoRE Stack on AWS: deployment footprint, secure access, per-service runbooks, OS tuning, and monitoring. Scroll this page or use the table of contents — everything is in one place.</p>
+<p>Tower Services (Drone, Bioacoustic, DIY LULC) are documented under <a href="../infra/tower-services/">Tower Services</a>.</p>
 <h2 id="contents">Contents<a class="headerlink" href="#contents" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="#production-deployment">Production deployment</a></li>

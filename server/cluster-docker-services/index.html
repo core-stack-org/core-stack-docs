@@ -7,6 +7,8 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <meta content="Internal runbook for CoRE Stack cluster Docker services — deps-only images, host mounts, STACD/Airflow, and the Custom LULC worked example." name="description"/>
 <link href="https://docs.core-stack.org/server/cluster-docker-services/" rel="canonical"/>
+<link href="../../infra/tower-services/" rel="prev"/>
+<link href="../cluster-service-checklist/" rel="next"/>
 <link href="../../assets/logo.png" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.7.6" name="generator"/>
 <title>Cluster Docker Services - CoRE Stack Documentation</title>
@@ -179,6 +181,17 @@
     
   
   References / Learn
+
+        </a>
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../../infra/">
+          
+  
+  
+    
+  
+  Infra
 
         </a>
 </li>
@@ -759,132 +772,103 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_7" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../blog/">
+<a class="md-nav__link" href="../../infra/">
 <span class="md-ellipsis">
     
   
-    Blog
+    Infra
   
 
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_7">
 <span class="md-nav__icon md-icon"></span>
             
   
-    Blog
-  
-
-          </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_7_2" id="__nav_7_2_label" tabindex="0">
-<span class="md-ellipsis">
-    
-  
-    Archive
-  
-
-    
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="false" aria-labelledby="__nav_7_2_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_7_2">
-<span class="md-nav__icon md-icon"></span>
-            
-  
-    Archive
+    Infra
   
 
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../blog/archive/2026/">
+<a class="md-nav__link" href="../">
 <span class="md-ellipsis">
     
   
-    2026
+    AWS Server
   
 
     
   </span>
 </a>
 </li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7_3" type="checkbox"/>
-<label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_7_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="">
 <span class="md-ellipsis">
     
   
-    Categories
+    Tower Services
   
 
     
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="false" aria-labelledby="__nav_7_3_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="true" aria-labelledby="__nav_7_3_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_7_3">
 <span class="md-nav__icon md-icon"></span>
             
   
-    Categories
+    Tower Services
   
 
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../blog/category/community/">
+<a class="md-nav__link" href="../../infra/tower-services/">
 <span class="md-ellipsis">
     
   
-    community
+    Tower Services
   
 
     
   </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../blog/category/research/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
 <span class="md-ellipsis">
     
   
-    research
+    Cluster Docker Services
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    
+  
+    Cluster Docker Services
   
 
     
   </span>
 </a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</div>
-</div>
-</div>
-<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
-<div class="md-sidebar__scrollwrap">
-<div class="md-sidebar__inner">
 <nav aria-label="On this page" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
 <span class="md-nav__icon md-icon"></span>
@@ -911,10 +895,10 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2-code-and-models-live-on-the-host-mount-do-not-copy">
+<a class="md-nav__link" href="#2-code-models-and-data-live-on-the-host-mount-do-not-copy">
 <span class="md-ellipsis">
       
-        2. Code and models live on the host (mount, do not copy)
+        2. Code, models, and data live on the host (mount, do not copy)
       
     </span>
 </a>
@@ -938,10 +922,10 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#5-docker-hub-build-push-and-keep-updated">
+<a class="md-nav__link" href="#5-ghcr-or-docker-hub--build-push-and-keep-updated">
 <span class="md-ellipsis">
       
-        5. Docker Hub — build, push, and keep updated
+        5. GHCR or Docker Hub — build, push, and keep updated
       
     </span>
 </a>
@@ -956,7 +940,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#7-writing-dags-stacd-yaml-workflow">
+<a class="md-nav__link" href="#7-writing-dags--stacd-yaml-workflow">
 <span class="md-ellipsis">
       
         7. Writing DAGs — STACD YAML workflow
@@ -965,10 +949,10 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#8-compute-and-processing-always-via-airflow">
+<a class="md-nav__link" href="#8-compute-and-processing--always-via-airflow">
 <span class="md-ellipsis">
       
-        8. Compute and processing — always via Airflow
+        8. Compute and processing — Airflow when AIRFLOW_API_BASE is set
       
     </span>
 </a>
@@ -1138,13 +1122,412 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#service-catalog">
+<a class="md-nav__link" href="#cluster-notes-iit-delhi-proxy">
 <span class="md-ellipsis">
       
-        Service catalog
+        Cluster notes (IIT Delhi proxy)
       
     </span>
 </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../cluster-service-checklist/">
+<span class="md-ellipsis">
+    
+  
+    Cluster Service Checklist
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../blog/">
+<span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_8_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_8">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Archive
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_8_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_8_2">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Archive
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../blog/archive/2026/">
+<span class="md-ellipsis">
+    
+  
+    2026
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Categories
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_8_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_8_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Categories
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../blog/category/community/">
+<span class="md-ellipsis">
+    
+  
+    community
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../blog/category/research/">
+<span class="md-ellipsis">
+    
+  
+    research
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="On this page" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#general-guidelines-for-new-docker-services">
+<span class="md-ellipsis">
+      
+        General guidelines for new Docker services
+      
+    </span>
+</a>
+<nav aria-label="General guidelines for new Docker services" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-no-hardcoded-configuration">
+<span class="md-ellipsis">
+      
+        1. No hardcoded configuration
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-code-models-and-data-live-on-the-host-mount-do-not-copy">
+<span class="md-ellipsis">
+      
+        2. Code, models, and data live on the host (mount, do not copy)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-repository-readme-step-by-step-installation">
+<span class="md-ellipsis">
+      
+        3. Repository README — step-by-step installation
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-version-changelog-file">
+<span class="md-ellipsis">
+      
+        4. VERSION changelog file
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-ghcr-or-docker-hub--build-push-and-keep-updated">
+<span class="md-ellipsis">
+      
+        5. GHCR or Docker Hub — build, push, and keep updated
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-additional-requirements">
+<span class="md-ellipsis">
+      
+        6. Additional requirements
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#7-writing-dags--stacd-yaml-workflow">
+<span class="md-ellipsis">
+      
+        7. Writing DAGs — STACD YAML workflow
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#8-compute-and-processing--always-via-airflow">
+<span class="md-ellipsis">
+      
+        8. Compute and processing — Airflow when AIRFLOW_API_BASE is set
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#9-always-return-output-in-stac-format">
+<span class="md-ellipsis">
+      
+        9. Always return output in STAC format
+      
+    </span>
+</a>
+<nav aria-label="9. Always return output in STAC format" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#response-format">
+<span class="md-ellipsis">
+      
+        Response format
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#required-keys">
+<span class="md-ellipsis">
+      
+        Required keys
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stac-properties-keys">
+<span class="md-ellipsis">
+      
+        STAC properties keys
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stac-assets-keys">
+<span class="md-ellipsis">
+      
+        STAC assets keys
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stac-links-keys">
+<span class="md-ellipsis">
+      
+        STAC links keys
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#reference-example-vector-layer">
+<span class="md-ellipsis">
+      
+        Reference example (vector layer)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#docker-stacd-task-output">
+<span class="md-ellipsis">
+      
+        Docker / STACD task output
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#10-checklist-before-adding-a-cluster-service">
+<span class="md-ellipsis">
+      
+        10. Checklist before adding a cluster service
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#worked-example-custom-lulc">
+<span class="md-ellipsis">
+      
+        Worked example: Custom LULC
+      
+    </span>
+</a>
+<nav aria-label="Worked example: Custom LULC" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dockerisation">
+<span class="md-ellipsis">
+      
+        Dockerisation
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuration-and-credentials">
+<span class="md-ellipsis">
+      
+        Configuration and credentials
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#end-to-end-pipeline">
+<span class="md-ellipsis">
+      
+        End-to-end pipeline
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#backend-glue-airflow_clientpy">
+<span class="md-ellipsis">
+      
+        Backend glue (airflow_client.py)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dag-callback-post-apiexport-asset">
+<span class="md-ellipsis">
+      
+        DAG callback — POST /api/export-asset
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-to-add-to-an-existing-app">
+<span class="md-ellipsis">
+      
+        What to add to an existing app
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#verify-inside-out">
+<span class="md-ellipsis">
+      
+        Verify inside-out
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#cluster-notes-iit-delhi-proxy">
@@ -1161,19 +1544,33 @@
 </div>
 </div>
 <div class="md-content" data-md-component="content">
+<nav aria-label="Navigation" class="md-path">
+<ol class="md-path__list">
+<li class="md-path__item">
+<a class="md-path__link" href="../..">
+<span class="md-ellipsis">
+    Home
+  </span>
+</a>
+</li>
+<li class="md-path__item">
+<a class="md-path__link" href="../../infra/">
+<span class="md-ellipsis">
+    Infra
+  </span>
+</a>
+</li>
+<li class="md-path__item">
+<a class="md-path__link" href="../../infra/tower-services/">
+<span class="md-ellipsis">
+    Tower Services
+  </span>
+</a>
+</li>
+</ol>
+</nav>
 <article class="md-content__inner md-typeset">
 <h1 id="cluster-docker-services">Cluster Docker Services<a class="headerlink" href="#cluster-docker-services" title="Permanent link">¶</a></h1>
-<p>Internal runbook for deploying small Docker-based services on the CoRE Stack cluster. This page is <strong>not linked from the public site navigation</strong> — bookmark the URL directly.</p>
-<p><strong>Direct URL:</strong> <code>/server/cluster-docker-services/</code></p>
-<p>This page is one document:</p>
-<ol>
-<li><strong>Cluster-wide standards</strong> (§1–§10) — every new service must follow these.</li>
-<li><strong>Worked example: Custom LULC</strong> — a complete deps-only image + Airflow REST + STACD API-mode pipeline you can copy.</li>
-<li><strong>Service catalog</strong> and <strong>IITD proxy</strong> notes.</li>
-</ol>
-<p>Project acceptance boxes (code/models/data mounts, Airflow URL vs local, GHCR/Docker Hub, Google SSO, log levels, central Postgres, output modes): <a href="../cluster-service-checklist/">Cluster Service Checklist</a>.</p>
-<p>The LULC walkthrough is adapted from <a href="https://github.com/SaharshLaud/STACD_framework/blob/dev/report/custom_lulc_deployment_and_airflow_pipeline.md">Custom LULC — Dockerisation &amp; Airflow Integration</a> in <a href="https://github.com/SaharshLaud/STACD_framework">STACD_framework</a> (<code>dev</code>).</p>
-<hr/>
 <h2 id="general-guidelines-for-new-docker-services">General guidelines for new Docker services<a class="headerlink" href="#general-guidelines-for-new-docker-services" title="Permanent link">¶</a></h2>
 <p>Every service added to the cluster must follow these rules before it is deployed or documented here.</p>
 <h3 id="1-no-hardcoded-configuration">1. No hardcoded configuration<a class="headerlink" href="#1-no-hardcoded-configuration" title="Permanent link">¶</a></h3>
@@ -1196,7 +1593,7 @@
 </tr>
 <tr>
 <td>Airflow</td>
-<td><code>AIRFLOW_API_BASE</code> (or <code>AIRFLOW_BASE_URL</code>), admin user/password or token, <code>AIRFLOW_DAG_ID</code>, Fernet key, DAG folder</td>
+<td><code>AIRFLOW_API_BASE</code>, <code>AIRFLOW_DAG_ID</code>, <code>AIRFLOW_USERNAME</code> / <code>AIRFLOW_PASSWORD</code> (or <code>AIRFLOW_TOKEN</code>), <code>CORESTACK_API_BASE</code></td>
 </tr>
 <tr>
 <td>External APIs</td>
@@ -1212,7 +1609,7 @@
 <ul>
 <li><code>.env.example</code> listing every variable with a short comment (no real secrets).</li>
 <li>Application reads config from environment at runtime — not from hardcoded defaults that differ per cluster.</li>
-<li>Empty <code>AIRFLOW_API_BASE</code> (or equivalent) must turn the DAG path <strong>off cleanly</strong>.</li>
+<li>Empty <code>AIRFLOW_API_BASE</code> turns Airflow <strong>off</strong> (local compute). Do not use <code>AIRFLOW_BASE_API_URL</code> or a <code>COMPUTE_MODE</code> flag.</li>
 </ul>
 <p><strong>Do not:</strong></p>
 <ul>
@@ -1220,8 +1617,34 @@
 <li>Commit a real <code>.env</code> file to Git.</li>
 </ul>
 <p>Credential <strong>files</strong> (Earth Engine JSON, and similar) must be both referenced by an env var <strong>and</strong> present at that path inside the container (usually because the checkout is bind-mounted). Ship a one-command auth self-check in the repo.</p>
-<h3 id="2-code-and-models-live-on-the-host-mount-do-not-copy">2. Code and models live on the host (mount, do not copy)<a class="headerlink" href="#2-code-and-models-live-on-the-host-mount-do-not-copy" title="Permanent link">¶</a></h3>
-<p>The Docker image should contain <strong>runtime dependencies only</strong> (OS packages, Python/Node libs, entrypoint). Application logic and heavy assets stay outside the image and are <strong>bind-mounted</strong> at run time.</p>
+<h3 id="2-code-models-and-data-live-on-the-host-mount-do-not-copy">2. Code, models, and data live on the host (mount, do not copy)<a class="headerlink" href="#2-code-models-and-data-live-on-the-host-mount-do-not-copy" title="Permanent link">¶</a></h3>
+<p>The image is <strong>deps-only</strong> (OS packages, Python/Node libs, entrypoint). Bind-mount three host folders. Same table as <a href="../cluster-service-checklist/#1-store-all-relevant-data-and-compute-output-in-data">checklist §1</a> and <a href="../../infra/tower-services/#shared-terminology">Tower Services</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Host folder</th>
+<th>Container path</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>code/</code></strong></td>
+<td><code>/app</code></td>
+<td>Git checkout. Update with <code>git pull</code> + restart.</td>
+</tr>
+<tr>
+<td><strong><code>models/</code></strong></td>
+<td><code>/app/models</code></td>
+<td>Weights, checkpoints, <code>.pt</code> / <code>.onnx</code> / <code>.joblib</code>.</td>
+</tr>
+<tr>
+<td><strong><code>data/</code></strong></td>
+<td><code>/app/data</code></td>
+<td>Inputs, caches, <strong>all compute output</strong>. Logs: <code>data/logs/&lt;application_name&gt;/</code>.</td>
+</tr>
+</tbody>
+</table>
 <p>The three layers:</p>
 <table>
 <thead>
@@ -1234,56 +1657,34 @@
 <tbody>
 <tr>
 <td><strong>Dependencies</strong></td>
-<td>the image</td>
-<td><code>docker pull</code> (built from a requirements / lockfile only)</td>
+<td>the <strong>deps-only image</strong></td>
+<td><code>docker pull</code> from <strong>GHCR or Docker Hub</strong></td>
 </tr>
 <tr>
 <td><strong>Code</strong></td>
-<td>git checkout on the host</td>
+<td>host <strong><code>code/</code></strong></td>
 <td><code>git clone</code> / <code>git pull</code>, mounted at <code>/app</code></td>
 </tr>
 <tr>
-<td><strong>Data / models</strong></td>
-<td>host paths (<code>data/</code>, <code>/models</code>, scratch)</td>
-<td>repo files and/or written at runtime; mounted separately if needed</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Mount on host</th>
-<th>Typical container path</th>
-<th>Contents</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Application source</td>
-<td><code>/app</code></td>
-<td>Git checkout — Python/JS code, DAGs, configs</td>
+<td><strong>Models</strong></td>
+<td>host <strong><code>models/</code></strong></td>
+<td>mounted at <code>/app/models</code></td>
 </tr>
 <tr>
-<td>Model weights</td>
-<td><code>/models</code> or <code>/app/data</code></td>
-<td><code>.pt</code>, <code>.onnx</code>, <code>.joblib</code>, checkpoints, vocab files</td>
-</tr>
-<tr>
-<td>Data / scratch</td>
-<td><code>/data</code></td>
-<td>Inputs, outputs, intermediate files</td>
+<td><strong>Data</strong></td>
+<td>host <strong><code>data/</code></strong></td>
+<td>mounted at <code>/app/data</code>; written at runtime</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Why this split:</strong></p>
 <ul>
-<li><strong>Update the app = <code>git pull</code> + restart.</strong> No image rebuild. Code is mounted, so a pull changes files on disk.</li>
+<li><strong>Update the app = <code>git pull</code> + restart.</strong> No image rebuild.</li>
 <li><strong>Rebuild the image only when dependencies change</strong> (requirements file, system libs, CUDA, GDAL).</li>
-<li>One image tag can serve dev and prod with different mounts.</li>
 <li>With nothing mounted at <code>/app</code>, the container may start but has <strong>no code to serve</strong> — that is intentional.</li>
 </ul>
-<p>Path anchoring should work from any CWD: compute repo root from a known file, honour <code>CORESTACK_ROOT</code> / <code>CORESTACK_DATA_DIR</code> (or service equivalents), so the same code runs under <code>docker run</code>, Compose, or a bare process.</p>
-<p>Document every volume in the repo <code>README</code>. Bind-mount <code>.</code> onto <code>/app</code> in Compose (same pattern as the <a href="../../developers/docker/">backend Docker install</a>).</p>
+<p>A laptop shortcut that bind-mounts <code>.</code> onto <code>/app</code> (Custom LULC example) is fine for local try-out. <strong>Cluster deploy</strong> must use the three separate mounts.</p>
+<p>Document every volume in the repo <code>README</code>.</p>
 <h3 id="3-repository-readme-step-by-step-installation">3. Repository README — step-by-step installation<a class="headerlink" href="#3-repository-readme-step-by-step-installation" title="Permanent link">¶</a></h3>
 <p>Each service GitHub repo must include a <code>README.md</code> with:</p>
 <ol>
@@ -1313,7 +1714,7 @@
 <li>Tag Docker images with the same version (<code>:1.2.0</code>), not only <code>:latest</code>.</li>
 <li>Note migration steps if env vars or mount paths change between versions.</li>
 </ul>
-<h3 id="5-docker-hub-build-push-and-keep-updated">5. Docker Hub — build, push, and keep updated<a class="headerlink" href="#5-docker-hub-build-push-and-keep-updated" title="Permanent link">¶</a></h3>
+<h3 id="5-ghcr-or-docker-hub--build-push-and-keep-updated">5. GHCR or Docker Hub — build, push, and keep updated<a class="headerlink" href="#5-ghcr-or-docker-hub--build-push-and-keep-updated" title="Permanent link">¶</a></h3>
 <table>
 <thead>
 <tr>
@@ -1324,7 +1725,7 @@
 <tbody>
 <tr>
 <td>Registry</td>
-<td>Push to Docker Hub under the agreed org/user namespace</td>
+<td>Push to <strong>GHCR</strong> (<code>ghcr.io/...</code>) <strong>or Docker Hub</strong> (<code>docker.io/...</code>)</td>
 </tr>
 <tr>
 <td>Tags</td>
@@ -1345,11 +1746,12 @@
 </tbody>
 </table>
 <p>Example workflow:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>kapildadheechgv/&lt;service-name&gt;:1.0.0<span class="w"> </span>.
-</span><span id="__span-1-2"><a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>docker<span class="w"> </span>tag<span class="w"> </span>kapildadheechgv/&lt;service-name&gt;:1.0.0<span class="w"> </span>kapildadheechgv/&lt;service-name&gt;:latest
-</span><span id="__span-1-3"><a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>docker<span class="w"> </span>push<span class="w"> </span>kapildadheechgv/&lt;service-name&gt;:1.0.0
-</span><span id="__span-1-4"><a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a>docker<span class="w"> </span>push<span class="w"> </span>kapildadheechgv/&lt;service-name&gt;:latest
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>&lt;registry&gt;/&lt;name&gt;:1.0.0<span class="w"> </span>.
+</span><span id="__span-1-2"><a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>docker<span class="w"> </span>tag<span class="w"> </span>&lt;registry&gt;/&lt;name&gt;:1.0.0<span class="w"> </span>&lt;registry&gt;/&lt;name&gt;:latest
+</span><span id="__span-1-3"><a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>docker<span class="w"> </span>push<span class="w"> </span>&lt;registry&gt;/&lt;name&gt;:1.0.0
+</span><span id="__span-1-4"><a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a>docker<span class="w"> </span>push<span class="w"> </span>&lt;registry&gt;/&lt;name&gt;:latest
 </span></code></pre></div>
+<p><code>&lt;registry&gt;/&lt;name&gt;</code> is <code>ghcr.io/&lt;org&gt;/&lt;name&gt;</code> or <code>&lt;dockerhub-user&gt;/&lt;name&gt;</code>.</p>
 <p>The Dockerfile should copy <strong>only</strong> the requirements file (not application source):</p>
 <div class="language-dockerfile highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span>
 </span><span id="__span-2-2"><a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
@@ -1385,7 +1787,7 @@
 </tr>
 <tr>
 <td><strong>Logs</strong></td>
-<td>Write to stdout/stderr or a mounted log dir — not only inside ephemeral container FS</td>
+<td><code>LOG_LEVEL</code> = <code>debug</code> | <code>info</code> | <code>error</code>. Files under <strong><code>data/logs/&lt;application_name&gt;/</code></strong> (and stdout)</td>
 </tr>
 <tr>
 <td><strong>Restart policy</strong></td>
@@ -1409,7 +1811,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="7-writing-dags-stacd-yaml-workflow">7. Writing DAGs — STACD YAML workflow<a class="headerlink" href="#7-writing-dags-stacd-yaml-workflow" title="Permanent link">¶</a></h3>
+<h3 id="7-writing-dags--stacd-yaml-workflow">7. Writing DAGs — STACD YAML workflow<a class="headerlink" href="#7-writing-dags--stacd-yaml-workflow" title="Permanent link">¶</a></h3>
 <p>Do <strong>not</strong> hand-write one-off Python DAG files for cluster services unless there is a strong reason. Define workflows as <strong>STACD YAML</strong> and let the framework generate and deploy the Airflow DAG.</p>
 <p><strong>Authoritative guide:</strong> <a href="https://github.com/SaharshLaud/STACD_framework/blob/dev/README.md#11-writing-your-own-yaml-workflow">STACD Framework — §11 Writing Your Own YAML Workflow</a></p>
 <p>Each workflow requires <strong>three YAML files</strong>:</p>
@@ -1481,7 +1883,7 @@
 </span></code></pre></div>
 <p>Rules:</p>
 <ul>
-<li><strong><code>image</code></strong>, <strong><code>module</code></strong>, and <strong><code>function</code></strong> come from the service repo — image name must match what is pushed to Docker Hub (§5).</li>
+<li><strong><code>image</code></strong>, <strong><code>module</code></strong>, and <strong><code>function</code></strong> come from the service repo — image name must match what is pushed to <strong>GHCR or Docker Hub</strong> (§5).</li>
 <li><strong><code>code</code></strong> links to the GitHub repo; actual code is <strong>mounted</strong> on the host when the container runs (§2), not baked into the DAG file.</li>
 <li>For Docker mode, the container function must print its result between <code>===RESULT_JSON_START===</code> / <code>===RESULT_JSON_END===</code> markers (see STACD §11 — Docker stdout convention). The JSON payload must include a valid <strong>STAC Item</strong> — see <a href="#9-always-return-output-in-stac-format">§9 STAC output</a>.</li>
 <li>For API mode, the endpoint must tolerate a DAG <code>conf</code> envelope and extra keys, and return STAC (see <a href="#8-compute-and-processing--always-via-airflow">§8</a> and the <a href="#worked-example-custom-lulc">LULC example</a>).</li>
@@ -1494,8 +1896,27 @@
 <li>Record the resulting <strong><code>dag_id</code></strong> in the service repo README and in the caller’s <code>.env.example</code> as <code>AIRFLOW_DAG_ID</code>.</li>
 </ol>
 <p><strong>Updates:</strong> Use STACD plugin pages (Register Algorithm, Register Dataset, Update DAG) — do not edit generated DAG Python files by hand. See <a href="https://github.com/SaharshLaud/STACD_framework/blob/dev/README.md#10-updating-an-existing-workflow">STACD §10</a>.</p>
-<h3 id="8-compute-and-processing-always-via-airflow">8. Compute and processing — always via Airflow<a class="headerlink" href="#8-compute-and-processing-always-via-airflow" title="Permanent link">¶</a></h3>
-<p>If a Docker service <strong>triggers any compute or batch processing</strong> (inference, raster jobs, pipeline steps, multi-step workflows), it must <strong>not</strong> run that work directly from the container entrypoint or a long-lived API call. Route all compute through <strong>Airflow</strong>:</p>
+<h3 id="8-compute-and-processing--always-via-airflow">8. Compute and processing — Airflow when <code>AIRFLOW_API_BASE</code> is set<a class="headerlink" href="#8-compute-and-processing--always-via-airflow" title="Permanent link">¶</a></h3>
+<p><strong><code>AIRFLOW_API_BASE</code> is the compute switch</strong> (same rule as <a href="../cluster-service-checklist/#2-compute-via-airflow-if-airflow_api_base-is-set-otherwise-local">checklist §2</a>). Do not add a <code>COMPUTE_MODE</code> flag.</p>
+<table>
+<thead>
+<tr>
+<th><code>AIRFLOW_API_BASE</code> in <code>.env</code></th>
+<th>Behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Set</strong> (non-empty)</td>
+<td>Trigger and poll Airflow. Follow the steps below.</td>
+</tr>
+<tr>
+<td><strong>Empty / unset</strong></td>
+<td><strong>Local compute</strong> in this container. No Airflow client calls. Still write under <code>data/</code> and return a STAC Item (§9).</td>
+</tr>
+</tbody>
+</table>
+<p>When the variable is set:</p>
 <ol>
 <li><strong>Define a DAG</strong> — follow <a href="#7-writing-dags--stacd-yaml-workflow">§7 STACD YAML workflow</a>; do not ad-hoc Python DAGs for cluster services.</li>
 <li><strong>Trigger from the REST API</strong> — the calling service (API, UI backend, or another container) starts a run with <code>POST /api/v1/dags/{dag_id}/dagRuns</code> and a <code>conf</code> payload. Let Airflow mint <code>dag_run_id</code>.</li>
@@ -1519,7 +1940,7 @@
 <tbody>
 <tr>
 <td><code>AIRFLOW_API_BASE</code></td>
-<td>Airflow 2.x REST root, e.g. <code>http://airflow:8080/api/v1</code> (or <code>AIRFLOW_BASE_URL</code> without <code>/api/v1</code> — be consistent in the repo)</td>
+<td>Airflow 2.x REST root, e.g. <code>http://airflow:8080/api/v1</code>. Empty = local compute.</td>
 </tr>
 <tr>
 <td><code>AIRFLOW_DAG_ID</code></td>
@@ -1871,18 +2292,69 @@
 <li>Public STAC catalog: <a href="https://stac.core-stack.org/">stac.core-stack.org</a></li>
 </ul>
 <h3 id="10-checklist-before-adding-a-cluster-service">10. Checklist before adding a cluster service<a class="headerlink" href="#10-checklist-before-adding-a-cluster-service" title="Permanent link">¶</a></h3>
-<p>Also complete the <a href="../cluster-service-checklist/">Cluster Service Checklist</a> (<code>code/</code> / <code>models/</code> / <code>data/</code> mounts, <code>AIRFLOW_BASE_API_URL</code>, GHCR or Docker Hub, Google SSO, <code>LOG_LEVEL</code>, one-container UI/API, API base from <code>.env</code>, architecture diagram, central Postgres, <code>outputs.yaml</code> retention).</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> GitHub repo linked; README has full install steps</li>
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <code>.env.example</code> complete; no secrets in repo; empty Airflow base turns DAG path off</li>
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Image is <strong>deps-only</strong>; code and models documented as host mounts (<code>/app</code>)</li>
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <code>VERSION</code> / changelog maintained; image tagged with the same version</li>
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Image on Docker Hub with version tag; listen on <code>0.0.0.0</code>; <code>/health</code> exposed</li>
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>DAG defined via STACD YAML</strong> (§7) — three YAML files; API and/or Docker execution mode</li>
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>Compute jobs go through Airflow</strong> (§8) — same-origin proxy; trigger + poll; worker can reach <code>CORESTACK_API_BASE</code></li>
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <strong>Output returned as STAC Item</strong> (§9) — all required STAC keys populated</li>
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Tested on cluster (or IITD proxy environment)</li>
-</ul>
+<p>Do not treat this as a second contract. Tick the <strong><a href="../cluster-service-checklist/">Cluster Service Checklist</a></strong> — same ten items, same names:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Term</th>
+<th>This runbook</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>code/</code> <code>models/</code> <code>data/</code></td>
+<td>§2</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>AIRFLOW_API_BASE</code> set → Airflow; empty → local</td>
+<td>§8</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Image pushed to <strong>GHCR or Docker Hub</strong></td>
+<td>§5</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Google SSO</td>
+<td>§1 (env)</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>LOG_LEVEL</code>; <code>data/logs/&lt;application_name&gt;/</code></td>
+<td>§6</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Frontend + backend in one Docker</td>
+<td>checklist</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Frontend API base from <code>.env</code></td>
+<td>§1</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Per-service architecture diagram</td>
+<td><a href="../../infra/tower-services/#architecture">Tower Services</a> is the cluster picture; each repo still needs its own</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>Central Postgres</strong> / <code>DATABASE_URL</code></td>
+<td>§1</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong><code>outputs.yaml</code></strong> — <code>public</code> / <code>private_persistent</code> / <code>delete</code></td>
+<td>checklist</td>
+</tr>
+</tbody>
+</table>
+<p>Also: README install steps, <code>VERSION</code>, STACD YAML (§7), STAC Item (§9), IITD proxy if you pull on campus.</p>
 <hr/>
 <h2 id="worked-example-custom-lulc">Worked example: Custom LULC<a class="headerlink" href="#worked-example-custom-lulc" title="Permanent link">¶</a></h2>
 <p>Concrete copy-this-pattern for an algorithm service: <strong>deps-only image</strong>, <strong>bind-mounted checkout</strong>, <strong>backend triggers and polls Airflow</strong>, <strong>DAG calls back</strong> into <code>POST /api/export-asset</code>. Source: <a href="https://github.com/SaharshLaud/STACD_framework/blob/dev/report/custom_lulc_deployment_and_airflow_pipeline.md">custom_lulc_deployment_and_airflow_pipeline.md</a>.</p>
@@ -1932,9 +2404,10 @@
 </span><span id="__span-9-5"><a href="#__codelineno-9-5" id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">"8000:8000"</span><span class="p p-Indicator">]</span>
 </span><span id="__span-9-6"><a href="#__codelineno-9-6" id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="w">    </span><span class="nt">env_file</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">.env</span><span class="p p-Indicator">]</span>
 </span><span id="__span-9-7"><a href="#__codelineno-9-7" id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
-</span><span id="__span-9-8"><a href="#__codelineno-9-8" id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.:/app</span><span class="w">          </span><span class="c1"># CODE + DATA from this checkout</span>
+</span><span id="__span-9-8"><a href="#__codelineno-9-8" id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.:/app</span><span class="w">          </span><span class="c1"># laptop shortcut: whole checkout at /app</span>
 </span><span id="__span-9-9"><a href="#__codelineno-9-9" id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
 </span></code></pre></div>
+<p>On <strong>Tower Services</strong>, use three mounts (<code>code/</code> → <code>/app</code>, <code>models/</code> → <code>/app/models</code>, <code>data/</code> → <code>/app/data</code>) — <a href="#2-code-models-and-data-live-on-the-host-mount-do-not-copy">§2</a>.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/salil-123/Project.git<span class="w"> </span>corestack-lulc<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>corestack-lulc
 </span><span id="__span-10-2"><a href="#__codelineno-10-2" id="__codelineno-10-2" name="__codelineno-10-2"></a>cp<span class="w"> </span>deploy/.env.example<span class="w"> </span>.env<span class="w">          </span><span class="c1"># fill in (§ configuration below)</span>
 </span><span id="__span-10-3"><a href="#__codelineno-10-3" id="__codelineno-10-3" name="__codelineno-10-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.hub.yml<span class="w"> </span>pull
@@ -2036,7 +2509,7 @@
 <li><strong>Config</strong> — <code>AIRFLOW_*</code>, <code>CORESTACK_API_BASE</code>, empty-base = off.</li>
 <li><strong>UI</strong> — trigger then poll the proxy, never Airflow.</li>
 <li><strong><code>deploy/stacd/*.yaml</code></strong> — DAG + algorithm-with-<code>url</code> + dataset.</li>
-<li><strong>Dockerfile / Compose</strong> — already deps-only + <code>/app</code> mount (§2); Airflow glue is code + env only.</li>
+<li><strong>Dockerfile / Compose</strong> — deps-only image + <code>code/</code> <code>models/</code> <code>data/</code> mounts (§2); Airflow glue is code + env only.</li>
 </ol>
 <h3 id="verify-inside-out">Verify inside-out<a class="headerlink" href="#verify-inside-out" title="Permanent link">¶</a></h3>
 <ol>
@@ -2046,35 +2519,6 @@
 <li>Trigger via Airflow REST</li>
 <li>Run reaches <code>success</code></li>
 </ol>
-<hr/>
-<h2 id="service-catalog">Service catalog<a class="headerlink" href="#service-catalog" title="Permanent link">¶</a></h2>
-<table>
-<thead>
-<tr>
-<th>Service</th>
-<th>Documentation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Bioacoustic</td>
-<td>Service GitHub repo <code>README</code></td>
-</tr>
-<tr>
-<td>Drone</td>
-<td>Service GitHub repo <code>README</code></td>
-</tr>
-<tr>
-<td>LULC</td>
-<td>This page — <a href="#worked-example-custom-lulc">Worked example: Custom LULC</a>; service GitHub repo <code>README</code></td>
-</tr>
-<tr>
-<td>Airflow</td>
-<td><a href="https://github.com/SaharshLaud/STACD_framework">STACD Framework</a> (<code>dev</code>) — <a href="https://github.com/SaharshLaud/STACD_framework/blob/dev/README.md">setup guide</a></td>
-</tr>
-</tbody>
-</table>
-<p>Install and run commands for each service live in that service’s repository. This page defines cluster-wide standards (§1–§10) and the LULC copy-this pipeline.</p>
 <hr/>
 <h2 id="cluster-notes-iit-delhi-proxy">Cluster notes (IIT Delhi proxy)<a class="headerlink" href="#cluster-notes-iit-delhi-proxy" title="Permanent link">¶</a></h2>
 <p>If <code>docker pull</code> times out on a campus host, configure the <strong>Docker daemon</strong> proxy. Do <strong>not</strong> list <code>registry-1.docker.io</code> or <code>auth.docker.io</code> in <code>NO_PROXY</code>.</p>
