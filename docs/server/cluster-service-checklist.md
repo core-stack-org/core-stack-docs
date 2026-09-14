@@ -7,29 +7,27 @@ description: Acceptance checklist — code/models/data mounts, Airflow vs local,
 
 Acceptance checklist for every project that ships as a Docker service on the CoRE Stack cluster. Complete this page **before** asking for a cluster deploy.
 
-This page is **not linked from the public site navigation**. Bookmark the URL directly.
+Part of [Infra → Tower Services](../infra/local-cluster.md). Read that page first for the **architecture diagram** and **shared terminology**.
 
-**Direct URL:** `/server/cluster-service-checklist/`
-
-Cluster-wide Docker, STACD, and Airflow standards: [Cluster Docker Services](cluster-docker-services.md).
+This page is the **acceptance list** only. Procedures live in [Cluster Docker Services](cluster-docker-services.md). Use the same names: **`code/`**, **`models/`**, **`data/`**, **`AIRFLOW_API_BASE`**, **GHCR or Docker Hub**, **central Postgres**, **`outputs.yaml`**.
 
 ---
 
 ## How to use this page
 
-Copy the boxes into the service GitHub issue or README. Tick an item only when the **acceptance** line is true.
+Copy the boxes into the service GitHub issue or README. Tick an item only when the **Acceptance** line is true.
 
 ---
 
-## 1. Store all relevant data and compute output in `data/`
+## 1. Store all relevant data and compute output in `data/` { #1-store-all-relevant-data-and-compute-output-in-data }
 
-Bind-mount **three** host folders. Do not bake code, models, or outputs into the image.
+Bind-mount **three** host folders. Do not bake code, models, or outputs into the image. Same table as [runbook §2](cluster-docker-services.md#2-code-models-and-data-live-on-the-host-mount-do-not-copy).
 
-| Host folder | Typical container path | Contents |
+| Host folder | Container path | Contents |
 | --- | --- | --- |
-| `code/` | `/app` or `/app/code` | Application source (git checkout). Update with `git pull` + restart. |
-| `models/` | `/app/models` | Model weights, checkpoints, `.pt` / `.onnx` / `.joblib`. |
-| `data/` | `/app/data` | Inputs, caches, **and all compute output**. |
+| **`code/`** | `/app` | Git checkout. Update with `git pull` + restart. |
+| **`models/`** | `/app/models` | Weights, checkpoints, `.pt` / `.onnx` / `.joblib`. |
+| **`data/`** | `/app/data` | Inputs, caches, **all compute output**. |
 
 - [ ] Compose (or `docker run`) mounts `code/`, `models/`, and `data/` separately; none of them is copied in the `Dockerfile`.
 - [ ] Job outputs (rasters, vectors, STAC JSON, exports, temp working files) are written under `data/` only — not into `code/` or the container layer.
@@ -41,16 +39,16 @@ Bind-mount **three** host folders. Do not bake code, models, or outputs into the
 
 ---
 
-## 2. Compute via Airflow if `AIRFLOW_BASE_API_URL` is set, otherwise local
+## 2. Compute via Airflow if `AIRFLOW_API_BASE` is set, otherwise local { #2-compute-via-airflow-if-airflow_api_base-is-set-otherwise-local }
 
-Do **not** use a separate `COMPUTE_MODE` flag. The Airflow URL is the switch:
+Do **not** use a `COMPUTE_MODE` flag. **`AIRFLOW_API_BASE`** is the switch (same table as [runbook §8](cluster-docker-services.md#8-compute-and-processing--always-via-airflow)).
 
-| `AIRFLOW_BASE_API_URL` in `.env` | Behaviour |
+| `AIRFLOW_API_BASE` in `.env` | Behaviour |
 | --- | --- |
-| **Set** (non-empty) | Trigger and poll Airflow (`/api/v1/dags/...`). Follow [Cluster Docker Services §8](cluster-docker-services.md#8-compute-and-processing--always-via-airflow). |
-| **Unset / empty** | Run compute **locally** in the same container (in-process). |
+| **Set** (non-empty) | Trigger and poll Airflow (`/api/v1/dags/...`). |
+| **Empty / unset** | **Local compute** in this container. |
 
-- [ ] `.env.example` lists `AIRFLOW_BASE_API_URL` with a comment: leave empty for local compute.
+- [ ] `.env.example` lists `AIRFLOW_API_BASE` with a comment: leave empty for local compute.
 - [ ] Backend reads that variable at runtime; empty means local, no Airflow client calls.
 - [ ] When set: same-origin proxy so the browser never talks to Airflow; `AIRFLOW_DAG_ID` and worker callback URL (`CORESTACK_API_BASE` or equivalent) are also documented.
 - [ ] Local path does not require an Airflow host.
@@ -63,7 +61,7 @@ Do **not** use a separate `COMPUTE_MODE` flag. The Airflow URL is the switch:
 
 The image must be in a registry others can pull. Use **GitHub Container Registry** (`ghcr.io/...`) or **Docker Hub** (`docker.io/...`).
 
-- [ ] `Dockerfile` is deps-oriented; `code/`, `models/`, and `data/` are mounted at runtime ([Cluster Docker Services §2](cluster-docker-services.md#2-code-and-models-live-on-the-host-mount-do-not-copy)).
+- [ ] `Dockerfile` is **deps-only**; `code/`, `models/`, and `data/` are mounted at runtime ([runbook §2](cluster-docker-services.md#2-code-models-and-data-live-on-the-host-mount-do-not-copy)).
 - [ ] Image is tagged with a version (and optionally `latest`).
 - [ ] Image is **pushed** to `ghcr.io/<org>/<name>:<tag>` **or** `<dockerhub-user>/<name>:<tag>`.
 - [ ] README has the exact `docker pull` line.
@@ -143,14 +141,15 @@ The backend API URL the frontend calls must come from environment config. No `lo
 
 ## 8. Architecture diagram — how compute is triggered and from where
 
-Every project README (or `docs/architecture.md`) includes a diagram of **how compute is triggered and from where**.
+Every project README (or `docs/architecture.md`) includes a diagram of **how compute is triggered and from where**. The cluster-wide picture is on [Tower Services](../infra/local-cluster.md#architecture) — reuse those terms.
 
 Must show:
 
-- Frontend and backend in the **same Docker**
+- Browser → **frontend Docker**
+- **`AIRFLOW_API_BASE` set** → **Airflow–STACD Docker** (trigger + poll); **empty** → **local compute**
+- On **success**, output written to **`data/`**
+- **FileBrowser** over `data/` for view / download
 - Mounts: `code/`, `models/`, `data/`
-- Decision: `AIRFLOW_BASE_API_URL` set → Airflow; unset → local
-- Who calls whom (UI → backend → local job **or** Airflow DAG → callback/worker)
 - `data/logs/<application_name>/` for logs
 - Central Postgres if the service uses a database (§9)
 - Output retention mode(s) (§10)
@@ -160,15 +159,12 @@ Mermaid in the README is enough:
 
 ```mermaid
 flowchart TD
-  UI[Frontend] --> API[Backend - same Docker]
-  API -->|AIRFLOW_BASE_API_URL empty| Local[Local compute]
-  API -->|AIRFLOW_BASE_API_URL set| AF[Airflow]
-  AF -->|DAG callback / task| API
-  Local --> Data[(data/ outputs)]
-  AF --> Data
-  API --> Logs[data/logs/application_name]
-  API --> PG[(central Postgres)]
-  Data --> HostDS[Host data service - public / private / delete]
+  Browser[Browser] --> FE[Frontend Docker]
+  FE -->|AIRFLOW_API_BASE set| AF[Airflow-STACD Docker]
+  FE -->|AIRFLOW_API_BASE empty| Local[Local compute]
+  AF -->|success| Data[(data/)]
+  Local -->|success| Data
+  Data --> FB[FileBrowser UI]
 ```
 
 **Acceptance:** A new operator can see, from the diagram alone, whether a UI action runs locally or via Airflow, where files and logs land, and how outputs are retained.
@@ -246,7 +242,7 @@ Rules:
 | # | Item | Owner | Done |
 | --- | --- | --- | --- |
 | 1 | Mount `code/`, `models/`, `data/`; compute output in `data/` | | |
-| 2 | `AIRFLOW_BASE_API_URL` set → Airflow; unset → local | | |
+| 2 | `AIRFLOW_API_BASE` set → Airflow; empty → local compute | | |
 | 3 | Image pushed to GHCR or Docker Hub | | |
 | 4 | Google SSO | | |
 | 5 | Logs under `data/logs/<application_name>/`; `LOG_LEVEL` debug/info/error | | |

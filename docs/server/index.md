@@ -1,11 +1,13 @@
 ---
-title: Server
-description: Production deployment, SSH access, service configuration, OS tuning, and monitoring for CoRE Stack infrastructure.
+title: AWS Server
+description: Production deployment, SSH access, service configuration, OS tuning, and monitoring for CoRE Stack on AWS.
 ---
 
-# Server
+# AWS Server
 
-Production infrastructure for CoRE Stack: deployment footprint, secure access, per-service runbooks, OS tuning, and monitoring. Scroll this page or use the table of contents — everything is in one place.
+Production infrastructure for CoRE Stack on AWS: deployment footprint, secure access, per-service runbooks, OS tuning, and monitoring. Scroll this page or use the table of contents — everything is in one place.
+
+Tower Services (Drone, Bioacoustic, DIY LULC) are documented under [Tower Services](../infra/local-cluster.md).
 
 ## Contents
 

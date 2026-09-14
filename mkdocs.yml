@@ -176,6 +176,13 @@ nav:
       - Wonderful GitHub Repos!: reference/wonderful-github-repos.md
       - API Errors: reference/api-errors.md
       - License: reference/license.md
+  - Infra:
+      - infra/index.md
+      - AWS Server: server/index.md
+      - Local Cluster:
+          - Tower Services: infra/local-cluster.md
+          - Cluster Docker Services: server/cluster-docker-services.md
+          - Cluster Service Checklist: server/cluster-service-checklist.md
   - Blog:
       - blog/index.md
 
@@ -183,9 +190,6 @@ exclude_docs: |
   server/infra/
 
 not_in_nav: |
-  server/index.md
-  server/cluster-docker-services.md
-  server/cluster-service-checklist.md
   developers/integrations/index.md
   developers/integrations/aws.md
   developers/integrations/gcs.md

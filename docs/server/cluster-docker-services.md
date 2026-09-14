@@ -5,22 +5,6 @@ description: Internal runbook for CoRE Stack cluster Docker services — deps-on
 
 # Cluster Docker Services
 
-Internal runbook for deploying small Docker-based services on the CoRE Stack cluster. This page is **not linked from the public site navigation** — bookmark the URL directly.
-
-**Direct URL:** `/server/cluster-docker-services/`
-
-This page is one document:
-
-1. **Cluster-wide standards** (§1–§10) — every new service must follow these.
-2. **Worked example: Custom LULC** — a complete deps-only image + Airflow REST + STACD API-mode pipeline you can copy.
-3. **Service catalog** and **IITD proxy** notes.
-
-Project acceptance boxes (code/models/data mounts, Airflow URL vs local, GHCR/Docker Hub, Google SSO, log levels, central Postgres, output modes): [Cluster Service Checklist](cluster-service-checklist.md).
-
-The LULC walkthrough is adapted from [Custom LULC — Dockerisation & Airflow Integration](https://github.com/SaharshLaud/STACD_framework/blob/dev/report/custom_lulc_deployment_and_airflow_pipeline.md) in [STACD_framework](https://github.com/SaharshLaud/STACD_framework) (`dev`).
-
----
-
 ## General guidelines for new Docker services
 
 Every service added to the cluster must follow these rules before it is deployed or documented here.
@@ -33,7 +17,7 @@ Nothing environment-specific may be baked into the image or committed in plain t
 | --- | --- |
 | Database | `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD` |
 | Search / object storage | API keys, bucket names, index names, endpoint URLs |
-| Airflow | `AIRFLOW_API_BASE` (or `AIRFLOW_BASE_URL`), admin user/password or token, `AIRFLOW_DAG_ID`, Fernet key, DAG folder |
+| Airflow | `AIRFLOW_API_BASE`, `AIRFLOW_DAG_ID`, `AIRFLOW_USERNAME` / `AIRFLOW_PASSWORD` (or `AIRFLOW_TOKEN`), `CORESTACK_API_BASE` |
 | External APIs | Base URLs, tokens, service account paths |
 | Paths | Input/output dirs, model dirs, log dirs, `CORESTACK_ROOT` / data roots |
 
@@ -41,7 +25,7 @@ Nothing environment-specific may be baked into the image or committed in plain t
 
 - `.env.example` listing every variable with a short comment (no real secrets).
 - Application reads config from environment at runtime — not from hardcoded defaults that differ per cluster.
-- Empty `AIRFLOW_API_BASE` (or equivalent) must turn the DAG path **off cleanly**.
+- Empty `AIRFLOW_API_BASE` turns Airflow **off** (local compute). Do not use `AIRFLOW_BASE_API_URL` or a `COMPUTE_MODE` flag.
 
 **Do not:**
 
@@ -50,34 +34,34 @@ Nothing environment-specific may be baked into the image or committed in plain t
 
 Credential **files** (Earth Engine JSON, and similar) must be both referenced by an env var **and** present at that path inside the container (usually because the checkout is bind-mounted). Ship a one-command auth self-check in the repo.
 
-### 2. Code and models live on the host (mount, do not copy)
+### 2. Code, models, and data live on the host (mount, do not copy) { #2-code-models-and-data-live-on-the-host-mount-do-not-copy }
 
-The Docker image should contain **runtime dependencies only** (OS packages, Python/Node libs, entrypoint). Application logic and heavy assets stay outside the image and are **bind-mounted** at run time.
+The image is **deps-only** (OS packages, Python/Node libs, entrypoint). Bind-mount three host folders. Same table as [checklist §1](cluster-service-checklist.md#1-store-all-relevant-data-and-compute-output-in-data) and [Tower Services](../infra/local-cluster.md#shared-terminology).
+
+| Host folder | Container path | Contents |
+| --- | --- | --- |
+| **`code/`** | `/app` | Git checkout. Update with `git pull` + restart. |
+| **`models/`** | `/app/models` | Weights, checkpoints, `.pt` / `.onnx` / `.joblib`. |
+| **`data/`** | `/app/data` | Inputs, caches, **all compute output**. Logs: `data/logs/<application_name>/`. |
 
 The three layers:
 
 | Layer | Where it lives | How it gets there |
 | --- | --- | --- |
-| **Dependencies** | the image | `docker pull` (built from a requirements / lockfile only) |
-| **Code** | git checkout on the host | `git clone` / `git pull`, mounted at `/app` |
-| **Data / models** | host paths (`data/`, `/models`, scratch) | repo files and/or written at runtime; mounted separately if needed |
-
-| Mount on host | Typical container path | Contents |
-| --- | --- | --- |
-| Application source | `/app` | Git checkout — Python/JS code, DAGs, configs |
-| Model weights | `/models` or `/app/data` | `.pt`, `.onnx`, `.joblib`, checkpoints, vocab files |
-| Data / scratch | `/data` | Inputs, outputs, intermediate files |
+| **Dependencies** | the **deps-only image** | `docker pull` from **GHCR or Docker Hub** |
+| **Code** | host **`code/`** | `git clone` / `git pull`, mounted at `/app` |
+| **Models** | host **`models/`** | mounted at `/app/models` |
+| **Data** | host **`data/`** | mounted at `/app/data`; written at runtime |
 
 **Why this split:**
 
-- **Update the app = `git pull` + restart.** No image rebuild. Code is mounted, so a pull changes files on disk.
+- **Update the app = `git pull` + restart.** No image rebuild.
 - **Rebuild the image only when dependencies change** (requirements file, system libs, CUDA, GDAL).
-- One image tag can serve dev and prod with different mounts.
 - With nothing mounted at `/app`, the container may start but has **no code to serve** — that is intentional.
 
-Path anchoring should work from any CWD: compute repo root from a known file, honour `CORESTACK_ROOT` / `CORESTACK_DATA_DIR` (or service equivalents), so the same code runs under `docker run`, Compose, or a bare process.
+A laptop shortcut that bind-mounts `.` onto `/app` (Custom LULC example) is fine for local try-out. **Cluster deploy** must use the three separate mounts.
 
-Document every volume in the repo `README`. Bind-mount `.` onto `/app` in Compose (same pattern as the [backend Docker install](../developers/docker.md)).
+Document every volume in the repo `README`.
 
 ### 3. Repository README — step-by-step installation
 
@@ -114,11 +98,11 @@ Rules:
 - Tag Docker images with the same version (`:1.2.0`), not only `:latest`.
 - Note migration steps if env vars or mount paths change between versions.
 
-### 5. Docker Hub — build, push, and keep updated
+### 5. GHCR or Docker Hub — build, push, and keep updated { #5-ghcr-or-docker-hub--build-push-and-keep-updated }
 
 | Rule | Detail |
 | --- | --- |
-| Registry | Push to Docker Hub under the agreed org/user namespace |
+| Registry | Push to **GHCR** (`ghcr.io/...`) **or Docker Hub** (`docker.io/...`) |
 | Tags | `latest` for dev convenience; **always** tag releases (`1.0.0`, `1.0.1`) |
 | Rebuild | Rebuild and push when base image, system deps, or runtime libs change |
 | Document | Record image name, current tag, and last push date in the service repo README |
@@ -127,11 +111,13 @@ Rules:
 Example workflow:
 
 ```bash
-docker build -t kapildadheechgv/<service-name>:1.0.0 .
-docker tag kapildadheechgv/<service-name>:1.0.0 kapildadheechgv/<service-name>:latest
-docker push kapildadheechgv/<service-name>:1.0.0
-docker push kapildadheechgv/<service-name>:latest
+docker build -t <registry>/<name>:1.0.0 .
+docker tag <registry>/<name>:1.0.0 <registry>/<name>:latest
+docker push <registry>/<name>:1.0.0
+docker push <registry>/<name>:latest
 ```
+
+`<registry>/<name>` is `ghcr.io/<org>/<name>` or `<dockerhub-user>/<name>`.
 
 The Dockerfile should copy **only** the requirements file (not application source):
 
@@ -152,14 +138,14 @@ CMD ["uvicorn", "backend:app", "--app-dir", "src", "--host", "0.0.0.0", "--port"
 | **Networks** | Use a named Docker network shared with dependent services; document service DNS names |
 | **Ports** | Document host ports; avoid conflicts with CoRE Stack (9000, 9001, 8080, etc.) |
 | **Health checks** | Expose HTTP `/health` or equivalent; add `HEALTHCHECK` in Dockerfile where possible |
-| **Logs** | Write to stdout/stderr or a mounted log dir — not only inside ephemeral container FS |
+| **Logs** | `LOG_LEVEL` = `debug` \| `info` \| `error`. Files under **`data/logs/<application_name>/`** (and stdout) |
 | **Restart policy** | Use `--restart unless-stopped` or equivalent in compose for cluster services |
 | **Resources** | Document CPU/RAM/GPU needs; set limits if the host is shared |
 | **Proxy (IITD)** | Configure Docker **daemon** proxy for pulls; do not put `registry-1.docker.io` in `NO_PROXY` |
 | **Compose** | Prefer `docker-compose.yml` + `.env` for multi-container services (e.g. Airflow) |
 | **Ownership** | Record repo owner and who to contact for upgrades |
 
-### 7. Writing DAGs — STACD YAML workflow
+### 7. Writing DAGs — STACD YAML workflow { #7-writing-dags--stacd-yaml-workflow }
 
 Do **not** hand-write one-off Python DAG files for cluster services unless there is a strong reason. Define workflows as **STACD YAML** and let the framework generate and deploy the Airflow DAG.
 
@@ -211,7 +197,7 @@ execution_modes:
 
 Rules:
 
-- **`image`**, **`module`**, and **`function`** come from the service repo — image name must match what is pushed to Docker Hub (§5).
+- **`image`**, **`module`**, and **`function`** come from the service repo — image name must match what is pushed to **GHCR or Docker Hub** (§5).
 - **`code`** links to the GitHub repo; actual code is **mounted** on the host when the container runs (§2), not baked into the DAG file.
 - For Docker mode, the container function must print its result between `===RESULT_JSON_START===` / `===RESULT_JSON_END===` markers (see STACD §11 — Docker stdout convention). The JSON payload must include a valid **STAC Item** — see [§9 STAC output](#9-always-return-output-in-stac-format).
 - For API mode, the endpoint must tolerate a DAG `conf` envelope and extra keys, and return STAC (see [§8](#8-compute-and-processing--always-via-airflow) and the [LULC example](#worked-example-custom-lulc)).
@@ -225,9 +211,16 @@ Rules:
 
 **Updates:** Use STACD plugin pages (Register Algorithm, Register Dataset, Update DAG) — do not edit generated DAG Python files by hand. See [STACD §10](https://github.com/SaharshLaud/STACD_framework/blob/dev/README.md#10-updating-an-existing-workflow).
 
-### 8. Compute and processing — always via Airflow
+### 8. Compute and processing — Airflow when `AIRFLOW_API_BASE` is set { #8-compute-and-processing--always-via-airflow }
 
-If a Docker service **triggers any compute or batch processing** (inference, raster jobs, pipeline steps, multi-step workflows), it must **not** run that work directly from the container entrypoint or a long-lived API call. Route all compute through **Airflow**:
+**`AIRFLOW_API_BASE` is the compute switch** (same rule as [checklist §2](cluster-service-checklist.md#2-compute-via-airflow-if-airflow_api_base-is-set-otherwise-local)). Do not add a `COMPUTE_MODE` flag.
+
+| `AIRFLOW_API_BASE` in `.env` | Behaviour |
+| --- | --- |
+| **Set** (non-empty) | Trigger and poll Airflow. Follow the steps below. |
+| **Empty / unset** | **Local compute** in this container. No Airflow client calls. Still write under `data/` and return a STAC Item (§9). |
+
+When the variable is set:
 
 1. **Define a DAG** — follow [§7 STACD YAML workflow](#7-writing-dags--stacd-yaml-workflow); do not ad-hoc Python DAGs for cluster services.
 2. **Trigger from the REST API** — the calling service (API, UI backend, or another container) starts a run with `POST /api/v1/dags/{dag_id}/dagRuns` and a `conf` payload. Let Airflow mint `dag_run_id`.
@@ -245,7 +238,7 @@ If a Docker service **triggers any compute or batch processing** (inference, ras
 
 | Variable | Purpose |
 | --- | --- |
-| `AIRFLOW_API_BASE` | Airflow 2.x REST root, e.g. `http://airflow:8080/api/v1` (or `AIRFLOW_BASE_URL` without `/api/v1` — be consistent in the repo) |
+| `AIRFLOW_API_BASE` | Airflow 2.x REST root, e.g. `http://airflow:8080/api/v1`. Empty = local compute. |
 | `AIRFLOW_DAG_ID` | DAG to trigger for this service’s pipeline |
 | `AIRFLOW_USERNAME` / `AIRFLOW_PASSWORD` | Basic auth (or `AIRFLOW_TOKEN` for bearer) |
 | `CORESTACK_API_BASE` | Where the **Airflow worker** reaches **this** backend (LAN/Docker DNS, not `localhost` from the worker’s point of view) |
@@ -478,17 +471,22 @@ When running in Docker mode (§7), the JSON between `===RESULT_JSON_START===` / 
 
 ### 10. Checklist before adding a cluster service
 
-Also complete the [Cluster Service Checklist](cluster-service-checklist.md) (`code/` / `models/` / `data/` mounts, `AIRFLOW_BASE_API_URL`, GHCR or Docker Hub, Google SSO, `LOG_LEVEL`, one-container UI/API, API base from `.env`, architecture diagram, central Postgres, `outputs.yaml` retention).
+Do not treat this as a second contract. Tick the **[Cluster Service Checklist](cluster-service-checklist.md)** — same ten items, same names:
 
-- [ ] GitHub repo linked; README has full install steps
-- [ ] `.env.example` complete; no secrets in repo; empty Airflow base turns DAG path off
-- [ ] Image is **deps-only**; code and models documented as host mounts (`/app`)
-- [ ] `VERSION` / changelog maintained; image tagged with the same version
-- [ ] Image on Docker Hub with version tag; listen on `0.0.0.0`; `/health` exposed
-- [ ] **DAG defined via STACD YAML** (§7) — three YAML files; API and/or Docker execution mode
-- [ ] **Compute jobs go through Airflow** (§8) — same-origin proxy; trigger + poll; worker can reach `CORESTACK_API_BASE`
-- [ ] **Output returned as STAC Item** (§9) — all required STAC keys populated
-- [ ] Tested on cluster (or IITD proxy environment)
+| # | Term | This runbook |
+| --- | --- | --- |
+| 1 | `code/` `models/` `data/` | §2 |
+| 2 | `AIRFLOW_API_BASE` set → Airflow; empty → local | §8 |
+| 3 | Image pushed to **GHCR or Docker Hub** | §5 |
+| 4 | Google SSO | §1 (env) |
+| 5 | `LOG_LEVEL`; `data/logs/<application_name>/` | §6 |
+| 6 | Frontend + backend in one Docker | checklist |
+| 7 | Frontend API base from `.env` | §1 |
+| 8 | Per-service architecture diagram | [Tower Services](../infra/local-cluster.md#architecture) is the cluster picture; each repo still needs its own |
+| 9 | **Central Postgres** / `DATABASE_URL` | §1 |
+| 10 | **`outputs.yaml`** — `public` / `private_persistent` / `delete` | checklist |
+
+Also: README install steps, `VERSION`, STACD YAML (§7), STAC Item (§9), IITD proxy if you pull on campus.
 
 ---
 
@@ -516,9 +514,11 @@ services:
     ports: ["8000:8000"]
     env_file: [.env]
     volumes:
-      - .:/app          # CODE + DATA from this checkout
+      - .:/app          # laptop shortcut: whole checkout at /app
     restart: unless-stopped
 ```
+
+On the **local cluster**, use three mounts (`code/` → `/app`, `models/` → `/app/models`, `data/` → `/app/data`) — [§2](#2-code-models-and-data-live-on-the-host-mount-do-not-copy).
 
 ```bash
 git clone https://github.com/salil-123/Project.git corestack-lulc && cd corestack-lulc
@@ -659,7 +659,7 @@ Starting from a plain HTTP app, the integration is small:
 4. **Config** — `AIRFLOW_*`, `CORESTACK_API_BASE`, empty-base = off.
 5. **UI** — trigger then poll the proxy, never Airflow.
 6. **`deploy/stacd/*.yaml`** — DAG + algorithm-with-`url` + dataset.
-7. **Dockerfile / Compose** — already deps-only + `/app` mount (§2); Airflow glue is code + env only.
+7. **Dockerfile / Compose** — deps-only image + `code/` `models/` `data/` mounts (§2); Airflow glue is code + env only.
 
 ### Verify inside-out
 
@@ -668,19 +668,6 @@ Starting from a plain HTTP app, the integration is small:
 3. `curl /api/export-asset` (real work, no Airflow)
 4. Trigger via Airflow REST
 5. Run reaches `success`
-
----
-
-## Service catalog
-
-| Service | Documentation |
-| --- | --- |
-| Bioacoustic | Service GitHub repo `README` |
-| Drone | Service GitHub repo `README` |
-| LULC | This page — [Worked example: Custom LULC](#worked-example-custom-lulc); service GitHub repo `README` |
-| Airflow | [STACD Framework](https://github.com/SaharshLaud/STACD_framework) (`dev`) — [setup guide](https://github.com/SaharshLaud/STACD_framework/blob/dev/README.md) |
-
-Install and run commands for each service live in that service’s repository. This page defines cluster-wide standards (§1–§10) and the LULC copy-this pipeline.
 
 ---
 
