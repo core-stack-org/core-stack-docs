@@ -179,8 +179,8 @@ nav:
   - Infra:
       - infra/index.md
       - AWS Server: server/index.md
-      - Local Cluster:
-          - Tower Services: infra/local-cluster.md
+      - Tower Services:
+          - infra/tower-services.md
           - Cluster Docker Services: server/cluster-docker-services.md
           - Cluster Service Checklist: server/cluster-service-checklist.md
   - Blog:

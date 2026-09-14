@@ -7,7 +7,7 @@ description: Acceptance checklist — code/models/data mounts, Airflow vs local,
 
 Acceptance checklist for every project that ships as a Docker service on the CoRE Stack cluster. Complete this page **before** asking for a cluster deploy.
 
-Part of [Infra → Tower Services](../infra/local-cluster.md). Read that page first for the **architecture diagram** and **shared terminology**.
+Part of [Infra → Tower Services](../infra/tower-services.md). Read that page first for the **architecture diagram** and **shared terminology**.
 
 This page is the **acceptance list** only. Procedures live in [Cluster Docker Services](cluster-docker-services.md). Use the same names: **`code/`**, **`models/`**, **`data/`**, **`AIRFLOW_API_BASE`**, **GHCR or Docker Hub**, **central Postgres**, **`outputs.yaml`**.
 
@@ -141,7 +141,7 @@ The backend API URL the frontend calls must come from environment config. No `lo
 
 ## 8. Architecture diagram — how compute is triggered and from where
 
-Every project README (or `docs/architecture.md`) includes a diagram of **how compute is triggered and from where**. The cluster-wide picture is on [Tower Services](../infra/local-cluster.md#architecture) — reuse those terms.
+Every project README (or `docs/architecture.md`) includes a diagram of **how compute is triggered and from where**. The cluster-wide picture is on [Tower Services](../infra/tower-services.md#architecture) — reuse those terms.
 
 Must show:
 

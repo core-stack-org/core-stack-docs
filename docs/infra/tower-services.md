@@ -1,11 +1,11 @@
 ---
 title: Tower Services
-description: Tower Services on the local cluster — small Docker compute apps (Drone, Bioacoustic, DIY LULC), architecture, and shared terms.
+description: Tower Services — small Docker compute apps (Drone, Bioacoustic, DIY LULC), architecture, and shared terms.
 ---
 
 # Tower Services
 
-**Tower Services** is the group of small Docker apps that run compute on the local cluster: **Drone**, **Bioacoustic** (CEM), **DIY LULC**, and others. Each service does one job (tree crowns, audio, land cover). They share **Airflow** and **STACD** on the cluster when a job needs orchestration.
+**Tower Services** is the group of small Docker apps that run compute: **Drone**, **Bioacoustic** (CEM), **DIY LULC**, and others. Each service does one job (tree crowns, audio, land cover). They share **Airflow** and **STACD** when a job needs orchestration.
 
 ## Architecture
 
@@ -56,7 +56,7 @@ Use these names in READMEs, `.env.example`, the runbook, and the checklist. Do n
 
 | Term | Meaning |
 | --- | --- |
-| **Local cluster / Tower Services** | This host and the small compute apps on it (Drone, Bioacoustic, DIY LULC). |
+| **Tower Services** | This host and the small compute apps on it (Drone, Bioacoustic, DIY LULC). |
 | **Service** | One Tower app (browser + frontend Docker) that sends compute and writes output to `data/`. |
 | **Frontend Docker** | The container the browser talks to. Sends compute, polls status, writes `data/` on success. |
 | **Airflow–STACD Docker** | Shared orchestrator. Used only when **`AIRFLOW_API_BASE`** is set. |
