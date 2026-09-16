@@ -181,9 +181,9 @@ nav:
       - AWS Server: server/index.md
       - Tower Services:
           - infra/tower-services/index.md
-          - Deployed Architecture: infra/tower-services/deployed-architecture.md
           - Cluster Docker Services: server/cluster-docker-services.md
           - Cluster Service Checklist: server/cluster-service-checklist.md
+          - Deployed Architecture: infra/tower-services/deployed-architecture.md
   - Blog:
       - blog/index.md
 

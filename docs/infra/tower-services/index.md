@@ -81,14 +81,9 @@ Use these names in READMEs, `.env.example`, the runbook, and the checklist. Do n
 
 Do **not** use `AIRFLOW_BASE_API_URL`, `AIRFLOW_BASE_URL` (unless you only mean the web UI host), `COMPUTE_MODE`, `/data` as the data mount, or `/models` as the models mount. Those names showed up in older notes and are not the contract.
 
-## How the two long docs fit
+## How to prepare docker service to deploy in Tower services cluster
 
-| Document | What it is | What it is not |
-| --- | --- | --- |
-| [Cluster Docker Services](../../server/cluster-docker-services.md) | The **standards and how-to**: why deps-only images, how to write STACD YAML, how to trigger/poll Airflow, STAC Item shape, Custom LULC copy-this example. | Not a tick-box for deploy sign-off. |
-| [Cluster Service Checklist](../../server/cluster-service-checklist.md) | The **acceptance list** you copy into the GitHub issue. Tick a row only when the **Acceptance** line is true. | Not a second copy of the how-to. Each item points back to the runbook when you need the procedure. |
-
-### Background you need before Cluster Docker Services
+[Cluster Docker Services](../../server/cluster-docker-services.md) is the **standards and how-to**: why deps-only images, how to write STACD YAML, how to trigger/poll Airflow, STAC Item shape, Custom LULC copy-this example. It is **not** a tick-box for deploy sign-off.
 
 The runbook is long. You can follow it if you already know:
 
@@ -103,7 +98,9 @@ Then open the runbook in this order: §1–§2 (env + mounts) → §7–§9 (STA
 
 [Open Cluster Docker Services](../../server/cluster-docker-services.md){ .md-button .md-button--primary }
 
-### Background you need before the checklist
+## How to prepare the checklist to deploy in Tower services cluster
+
+[Cluster Service Checklist](../../server/cluster-service-checklist.md) is the **acceptance list** you copy into the GitHub issue. Tick a row only when the **Acceptance** line is true. It is **not** a second copy of the how-to. Each item points back to the runbook when you need the procedure.
 
 The checklist is ten acceptance items. It does not re-teach STACD or STAC. Complete it **after** you understand the architecture on this page and the matching runbook sections.
 
