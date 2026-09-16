@@ -8,7 +8,7 @@
 <meta content="Tower Services — small Docker compute apps (Drone, Bioacoustic, DIY LULC), architecture, and shared terms." name="description"/>
 <link href="https://docs.core-stack.org/infra/tower-services/" rel="canonical"/>
 <link href="../../server/" rel="prev"/>
-<link href="deployed-architecture/" rel="next"/>
+<link href="../../server/cluster-docker-services/" rel="next"/>
 <link href="../../assets/logo.png" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.7.6" name="generator"/>
 <title>Tower Services - CoRE Stack Documentation</title>
@@ -839,18 +839,6 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="deployed-architecture/">
-<span class="md-ellipsis">
-    
-  
-    Deployed Architecture
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="../../server/cluster-docker-services/">
 <span class="md-ellipsis">
     
@@ -868,6 +856,18 @@
     
   
     Cluster Service Checklist
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="deployed-architecture/">
+<span class="md-ellipsis">
+    
+  
+    Deployed Architecture
   
 
     
@@ -1031,35 +1031,22 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#how-the-two-long-docs-fit">
+<a class="md-nav__link" href="#how-to-prepare-docker-service-to-deploy-in-tower-services-cluster">
 <span class="md-ellipsis">
       
-        How the two long docs fit
-      
-    </span>
-</a>
-<nav aria-label="How the two long docs fit" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#background-you-need-before-cluster-docker-services">
-<span class="md-ellipsis">
-      
-        Background you need before Cluster Docker Services
+        How to prepare docker service to deploy in Tower services cluster
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#background-you-need-before-the-checklist">
+<a class="md-nav__link" href="#how-to-prepare-the-checklist-to-deploy-in-tower-services-cluster">
 <span class="md-ellipsis">
       
-        Background you need before the checklist
+        How to prepare the checklist to deploy in Tower services cluster
       
     </span>
 </a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#shared-cluster-pieces">
@@ -1261,29 +1248,8 @@
 </tbody>
 </table>
 <p>Do <strong>not</strong> use <code>AIRFLOW_BASE_API_URL</code>, <code>AIRFLOW_BASE_URL</code> (unless you only mean the web UI host), <code>COMPUTE_MODE</code>, <code>/data</code> as the data mount, or <code>/models</code> as the models mount. Those names showed up in older notes and are not the contract.</p>
-<h2 id="how-the-two-long-docs-fit">How the two long docs fit<a class="headerlink" href="#how-the-two-long-docs-fit" title="Permanent link">¶</a></h2>
-<table>
-<thead>
-<tr>
-<th>Document</th>
-<th>What it is</th>
-<th>What it is not</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../../server/cluster-docker-services/">Cluster Docker Services</a></td>
-<td>The <strong>standards and how-to</strong>: why deps-only images, how to write STACD YAML, how to trigger/poll Airflow, STAC Item shape, Custom LULC copy-this example.</td>
-<td>Not a tick-box for deploy sign-off.</td>
-</tr>
-<tr>
-<td><a href="../../server/cluster-service-checklist/">Cluster Service Checklist</a></td>
-<td>The <strong>acceptance list</strong> you copy into the GitHub issue. Tick a row only when the <strong>Acceptance</strong> line is true.</td>
-<td>Not a second copy of the how-to. Each item points back to the runbook when you need the procedure.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="background-you-need-before-cluster-docker-services">Background you need before Cluster Docker Services<a class="headerlink" href="#background-you-need-before-cluster-docker-services" title="Permanent link">¶</a></h3>
+<h2 id="how-to-prepare-docker-service-to-deploy-in-tower-services-cluster">How to prepare docker service to deploy in Tower services cluster<a class="headerlink" href="#how-to-prepare-docker-service-to-deploy-in-tower-services-cluster" title="Permanent link">¶</a></h2>
+<p><a href="../../server/cluster-docker-services/">Cluster Docker Services</a> is the <strong>standards and how-to</strong>: why deps-only images, how to write STACD YAML, how to trigger/poll Airflow, STAC Item shape, Custom LULC copy-this example. It is <strong>not</strong> a tick-box for deploy sign-off.</p>
 <p>The runbook is long. You can follow it if you already know:</p>
 <ol>
 <li><strong>Deps-only + three mounts</strong> — rebuild the image only when requirements change; <code>git pull</code> updates <strong><code>code/</code></strong>.</li>
@@ -1295,7 +1261,8 @@
 </ol>
 <p>Then open the runbook in this order: §1–§2 (env + mounts) → §7–§9 (STACD, Airflow, STAC) → Custom LULC example → §3–§6 and §10 as needed.</p>
 <p><a class="md-button md-button--primary" href="../../server/cluster-docker-services/">Open Cluster Docker Services</a></p>
-<h3 id="background-you-need-before-the-checklist">Background you need before the checklist<a class="headerlink" href="#background-you-need-before-the-checklist" title="Permanent link">¶</a></h3>
+<h2 id="how-to-prepare-the-checklist-to-deploy-in-tower-services-cluster">How to prepare the checklist to deploy in Tower services cluster<a class="headerlink" href="#how-to-prepare-the-checklist-to-deploy-in-tower-services-cluster" title="Permanent link">¶</a></h2>
+<p><a href="../../server/cluster-service-checklist/">Cluster Service Checklist</a> is the <strong>acceptance list</strong> you copy into the GitHub issue. Tick a row only when the <strong>Acceptance</strong> line is true. It is <strong>not</strong> a second copy of the how-to. Each item points back to the runbook when you need the procedure.</p>
 <p>The checklist is ten acceptance items. It does not re-teach STACD or STAC. Complete it <strong>after</strong> you understand the architecture on this page and the matching runbook sections.</p>
 <table>
 <thead>
