@@ -5,27 +5,27 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="The conceptual model behind CoRE Stack data: standardized micro-watersheds, nested landscape entities, and stable joins across public data and computation pipelines." name="description"/>
-<link href="https://docs.core-stack.org/concepts/watershed-data-structure/" rel="canonical"/>
-<link href="../.." rel="prev"/>
-<link href="../how-pipelines-work-algorithmically/" rel="next"/>
-<link href="../../assets/logo.png" rel="icon"/>
+<meta content="Current nginx routing, Airflow compute loop, FileBrowser outputs, and service repos on the deployed Tower Services host." name="description"/>
+<link href="https://docs.core-stack.org/infra/tower-services/deployed-architecture/" rel="canonical"/>
+<link href="../" rel="prev"/>
+<link href="../../../server/cluster-docker-services/" rel="next"/>
+<link href="../../../assets/logo.png" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.7.6" name="generator"/>
-<title>CoRE Stack Data Structure - CoRE Stack Documentation</title>
-<link href="../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
-<link href="../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<title>Deployed Architecture - CoRE Stack Documentation</title>
+<link href="../../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-<link href="../../stylesheets/extra.css" rel="stylesheet"/>
-<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../../stylesheets/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#core-stack-data-structure">
+<a class="md-skip" href="#deployed-architecture">
           Skip to content
         </a>
 </div>
@@ -33,8 +33,8 @@
 </div>
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="CoRE Stack Documentation" class="md-header__button md-logo" data-md-component="logo" href="../.." title="CoRE Stack Documentation">
-<img alt="logo" src="../../assets/logo.png"/>
+<a aria-label="CoRE Stack Documentation" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="CoRE Stack Documentation">
+<img alt="logo" src="../../../assets/logo.png"/>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
@@ -49,7 +49,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              CoRE Stack Data Structure
+              Deployed Architecture
             
           </span>
 </div>
@@ -119,7 +119,7 @@
 <div class="md-grid">
 <ul class="md-tabs__list">
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../..">
+<a class="md-tabs__link" href="../../..">
         
   
   
@@ -129,8 +129,8 @@
 
       </a>
 </li>
-<li class="md-tabs__item md-tabs__item--active">
-<a class="md-tabs__link" href="./">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../concepts/watershed-data-structure/">
           
   
   
@@ -141,7 +141,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../use-precomputed-data/">
+<a class="md-tabs__link" href="../../../use-precomputed-data/">
           
   
   
@@ -152,7 +152,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../developers/">
+<a class="md-tabs__link" href="../../../developers/">
           
   
   
@@ -163,7 +163,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../community/">
+<a class="md-tabs__link" href="../../../community/">
           
   
   
@@ -174,7 +174,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../reference/">
+<a class="md-tabs__link" href="../../../reference/">
           
   
   
@@ -184,8 +184,8 @@
 
         </a>
 </li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../../infra/">
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../../">
           
   
   
@@ -196,7 +196,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../blog/">
+<a class="md-tabs__link" href="../../../blog/">
           
   
   
@@ -218,8 +218,8 @@
 <div class="md-sidebar__inner">
 <nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="CoRE Stack Documentation" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="CoRE Stack Documentation">
-<img alt="logo" src="../../assets/logo.png"/>
+<a aria-label="CoRE Stack Documentation" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="CoRE Stack Documentation">
+<img alt="logo" src="../../../assets/logo.png"/>
 </a>
     CoRE Stack Documentation
   </label>
@@ -235,7 +235,7 @@
 </div>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../..">
+<a class="md-nav__link" href="../../..">
 <span class="md-ellipsis">
     
   
@@ -246,9 +246,9 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
 <span class="md-ellipsis">
     
   
@@ -259,7 +259,7 @@
   </span>
 <span class="md-nav__icon md-icon"></span>
 </label>
-<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_2">
 <span class="md-nav__icon md-icon"></span>
             
@@ -269,20 +269,8 @@
 
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
-    
-  
-    CoRE Stack Data Structure
-  
-
-    
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../concepts/watershed-data-structure/">
 <span class="md-ellipsis">
     
   
@@ -292,138 +280,9 @@
     
   </span>
 </a>
-<nav aria-label="On this page" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#why-this-chapter-comes-first">
-<span class="md-ellipsis">
-      
-        Why This Chapter Comes First
-      
-    </span>
-</a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#our-three-organizing-principles">
-<span class="md-ellipsis">
-      
-        Our Three Organizing Principles
-      
-    </span>
-</a>
-<nav aria-label="Our Three Organizing Principles" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#1-nested-hydrological-units">
-<span class="md-ellipsis">
-      
-        1. Nested hydrological units
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#2-crosswalks-to-administrative-units">
-<span class="md-ellipsis">
-      
-        2. Crosswalks to administrative units
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#3-connected-rather-than-isolated-entities">
-<span class="md-ellipsis">
-      
-        3. Connected rather than isolated entities
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#entity-relationship-diagram">
-<span class="md-ellipsis">
-      
-        Entity Relationship Diagram
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#what-each-layer-of-the-model-is-for">
-<span class="md-ellipsis">
-      
-        What Each Layer Of The Model Is For
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#why-micro-watersheds-and-not-only-villages">
-<span class="md-ellipsis">
-      
-        Why Micro-Watersheds And Not Only Villages
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#how-data-gets-attached-to-the-registry">
-<span class="md-ellipsis">
-      
-        How Data Gets Attached To The Registry
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#the-most-important-practical-relationships">
-<span class="md-ellipsis">
-      
-        The Most Important Practical Relationships
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#what-users-should-remember">
-<span class="md-ellipsis">
-      
-        What Users Should Remember
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#limitations-and-what-can-improve">
-<span class="md-ellipsis">
-      
-        Limitations And What Can Improve
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#see-also">
-<span class="md-ellipsis">
-      
-        See Also
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../how-pipelines-work-algorithmically/">
+<a class="md-nav__link" href="../../../concepts/how-pipelines-work-algorithmically/">
 <span class="md-ellipsis">
     
   
@@ -440,7 +299,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../use-precomputed-data/">
+<a class="md-nav__link" href="../../../use-precomputed-data/">
 <span class="md-ellipsis">
     
   
@@ -465,7 +324,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../use-precomputed-data/how-current-data-was-computed/">
+<a class="md-nav__link" href="../../../use-precomputed-data/how-current-data-was-computed/">
 <span class="md-ellipsis">
     
   
@@ -477,7 +336,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../use-precomputed-data/public-apis/">
+<a class="md-nav__link" href="../../../use-precomputed-data/public-apis/">
 <span class="md-ellipsis">
     
   
@@ -489,7 +348,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../use-precomputed-data/stac-specs/">
+<a class="md-nav__link" href="../../../use-precomputed-data/stac-specs/">
 <span class="md-ellipsis">
     
   
@@ -506,7 +365,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../developers/">
+<a class="md-nav__link" href="../../../developers/">
 <span class="md-ellipsis">
     
   
@@ -554,7 +413,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../developers/installer/">
+<a class="md-nav__link" href="../../../developers/installer/">
 <span class="md-ellipsis">
     
   
@@ -566,7 +425,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../developers/docker/">
+<a class="md-nav__link" href="../../../developers/docker/">
 <span class="md-ellipsis">
     
   
@@ -581,7 +440,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../developers/backend-code-map/">
+<a class="md-nav__link" href="../../../developers/backend-code-map/">
 <span class="md-ellipsis">
     
   
@@ -593,7 +452,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../pipelines/">
+<a class="md-nav__link" href="../../../pipelines/">
 <span class="md-ellipsis">
     
   
@@ -605,7 +464,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../pipelines/computing-endpoints/">
+<a class="md-nav__link" href="../../../pipelines/computing-endpoints/">
 <span class="md-ellipsis">
     
   
@@ -617,7 +476,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../developers/setup-troubleshooting/">
+<a class="md-nav__link" href="../../../developers/setup-troubleshooting/">
 <span class="md-ellipsis">
     
   
@@ -629,7 +488,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../developers/stack-platforms/">
+<a class="md-nav__link" href="../../../developers/stack-platforms/">
 <span class="md-ellipsis">
     
   
@@ -641,7 +500,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../developers/coding-standards-and-guidelines/">
+<a class="md-nav__link" href="../../../developers/coding-standards-and-guidelines/">
 <span class="md-ellipsis">
     
   
@@ -658,7 +517,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../community/">
+<a class="md-nav__link" href="../../../community/">
 <span class="md-ellipsis">
     
   
@@ -683,7 +542,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../community/how-core-stack-is-used/">
+<a class="md-nav__link" href="../../../community/how-core-stack-is-used/">
 <span class="md-ellipsis">
     
   
@@ -697,7 +556,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5_3" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../community/innovation-challenges/">
+<a class="md-nav__link" href="../../../community/innovation-challenges/">
 <span class="md-ellipsis">
     
   
@@ -722,7 +581,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../community/innovation-challenges/core-stack-innovation-challenge/">
+<a class="md-nav__link" href="../../../community/innovation-challenges/core-stack-innovation-challenge/">
 <span class="md-ellipsis">
     
   
@@ -734,7 +593,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../community/innovation-challenges/tessera-student-innovation-call/">
+<a class="md-nav__link" href="../../../community/innovation-challenges/tessera-student-innovation-call/">
 <span class="md-ellipsis">
     
   
@@ -746,7 +605,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../community/contributions/">
+<a class="md-nav__link" href="../../../community/contributions/">
 <span class="md-ellipsis">
     
   
@@ -761,7 +620,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../community/contributing/">
+<a class="md-nav__link" href="../../../community/contributing/">
 <span class="md-ellipsis">
     
   
@@ -773,7 +632,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../community/code-of-conduct/">
+<a class="md-nav__link" href="../../../community/code-of-conduct/">
 <span class="md-ellipsis">
     
   
@@ -790,7 +649,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../reference/">
+<a class="md-nav__link" href="../../../reference/">
 <span class="md-ellipsis">
     
   
@@ -815,7 +674,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../reference/scientific-papers-and-research-repositories/">
+<a class="md-nav__link" href="../../../reference/scientific-papers-and-research-repositories/">
 <span class="md-ellipsis">
     
   
@@ -827,7 +686,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../reference/glossary/">
+<a class="md-nav__link" href="../../../reference/glossary/">
 <span class="md-ellipsis">
     
   
@@ -839,7 +698,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../reference/abbreviations/">
+<a class="md-nav__link" href="../../../reference/abbreviations/">
 <span class="md-ellipsis">
     
   
@@ -851,7 +710,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../reference/standardised-field-constant-variable-names/">
+<a class="md-nav__link" href="../../../reference/standardised-field-constant-variable-names/">
 <span class="md-ellipsis">
     
   
@@ -863,7 +722,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../reference/geospatial-learning-resources/">
+<a class="md-nav__link" href="../../../reference/geospatial-learning-resources/">
 <span class="md-ellipsis">
     
   
@@ -875,7 +734,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../reference/wonderful-github-repos/">
+<a class="md-nav__link" href="../../../reference/wonderful-github-repos/">
 <span class="md-ellipsis">
     
   
@@ -887,7 +746,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../reference/api-errors/">
+<a class="md-nav__link" href="../../../reference/api-errors/">
 <span class="md-ellipsis">
     
   
@@ -899,7 +758,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../reference/license/">
+<a class="md-nav__link" href="../../../reference/license/">
 <span class="md-ellipsis">
     
   
@@ -913,10 +772,10 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_7" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../infra/">
+<a class="md-nav__link" href="../../">
 <span class="md-ellipsis">
     
   
@@ -926,11 +785,11 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<nav aria-expanded="true" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
 <label class="md-nav__title" for="__nav_7">
 <span class="md-nav__icon md-icon"></span>
             
@@ -941,7 +800,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../server/">
+<a class="md-nav__link" href="../../../server/">
 <span class="md-ellipsis">
     
   
@@ -952,10 +811,10 @@
   </span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_7_3" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../infra/tower-services/">
+<a class="md-nav__link" href="../">
 <span class="md-ellipsis">
     
   
@@ -965,11 +824,11 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="0">
+<label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_7_3_label" class="md-nav" data-md-level="2">
+<nav aria-expanded="true" aria-labelledby="__nav_7_3_label" class="md-nav" data-md-level="2">
 <label class="md-nav__title" for="__nav_7_3">
 <span class="md-nav__icon md-icon"></span>
             
@@ -979,8 +838,20 @@
 
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../infra/tower-services/deployed-architecture/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    Deployed Architecture
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     
   
@@ -990,9 +861,53 @@
     
   </span>
 </a>
+<nav aria-label="On this page" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#architecture">
+<span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+</a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../server/cluster-docker-services/">
+<a class="md-nav__link" href="#nginx-paths">
+<span class="md-ellipsis">
+      
+        Nginx paths
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#compute-loop">
+<span class="md-ellipsis">
+      
+        Compute loop
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#services-and-repos">
+<span class="md-ellipsis">
+      
+        Services and repos
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../server/cluster-docker-services/">
 <span class="md-ellipsis">
     
   
@@ -1004,7 +919,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../server/cluster-service-checklist/">
+<a class="md-nav__link" href="../../../server/cluster-service-checklist/">
 <span class="md-ellipsis">
     
   
@@ -1024,7 +939,7 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
-<a class="md-nav__link" href="../../blog/">
+<a class="md-nav__link" href="../../../blog/">
 <span class="md-ellipsis">
     
   
@@ -1072,7 +987,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../blog/archive/2026/">
+<a class="md-nav__link" href="../../../blog/archive/2026/">
 <span class="md-ellipsis">
     
   
@@ -1110,7 +1025,7 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../blog/category/community/">
+<a class="md-nav__link" href="../../../blog/category/community/">
 <span class="md-ellipsis">
     
   
@@ -1122,7 +1037,7 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../blog/category/research/">
+<a class="md-nav__link" href="../../../blog/category/research/">
 <span class="md-ellipsis">
     
   
@@ -1154,122 +1069,37 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#why-this-chapter-comes-first">
+<a class="md-nav__link" href="#architecture">
 <span class="md-ellipsis">
       
-        Why This Chapter Comes First
+        Architecture
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#our-three-organizing-principles">
+<a class="md-nav__link" href="#nginx-paths">
 <span class="md-ellipsis">
       
-        Our Three Organizing Principles
-      
-    </span>
-</a>
-<nav aria-label="Our Three Organizing Principles" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#1-nested-hydrological-units">
-<span class="md-ellipsis">
-      
-        1. Nested hydrological units
+        Nginx paths
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#2-crosswalks-to-administrative-units">
+<a class="md-nav__link" href="#compute-loop">
 <span class="md-ellipsis">
       
-        2. Crosswalks to administrative units
+        Compute loop
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#3-connected-rather-than-isolated-entities">
+<a class="md-nav__link" href="#services-and-repos">
 <span class="md-ellipsis">
       
-        3. Connected rather than isolated entities
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#entity-relationship-diagram">
-<span class="md-ellipsis">
-      
-        Entity Relationship Diagram
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#what-each-layer-of-the-model-is-for">
-<span class="md-ellipsis">
-      
-        What Each Layer Of The Model Is For
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#why-micro-watersheds-and-not-only-villages">
-<span class="md-ellipsis">
-      
-        Why Micro-Watersheds And Not Only Villages
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#how-data-gets-attached-to-the-registry">
-<span class="md-ellipsis">
-      
-        How Data Gets Attached To The Registry
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#the-most-important-practical-relationships">
-<span class="md-ellipsis">
-      
-        The Most Important Practical Relationships
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#what-users-should-remember">
-<span class="md-ellipsis">
-      
-        What Users Should Remember
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#limitations-and-what-can-improve">
-<span class="md-ellipsis">
-      
-        Limitations And What Can Improve
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#see-also">
-<span class="md-ellipsis">
-      
-        See Also
+        Services and repos
       
     </span>
 </a>
@@ -1283,281 +1113,161 @@
 <nav aria-label="Navigation" class="md-path">
 <ol class="md-path__list">
 <li class="md-path__item">
-<a class="md-path__link" href="../..">
+<a class="md-path__link" href="../../..">
 <span class="md-ellipsis">
     Home
   </span>
 </a>
 </li>
 <li class="md-path__item">
-<a class="md-path__link" href="./">
+<a class="md-path__link" href="../../">
 <span class="md-ellipsis">
-    Understand CoRE Stack Data Structure
+    Infra
+  </span>
+</a>
+</li>
+<li class="md-path__item">
+<a class="md-path__link" href="../">
+<span class="md-ellipsis">
+    Tower Services
   </span>
 </a>
 </li>
 </ol>
 </nav>
 <article class="md-content__inner md-typeset">
-<h1 id="core-stack-data-structure">CoRE Stack Data Structure<a class="headerlink" href="#core-stack-data-structure" title="Permanent link">¶</a></h1>
-<p>Read this page before using CoRE Stack data deeply or building new pipelines.</p>
-<p>It explains the main idea that ties the whole stack together:</p>
-<ul>
-<li>landscapes are represented through standardized spatial units</li>
-<li>many outputs are indexed to those units</li>
-<li>different pipeline families become joinable because they share those units</li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This is a conceptual and documentation-facing model. It should be treated as the working contract for understanding the platform, not as a claim that one exact Django ORM schema already exposes all of it directly.</p>
-</div>
-<hr/>
-<h2 id="why-this-chapter-comes-first">Why This Chapter Comes First<a class="headerlink" href="#why-this-chapter-comes-first" title="Permanent link">¶</a></h2>
-<p>CoRE Stack does not start from dashboards or APIs. It starts from a way of representing landscapes.</p>
-<p>The key move is the micro-watershed registry:</p>
-<ul>
-<li>hydrological units are better than purely administrative units for reasoning about water flow</li>
-<li>the units are stable enough to act like a registry</li>
-<li>once data is indexed to that registry, multiple layers can be joined and compared</li>
-</ul>
-<hr/>
-<h2 id="our-three-organizing-principles">Our Three Organizing Principles<a class="headerlink" href="#our-three-organizing-principles" title="Permanent link">¶</a></h2>
-<h3 id="1-nested-hydrological-units">1. Nested hydrological units<a class="headerlink" href="#1-nested-hydrological-units" title="Permanent link">¶</a></h3>
-<p>CoRE Stack treats river basins, sub-basins, watersheds, and micro-watersheds as a nested structure.</p>
-<p>The micro-watershed is the most important practical planning unit in the current stack because many derived metrics eventually resolve there.</p>
-<h3 id="2-crosswalks-to-administrative-units">2. Crosswalks to administrative units<a class="headerlink" href="#2-crosswalks-to-administrative-units" title="Permanent link">¶</a></h3>
-<p>People often discover and use data through state, district, tehsil, village, and panchayat names.</p>
-<p>That means CoRE Stack must constantly connect:</p>
-<ul>
-<li>hydrological correctness</li>
-<li>administrative usability</li>
-</ul>
-<h3 id="3-connected-rather-than-isolated-entities">3. Connected rather than isolated entities<a class="headerlink" href="#3-connected-rather-than-isolated-entities" title="Permanent link">¶</a></h3>
-<p>The stack is not only hierarchical. It is also networked.</p>
-<p>Examples:</p>
-<ul>
-<li>upstream micro-watersheds drain into downstream ones</li>
-<li>waterbodies belong to or influence surrounding watershed units</li>
-<li>villages and assets intersect multiple hydrological contexts</li>
-</ul>
-<hr/>
-<h2 id="entity-relationship-diagram">Entity Relationship Diagram<a class="headerlink" href="#entity-relationship-diagram" title="Permanent link">¶</a></h2>
-<pre class="mermaid"><code>classDiagram
-    class RiverBasin {
-      ID: string
-      name: string
-      geometry: Polygon
-    }
-
-    class SubBasin {
-      ID: string
-      name: string
-      geometry: Polygon
-    }
-
-    class Watershed {
-      ID: string
-      name: string
-      geometry: Polygon
-    }
-
-    class MicroWatershed {
-      ID: string
-      area: float (hectares)
-      uid: string
-      cropping_intensities: list&lt;TimeSeries&gt;
-      hydro_timeseries: list&lt;TimeSeries&gt;
-      terrain_breakdown: dict
-      aquifer_breakdown: dict
-      geometry: Polygon
-    }
-
-    class Waterbody {
-      ID: string
-      area: float (hectares)
-      surface_water_area: list&lt;TimeSeries&gt;
-      zone_of_influence: Polygon
-      zoi_cropping_intensities: list&lt;TimeSeries&gt;
-      zoi_fortnightly_ndvi: list&lt;TimeSeries&gt;
-      geometry: Polygon
-    }
-
-    class State {
-      ID: string
-      name: string
-      geometry: Polygon
-    }
-
-    class District {
-      ID: string
-      name: string
-      geometry: Polygon
-    }
-
-    class Tehsil {
-      ID: string
-      name: string
-      geometry: Polygon
-    }
-
-    class Village {
-      ID: string
-      name: string
-      geometry: Polygon
-    }
-
-    class NREGAAsset {
-      ID: string
-      name: string
-      work_type: string
-      geometry: Point
-    }
-
-    RiverBasin "1" *-- "many" SubBasin : contains
-    SubBasin "1" *-- "many" Watershed : contains
-    Watershed "1" *-- "many" MicroWatershed : contains
-    MicroWatershed "1" *-- "many" Waterbody : contains
-
-    State "1" *-- "many" District : contains
-    District "1" *-- "many" Tehsil : contains
-    Tehsil "1" *-- "many" Village : contains
-
-    Tehsil "1" *-- "many" MicroWatershed : contains
-    MicroWatershed "many" --&gt; "many" Village : intersects
-
-    MicroWatershed "1" *-- "many" NREGAAsset : contains
-    Village "1" *-- "many" NREGAAsset : contains
-
-    MicroWatershed "many" --&gt; "1" MicroWatershed : drains into</code></pre>
-<hr/>
-<h2 id="what-each-layer-of-the-model-is-for">What Each Layer Of The Model Is For<a class="headerlink" href="#what-each-layer-of-the-model-is-for" title="Permanent link">¶</a></h2>
+<h1 id="deployed-architecture">Deployed Architecture<a class="headerlink" href="#deployed-architecture" title="Permanent link">¶</a></h1>
+<p>This page is the <strong>currently deployed</strong> layout on the Tower Services host. The generic contract (env vars, mounts, STACD) stays on <a href="../">Tower Services</a>.</p>
+<p><strong>Nginx</strong> is the only public entry point. Path prefixes send the browser to a service Docker. Compute services <strong>trigger an Airflow DAG</strong>, <strong>poll the run</strong>, and on <strong>success</strong> write output under <strong><code>data/&lt;app-name&gt;/</code></strong>, which the <strong>shared FileBrowser</strong> exposes.</p>
+<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">¶</a></h2>
+<pre class="mermaid"><code>flowchart TB
+  Browser[Browser] --&gt; Nginx[Nginx]
+  Nginx --&gt;|"/drone"| Drone["Drone&lt;br/&gt;frontend + backend"]
+  Nginx --&gt;|"/airflow"| Airflow[Airflow + STACD]
+  Nginx --&gt;|"/bio-master"| BioMaster[CEM master]
+  Nginx --&gt;|"/diy-lulc"| Lulc[DIY LULC]
+  Nginx --&gt;|"/file"| FB[FileBrowser]
+  Drone --&gt;|"trigger + poll DAG"| Airflow
+  Lulc --&gt;|"trigger + poll DAG"| Airflow
+  Airflow --&gt;|success| Data["data/app-name"]
+  Data --&gt; FB
+  Browser -.-&gt;|browse / download| FB</code></pre>
+<p>The browser talks to <strong>Nginx</strong>, not to Airflow. Each compute service’s backend triggers the DAG and monitors the run. When the run completes, results land in the shared data tree, one folder per app, and people open them in FileBrowser at <a href="https://www.cse.iitd.ernet.in/act4dws5/file/"><code>/file</code></a>.</p>
+<pre class="mermaid"><code>sequenceDiagram
+  participant Browser
+  participant Nginx
+  participant Service as Service Docker
+  participant Airflow as Airflow
+  participant Data as data/app-name
+  participant FB as FileBrowser
+  Browser-&gt;&gt;Nginx: /drone, /diy-lulc, /bio-master, /file, …
+  Nginx-&gt;&gt;Service: reverse proxy
+  Browser-&gt;&gt;Service: interactive UI
+  Service-&gt;&gt;Airflow: trigger DAG
+  loop poll until success or failed
+    Service-&gt;&gt;Airflow: DAG run status
+  end
+  Airflow--&gt;&gt;Service: success
+  Service-&gt;&gt;Data: write output
+  Browser-&gt;&gt;FB: browse data/app-name</code></pre>
+<h2 id="nginx-paths">Nginx paths<a class="headerlink" href="#nginx-paths" title="Permanent link">¶</a></h2>
 <table>
 <thead>
 <tr>
-<th>Entity type</th>
-<th>Why it exists in the stack</th>
-<th>How users usually meet it</th>
+<th>Path</th>
+<th>Goes to</th>
+<th>URL</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>river basin, sub-basin, watershed</td>
-<td>hydrological nesting and context</td>
-<td>GEE assets, conceptual model, some datasets</td>
+<td><strong><code>/drone</code></strong></td>
+<td>Drone — frontend and backend in Docker</td>
+<td><a href="https://www.cse.iitd.ernet.in/act4dws5/drone/">act4dws5/drone</a></td>
 </tr>
 <tr>
-<td>micro-watershed</td>
-<td>the main standardized planning and join unit</td>
-<td>public APIs, STAC vector layers, dashboards, starter-kit outputs</td>
+<td><strong><code>/airflow</code></strong></td>
+<td>Airflow (STACD-generated DAGs)</td>
+<td><a href="https://www.cse.iitd.ernet.in/act4dws5/airflow/home">act4dws5/airflow/home</a></td>
 </tr>
 <tr>
-<td>waterbody</td>
-<td>feature-level hydrological object nested inside larger units</td>
-<td>waterbody APIs, vector layers, dashboards</td>
+<td><strong><code>/bio-master</code></strong></td>
+<td>CEM master</td>
+<td><a href="https://www.cse.iitd.ernet.in/act4dws5/bio-master/">act4dws5/bio-master</a></td>
 </tr>
 <tr>
-<td>state, district, tehsil</td>
-<td>discovery and query entry points</td>
-<td>GeoAdmin APIs, public API parameters, STAC browsing</td>
+<td><strong><code>/diy-lulc</code></strong></td>
+<td>DIY LULC</td>
+<td><a href="https://www.cse.iitd.ernet.in/act4dws5/diy-lulc/">act4dws5/diy-lulc</a></td>
 </tr>
 <tr>
-<td>village and other enrichment layers</td>
-<td>administrative and social context</td>
-<td>geometry APIs, enrichment outputs, planning analysis</td>
-</tr>
-<tr>
-<td>assets such as NREGA works</td>
-<td>intervention and planning context</td>
-<td>enrichment layers and downstream use cases</td>
+<td><strong><code>/file</code></strong></td>
+<td>Shared FileBrowser over <code>data/&lt;app-name&gt;/</code></td>
+<td><a href="https://www.cse.iitd.ernet.in/act4dws5/file/">act4dws5/file</a></td>
 </tr>
 </tbody>
 </table>
-<hr/>
-<h2 id="why-micro-watersheds-and-not-only-villages">Why Micro-Watersheds And Not Only Villages<a class="headerlink" href="#why-micro-watersheds-and-not-only-villages" title="Permanent link">¶</a></h2>
-<p>The rationale from the CoRE Stack registry writeup is important:</p>
-<ul>
-<li>water planning is fundamentally hydrological</li>
-<li>village and panchayat boundaries are useful, but they are not water-flow units</li>
-<li>hydrological units are more stable over time than many administrative boundaries</li>
-<li>a shared registry makes it easier for many actors to index and exchange data</li>
-</ul>
-<p>CoRE Stack’s current registry is a pan-India micro-watershed delineation of roughly <code>1000 ha</code> units, nested under larger hydrological boundaries.</p>
-<p>That gives CoRE Stack something like a local-scale Earth-system grid:</p>
-<ul>
-<li>small enough for place-based planning</li>
-<li>standardized enough for large-scale data collation</li>
-</ul>
-<hr/>
-<h2 id="how-data-gets-attached-to-the-registry">How Data Gets Attached To The Registry<a class="headerlink" href="#how-data-gets-attached-to-the-registry" title="Permanent link">¶</a></h2>
-<p>The core operational idea is:</p>
+<p>Each service writes to <strong><code>data/&lt;app-name&gt;/</code></strong> (for example <code>data/drone/</code>, <code>data/diy-lulc/</code>).</p>
+<h2 id="compute-loop">Compute loop<a class="headerlink" href="#compute-loop" title="Permanent link">¶</a></h2>
+<p>Every compute service follows the same loop:</p>
 <ol>
-<li>start from rasters and source layers</li>
-<li>compute derived signals such as terrain, land use, drought, or water balance</li>
-<li>vectorize or aggregate those signals onto standard spatial units</li>
-<li>store and publish them in a way that preserves stable identifiers</li>
+<li>Operator works in that service’s UI (behind its Nginx path).</li>
+<li>The service <strong>triggers</strong> an Airflow DAG.</li>
+<li>The service <strong>monitors</strong> the DAG run until it is <code>success</code> or <code>failed</code>.</li>
+<li>On success it <strong>produces the result</strong> and <strong>pushes output</strong> to <strong><code>data/&lt;app-name&gt;/</code></strong>.</li>
+<li>Operators view and download that folder in the <strong>shared FileBrowser</strong>.</li>
 </ol>
-<p>That is why CoRE Stack repeatedly moves between:</p>
-<ul>
-<li>rasters</li>
-<li>vector layers</li>
-<li>watershed registries</li>
-<li>tehsil summaries</li>
-<li>API payloads</li>
-<li>STAC items and style files</li>
-</ul>
-<p>The starter-kit mirrors this logic in Python by building structures like:</p>
-<ul>
-<li>tehsil</li>
-<li>micro-watersheds inside that tehsil</li>
-<li>waterbodies inside those micro-watersheds</li>
-</ul>
-<hr/>
-<h2 id="the-most-important-practical-relationships">The Most Important Practical Relationships<a class="headerlink" href="#the-most-important-practical-relationships" title="Permanent link">¶</a></h2>
-<ol>
-<li>
-<p><code>tehsil -&gt; micro-watersheds</code>
-   People often query by administrative name, but the computation is frequently organized on hydrological units.</p>
-</li>
-<li>
-<p><code>micro-watershed -&gt; uid -&gt; other datasets</code>
-   The watershed <code>uid</code> is one of the most important stable keys in the current public surface.</p>
-</li>
-<li>
-<p><code>micro-watershed -&gt; upstream/downstream connectivity</code>
-   River rejuvenation, runoff reasoning, and catchment logic all depend on the fact that watersheds are connected, not isolated.</p>
-</li>
-<li>
-<p><code>micro-watershed -&gt; villages -&gt; assets</code>
-   Many planning questions require hydrological and administrative layers together.</p>
-</li>
-</ol>
-<hr/>
-<h2 id="what-users-should-remember">What Users Should Remember<a class="headerlink" href="#what-users-should-remember" title="Permanent link">¶</a></h2>
-<ul>
-<li>If you understand the micro-watershed registry, the rest of the stack becomes much easier to navigate.</li>
-<li>If you only look at administrative units, you will miss how water actually moves.</li>
-<li>If you only look at hydrological units, you may miss how implementation and funding happen on administrative units.</li>
-<li>CoRE Stack tries to keep both views connected.</li>
-</ul>
-<hr/>
-<h2 id="limitations-and-what-can-improve">Limitations And What Can Improve<a class="headerlink" href="#limitations-and-what-can-improve" title="Permanent link">¶</a></h2>
-<p>The current theory pages on the CoRE Stack site are very clear that this structure is useful, but not final.</p>
-<p>Important limitations to keep in mind:</p>
-<ul>
-<li>surface-water logic is modeled much better than groundwater flow</li>
-<li>current boundaries were produced from <code>SRTM</code>-based delineation; newer DEMs such as <code>FABDEM</code> could improve future versions</li>
-<li>village and panchayat-level implementation still requires intersections and social coordination, not only hydrological correctness</li>
-<li>not every useful landscape entity is fully represented yet</li>
-</ul>
-<hr/>
-<h2 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">¶</a></h2>
-<ul>
-<li><a href="../../use-precomputed-data/how-current-data-was-computed/">How Current Data Was Computed</a></li>
-<li><a href="../how-pipelines-work-algorithmically/">How Our Pipelines Work Algorithmically</a></li>
-<li><a href="https://geoserver.core-stack.org/swagger/">USE APIs</a></li>
-<li><a href="../../pipelines/">Pipeline Development</a></li>
-<li><a href="../../reference/glossary/">Glossary</a></li>
-</ul>
+<p>The browser never calls Airflow. Nginx → service Docker → Airflow REST. Same pattern as <a href="../#architecture">Tower Services</a>.</p>
+<h2 id="services-and-repos">Services and repos<a class="headerlink" href="#services-and-repos" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Nginx path</th>
+<th>URL</th>
+<th>What it is</th>
+<th>Repo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Drone</strong></td>
+<td><code>/drone</code></td>
+<td><a href="https://www.cse.iitd.ernet.in/act4dws5/drone/">Open</a></td>
+<td>Tree-crown detection on a drone orthomosaic. Frontend + backend Docker.</td>
+<td><a href="https://github.com/anunay1206/drone_docker">anunay1206/drone_docker</a></td>
+</tr>
+<tr>
+<td><strong>Airflow + STACD</strong></td>
+<td><code>/airflow</code></td>
+<td><a href="https://www.cse.iitd.ernet.in/act4dws5/airflow/home">Open</a></td>
+<td>Shared orchestrator. Services trigger DAGs here and poll until the run finishes.</td>
+<td><a href="https://github.com/SaharshLaud/STACD_framework">SaharshLaud/STACD_framework</a> (<code>dev</code>)</td>
+</tr>
+<tr>
+<td><strong>CEM master</strong></td>
+<td><code>/bio-master</code></td>
+<td><a href="https://www.cse.iitd.ernet.in/act4dws5/bio-master/">Open</a></td>
+<td>Continuous Ecological Monitoring master page (explore spots, species, network).</td>
+<td><a href="https://github.com/xHrid/continuous-ecological-monitoring-toolkit">xHrid/continuous-ecological-monitoring-toolkit</a></td>
+</tr>
+<tr>
+<td><strong>DIY LULC</strong></td>
+<td><code>/diy-lulc</code></td>
+<td><a href="https://www.cse.iitd.ernet.in/act4dws5/diy-lulc/">Open</a></td>
+<td>10 m land-use / land-cover over India; grow classes from example polygons.</td>
+<td><a href="https://github.com/salil-123/Project">salil-123/Project</a></td>
+</tr>
+<tr>
+<td><strong>FileBrowser</strong></td>
+<td><code>/file</code></td>
+<td><a href="https://www.cse.iitd.ernet.in/act4dws5/file/">Open</a></td>
+<td>Shared file UI. After a successful run, browse and download <code>data/&lt;app-name&gt;/</code>.</td>
+<td><a href="https://github.com/filebrowser/filebrowser">filebrowser/filebrowser</a></td>
+</tr>
+</tbody>
+</table>
+<p>Install, image tags, and <code>.env</code> live in each service repo. Cluster standards are in <a href="../../../server/cluster-docker-services/">Cluster Docker Services</a>.</p>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
@@ -1598,7 +1308,7 @@
 <div class="md-dialog__inner md-typeset"></div>
 </div>
 <div class="md-progress" data-md-component="progress" role="progressbar"></div>
-<script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.indexes", "navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.instant.preview", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
-<script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+<script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.indexes", "navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.instant.preview", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
 </body>
 </html>

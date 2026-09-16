@@ -8,7 +8,7 @@
 <meta content="Tower Services — small Docker compute apps (Drone, Bioacoustic, DIY LULC), architecture, and shared terms." name="description"/>
 <link href="https://docs.core-stack.org/infra/tower-services/" rel="canonical"/>
 <link href="../../server/" rel="prev"/>
-<link href="../../server/cluster-docker-services/" rel="next"/>
+<link href="deployed-architecture/" rel="next"/>
 <link href="../../assets/logo.png" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.7.6" name="generator"/>
 <title>Tower Services - CoRE Stack Documentation</title>
@@ -813,40 +813,7 @@
 </li>
 <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
 <input checked="" class="md-nav__toggle md-toggle" id="__nav_7_3" type="checkbox"/>
-<label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="">
-<span class="md-ellipsis">
-    
-  
-    Tower Services
-  
-
-    
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<nav aria-expanded="true" aria-labelledby="__nav_7_3_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_7_3">
-<span class="md-nav__icon md-icon"></span>
-            
-  
-    Tower Services
-  
-
-          </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
-    
-  
-    Tower Services
-  
-
-    
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
+<div class="md-nav__link md-nav__container">
 <a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     
@@ -857,90 +824,31 @@
     
   </span>
 </a>
-<nav aria-label="On this page" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
+<label class="md-nav__link md-nav__link--active" for="__nav_7_3" id="__nav_7_3_label" tabindex="">
 <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_7_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_7_3">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Tower Services
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#architecture">
+<a class="md-nav__link" href="deployed-architecture/">
 <span class="md-ellipsis">
-      
-        Architecture
-      
-    </span>
+    
+  
+    Deployed Architecture
+  
+
+    
+  </span>
 </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#shared-terminology">
-<span class="md-ellipsis">
-      
-        Shared terminology
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#how-the-two-long-docs-fit">
-<span class="md-ellipsis">
-      
-        How the two long docs fit
-      
-    </span>
-</a>
-<nav aria-label="How the two long docs fit" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#background-you-need-before-cluster-docker-services">
-<span class="md-ellipsis">
-      
-        Background you need before Cluster Docker Services
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#background-you-need-before-the-checklist">
-<span class="md-ellipsis">
-      
-        Background you need before the checklist
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#shared-cluster-pieces">
-<span class="md-ellipsis">
-      
-        Shared cluster pieces
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#docker-pull-behind-the-iit-delhi-proxy">
-<span class="md-ellipsis">
-      
-        Docker pull behind the IIT Delhi proxy
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#adding-a-service">
-<span class="md-ellipsis">
-      
-        Adding a service
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../server/cluster-docker-services/">
@@ -1214,6 +1122,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="tower-services">Tower Services<a class="headerlink" href="#tower-services" title="Permanent link">¶</a></h1>
 <p><strong>Tower Services</strong> is the group of small Docker apps that run compute: <strong>Drone</strong>, <strong>Bioacoustic</strong> (CEM), <strong>DIY LULC</strong>, and others. Each service does one job (tree crowns, audio, land cover). They share <strong>Airflow</strong> and <strong>STACD</strong> when a job needs orchestration.</p>
+<p>The <strong>currently deployed</strong> nginx paths and GitHub repos are on <a href="deployed-architecture/">Deployed Architecture</a>.</p>
 <h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">¶</a></h2>
 <p>Every Tower Service is <strong>interactive in the browser</strong>. The operator uses a <strong>frontend Docker</strong>. From there the app <strong>sends compute</strong> and <strong>polls status</strong>. When the run is <strong>success</strong>, it <strong>writes the relevant output into <code>data/</code></strong>. That directory is exposed by <strong>FileBrowser</strong>, so people can browse and download results in the FileBrowser UI.</p>
 <p><strong>Where compute runs</strong> is one env var:</p>
