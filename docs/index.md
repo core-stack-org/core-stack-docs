@@ -18,7 +18,7 @@ It helps people move from scattered public datasets to usable planning evidence:
 | understand how current data was computed | [How Current Data Was Computed](use-precomputed-data/how-current-data-was-computed.md) |
 | install the backend and build pipelines | [Develop CoRE Stack](developers/index.md) |
 | run current pipelines on your ROI | [computing api endpoints](pipelines/computing-endpoints.md) |
-| operate AWS or Tower Services | [Infra](infra/index.md) — [AWS Server](server/index.md) or [Tower Services](infra/tower-services.md) |
+| operate AWS or Tower Services | [Infra](infra/index.md) — [AWS Server](server/index.md) or [Tower Services](infra/tower-services/index.md) |
 
 ## CoRE Stack Architecture
 

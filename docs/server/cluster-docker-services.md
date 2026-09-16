@@ -36,7 +36,7 @@ Credential **files** (Earth Engine JSON, and similar) must be both referenced by
 
 ### 2. Code, models, and data live on the host (mount, do not copy) { #2-code-models-and-data-live-on-the-host-mount-do-not-copy }
 
-The image is **deps-only** (OS packages, Python/Node libs, entrypoint). Bind-mount three host folders. Same table as [checklist §1](cluster-service-checklist.md#1-store-all-relevant-data-and-compute-output-in-data) and [Tower Services](../infra/tower-services.md#shared-terminology).
+The image is **deps-only** (OS packages, Python/Node libs, entrypoint). Bind-mount three host folders. Same table as [checklist §1](cluster-service-checklist.md#1-store-all-relevant-data-and-compute-output-in-data) and [Tower Services](../infra/tower-services/index.md#shared-terminology).
 
 | Host folder | Container path | Contents |
 | --- | --- | --- |
@@ -482,7 +482,7 @@ Do not treat this as a second contract. Tick the **[Cluster Service Checklist](c
 | 5 | `LOG_LEVEL`; `data/logs/<application_name>/` | §6 |
 | 6 | Frontend + backend in one Docker | checklist |
 | 7 | Frontend API base from `.env` | §1 |
-| 8 | Per-service architecture diagram | [Tower Services](../infra/tower-services.md#architecture) is the cluster picture; each repo still needs its own |
+| 8 | Per-service architecture diagram | [Tower Services](../infra/tower-services/index.md#architecture) is the cluster picture; each repo still needs its own |
 | 9 | **Central Postgres** / `DATABASE_URL` | §1 |
 | 10 | **`outputs.yaml`** — `public` / `private_persistent` / `delete` | checklist |
 

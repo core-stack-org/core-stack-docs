@@ -10,7 +10,7 @@ This section covers how CoRE Stack is hosted and operated.
 | Environment | What it is | Start here |
 | --- | --- | --- |
 | **AWS Server** | Production on AWS (EC2, Amplify, GeoServer, STAC, monitoring) | [AWS Server](../server/index.md) |
-| **Tower Services** | Drone, Bioacoustic, DIY LULC (and Airflow/STACD) | [Tower Services](tower-services.md) |
+| **Tower Services** | Drone, Bioacoustic, DIY LULC (and Airflow/STACD) | [Tower Services](tower-services/index.md) |
 
 ## AWS Server
 
@@ -22,4 +22,4 @@ Production topology, SSH access, Apache, Celery, GeoServer, STAC, credentials, O
 
 Small Docker compute apps: **Drone**, **Bioacoustic** (CEM), and **DIY LULC**. Start with the architecture diagram and shared terms.
 
-[Open Tower Services](tower-services.md){ .md-button }
+[Open Tower Services](tower-services/index.md){ .md-button }

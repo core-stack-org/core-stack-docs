@@ -7,6 +7,8 @@ description: Tower Services — small Docker compute apps (Drone, Bioacoustic, D
 
 **Tower Services** is the group of small Docker apps that run compute: **Drone**, **Bioacoustic** (CEM), **DIY LULC**, and others. Each service does one job (tree crowns, audio, land cover). They share **Airflow** and **STACD** when a job needs orchestration.
 
+The **currently deployed** nginx paths and GitHub repos are on [Deployed Architecture](deployed-architecture.md).
+
 ## Architecture
 
 Every Tower Service is **interactive in the browser**. The operator uses a **frontend Docker**. From there the app **sends compute** and **polls status**. When the run is **success**, it **writes the relevant output into `data/`**. That directory is exposed by **FileBrowser**, so people can browse and download results in the FileBrowser UI.
@@ -83,8 +85,8 @@ Do **not** use `AIRFLOW_BASE_API_URL`, `AIRFLOW_BASE_URL` (unless you only mean 
 
 | Document | What it is | What it is not |
 | --- | --- | --- |
-| [Cluster Docker Services](../server/cluster-docker-services.md) | The **standards and how-to**: why deps-only images, how to write STACD YAML, how to trigger/poll Airflow, STAC Item shape, Custom LULC copy-this example. | Not a tick-box for deploy sign-off. |
-| [Cluster Service Checklist](../server/cluster-service-checklist.md) | The **acceptance list** you copy into the GitHub issue. Tick a row only when the **Acceptance** line is true. | Not a second copy of the how-to. Each item points back to the runbook when you need the procedure. |
+| [Cluster Docker Services](../../server/cluster-docker-services.md) | The **standards and how-to**: why deps-only images, how to write STACD YAML, how to trigger/poll Airflow, STAC Item shape, Custom LULC copy-this example. | Not a tick-box for deploy sign-off. |
+| [Cluster Service Checklist](../../server/cluster-service-checklist.md) | The **acceptance list** you copy into the GitHub issue. Tick a row only when the **Acceptance** line is true. | Not a second copy of the how-to. Each item points back to the runbook when you need the procedure. |
 
 ### Background you need before Cluster Docker Services
 
@@ -99,7 +101,7 @@ The runbook is long. You can follow it if you already know:
 
 Then open the runbook in this order: §1–§2 (env + mounts) → §7–§9 (STACD, Airflow, STAC) → Custom LULC example → §3–§6 and §10 as needed.
 
-[Open Cluster Docker Services](../server/cluster-docker-services.md){ .md-button .md-button--primary }
+[Open Cluster Docker Services](../../server/cluster-docker-services.md){ .md-button .md-button--primary }
 
 ### Background you need before the checklist
 
@@ -107,12 +109,12 @@ The checklist is ten acceptance items. It does not re-teach STACD or STAC. Compl
 
 | Checklist item | Same term as the runbook |
 | --- | --- |
-| 1. Mounts | **`code/`**, **`models/`**, **`data/`** → `/app`, `/app/models`, `/app/data` — [runbook §2](../server/cluster-docker-services.md#2-code-models-and-data-live-on-the-host-mount-do-not-copy) |
-| 2. Airflow vs local | **`AIRFLOW_API_BASE`** set / empty — [runbook §8](../server/cluster-docker-services.md#8-compute-and-processing--always-via-airflow) |
-| 3. Registry | **GHCR or Docker Hub**, deps-only image — [runbook §5](../server/cluster-docker-services.md#5-ghcr-or-docker-hub--build-push-and-keep-updated) |
+| 1. Mounts | **`code/`**, **`models/`**, **`data/`** → `/app`, `/app/models`, `/app/data` — [runbook §2](../../server/cluster-docker-services.md#2-code-models-and-data-live-on-the-host-mount-do-not-copy) |
+| 2. Airflow vs local | **`AIRFLOW_API_BASE`** set / empty — [runbook §8](../../server/cluster-docker-services.md#8-compute-and-processing--always-via-airflow) |
+| 3. Registry | **GHCR or Docker Hub**, deps-only image — [runbook §5](../../server/cluster-docker-services.md#5-ghcr-or-docker-hub--build-push-and-keep-updated) |
 | 4–10 | SSO, `LOG_LEVEL`, one container, frontend API base, per-service diagram, **central Postgres**, **`outputs.yaml`** — checklist is the source; runbook §1 / §6 covers env and logging |
 
-[Open Cluster Service Checklist](../server/cluster-service-checklist.md){ .md-button }
+[Open Cluster Service Checklist](../../server/cluster-service-checklist.md){ .md-button }
 
 ## Shared cluster pieces
 
@@ -138,11 +140,11 @@ sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
 
-Replace the proxy host with the one for your IITD account category. Same steps: [Cluster Docker Services — IIT Delhi proxy](../server/cluster-docker-services.md#cluster-notes-iit-delhi-proxy).
+Replace the proxy host with the one for your IITD account category. Same steps: [Cluster Docker Services — IIT Delhi proxy](../../server/cluster-docker-services.md#cluster-notes-iit-delhi-proxy).
 
 ## Adding a service
 
 1. Read this page (architecture + terms).
-2. Follow [Cluster Docker Services](../server/cluster-docker-services.md) for how to package, wire Airflow/STACD, and return a STAC Item.
-3. Tick [Cluster Service Checklist](../server/cluster-service-checklist.md) in the service issue or README.
+2. Follow [Cluster Docker Services](../../server/cluster-docker-services.md) for how to package, wire Airflow/STACD, and return a STAC Item.
+3. Tick [Cluster Service Checklist](../../server/cluster-service-checklist.md) in the service issue or README.
 4. Keep install steps, image name, and pinned tag in the service `README` and `VERSION`.

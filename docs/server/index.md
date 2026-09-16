@@ -7,7 +7,7 @@ description: Production deployment, SSH access, service configuration, OS tuning
 
 Production infrastructure for CoRE Stack on AWS: deployment footprint, secure access, per-service runbooks, OS tuning, and monitoring. Scroll this page or use the table of contents — everything is in one place.
 
-Tower Services (Drone, Bioacoustic, DIY LULC) are documented under [Tower Services](../infra/tower-services.md).
+Tower Services (Drone, Bioacoustic, DIY LULC) are documented under [Tower Services](../infra/tower-services/index.md).
 
 ## Contents
 
