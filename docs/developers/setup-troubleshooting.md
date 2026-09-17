@@ -133,8 +133,11 @@ Use [Docker installation](docker.md) for Compose commands. Common first-run issu
 | Port already in use | Stop whatever is bound to 8000, 8080, or 5432, or set `BACKEND_PORT` / `GEOSERVER_PORT` / `POSTGRES_PORT` in a `.env` next to `docker-compose.yml` |
 | `denied` or `unauthorized` pulling the image | The package should be public. Confirm [ghcr.io/core-stack-org/core-stack-backend](https://github.com/core-stack-org/core-stack-backend/pkgs/container/core-stack-backend) opens without signing in, then retry `docker compose pull` |
 | `no matching manifest for linux/arm64` | Use `docker compose pull`, not a bare `docker pull` on Apple Silicon. Compose sets `platform: linux/amd64` |
-| Backend keeps restarting | `docker compose logs backend`. Common first-run waits: GeoServer health, the 8 GB admin-boundary download, or seed load |
-| GEE jobs fail after a successful start | Mount JSON at `gee_confs/gee-service-account.json`, add the account in Django admin, then `docker compose up -d --force-recreate backend` if the file was added after the first start |
+| Backend keeps restarting | `docker compose logs backend`. Common first-run waits: GeoServer health, the 8 GB admin-boundary download, or seed load. Local-compute layer downloads only run when `DOWNLOAD_LOCAL_COMPUTE_LAYERS` is set |
+| `GEEAccount with id=N was not found` | Add the JSON in Django admin (`/admin/gee_computing/geeaccount/add/`) and pass that row’s id as `gee_account_id` |
+| `Failed: projects//assets/apps/mws/...` | `GEE_STORAGE_PROJECT` is empty. Set it in the Compose `.env` with `GCS_BUCKET_NAME`, then `docker compose up -d --force-recreate --no-deps backend` |
+| `Census data not available` | Admin-boundary files live on the data volume. Symlink: `docker compose exec backend ln -sfn /var/tmp/core-stack-data/admin-boundary /app/data/admin-boundary` |
+| GEE jobs fail after a successful start | Mount JSON at `gee_confs/gee-service-account.json`, add the account in Django admin, set `GCS_BUCKET_NAME` / `GEE_STORAGE_PROJECT` in Compose `.env`, then recreate the backend |
 
 Wipe volumes (re-downloads ~8 GB next start): `docker compose down -v`.
 

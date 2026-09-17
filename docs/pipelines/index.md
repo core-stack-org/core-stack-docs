@@ -33,7 +33,9 @@ flowchart LR
 
 ## First Computing API test-run { #first-manual-run }
 
-Use one small request after the backend and Celery worker are running. Replace the place names and `gee_account_id` with values from your environment.
+Use one small request after the backend is running. Replace the place names and `gee_account_id` with values from your environment.
+
+On **Docker Compose**, start with [admin-boundary generate](../developers/docker.md#9-run-the-admin-boundary-local-compute-api) (`POST /api/v1/generate_block_layer/`). Compute runs in-process (`CELERY_TASK_ALWAYS_EAGER`), so the HTTP call waits until the task finishes. For native Linux, keep a Celery worker on queue `nrm` as below.
 
 
 ```bash

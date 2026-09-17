@@ -43,21 +43,32 @@ Instead, it stages them through Cloud Storage and then continues the workflow fr
 
 ## Current Bucket Assumptions
 
-The current backend reads the main bucket name from `GCS_BUCKET_NAME` in `utilities/constants.py`.
-
-As checked in the current code, that constant is:
+The current backend reads the main bucket name from Django settings (`GCS_BUCKET_NAME` in `nrm_app/.env` / Compose env). `utilities/constants.py` uses that value and falls back to `core_stack` if it is empty:
 
 ```python
-GCS_BUCKET_NAME = "core_stack"
+GCS_BUCKET_NAME = SETTINGS_GCS_BUCKET_NAME or "core_stack"
 ```
 
-Two important implementation details follow from that:
+Shapefile staging uses that constant:
 
-- Most helper functions respect `GCS_BUCKET_NAME`.
-- One shapefile import helper still hardcodes `gs://core_stack/...` inside `upload_shp_to_gee()`.
+```python
+gcs_uri = f"gs://{GCS_BUCKET_NAME}/{gcs_blob_name}"
+```
 
-!!! warning
-    If you change the bucket name, update both `GCS_BUCKET_NAME` and the hardcoded `gs://core_stack/...` reference in `upload_shp_to_gee()` or shapefile-to-GEE imports will break.
+### Docker Compose
+
+For the published Docker stack, set the bucket (and GEE project) in the Compose `.env` next to `docker-compose.yml`, then recreate the backend. Do not only edit `nrm_app/.env` — empty Compose values win.
+
+```bash
+GCS_BUCKET_NAME=core_stack
+GEE_STORAGE_PROJECT=ee-your-project
+```
+
+```bash
+docker compose up -d --force-recreate --no-deps backend
+```
+
+Full Docker path, including the admin-boundary compute API: [Docker](../docker.md#2-configure-gcs-and-google-earth-engine).
 
 ### Bucket Region Matters
 
@@ -154,7 +165,7 @@ If you are inspecting bucket contents during debugging, these prefixes tell you 
 ## Minimum Setup Checklist
 
 1. Create the bucket in `us-central1`.
-2. Keep the name aligned with the current backend assumption, which is `core_stack` unless you also patch the hardcoded shapefile URI helper.
+2. Set `GCS_BUCKET_NAME` (Compose `.env` for Docker, `nrm_app/.env` for native). Django falls back to `core_stack` if the env is empty.
 3. Grant the GEE service account:
    - `roles/storage.objectViewer`
    - `roles/storage.legacyBucketReader`
@@ -179,6 +190,7 @@ If that probe fails, the service account still does not have the access the back
 ## Related Docs
 
 - [Google Earth Engine](google-earth-engine.md)
+- [Docker](../docker.md#2-configure-gcs-and-google-earth-engine)
 - [Installer](../installer.md)
 - [Setup Troubleshooting](../setup-troubleshooting.md)
 - [Develop New Pipelines](../../pipelines/index.md)
