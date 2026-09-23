@@ -1,6 +1,6 @@
 ---
 title: Cluster Docker Services
-description: Internal runbook for CoRE Stack cluster Docker services — deps-only images, host mounts, STACD/Airflow, and the Custom LULC worked example.
+description: Internal runbook for CoRE Stack cluster Docker services — deps-only images, host mounts, STACD/Airflow, front page and demo video, and the Custom LULC worked example.
 ---
 
 # Cluster Docker Services
@@ -471,7 +471,7 @@ When running in Docker mode (§7), the JSON between `===RESULT_JSON_START===` / 
 
 ### 10. Checklist before adding a cluster service
 
-Do not treat this as a second contract. Tick the **[Cluster Service Checklist](cluster-service-checklist.md)** — same ten items, same names:
+Do not treat this as a second contract. Tick the **[Cluster Service Checklist](cluster-service-checklist.md)** — same eleven items, same names:
 
 | # | Term | This runbook |
 | --- | --- | --- |
@@ -485,8 +485,28 @@ Do not treat this as a second contract. Tick the **[Cluster Service Checklist](c
 | 8 | Per-service architecture diagram | [Tower Services](../infra/tower-services/index.md#architecture) is the cluster picture; each repo still needs its own |
 | 9 | **Central Postgres** / `DATABASE_URL` | §1 |
 | 10 | **`outputs.yaml`** — `public` / `private_persistent` / `delete` | checklist |
+| 11 | Front page, demo video reviewed and approved | [§11](#11-front-page-and-demo-video) |
 
 Also: README install steps, `VERSION`, STACD YAML (§7), STAC Item (§9), IITD proxy if you pull on campus.
+
+### 11. Front page and demo video { #11-front-page-and-demo-video }
+
+Same contract as [checklist §11](cluster-service-checklist.md#11-front-page-and-demo-video). Every Tower service ships a **front page** and **one demo video**.
+
+**Front page.** The service URL (Nginx path root, e.g. `/drone`) must open a landing page in the same spirit as the [Drone Tree-Crown Pipeline](https://www.cse.iitd.ernet.in/act4dws5/drone/):
+
+- A short story of **what the project is** and **why it matters** (not a raw form as the first screen).
+- Then **Google SSO** / enter the working UI.
+- A place on that same page for the **demo video**.
+
+**Demo video.** Each team records **one** video that is both:
+
+- a **brief manual** about the project (what it is, who it is for, what you get out), and
+- a **tutorial** of the happy path (create → run → find output in FileBrowser).
+
+Put that video **on the front page** (embed or a clear play control). Link it from the README. Keep it short enough that a new operator can watch it once and repeat the flow. The **demo video should be reviewed and approved**.
+
+**Acceptance:** Same as checklist §11 — visitor understands the project from the front page and video; the demo video has been reviewed and approved.
 
 ---
 

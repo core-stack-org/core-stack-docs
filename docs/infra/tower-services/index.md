@@ -94,7 +94,7 @@ The runbook is long. You can follow it if you already know:
 5. **Deliverable is a STAC Item** — not a bare file path or GeoServer layer name.
 6. **Campus `docker pull` uses the daemon proxy** — see [IIT Delhi proxy](#docker-pull-behind-the-iit-delhi-proxy) below.
 
-Then open the runbook in this order: §1–§2 (env + mounts) → §7–§9 (STACD, Airflow, STAC) → Custom LULC example → §3–§6 and §10 as needed.
+Then open the runbook in this order: §1–§2 (env + mounts) → §7–§9 (STACD, Airflow, STAC) → Custom LULC example → §3–§6, §10, and §11 as needed.
 
 [Open Cluster Docker Services](../../server/cluster-docker-services.md){ .md-button .md-button--primary }
 
@@ -102,7 +102,7 @@ Then open the runbook in this order: §1–§2 (env + mounts) → §7–§9 (STA
 
 [Cluster Service Checklist](../../server/cluster-service-checklist.md) is the **acceptance list** you copy into the GitHub issue. Tick a row only when the **Acceptance** line is true. It is **not** a second copy of the how-to. Each item points back to the runbook when you need the procedure.
 
-The checklist is ten acceptance items. It does not re-teach STACD or STAC. Complete it **after** you understand the architecture on this page and the matching runbook sections.
+The checklist is eleven acceptance items. It does not re-teach STACD or STAC. Complete it **after** you understand the architecture on this page and the matching runbook sections.
 
 | Checklist item | Same term as the runbook |
 | --- | --- |
@@ -110,6 +110,7 @@ The checklist is ten acceptance items. It does not re-teach STACD or STAC. Compl
 | 2. Airflow vs local | **`AIRFLOW_API_BASE`** set / empty — [runbook §8](../../server/cluster-docker-services.md#8-compute-and-processing--always-via-airflow) |
 | 3. Registry | **GHCR or Docker Hub**, deps-only image — [runbook §5](../../server/cluster-docker-services.md#5-ghcr-or-docker-hub--build-push-and-keep-updated) |
 | 4–10 | SSO, `LOG_LEVEL`, one container, frontend API base, per-service diagram, **central Postgres**, **`outputs.yaml`** — checklist is the source; runbook §1 / §6 covers env and logging |
+| 11. Front page + demo video | Drone-style landing page; one video (manual + tutorial) on the front page; demo video reviewed and approved — [runbook §11](../../server/cluster-docker-services.md#11-front-page-and-demo-video) |
 
 [Open Cluster Service Checklist](../../server/cluster-service-checklist.md){ .md-button }
 

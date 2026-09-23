@@ -1,6 +1,6 @@
 ---
 title: Cluster Service Checklist
-description: Acceptance checklist — code/models/data mounts, Airflow vs local, GHCR or Docker Hub, Google SSO, log levels, central Postgres, and output retention modes.
+description: Acceptance checklist — code/models/data mounts, Airflow vs local, GHCR or Docker Hub, Google SSO, log levels, central Postgres, output retention, front page, and demo video.
 ---
 
 # Cluster Service Checklist
@@ -237,6 +237,23 @@ Rules:
 
 ---
 
+## 11. Front page and demo video { #11-front-page-and-demo-video }
+
+Every service has a **front page** like the [Drone Tree-Crown Pipeline](https://www.cse.iitd.ernet.in/act4dws5/drone/): a short pitch of what the project is and why it matters, then Google SSO into the tool.
+
+Record **one demo video**. The same video is both a **brief manual** about the project and a **tutorial**. Embed it on the service front page. **The demo video should be reviewed and approved.**
+
+How-to: [runbook §11](cluster-docker-services.md#11-front-page-and-demo-video).
+
+- [ ] `/` (the Nginx service path) is a landing page in the same style as [drone](https://www.cse.iitd.ernet.in/act4dws5/drone/) — project story, then sign-in / enter the app. Not a bare form as the first screen.
+- [ ] One demo video exists (brief manual **and** tutorial). It is on the front page (embed or prominent play link).
+- [ ] The demo video has been reviewed and approved. Date and notes are in the issue or README.
+- [ ] README links the front-page URL and the video.
+
+**Acceptance:** A new visitor opens the service URL, understands the project from the front page and the video, then can follow the same steps in the UI. The demo video has been reviewed and approved.
+
+---
+
 ## Sign-off
 
 | # | Item | Owner | Done |
@@ -251,5 +268,6 @@ Rules:
 | 8 | Architecture diagram (compute trigger + from where) | | |
 | 9 | Postgres via connection string to central server (or N/A) | | |
 | 10 | `outputs.yaml` — public / private_persistent / delete | | |
+| 11 | Front page (drone-style), demo video on the front page, video reviewed and approved | | |
 
 Service: _______________ Date: _______________ Reviewer: _______________
