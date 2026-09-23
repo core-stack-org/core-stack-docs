@@ -2430,6 +2430,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Docker Compose
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#bucket-region-matters" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2587,19 +2598,20 @@ It is part of the transport layer for several compute and publication paths.</p>
 Instead, it stages them through Cloud Storage and then continues the workflow from there.</p>
 <hr />
 <h2 id="current-bucket-assumptions">Current Bucket Assumptions<a class="headerlink" href="#current-bucket-assumptions" title="Permanent link">&para;</a></h2>
-<p>The current backend reads the main bucket name from <code>GCS_BUCKET_NAME</code> in <code>utilities/constants.py</code>.</p>
-<p>As checked in the current code, that constant is:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">GCS_BUCKET_NAME</span> <span class="o">=</span> <span class="s2">&quot;core_stack&quot;</span>
+<p>The current backend reads the main bucket name from Django settings (<code>GCS_BUCKET_NAME</code> in <code>nrm_app/.env</code> / Compose env). <code>utilities/constants.py</code> uses that value and falls back to <code>core_stack</code> if it is empty:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">GCS_BUCKET_NAME</span> <span class="o">=</span> <span class="n">SETTINGS_GCS_BUCKET_NAME</span> <span class="ow">or</span> <span class="s2">&quot;core_stack&quot;</span>
 </span></code></pre></div>
-<p>Two important implementation details follow from that:</p>
-<ul>
-<li>Most helper functions respect <code>GCS_BUCKET_NAME</code>.</li>
-<li>One shapefile import helper still hardcodes <code>gs://core_stack/...</code> inside <code>upload_shp_to_gee()</code>.</li>
-</ul>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If you change the bucket name, update both <code>GCS_BUCKET_NAME</code> and the hardcoded <code>gs://core_stack/...</code> reference in <code>upload_shp_to_gee()</code> or shapefile-to-GEE imports will break.</p>
-</div>
+<p>Shapefile staging uses that constant:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">gcs_uri</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;gs://</span><span class="si">{</span><span class="n">GCS_BUCKET_NAME</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">gcs_blob_name</span><span class="si">}</span><span class="s2">&quot;</span>
+</span></code></pre></div>
+<h3 id="docker-compose">Docker Compose<a class="headerlink" href="#docker-compose" title="Permanent link">&para;</a></h3>
+<p>For the published Docker stack, set the bucket (and GEE project) in the Compose <code>.env</code> next to <code>docker-compose.yml</code>, then recreate the backend. Do not only edit <code>nrm_app/.env</code> — empty Compose values win.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nv">GCS_BUCKET_NAME</span><span class="o">=</span>core_stack
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nv">GEE_STORAGE_PROJECT</span><span class="o">=</span>ee-your-project
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate<span class="w"> </span>--no-deps<span class="w"> </span>backend
+</span></code></pre></div>
+<p>Full Docker path, including the admin-boundary compute API: <a href="../../docker/#2-configure-gcs-and-google-earth-engine">Docker</a>.</p>
 <h3 id="bucket-region-matters">Bucket Region Matters<a class="headerlink" href="#bucket-region-matters" title="Permanent link">&para;</a></h3>
 <p>Some backend paths call <code>ee.Image.loadGeoTIFF()</code> through <code>upload_tif_from_gcs_to_gee(...)</code>.
 That path is used by modules such as:</p>
@@ -2609,7 +2621,7 @@ That path is used by modules such as:</p>
 <li><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/computing/clart/fes_clart_to_geoserver.py">computing/clart/fes_clart_to_geoserver.py</a></li>
 </ul>
 <p>For those flows, the bucket should be created in <code>us-central1</code>.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>create<span class="w"> </span>gs://core_stack<span class="w"> </span>--location<span class="o">=</span>us-central1
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>create<span class="w"> </span>gs://core_stack<span class="w"> </span>--location<span class="o">=</span>us-central1
 </span></code></pre></div>
 <p>If the bucket is in another region, <code>loadGeoTIFF()</code>-backed imports can fail even though the object upload itself succeeded.</p>
 <hr />
@@ -2618,13 +2630,13 @@ That path is used by modules such as:</p>
 <p>That creates two permission needs.</p>
 <h3 id="1-earth-engine-read-access-to-the-bucket">1. Earth Engine Read Access To The Bucket<a class="headerlink" href="#1-earth-engine-read-access-to-the-bucket" title="Permanent link">&para;</a></h3>
 <p>For <code>ee.Image.loadGeoTIFF()</code> and similar Earth Engine-side reads, grant the GEE service account these roles on the bucket:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>gs://&lt;bucket&gt;<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>--member<span class="o">=</span>serviceAccount:&lt;gee-service-account&gt;<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>--role<span class="o">=</span>roles/storage.objectViewer
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>gs://&lt;bucket&gt;<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span>--member<span class="o">=</span>serviceAccount:&lt;gee-service-account&gt;<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span>--role<span class="o">=</span>roles/storage.legacyBucketReader
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>gs://&lt;bucket&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>--member<span class="o">=</span>serviceAccount:&lt;gee-service-account&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>--role<span class="o">=</span>roles/storage.objectViewer
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>gs://&lt;bucket&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span>--member<span class="o">=</span>serviceAccount:&lt;gee-service-account&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span>--role<span class="o">=</span>roles/storage.legacyBucketReader
 </span></code></pre></div>
 <h3 id="2-backend-upload-download-cleanup-access">2. Backend Upload / Download / Cleanup Access<a class="headerlink" href="#2-backend-upload-download-cleanup-access" title="Permanent link">&para;</a></h3>
 <p>The backend also uploads, downloads, and sometimes deletes objects through helpers such as:</p>
@@ -2637,9 +2649,9 @@ That path is used by modules such as:</p>
 </ul>
 <p>So the same account also needs object write and cleanup permissions.
 The simplest bucket-level grant is:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>gs://&lt;bucket&gt;<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>--member<span class="o">=</span>serviceAccount:&lt;gee-service-account&gt;<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>--role<span class="o">=</span>roles/storage.objectAdmin
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>gcloud<span class="w"> </span>storage<span class="w"> </span>buckets<span class="w"> </span>add-iam-policy-binding<span class="w"> </span>gs://&lt;bucket&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>--member<span class="o">=</span>serviceAccount:&lt;gee-service-account&gt;<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span>--role<span class="o">=</span>roles/storage.objectAdmin
 </span></code></pre></div>
 <p>This aligns with what the current initialization probe actually tests: object upload, and optionally object delete.</p>
 <hr />
@@ -2703,17 +2715,17 @@ If bucket setup is wrong, multiple pipeline families fail in similar ways.</p>
 <h2 id="minimum-setup-checklist">Minimum Setup Checklist<a class="headerlink" href="#minimum-setup-checklist" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Create the bucket in <code>us-central1</code>.</li>
-<li>Keep the name aligned with the current backend assumption, which is <code>core_stack</code> unless you also patch the hardcoded shapefile URI helper.</li>
+<li>Set <code>GCS_BUCKET_NAME</code> (Compose <code>.env</code> for Docker, <code>nrm_app/.env</code> for native). Django falls back to <code>core_stack</code> if the env is empty.</li>
 <li>Grant the GEE service account:</li>
 <li><code>roles/storage.objectViewer</code></li>
 <li><code>roles/storage.legacyBucketReader</code></li>
 <li>write and cleanup permissions, typically <code>roles/storage.objectAdmin</code></li>
 <li>Rerun the strict initialization check:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/miniconda3/etc/profile.d/conda.sh&quot;</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nb">cd</span><span class="w"> </span>/path/to/core-stack-backend
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>python<span class="w"> </span>computing/misc/internal_api_initialisation_test.py<span class="w"> </span>--require-gee
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/miniconda3/etc/profile.d/conda.sh&quot;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nb">cd</span><span class="w"> </span>/path/to/core-stack-backend
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>python<span class="w"> </span>computing/misc/internal_api_initialisation_test.py<span class="w"> </span>--require-gee
 </span></code></pre></div>
 <p>The result to watch is:</p>
 <ul>
@@ -2724,6 +2736,7 @@ If bucket setup is wrong, multiple pipeline families fail in similar ways.</p>
 <h2 id="related-docs">Related Docs<a class="headerlink" href="#related-docs" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../google-earth-engine/">Google Earth Engine</a></li>
+<li><a href="../../docker/#2-configure-gcs-and-google-earth-engine">Docker</a></li>
 <li><a href="../../installer/">Installer</a></li>
 <li><a href="../../setup-troubleshooting/">Setup Troubleshooting</a></li>
 <li><a href="../../../pipelines/">Develop New Pipelines</a></li>

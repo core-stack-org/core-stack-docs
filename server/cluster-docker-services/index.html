@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="Internal runbook for CoRE Stack cluster Docker services — deps-only images, host mounts, STACD/Airflow, and the Custom LULC worked example." name="description"/>
+<meta content="Internal runbook for CoRE Stack cluster Docker services — deps-only images, host mounts, STACD/Airflow, front page and demo video, and the Custom LULC worked example." name="description"/>
 <link href="https://docs.core-stack.org/server/cluster-docker-services/" rel="canonical"/>
 <link href="../../infra/tower-services/" rel="prev"/>
 <link href="../cluster-service-checklist/" rel="next"/>
@@ -1034,6 +1034,15 @@
     </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11-front-page-and-demo-video">
+<span class="md-ellipsis">
+      
+        11. Front page and demo video
+      
+    </span>
+</a>
+</li>
 </ul>
 </nav>
 </li>
@@ -1450,6 +1459,15 @@
 <span class="md-ellipsis">
       
         10. Checklist before adding a cluster service
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11-front-page-and-demo-video">
+<span class="md-ellipsis">
+      
+        11. Front page and demo video
       
     </span>
 </a>
@@ -2296,7 +2314,7 @@
 <li>Public STAC catalog: <a href="https://stac.core-stack.org/">stac.core-stack.org</a></li>
 </ul>
 <h3 id="10-checklist-before-adding-a-cluster-service">10. Checklist before adding a cluster service<a class="headerlink" href="#10-checklist-before-adding-a-cluster-service" title="Permanent link">¶</a></h3>
-<p>Do not treat this as a second contract. Tick the <strong><a href="../cluster-service-checklist/">Cluster Service Checklist</a></strong> — same ten items, same names:</p>
+<p>Do not treat this as a second contract. Tick the <strong><a href="../cluster-service-checklist/">Cluster Service Checklist</a></strong> — same eleven items, same names:</p>
 <table>
 <thead>
 <tr>
@@ -2356,9 +2374,29 @@
 <td><strong><code>outputs.yaml</code></strong> — <code>public</code> / <code>private_persistent</code> / <code>delete</code></td>
 <td>checklist</td>
 </tr>
+<tr>
+<td>11</td>
+<td>Front page, demo video reviewed and approved</td>
+<td><a href="#11-front-page-and-demo-video">§11</a></td>
+</tr>
 </tbody>
 </table>
 <p>Also: README install steps, <code>VERSION</code>, STACD YAML (§7), STAC Item (§9), IITD proxy if you pull on campus.</p>
+<h3 id="11-front-page-and-demo-video">11. Front page and demo video<a class="headerlink" href="#11-front-page-and-demo-video" title="Permanent link">¶</a></h3>
+<p>Same contract as <a href="../cluster-service-checklist/#11-front-page-and-demo-video">checklist §11</a>. Every Tower service ships a <strong>front page</strong> and <strong>one demo video</strong>.</p>
+<p><strong>Front page.</strong> The service URL (Nginx path root, e.g. <code>/drone</code>) must open a landing page in the same spirit as the <a href="https://www.cse.iitd.ernet.in/act4dws5/drone/">Drone Tree-Crown Pipeline</a>:</p>
+<ul>
+<li>A short story of <strong>what the project is</strong> and <strong>why it matters</strong> (not a raw form as the first screen).</li>
+<li>Then <strong>Google SSO</strong> / enter the working UI.</li>
+<li>A place on that same page for the <strong>demo video</strong>.</li>
+</ul>
+<p><strong>Demo video.</strong> Each team records <strong>one</strong> video that is both:</p>
+<ul>
+<li>a <strong>brief manual</strong> about the project (what it is, who it is for, what you get out), and</li>
+<li>a <strong>tutorial</strong> of the happy path (create → run → find output in FileBrowser).</li>
+</ul>
+<p>Put that video <strong>on the front page</strong> (embed or a clear play control). Link it from the README. Keep it short enough that a new operator can watch it once and repeat the flow. The <strong>demo video should be reviewed and approved</strong>.</p>
+<p><strong>Acceptance:</strong> Same as checklist §11 — visitor understands the project from the front page and video; the demo video has been reviewed and approved.</p>
 <hr/>
 <h2 id="worked-example-custom-lulc">Worked example: Custom LULC<a class="headerlink" href="#worked-example-custom-lulc" title="Permanent link">¶</a></h2>
 <p>Concrete copy-this-pattern for an algorithm service: <strong>deps-only image</strong>, <strong>bind-mounted checkout</strong>, <strong>backend triggers and polls Airflow</strong>, <strong>DAG calls back</strong> into <code>POST /api/export-asset</code>. Source: <a href="https://github.com/SaharshLaud/STACD_framework/blob/dev/report/custom_lulc_deployment_and_airflow_pipeline.md">custom_lulc_deployment_and_airflow_pipeline.md</a>.</p>

@@ -2964,11 +2964,23 @@
 </tr>
 <tr>
 <td>Backend keeps restarting</td>
-<td><code>docker compose logs backend</code>. Common first-run waits: GeoServer health, the 8 GB admin-boundary download, or seed load</td>
+<td><code>docker compose logs backend</code>. Common first-run waits: GeoServer health, the 8 GB admin-boundary download, or seed load. Local-compute layer downloads only run when <code>DOWNLOAD_LOCAL_COMPUTE_LAYERS</code> is set</td>
+</tr>
+<tr>
+<td><code>GEEAccount with id=N was not found</code></td>
+<td>Add the JSON in Django admin (<code>/admin/gee_computing/geeaccount/add/</code>) and pass that row’s id as <code>gee_account_id</code></td>
+</tr>
+<tr>
+<td><code>Failed: projects//assets/apps/mws/...</code></td>
+<td><code>GEE_STORAGE_PROJECT</code> is empty. Set it in the Compose <code>.env</code> with <code>GCS_BUCKET_NAME</code>, then <code>docker compose up -d --force-recreate --no-deps backend</code></td>
+</tr>
+<tr>
+<td><code>Census data not available</code></td>
+<td>Admin-boundary files live on the data volume. Symlink: <code>docker compose exec backend ln -sfn /var/tmp/core-stack-data/admin-boundary /app/data/admin-boundary</code></td>
 </tr>
 <tr>
 <td>GEE jobs fail after a successful start</td>
-<td>Mount JSON at <code>gee_confs/gee-service-account.json</code>, add the account in Django admin, then <code>docker compose up -d --force-recreate backend</code> if the file was added after the first start</td>
+<td>Mount JSON at <code>gee_confs/gee-service-account.json</code>, add the account in Django admin, set <code>GCS_BUCKET_NAME</code> / <code>GEE_STORAGE_PROJECT</code> in Compose <code>.env</code>, then recreate the backend</td>
 </tr>
 </tbody>
 </table>

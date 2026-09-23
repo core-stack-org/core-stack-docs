@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="Acceptance checklist — code/models/data mounts, Airflow vs local, GHCR or Docker Hub, Google SSO, log levels, central Postgres, and output retention modes." name="description"/>
+<meta content="Acceptance checklist — code/models/data mounts, Airflow vs local, GHCR or Docker Hub, Google SSO, log levels, central Postgres, output retention, front page, and demo video." name="description"/>
 <link href="https://docs.core-stack.org/server/cluster-service-checklist/" rel="canonical"/>
 <link href="../cluster-docker-services/" rel="prev"/>
 <link href="../../infra/tower-services/deployed-architecture/" rel="next"/>
@@ -979,6 +979,15 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#11-front-page-and-demo-video">
+<span class="md-ellipsis">
+      
+        11. Front page and demo video
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#sign-off">
 <span class="md-ellipsis">
       
@@ -1235,6 +1244,15 @@
 <span class="md-ellipsis">
       
         10. Output retention — public, private-persistent, or delete
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11-front-page-and-demo-video">
+<span class="md-ellipsis">
+      
+        11. Front page and demo video
       
     </span>
 </a>
@@ -1523,6 +1541,18 @@
 </ul>
 <p><strong>Acceptance:</strong> An operator (or the host data service) can read <code>outputs.yaml</code> and know, for each folder, whether to publish, keep private, or delete after N days.</p>
 <hr/>
+<h2 id="11-front-page-and-demo-video">11. Front page and demo video<a class="headerlink" href="#11-front-page-and-demo-video" title="Permanent link">¶</a></h2>
+<p>Every service has a <strong>front page</strong> like the <a href="https://www.cse.iitd.ernet.in/act4dws5/drone/">Drone Tree-Crown Pipeline</a>: a short pitch of what the project is and why it matters, then Google SSO into the tool.</p>
+<p>Record <strong>one demo video</strong>. The same video is both a <strong>brief manual</strong> about the project and a <strong>tutorial</strong>. Embed it on the service front page. <strong>The demo video should be reviewed and approved.</strong></p>
+<p>How-to: <a href="../cluster-docker-services/#11-front-page-and-demo-video">runbook §11</a>.</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <code>/</code> (the Nginx service path) is a landing page in the same style as <a href="https://www.cse.iitd.ernet.in/act4dws5/drone/">drone</a> — project story, then sign-in / enter the app. Not a bare form as the first screen.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> One demo video exists (brief manual <strong>and</strong> tutorial). It is on the front page (embed or prominent play link).</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> The demo video has been reviewed and approved. Date and notes are in the issue or README.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> README links the front-page URL and the video.</li>
+</ul>
+<p><strong>Acceptance:</strong> A new visitor opens the service URL, understands the project from the front page and the video, then can follow the same steps in the UI. The demo video has been reviewed and approved.</p>
+<hr/>
 <h2 id="sign-off">Sign-off<a class="headerlink" href="#sign-off" title="Permanent link">¶</a></h2>
 <table>
 <thead>
@@ -1591,6 +1621,12 @@
 <tr>
 <td>10</td>
 <td><code>outputs.yaml</code> — public / private_persistent / delete</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td>Front page (drone-style), demo video on the front page, video reviewed and approved</td>
 <td></td>
 <td></td>
 </tr>
