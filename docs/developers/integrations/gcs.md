@@ -68,7 +68,7 @@ GEE_STORAGE_PROJECT=ee-your-project
 docker compose up -d --force-recreate --no-deps backend
 ```
 
-Full Docker path, including the admin-boundary compute API: [Docker](../docker.md#2-configure-gcs-and-google-earth-engine).
+Full Docker path, including the admin-boundary compute API: [Docker](../docker.md#gee-and-gcs).
 
 ### Bucket Region Matters
 
@@ -190,7 +190,7 @@ If that probe fails, the service account still does not have the access the back
 ## Related Docs
 
 - [Google Earth Engine](google-earth-engine.md)
-- [Docker](../docker.md#2-configure-gcs-and-google-earth-engine)
+- [Docker](../docker.md#gee-and-gcs)
 - [Installer](../installer.md)
 - [Setup Troubleshooting](../setup-troubleshooting.md)
 - [Develop New Pipelines](../../pipelines/index.md)

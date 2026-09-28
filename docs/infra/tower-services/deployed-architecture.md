@@ -1,85 +1,83 @@
 ---
 title: Deployed Architecture
-description: Current nginx routing, Airflow compute loop, FileBrowser outputs, and service repos on the deployed Tower Services host.
+description: Apps currently running on the Tower Services cluster — URLs, where results go, and the GitHub repos behind each app.
 ---
 
 # Deployed Architecture
 
-This page is the **currently deployed** layout on the Tower Services host. The generic contract (env vars, mounts, STACD) stays on [Tower Services](index.md).
+This is **what is running today** on the Tower Services cluster. Open the URLs below in a browser. You do not need to install anything.
 
-**Nginx** is the only public entry point. Path prefixes send the browser to a service Docker. Compute services **trigger an Airflow DAG**, **poll the run**, and on **success** write output under **`data/<app-name>/`**, which the **shared FileBrowser** exposes.
+These are examples of apps that have already been deployed. The cluster is for **anyone who wants to share an app** — see [Tower Services](index.md) and [Add your own service](index.md#adding-a-service).
 
-## Architecture
+How jobs work, and **why the cluster uses Airflow**, stays on [Tower Services](index.md#why-airflow).
+
+## Open the apps
+
+All public pages go through **one website** (Nginx). The path after the host name chooses the app.
+
+| Path | App | Open |
+| --- | --- | --- |
+| **`/drone`** | Drone — tree crowns on a drone image | [act4dws5/drone](https://www.cse.iitd.ernet.in/act4dws5/drone/) |
+| **`/diy-lulc`** | DIY LULC — land cover from example polygons | [act4dws5/diy-lulc](https://www.cse.iitd.ernet.in/act4dws5/diy-lulc/) |
+| **`/bio-master`** | CEM master — ecological monitoring | [act4dws5/bio-master](https://www.cse.iitd.ernet.in/act4dws5/bio-master/) |
+| **`/file`** | FileBrowser — download finished files | [act4dws5/file](https://www.cse.iitd.ernet.in/act4dws5/file/) |
+| **`/airflow`** | Job runner (Airflow). The apps use this; you usually do not. | [act4dws5/airflow/home](https://www.cse.iitd.ernet.in/act4dws5/airflow/home) |
+
+Each app writes output under **`data/<app-name>/`** (for example `data/drone/`, `data/diy-lulc/`). FileBrowser shows that tree.
+
+## What happens after you start a job
+
+1. You work in that app’s page (`/drone`, `/diy-lulc`, …).
+2. The **app** (not your browser) starts a job on Airflow.
+3. The app **checks status** until the job is `success` or `failed`.
+4. On success it **writes files** under `data/<app-name>/`.
+5. You open **FileBrowser** (`/file`) and download that folder.
 
 ```mermaid
 flowchart TB
-  Browser[Browser] --> Nginx[Nginx]
-  Nginx -->|"/drone"| Drone["Drone<br/>frontend + backend"]
-  Nginx -->|"/airflow"| Airflow[Airflow + STACD]
-  Nginx -->|"/bio-master"| BioMaster[CEM master]
+  Browser[Your browser] --> Nginx[Cluster website]
+  Nginx -->|"/drone"| Drone[Drone]
+  Nginx -->|"/airflow"| Airflow[Airflow job runner]
+  Nginx -->|"/bio-master"| BioMaster[CEM]
   Nginx -->|"/diy-lulc"| Lulc[DIY LULC]
   Nginx -->|"/file"| FB[FileBrowser]
-  Drone -->|"trigger + poll DAG"| Airflow
-  Lulc -->|"trigger + poll DAG"| Airflow
+  Drone -->|"start job and wait"| Airflow
+  Lulc -->|"start job and wait"| Airflow
   Airflow -->|success| Data["data/app-name"]
   Data --> FB
-  Browser -.->|browse / download| FB
+  Browser -.->|download| FB
 ```
-
-The browser talks to **Nginx**, not to Airflow. Each compute service’s backend triggers the DAG and monitors the run. When the run completes, results land in the shared data tree, one folder per app, and people open them in FileBrowser at [`/file`](https://www.cse.iitd.ernet.in/act4dws5/file/).
 
 ```mermaid
 sequenceDiagram
-  participant Browser
-  participant Nginx
-  participant Service as Service Docker
-  participant Airflow as Airflow
+  participant You
+  participant Website as Cluster website
+  participant App as The app
+  participant Airflow as Job runner
   participant Data as data/app-name
   participant FB as FileBrowser
-  Browser->>Nginx: /drone, /diy-lulc, /bio-master, /file, …
-  Nginx->>Service: reverse proxy
-  Browser->>Service: interactive UI
-  Service->>Airflow: trigger DAG
-  loop poll until success or failed
-    Service->>Airflow: DAG run status
+  You->>Website: /drone or /diy-lulc or /file
+  Website->>App: send you to that app
+  You->>App: start a job
+  App->>Airflow: start job
+  loop wait until success or failed
+    App->>Airflow: is it done?
   end
-  Airflow-->>Service: success
-  Service->>Data: write output
-  Browser->>FB: browse data/app-name
+  Airflow-->>App: success
+  App->>Data: write files
+  You->>FB: download data/app-name
 ```
 
-## Nginx paths
+Your browser never calls Airflow. The path is: website → the app → Airflow. Same idea as [Tower Services — How a job runs](index.md#architecture).
 
-| Path | Goes to | URL |
-| --- | --- | --- |
-| **`/drone`** | Drone — frontend and backend in Docker | [act4dws5/drone](https://www.cse.iitd.ernet.in/act4dws5/drone/) |
-| **`/airflow`** | Airflow (STACD-generated DAGs) | [act4dws5/airflow/home](https://www.cse.iitd.ernet.in/act4dws5/airflow/home) |
-| **`/bio-master`** | CEM master | [act4dws5/bio-master](https://www.cse.iitd.ernet.in/act4dws5/bio-master/) |
-| **`/diy-lulc`** | DIY LULC | [act4dws5/diy-lulc](https://www.cse.iitd.ernet.in/act4dws5/diy-lulc/) |
-| **`/file`** | Shared FileBrowser over `data/<app-name>/` | [act4dws5/file](https://www.cse.iitd.ernet.in/act4dws5/file/) |
+## Services and source code
 
-Each service writes to **`data/<app-name>/`** (for example `data/drone/`, `data/diy-lulc/`).
+| Service | Path | What it is | Source |
+| --- | --- | --- | --- |
+| **Drone** | `/drone` | Tree-crown detection on a drone orthomosaic | [anunay1206/drone_docker](https://github.com/anunay1206/drone_docker) |
+| **DIY LULC** | `/diy-lulc` | 10 m land-use / land-cover over India | [salil-123/Project](https://github.com/salil-123/Project) |
+| **CEM master** | `/bio-master` | Continuous Ecological Monitoring | [xHrid/continuous-ecological-monitoring-toolkit](https://github.com/xHrid/continuous-ecological-monitoring-toolkit) |
+| **Airflow + STACD** | `/airflow` | Shared job runner | [SaharshLaud/STACD_framework](https://github.com/SaharshLaud/STACD_framework) (`dev`) |
+| **FileBrowser** | `/file` | Shared file UI over `data/<app-name>/` | [filebrowser/filebrowser](https://github.com/filebrowser/filebrowser) |
 
-## Compute loop
-
-Every compute service follows the same loop:
-
-1. Operator works in that service’s UI (behind its Nginx path).
-2. The service **triggers** an Airflow DAG.
-3. The service **monitors** the DAG run until it is `success` or `failed`.
-4. On success it **produces the result** and **pushes output** to **`data/<app-name>/`**.
-5. Operators view and download that folder in the **shared FileBrowser**.
-
-The browser never calls Airflow. Nginx → service Docker → Airflow REST. Same pattern as [Tower Services](index.md#architecture).
-
-## Services and repos
-
-| Service | Nginx path | URL | What it is | Repo |
-| --- | --- | --- | --- | --- |
-| **Drone** | `/drone` | [Open](https://www.cse.iitd.ernet.in/act4dws5/drone/) | Tree-crown detection on a drone orthomosaic. Frontend + backend Docker. | [anunay1206/drone_docker](https://github.com/anunay1206/drone_docker) |
-| **Airflow + STACD** | `/airflow` | [Open](https://www.cse.iitd.ernet.in/act4dws5/airflow/home) | Shared orchestrator. Services trigger DAGs here and poll until the run finishes. | [SaharshLaud/STACD_framework](https://github.com/SaharshLaud/STACD_framework) (`dev`) |
-| **CEM master** | `/bio-master` | [Open](https://www.cse.iitd.ernet.in/act4dws5/bio-master/) | Continuous Ecological Monitoring master page (explore spots, species, network). | [xHrid/continuous-ecological-monitoring-toolkit](https://github.com/xHrid/continuous-ecological-monitoring-toolkit) |
-| **DIY LULC** | `/diy-lulc` | [Open](https://www.cse.iitd.ernet.in/act4dws5/diy-lulc/) | 10 m land-use / land-cover over India; grow classes from example polygons. | [salil-123/Project](https://github.com/salil-123/Project) |
-| **FileBrowser** | `/file` | [Open](https://www.cse.iitd.ernet.in/act4dws5/file/) | Shared file UI. After a successful run, browse and download `data/<app-name>/`. | [filebrowser/filebrowser](https://github.com/filebrowser/filebrowser) |
-
-Install, image tags, and `.env` live in each service repo. Cluster standards are in [Cluster Docker Services](../../server/cluster-docker-services.md).
+How to install each app is in **that repo’s README**. Cluster-wide rules (mounts, STAC, checklist) are in [Cluster Docker Services](../../server/cluster-docker-services.md) after you have read [Tower Services](index.md).

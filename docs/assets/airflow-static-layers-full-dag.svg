@@ -1,0 +1,229 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 980" role="img" aria-label="Airflow Graph view of CoreStack_DAG_LocalCompute_StaticLayers">
+  <defs>
+    <filter id="shadow" x="-8%" y="-8%" width="116%" height="124%">
+      <feDropShadow dx="0" dy="1" stdDeviation="1.4" flood-color="#1b3a4b" flood-opacity="0.18"/>
+    </filter>
+    <style>
+      .chrome { font-family: Inter, "Segoe UI", Helvetica, Arial, sans-serif; }
+      .node { font-family: Inter, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 600; }
+      .edge { fill: none; stroke: #8aa0ad; stroke-width: 1.25; }
+    </style>
+  </defs>
+
+  <rect width="1680" height="980" fill="#f4f6f8"/>
+  <rect width="1680" height="56" fill="#017cee"/>
+  <text class="chrome" x="24" y="36" fill="#fff" font-size="20" font-weight="700">Airflow</text>
+  <text class="chrome" x="140" y="35" fill="#d7ecff" font-size="13">DAGs</text>
+  <text class="chrome" x="190" y="35" fill="#fff" font-size="13" font-weight="700">Graph</text>
+  <text class="chrome" x="250" y="35" fill="#d7ecff" font-size="13">Grid</text>
+  <text class="chrome" x="1540" y="35" fill="#fff" font-size="13">Trigger �</text>
+
+  <rect x="0" y="56" width="1680" height="40" fill="#fff"/>
+  <text class="chrome" x="24" y="82" fill="#445566" font-size="13">DAGs / <tspan fill="#017cee" font-weight="700">CoreStack_DAG_LocalCompute_StaticLayers</tspan> / Graph</text>
+  <text class="chrome" x="1320" y="82" fill="#667788" font-size="12">execution_type = fullexec � full DAG</text>
+
+  <!-- edges from branch -->
+  <path class="edge" d="M840 148 L840 176"/>
+  <path class="edge" d="M840 176 L430 200 L430 228"/>
+  <path class="edge" d="M840 176 L1250 200 L1250 228"/>
+
+  <!-- admin consumers -->
+  <path class="edge" d="M430 268 L200 300 L200 328"/>
+  <path class="edge" d="M430 268 L430 328"/>
+  <path class="edge" d="M430 268 L660 300 L660 328"/>
+
+  <!-- mws consumers row 1 -->
+  <path class="edge" d="M1250 268 L820 300 L820 328"/>
+  <path class="edge" d="M1250 268 L960 300 L960 328"/>
+  <path class="edge" d="M1250 268 L1100 300 L1100 328"/>
+  <path class="edge" d="M1250 268 L1240 328"/>
+  <path class="edge" d="M1250 268 L1380 300 L1380 328"/>
+  <path class="edge" d="M1250 268 L1520 300 L1520 328"/>
+
+  <!-- mws consumers row 2 via mid rail -->
+  <path class="edge" d="M1250 268 L1250 292"/>
+
+  <!-- algo to asset (admin) -->
+  <path class="edge" d="M200 368 L200 408"/>
+  <path class="edge" d="M430 368 L430 408"/>
+  <path class="edge" d="M660 368 L660 408"/>
+
+  <g id="nodes">
+    <!-- branch -->
+    <rect x="700" y="116" width="280" height="32" rx="6" fill="#017cee" filter="url(#shadow)"/>
+    <text class="node" x="840" y="137" text-anchor="middle" fill="#fff">determine_execution_path</text>
+
+    <!-- roots -->
+    <rect x="330" y="228" width="200" height="40" rx="6" fill="#6b5ca5" filter="url(#shadow)"/>
+    <text class="node" x="430" y="253" text-anchor="middle" fill="#fff">Admin_Boundary_Asset</text>
+    <rect x="1150" y="228" width="200" height="40" rx="6" fill="#6b5ca5" filter="url(#shadow)"/>
+    <text class="node" x="1250" y="253" text-anchor="middle" fill="#fff">MWS_Boundaries</text>
+
+    <!-- admin algos -->
+    <rect x="120" y="328" width="160" height="40" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text class="node" x="200" y="353" text-anchor="middle" fill="#fff">Livestock</text>
+    <rect x="350" y="328" width="160" height="40" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text class="node" x="430" y="353" text-anchor="middle" fill="#fff">Antyodaya</text>
+    <rect x="580" y="328" width="160" height="40" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text class="node" x="660" y="353" text-anchor="middle" fill="#fff">Facilities_Proximity</text>
+
+    <!-- admin assets -->
+    <rect x="120" y="408" width="160" height="36" rx="6" fill="#1aae9f" filter="url(#shadow)"/>
+    <text class="node" x="200" y="431" text-anchor="middle" fill="#fff">Livestock_Asset</text>
+    <rect x="350" y="408" width="160" height="36" rx="6" fill="#1aae9f" filter="url(#shadow)"/>
+    <text class="node" x="430" y="431" text-anchor="middle" fill="#fff">Antyodaya_Asset</text>
+    <rect x="580" y="408" width="160" height="36" rx="6" fill="#1aae9f" filter="url(#shadow)"/>
+    <text class="node" x="660" y="431" text-anchor="middle" fill="#fff">Facilities_Proximity_Asset</text>
+  </g>
+
+  <!-- MWS algorithm grid -->
+  <!-- row 1 -->
+  <g font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#fff">
+    <rect x="20" y="520" width="158" height="36" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text x="99" y="543" text-anchor="middle">Aquifer_Vector</text>
+    <rect x="188" y="520" width="158" height="36" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text x="267" y="543" text-anchor="middle">Drainage_Density</text>
+    <rect x="356" y="520" width="158" height="36" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text x="435" y="543" text-anchor="middle">River</text>
+    <rect x="524" y="520" width="158" height="36" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text x="603" y="543" text-anchor="middle">Canal</text>
+    <rect x="692" y="520" width="158" height="36" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text x="771" y="543" text-anchor="middle">Digital_Elevation_Model</text>
+    <rect x="860" y="520" width="158" height="36" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text x="939" y="543" text-anchor="middle">Drainage_Lines</text>
+    <rect x="1028" y="520" width="158" height="36" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text x="1107" y="543" text-anchor="middle">Restoration_Opportunity</text>
+    <rect x="1196" y="520" width="158" height="36" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text x="1275" y="543" text-anchor="middle">SOGE_Vector</text>
+    <rect x="1364" y="520" width="158" height="36" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text x="1443" y="543" text-anchor="middle">LCW_Conflict</text>
+    <rect x="1532" y="520" width="128" height="36" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text x="1596" y="543" text-anchor="middle">Agro_Ecological</text>
+  </g>
+  <!-- connectors from MWS to row1 -->
+  <path class="edge" d="M1250 268 L99 500 L99 520"/>
+  <path class="edge" d="M1250 268 L267 500 L267 520"/>
+  <path class="edge" d="M1250 268 L435 500 L435 520"/>
+  <path class="edge" d="M1250 268 L603 500 L603 520"/>
+  <path class="edge" d="M1250 268 L771 500 L771 520"/>
+  <path class="edge" d="M1250 268 L939 500 L939 520"/>
+  <path class="edge" d="M1250 268 L1107 500 L1107 520"/>
+  <path class="edge" d="M1250 268 L1275 500 L1275 520"/>
+  <path class="edge" d="M1250 268 L1443 500 L1443 520"/>
+  <path class="edge" d="M1250 268 L1596 500 L1596 520"/>
+
+  <!-- row 2 algos -->
+  <g font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#fff">
+    <rect x="104" y="700" width="158" height="36" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text x="183" y="723" text-anchor="middle">Factory_CSR</text>
+    <rect x="272" y="700" width="158" height="36" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text x="351" y="723" text-anchor="middle">Green_Credit</text>
+    <rect x="440" y="700" width="158" height="36" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text x="519" y="723" text-anchor="middle">Mining</text>
+    <rect x="608" y="700" width="158" height="36" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text x="687" y="723" text-anchor="middle">Natural_Depression</text>
+    <rect x="776" y="700" width="158" height="36" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text x="855" y="723" text-anchor="middle">Dist_to_Drainage</text>
+    <rect x="944" y="700" width="158" height="36" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text x="1023" y="723" text-anchor="middle">Catchment_Area</text>
+    <rect x="1112" y="700" width="158" height="36" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text x="1191" y="723" text-anchor="middle">Slope_Percentage</text>
+    <rect x="1280" y="700" width="158" height="36" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text x="1359" y="723" text-anchor="middle">MWS_Connectivity</text>
+    <rect x="1448" y="700" width="158" height="36" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text x="1527" y="723" text-anchor="middle">MWS_Centroid</text>
+    <rect x="20" y="700" width="74" height="36" rx="6" fill="#00a092" filter="url(#shadow)"/>
+    <text x="57" y="723" text-anchor="middle">Soil_Type</text>
+  </g>
+  <path class="edge" d="M1250 268 L57 680 L57 700"/>
+  <path class="edge" d="M1250 268 L183 680 L183 700"/>
+  <path class="edge" d="M1250 268 L351 680 L351 700"/>
+  <path class="edge" d="M1250 268 L519 680 L519 700"/>
+  <path class="edge" d="M1250 268 L687 680 L687 700"/>
+  <path class="edge" d="M1250 268 L855 680 L855 700"/>
+  <path class="edge" d="M1250 268 L1023 680 L1023 700"/>
+  <path class="edge" d="M1250 268 L1191 680 L1191 700"/>
+  <path class="edge" d="M1250 268 L1359 680 L1359 700"/>
+  <path class="edge" d="M1250 268 L1527 680 L1527 700"/>
+
+  <!-- assets row 1 -->
+  <g font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#fff">
+    <rect x="20" y="572" width="158" height="32" rx="6" fill="#1aae9f"/>
+    <text x="99" y="593" text-anchor="middle">Aquifer_Vector_Asset</text>
+    <rect x="188" y="572" width="158" height="32" rx="6" fill="#1aae9f"/>
+    <text x="267" y="593" text-anchor="middle">Drainage_Density_Asset</text>
+    <rect x="356" y="572" width="158" height="32" rx="6" fill="#1aae9f"/>
+    <text x="435" y="593" text-anchor="middle">River_Asset</text>
+    <rect x="524" y="572" width="158" height="32" rx="6" fill="#1aae9f"/>
+    <text x="603" y="593" text-anchor="middle">Canal_Asset</text>
+    <rect x="692" y="572" width="158" height="32" rx="6" fill="#1aae9f"/>
+    <text x="771" y="593" text-anchor="middle">Digital_Elevation_Model_Asset</text>
+    <rect x="860" y="572" width="158" height="32" rx="6" fill="#1aae9f"/>
+    <text x="939" y="593" text-anchor="middle">Drainage_Lines_Asset</text>
+    <rect x="1028" y="572" width="158" height="32" rx="6" fill="#1aae9f"/>
+    <text x="1107" y="593" text-anchor="middle">Restoration_Opportunity_Asset</text>
+    <rect x="1196" y="572" width="158" height="32" rx="6" fill="#1aae9f"/>
+    <text x="1275" y="593" text-anchor="middle">SOGE_Vector_Asset</text>
+    <rect x="1364" y="572" width="158" height="32" rx="6" fill="#1aae9f"/>
+    <text x="1443" y="593" text-anchor="middle">LCW_Conflict_Asset</text>
+    <rect x="1532" y="572" width="128" height="32" rx="6" fill="#1aae9f"/>
+    <text x="1596" y="593" text-anchor="middle">Agro_Ecological_Asset</text>
+  </g>
+  <path class="edge" d="M99 556 L99 572"/>
+  <path class="edge" d="M267 556 L267 572"/>
+  <path class="edge" d="M435 556 L435 572"/>
+  <path class="edge" d="M603 556 L603 572"/>
+  <path class="edge" d="M771 556 L771 572"/>
+  <path class="edge" d="M939 556 L939 572"/>
+  <path class="edge" d="M1107 556 L1107 572"/>
+  <path class="edge" d="M1275 556 L1275 572"/>
+  <path class="edge" d="M1443 556 L1443 572"/>
+  <path class="edge" d="M1596 556 L1596 572"/>
+
+  <!-- assets row 2 -->
+  <g font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="10" font-weight="600" fill="#fff">
+    <rect x="20" y="752" width="74" height="32" rx="6" fill="#1aae9f"/>
+    <text x="57" y="773" text-anchor="middle">Soil_Type_Asset</text>
+    <rect x="104" y="752" width="158" height="32" rx="6" fill="#1aae9f"/>
+    <text x="183" y="773" text-anchor="middle">Factory_CSR_Asset</text>
+    <rect x="272" y="752" width="158" height="32" rx="6" fill="#1aae9f"/>
+    <text x="351" y="773" text-anchor="middle">Green_Credit_Asset</text>
+    <rect x="440" y="752" width="158" height="32" rx="6" fill="#1aae9f"/>
+    <text x="519" y="773" text-anchor="middle">Mining_Asset</text>
+    <rect x="608" y="752" width="158" height="32" rx="6" fill="#1aae9f"/>
+    <text x="687" y="773" text-anchor="middle">Natural_Depression_Asset</text>
+    <rect x="776" y="752" width="158" height="32" rx="6" fill="#1aae9f"/>
+    <text x="855" y="773" text-anchor="middle">Dist_to_Drainage_Asset</text>
+    <rect x="944" y="752" width="158" height="32" rx="6" fill="#1aae9f"/>
+    <text x="1023" y="773" text-anchor="middle">Catchment_Area_Asset</text>
+    <rect x="1112" y="752" width="158" height="32" rx="6" fill="#1aae9f"/>
+    <text x="1191" y="773" text-anchor="middle">Slope_Percentage_Asset</text>
+    <rect x="1280" y="752" width="158" height="32" rx="6" fill="#1aae9f"/>
+    <text x="1359" y="773" text-anchor="middle">MWS_Connectivity_Asset</text>
+    <rect x="1448" y="752" width="158" height="32" rx="6" fill="#1aae9f"/>
+    <text x="1527" y="773" text-anchor="middle">MWS_Centroid_Asset</text>
+  </g>
+  <path class="edge" d="M57 736 L57 752"/>
+  <path class="edge" d="M183 736 L183 752"/>
+  <path class="edge" d="M351 736 L351 752"/>
+  <path class="edge" d="M519 736 L519 752"/>
+  <path class="edge" d="M687 736 L687 752"/>
+  <path class="edge" d="M855 736 L855 752"/>
+  <path class="edge" d="M1023 736 L1023 752"/>
+  <path class="edge" d="M1191 736 L1191 752"/>
+  <path class="edge" d="M1359 736 L1359 752"/>
+  <path class="edge" d="M1527 736 L1527 752"/>
+
+  <!-- legend -->
+  <rect x="24" y="860" width="1632" height="96" rx="8" fill="#fff" stroke="#d5dde3"/>
+  <text class="chrome" x="44" y="888" fill="#223344" font-size="13" font-weight="700">How to read the Graph (same layout as Airflow � DAGs � CoreStack_DAG_LocalCompute_StaticLayers � Graph)</text>
+  <rect x="44" y="906" width="18" height="14" rx="3" fill="#017cee"/>
+  <text class="chrome" x="70" y="918" fill="#445566" font-size="12">Branch  selects fullexec / resume_exec / update_*</text>
+  <rect x="430" y="906" width="18" height="14" rx="3" fill="#6b5ca5"/>
+  <text class="chrome" x="456" y="918" fill="#445566" font-size="12">Root datasets</text>
+  <rect x="620" y="906" width="18" height="14" rx="3" fill="#00a092"/>
+  <text class="chrome" x="646" y="918" fill="#445566" font-size="12">Algorithms (POST the backend API)</text>
+  <rect x="960" y="906" width="18" height="14" rx="3" fill="#1aae9f"/>
+  <text class="chrome" x="986" y="918" fill="#445566" font-size="12">Output assets (STAC / asset_id)</text>
+  <text class="chrome" x="44" y="942" fill="#667788" font-size="12">Each algorithm also has a direct edge from determine_execution_path so resume_exec can re-run only failed nodes.</text>
+</svg>

@@ -8,7 +8,7 @@ description: Local setup for the CoRE Stack backend — native Linux installer o
 Choose how you want to run the backend:
 
 - **Native (Linux)** — this page. Uses the backend installer on Ubuntu or WSL2. It sets up Python, PostgreSQL, RabbitMQ, the runtime `.env`, migrations, seed data, optional Earth Engine credentials, admin-boundary data, and the built-in initialization check.
-- **Docker** — [Docker installation](docker.md). Pulls the published runtime image and bind-mounts the backend checkout onto `/app`. No Conda, local Postgres, or GitHub password.
+- **Docker** — [Docker installation](docker.md) in two parts: [Part 1 Airflow + sync](docker.md#part-1-with-airflow-sync) (setup, upload DAG, trigger, Graph, re-exec) or [Part 2 Celery + async](docker.md#part-2-without-airflow-async). Builds Compose from [installation/DOCKER.md](https://github.com/core-stack-org/core-stack-backend/blob/main/installation/DOCKER.md) and bind-mounts the checkout onto `/app`.
 
 Optional integrations (GEE, GCS, GeoServer) are Steps 4–6 below. Installer flags and troubleshooting are documented at the bottom of this page.
 
@@ -137,26 +137,21 @@ The **Native** tab uses `installation/install.sh` in [core-stack-backend](https:
 
 === "Docker"
 
-    Pull the published **runtime** image and start Postgres, GeoServer, and Django. You do not need Conda, a local Postgres install, or a GitHub password. The image does not include the Django app; Compose bind-mounts this checkout onto `/app`. Full walkthrough: [Docker installation](docker.md).
+    Builds the stack from the repo-root `docker-compose.yml` (see [installation/DOCKER.md](https://github.com/core-stack-org/core-stack-backend/blob/main/installation/DOCKER.md)). Source is bind-mounted at `/app`. Full walkthrough: [Docker installation](docker.md).
 
-    #### What you get
+    Docker install is **two parts** — [Part 1 Airflow + sync](docker.md#part-1-with-airflow-sync) (setup Airflow, upload DAG, trigger, full Graph, re-exec) or [Part 2 no Airflow + async](docker.md#part-2-without-airflow-async):
 
-    | Service | URL | Login |
+    | Part | `LAYER_GENERATION_SYNC_MODE` | Request `layer_generation_mode` |
     | --- | --- | --- |
-    | Django / API | http://localhost:8000 | Superuser `test_user_XXXX` / `test_change_me` |
-    | Django admin | http://localhost:8000/admin/ | Same superuser |
-    | GeoServer | http://localhost:8080/geoserver | `admin` / `geoserver` |
-
-    Postgres listens on `localhost:5432` (`corestack_admin` / `corestack@123`, database `corestack_db`). Computing APIs run in-process; you do not start a separate Celery worker.
+    | Part 1 — With Airflow (sync) | `True` | `"sync"` |
+    | Part 2 — Without Airflow (async, default) | `False` | `"async"` or omit |
 
     #### Step 1 — Prerequisites
 
-    - [Docker](https://docs.docker.com/get-docker/) with Compose v2 (`docker compose version`)
-    - About **20 GB** free disk (images plus the first-run admin-boundary download, ~8 GB)
-    - Ports **8000**, **8080**, and **5432** free
-    - Git, to clone the backend repo (required: Compose bind-mounts the checkout onto `/app`)
-
-    The backend and GeoServer images are **linux/amd64**. Docker Desktop on Apple Silicon runs them with emulation.
+    - [Docker](https://docs.docker.com/get-docker/) with Compose v2
+    - About **20 GB** free disk (images plus the first-run admin-boundary download)
+    - Ports **8000**, **8080**, and **5432** free on loopback
+    - Git, to clone the backend repo
 
     #### Step 2 — Clone the backend repository
 
@@ -165,82 +160,51 @@ The **Native** tab uses `installation/install.sh` in [core-stack-backend](https:
     cd core-stack-backend
     ```
 
-    A full clone is required. Compose mounts `.` onto `/app` in `backend`, `geoserver-init`, and `gee-config`. To use another tree, set `BACKEND_CODE_DIR` in a `.env` next to `docker-compose.yml`. You do not build the backend image yourself.
-
     #### Step 3 — Provision the runtime
 
-    Optional: mount a GEE service-account JSON if layer jobs will call Earth Engine.
+    ```bash
+    cp installation/docker/env.template nrm_app/.env
+    chmod 600 nrm_app/.env
+    ```
+
+    Set `LAYER_GENERATION_SYNC_MODE` and replace passwords in that file. Then:
 
     ```bash
-    mkdir -p gee_confs
-    cp /path/to/your-gee-service-account.json gee_confs/gee-service-account.json
+    docker compose --env-file nrm_app/.env up -d --build
     ```
 
-    Pull and start:
+    Watch first-start jobs:
 
     ```bash
-    mkdir -p gee_confs
-    docker compose pull
-    docker compose up -d
+    docker compose --env-file nrm_app/.env ps
+    docker compose --env-file nrm_app/.env logs -f app-init database-init backend
     ```
-
-    The image is public (runtime only — no app source): `ghcr.io/core-stack-org/core-stack-backend:latest`. No `docker login` is required. On Apple Silicon use Compose, not a bare `docker pull` (Compose pins `linux/amd64`).
-
-    The first start downloads admin-boundary data (~8 GB), creates GeoServer workspaces/styles, runs migrations, and loads seed data. Watch progress:
-
-    ```bash
-    docker compose ps
-    docker compose logs -f backend
-    ```
-
-    When Django is ready:
-
-    ```text
-    Starting development server at http://0.0.0.0:8000/
-    Django is ready. Superuser password is test_change_me
-    ```
-
-    The superuser name is `test_user_` plus four digits:
-
-    ```bash
-    docker compose logs backend | grep -E 'created\||updated\|'
-    ```
-
-    Change that password after first login.
 
     #### Step 4 — GEE service account JSON key
 
-    Skip if you do not need Earth Engine. After Django is up, add the account at [http://localhost:8000/admin/gee_computing/geeaccount/add/](http://localhost:8000/admin/gee_computing/geeaccount/add/). Use the service-account email from the JSON you mounted in `gee_confs/`. Full GEE project steps: [Google Earth Engine](integrations/google-earth-engine.md).
-
-    If you added the JSON after the first start:
-
-    ```bash
-    docker compose up -d --force-recreate backend
-    ```
+    Skip if you do not need Earth Engine. Copy the JSON under `CORESTACK_HOST_DATA_DIR/gee_confs/`, run `gee-config`, and add a `GEEAccount` in Django admin. Full steps: [Docker — GEE and GCS](docker.md#gee-and-gcs) and [Google Earth Engine](integrations/google-earth-engine.md).
 
     #### Step 5 — GCS bucket
 
-    Skip if you do not need GEE-backed raster publication yet. Create a bucket in `us-central1` and grant the GEE service account `roles/storage.objectViewer`, `roles/storage.legacyBucketReader`, and `roles/storage.objectAdmin`. Put the name in a Compose `.env` as `GCS_BUCKET_NAME=your-gcs-bucket`, then `docker compose up -d --force-recreate gee-config backend`. Full walkthrough: [Docker installation — GCS](docker.md#3-optional-google-cloud-storage) and [Google Cloud Storage](integrations/gcs.md).
+    Skip if you do not need GEE-backed raster publication yet. Create a bucket in `us-central1`, set `GCS_BUCKET_NAME` in `nrm_app/.env`, recreate `gee-config` and `backend`. [Docker — GCS](docker.md#3-optional-google-cloud-storage).
 
     #### Step 6 — GeoServer
 
-    Compose starts GeoServer and initializes workspaces/styles. Default login is `admin` / `geoserver` at http://localhost:8080/geoserver. Nothing else to run.
+    Compose starts GeoServer and initializes workspaces/styles at http://localhost:8080/geoserver (`GEOSERVER_USERNAME` / `GEOSERVER_PASSWORD` from `nrm_app/.env`).
 
     #### Step 7 — Data paths
 
-    App code is the host checkout bind-mounted at `/app`. Data lives on the `core_stack_data` Docker volume (`DATA_DIR=/var/tmp/core-stack-data` inside the container). After first start, `nrm_app/.env` is written on the mounted tree (the host clone).
+    App code is the host checkout at `/app`. Data, GEE JSON, and backups live under `CORESTACK_HOST_DATA_DIR` (repository root by default).
 
     #### Step 8 — Start the runtime
 
-    `docker compose up -d` already starts Django. Confirm:
+    `docker compose --env-file nrm_app/.env up -d --build` already starts Gunicorn and Celery. Confirm:
 
     ```bash
     curl -s -o /dev/null -w "%{http_code}\n" http://localhost:8000/
     curl -s -o /dev/null -w "%{http_code}\n" http://localhost:8000/admin/login/
     curl -s -o /dev/null -w "%{http_code}\n" http://localhost:8080/geoserver/web/
     ```
-
-    Expect `200` from Django and `200` or `302` from GeoServer.
 
     **Access (Docker on host):**
 
@@ -250,13 +214,15 @@ The **Native** tab uses `installation/install.sh` in [core-stack-backend](https:
     | Django admin | `http://127.0.0.1:8000/admin/` |
     | GeoServer admin | `http://127.0.0.1:8080/geoserver` |
 
-    Day-to-day commands, optional ports/passwords, and troubleshooting: [Docker installation](docker.md).
-
-    Create a named Django admin (optional):
+    Create a Django admin if you did not set `DJANGO_SUPERUSER_*`:
 
     ```bash
-    docker compose exec -it backend python manage.py createsuperuser --skip-checks
+    docker compose --env-file nrm_app/.env exec backend python manage.py createsuperuser
     ```
+
+    Then finish **[Part 1 — Airflow setup, upload DAG, trigger, Graph, re-exec](docker.md#part-1-with-airflow-sync)** or stay on **[Part 2 — Celery async](docker.md#part-2-without-airflow-async)**.
+
+    Day-to-day commands, backups, proxy, and troubleshooting: [Docker installation](docker.md).
 
 ### Step 9 — Log in and invoke APIs { #step-9-log-in-and-invoke-apis }
 

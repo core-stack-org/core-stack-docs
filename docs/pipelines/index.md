@@ -35,7 +35,7 @@ flowchart LR
 
 Use one small request after the backend is running. Replace the place names and `gee_account_id` with values from your environment.
 
-On **Docker Compose**, start with [admin-boundary generate](../developers/docker.md#9-run-the-admin-boundary-local-compute-api) (`POST /api/v1/generate_block_layer/`). Compute runs in-process (`CELERY_TASK_ALWAYS_EAGER`), so the HTTP call waits until the task finishes. For native Linux, keep a Celery worker on queue `nrm` as below.
+On **Docker Compose**, start with [admin-boundary generate](../developers/docker.md#9-run-the-admin-boundary-local-compute-api) (`POST /api/v1/generate_block_layer/`). Pass `"layer_generation_mode": "sync"` (or set `LAYER_GENERATION_SYNC_MODE=True`) if the HTTP call must wait; otherwise Celery workers run the job asynchronously. See [two layer-generation methods](../developers/docker.md#two-methods-airflow--sync-or-no-airflow--async). For native Linux, keep a Celery worker on queue `nrm` as below.
 
 
 ```bash

@@ -122,7 +122,7 @@ If tasks never start:
 - keep the Django server and Celery worker in separate terminals
 - watch both logs while triggering an API
 
-Docker Compose runs compute **in-process** (`CELERY_TASK_ALWAYS_EAGER`). Do not start a Celery worker on the host for that path. See [Docker installation](docker.md).
+Docker Compose starts Celery workers. Layer APIs are **async** unless you set `LAYER_GENERATION_SYNC_MODE=True` or pass `"layer_generation_mode": "sync"`. See [Docker installation — two methods](docker.md#two-methods-airflow--sync-or-no-airflow--async).
 
 ## Docker
 
@@ -130,16 +130,15 @@ Use [Docker installation](docker.md) for Compose commands. Common first-run issu
 
 | Symptom | Fix |
 | --- | --- |
-| Port already in use | Stop whatever is bound to 8000, 8080, or 5432, or set `BACKEND_PORT` / `GEOSERVER_PORT` / `POSTGRES_PORT` in a `.env` next to `docker-compose.yml` |
-| `denied` or `unauthorized` pulling the image | The package should be public. Confirm [ghcr.io/core-stack-org/core-stack-backend](https://github.com/core-stack-org/core-stack-backend/pkgs/container/core-stack-backend) opens without signing in, then retry `docker compose pull` |
-| `no matching manifest for linux/arm64` | Use `docker compose pull`, not a bare `docker pull` on Apple Silicon. Compose sets `platform: linux/amd64` |
-| Backend keeps restarting | `docker compose logs backend`. Common first-run waits: GeoServer health, the 8 GB admin-boundary download, or seed load. Local-compute layer downloads only run when `DOWNLOAD_LOCAL_COMPUTE_LAYERS` is set |
+| Port already in use | Stop whatever is bound to 8000, 8080, or 5432, or set ports in `nrm_app/.env` |
+| Backend keeps restarting | `docker compose --env-file nrm_app/.env logs backend`. First-run waits: GeoServer health, admin-boundary download, seed load |
 | `GEEAccount with id=N was not found` | Add the JSON in Django admin (`/admin/gee_computing/geeaccount/add/`) and pass that row’s id as `gee_account_id` |
-| `Failed: projects//assets/apps/mws/...` | `GEE_STORAGE_PROJECT` is empty. Set it in the Compose `.env` with `GCS_BUCKET_NAME`, then `docker compose up -d --force-recreate --no-deps backend` |
-| `Census data not available` | Admin-boundary files live on the data volume. Symlink: `docker compose exec backend ln -sfn /var/tmp/core-stack-data/admin-boundary /app/data/admin-boundary` |
-| GEE jobs fail after a successful start | Mount JSON at `gee_confs/gee-service-account.json`, add the account in Django admin, set `GCS_BUCKET_NAME` / `GEE_STORAGE_PROJECT` in Compose `.env`, then recreate the backend |
+| `Failed: projects//assets/apps/mws/...` | `GEE_STORAGE_PROJECT` is empty. Set it in `nrm_app/.env` with `GCS_BUCKET_NAME`, then recreate the backend |
+| API returns `initiated` but nothing computes | Async mode. Check Celery workers, or use `"layer_generation_mode": "sync"` / `LAYER_GENERATION_SYNC_MODE=True` |
+| Airflow DAG skips STAC | Need a sync response. Set `LAYER_GENERATION_SYNC_MODE=True` or `"layer_generation_mode": "sync"` |
+| GEE jobs fail after a successful start | Mount JSON under `CORESTACK_HOST_DATA_DIR/gee_confs/`, add the account in Django admin, set `GCS_BUCKET_NAME` / `GEE_STORAGE_PROJECT`, recreate `gee-config` and `backend` |
 
-Wipe volumes (re-downloads ~8 GB next start): `docker compose down -v`.
+Wipe Postgres/GeoServer/Redis volumes (host data under `CORESTACK_HOST_DATA_DIR` stays): `docker compose --env-file nrm_app/.env down -v`.
 
 ## API Issues
 
