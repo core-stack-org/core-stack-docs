@@ -19,7 +19,7 @@ Live URLs of what is running today: [Deployed Architecture](deployed-architectur
 | --- | --- |
 | **Try an app that is already deployed** | Open it from the table below. No install. |
 | **Download a finished result** | Open [FileBrowser](https://www.cse.iitd.ernet.in/act4dws5/file/). Each app writes into its own folder (`data/drone/`, `data/diy-lulc/`, …). |
-| **Deploy your own app on the cluster** | Read [Why we use Airflow](#why-airflow) and [How a job runs](#how-a-job-runs), then [Add your own service](#adding-a-service). |
+| **Deploy your own app on the cluster** | Read [Why we use Airflow](#why-airflow) and [How a job runs](#architecture), then [Add your own service](#adding-a-service). |
 
 | App | What it does | Open |
 | --- | --- | --- |
