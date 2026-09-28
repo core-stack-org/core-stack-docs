@@ -2611,7 +2611,7 @@ Instead, it stages them through Cloud Storage and then continues the workflow fr
 </span></code></pre></div>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate<span class="w"> </span>--no-deps<span class="w"> </span>backend
 </span></code></pre></div>
-<p>Full Docker path, including the admin-boundary compute API: <a href="../../docker/#2-configure-gcs-and-google-earth-engine">Docker</a>.</p>
+<p>Full Docker path, including the admin-boundary compute API: <a href="../../docker/#gee-and-gcs">Docker</a>.</p>
 <h3 id="bucket-region-matters">Bucket Region Matters<a class="headerlink" href="#bucket-region-matters" title="Permanent link">&para;</a></h3>
 <p>Some backend paths call <code>ee.Image.loadGeoTIFF()</code> through <code>upload_tif_from_gcs_to_gee(...)</code>.
 That path is used by modules such as:</p>
@@ -2736,7 +2736,7 @@ If bucket setup is wrong, multiple pipeline families fail in similar ways.</p>
 <h2 id="related-docs">Related Docs<a class="headerlink" href="#related-docs" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../google-earth-engine/">Google Earth Engine</a></li>
-<li><a href="../../docker/#2-configure-gcs-and-google-earth-engine">Docker</a></li>
+<li><a href="../../docker/#gee-and-gcs">Docker</a></li>
 <li><a href="../../installer/">Installer</a></li>
 <li><a href="../../setup-troubleshooting/">Setup Troubleshooting</a></li>
 <li><a href="../../../pipelines/">Develop New Pipelines</a></li>

@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="Current nginx routing, Airflow compute loop, FileBrowser outputs, and service repos on the deployed Tower Services host." name="description"/>
+<meta content="Apps currently running on the Tower Services cluster — URLs, where results go, and the GitHub repos behind each app." name="description"/>
 <link href="https://docs.core-stack.org/infra/tower-services/deployed-architecture/" rel="canonical"/>
 <link href="../../../server/cluster-service-checklist/" rel="prev"/>
 <link href="../../../blog/" rel="next"/>
@@ -892,37 +892,28 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#architecture">
+<a class="md-nav__link" href="#open-the-apps">
 <span class="md-ellipsis">
       
-        Architecture
+        Open the apps
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#nginx-paths">
+<a class="md-nav__link" href="#what-happens-after-you-start-a-job">
 <span class="md-ellipsis">
       
-        Nginx paths
+        What happens after you start a job
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#compute-loop">
+<a class="md-nav__link" href="#services-and-source-code">
 <span class="md-ellipsis">
       
-        Compute loop
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#services-and-repos">
-<span class="md-ellipsis">
-      
-        Services and repos
+        Services and source code
       
     </span>
 </a>
@@ -1069,37 +1060,28 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#architecture">
+<a class="md-nav__link" href="#open-the-apps">
 <span class="md-ellipsis">
       
-        Architecture
+        Open the apps
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#nginx-paths">
+<a class="md-nav__link" href="#what-happens-after-you-start-a-job">
 <span class="md-ellipsis">
       
-        Nginx paths
+        What happens after you start a job
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#compute-loop">
+<a class="md-nav__link" href="#services-and-source-code">
 <span class="md-ellipsis">
       
-        Compute loop
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#services-and-repos">
-<span class="md-ellipsis">
-      
-        Services and repos
+        Services and source code
       
     </span>
 </a>
@@ -1137,137 +1119,130 @@
 </nav>
 <article class="md-content__inner md-typeset">
 <h1 id="deployed-architecture">Deployed Architecture<a class="headerlink" href="#deployed-architecture" title="Permanent link">¶</a></h1>
-<p>This page is the <strong>currently deployed</strong> layout on the Tower Services host. The generic contract (env vars, mounts, STACD) stays on <a href="../">Tower Services</a>.</p>
-<p><strong>Nginx</strong> is the only public entry point. Path prefixes send the browser to a service Docker. Compute services <strong>trigger an Airflow DAG</strong>, <strong>poll the run</strong>, and on <strong>success</strong> write output under <strong><code>data/&lt;app-name&gt;/</code></strong>, which the <strong>shared FileBrowser</strong> exposes.</p>
-<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">¶</a></h2>
-<pre class="mermaid"><code>flowchart TB
-  Browser[Browser] --&gt; Nginx[Nginx]
-  Nginx --&gt;|"/drone"| Drone["Drone&lt;br/&gt;frontend + backend"]
-  Nginx --&gt;|"/airflow"| Airflow[Airflow + STACD]
-  Nginx --&gt;|"/bio-master"| BioMaster[CEM master]
-  Nginx --&gt;|"/diy-lulc"| Lulc[DIY LULC]
-  Nginx --&gt;|"/file"| FB[FileBrowser]
-  Drone --&gt;|"trigger + poll DAG"| Airflow
-  Lulc --&gt;|"trigger + poll DAG"| Airflow
-  Airflow --&gt;|success| Data["data/app-name"]
-  Data --&gt; FB
-  Browser -.-&gt;|browse / download| FB</code></pre>
-<p>The browser talks to <strong>Nginx</strong>, not to Airflow. Each compute service’s backend triggers the DAG and monitors the run. When the run completes, results land in the shared data tree, one folder per app, and people open them in FileBrowser at <a href="https://www.cse.iitd.ernet.in/act4dws5/file/"><code>/file</code></a>.</p>
-<pre class="mermaid"><code>sequenceDiagram
-  participant Browser
-  participant Nginx
-  participant Service as Service Docker
-  participant Airflow as Airflow
-  participant Data as data/app-name
-  participant FB as FileBrowser
-  Browser-&gt;&gt;Nginx: /drone, /diy-lulc, /bio-master, /file, …
-  Nginx-&gt;&gt;Service: reverse proxy
-  Browser-&gt;&gt;Service: interactive UI
-  Service-&gt;&gt;Airflow: trigger DAG
-  loop poll until success or failed
-    Service-&gt;&gt;Airflow: DAG run status
-  end
-  Airflow--&gt;&gt;Service: success
-  Service-&gt;&gt;Data: write output
-  Browser-&gt;&gt;FB: browse data/app-name</code></pre>
-<h2 id="nginx-paths">Nginx paths<a class="headerlink" href="#nginx-paths" title="Permanent link">¶</a></h2>
+<p>This is <strong>what is running today</strong> on the Tower Services cluster. Open the URLs below in a browser. You do not need to install anything.</p>
+<p>These are examples of apps that have already been deployed. The cluster is for <strong>anyone who wants to share an app</strong> — see <a href="../">Tower Services</a> and <a href="../#adding-a-service">Add your own service</a>.</p>
+<p>How jobs work, and <strong>why the cluster uses Airflow</strong>, stays on <a href="../#why-airflow">Tower Services</a>.</p>
+<h2 id="open-the-apps">Open the apps<a class="headerlink" href="#open-the-apps" title="Permanent link">¶</a></h2>
+<p>All public pages go through <strong>one website</strong> (Nginx). The path after the host name chooses the app.</p>
 <table>
 <thead>
 <tr>
 <th>Path</th>
-<th>Goes to</th>
-<th>URL</th>
+<th>App</th>
+<th>Open</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong><code>/drone</code></strong></td>
-<td>Drone — frontend and backend in Docker</td>
+<td>Drone — tree crowns on a drone image</td>
 <td><a href="https://www.cse.iitd.ernet.in/act4dws5/drone/">act4dws5/drone</a></td>
 </tr>
 <tr>
-<td><strong><code>/airflow</code></strong></td>
-<td>Airflow (STACD-generated DAGs)</td>
-<td><a href="https://www.cse.iitd.ernet.in/act4dws5/airflow/home">act4dws5/airflow/home</a></td>
-</tr>
-<tr>
-<td><strong><code>/bio-master</code></strong></td>
-<td>CEM master</td>
-<td><a href="https://www.cse.iitd.ernet.in/act4dws5/bio-master/">act4dws5/bio-master</a></td>
-</tr>
-<tr>
 <td><strong><code>/diy-lulc</code></strong></td>
-<td>DIY LULC</td>
+<td>DIY LULC — land cover from example polygons</td>
 <td><a href="https://www.cse.iitd.ernet.in/act4dws5/diy-lulc/">act4dws5/diy-lulc</a></td>
 </tr>
 <tr>
+<td><strong><code>/bio-master</code></strong></td>
+<td>CEM master — ecological monitoring</td>
+<td><a href="https://www.cse.iitd.ernet.in/act4dws5/bio-master/">act4dws5/bio-master</a></td>
+</tr>
+<tr>
 <td><strong><code>/file</code></strong></td>
-<td>Shared FileBrowser over <code>data/&lt;app-name&gt;/</code></td>
+<td>FileBrowser — download finished files</td>
 <td><a href="https://www.cse.iitd.ernet.in/act4dws5/file/">act4dws5/file</a></td>
+</tr>
+<tr>
+<td><strong><code>/airflow</code></strong></td>
+<td>Job runner (Airflow). The apps use this; you usually do not.</td>
+<td><a href="https://www.cse.iitd.ernet.in/act4dws5/airflow/home">act4dws5/airflow/home</a></td>
 </tr>
 </tbody>
 </table>
-<p>Each service writes to <strong><code>data/&lt;app-name&gt;/</code></strong> (for example <code>data/drone/</code>, <code>data/diy-lulc/</code>).</p>
-<h2 id="compute-loop">Compute loop<a class="headerlink" href="#compute-loop" title="Permanent link">¶</a></h2>
-<p>Every compute service follows the same loop:</p>
+<p>Each app writes output under <strong><code>data/&lt;app-name&gt;/</code></strong> (for example <code>data/drone/</code>, <code>data/diy-lulc/</code>). FileBrowser shows that tree.</p>
+<h2 id="what-happens-after-you-start-a-job">What happens after you start a job<a class="headerlink" href="#what-happens-after-you-start-a-job" title="Permanent link">¶</a></h2>
 <ol>
-<li>Operator works in that service’s UI (behind its Nginx path).</li>
-<li>The service <strong>triggers</strong> an Airflow DAG.</li>
-<li>The service <strong>monitors</strong> the DAG run until it is <code>success</code> or <code>failed</code>.</li>
-<li>On success it <strong>produces the result</strong> and <strong>pushes output</strong> to <strong><code>data/&lt;app-name&gt;/</code></strong>.</li>
-<li>Operators view and download that folder in the <strong>shared FileBrowser</strong>.</li>
+<li>You work in that app’s page (<code>/drone</code>, <code>/diy-lulc</code>, …).</li>
+<li>The <strong>app</strong> (not your browser) starts a job on Airflow.</li>
+<li>The app <strong>checks status</strong> until the job is <code>success</code> or <code>failed</code>.</li>
+<li>On success it <strong>writes files</strong> under <code>data/&lt;app-name&gt;/</code>.</li>
+<li>You open <strong>FileBrowser</strong> (<code>/file</code>) and download that folder.</li>
 </ol>
-<p>The browser never calls Airflow. Nginx → service Docker → Airflow REST. Same pattern as <a href="../#architecture">Tower Services</a>.</p>
-<h2 id="services-and-repos">Services and repos<a class="headerlink" href="#services-and-repos" title="Permanent link">¶</a></h2>
+<pre class="mermaid"><code>flowchart TB
+  Browser[Your browser] --&gt; Nginx[Cluster website]
+  Nginx --&gt;|"/drone"| Drone[Drone]
+  Nginx --&gt;|"/airflow"| Airflow[Airflow job runner]
+  Nginx --&gt;|"/bio-master"| BioMaster[CEM]
+  Nginx --&gt;|"/diy-lulc"| Lulc[DIY LULC]
+  Nginx --&gt;|"/file"| FB[FileBrowser]
+  Drone --&gt;|"start job and wait"| Airflow
+  Lulc --&gt;|"start job and wait"| Airflow
+  Airflow --&gt;|success| Data["data/app-name"]
+  Data --&gt; FB
+  Browser -.-&gt;|download| FB</code></pre>
+<pre class="mermaid"><code>sequenceDiagram
+  participant You
+  participant Website as Cluster website
+  participant App as The app
+  participant Airflow as Job runner
+  participant Data as data/app-name
+  participant FB as FileBrowser
+  You-&gt;&gt;Website: /drone or /diy-lulc or /file
+  Website-&gt;&gt;App: send you to that app
+  You-&gt;&gt;App: start a job
+  App-&gt;&gt;Airflow: start job
+  loop wait until success or failed
+    App-&gt;&gt;Airflow: is it done?
+  end
+  Airflow--&gt;&gt;App: success
+  App-&gt;&gt;Data: write files
+  You-&gt;&gt;FB: download data/app-name</code></pre>
+<p>Your browser never calls Airflow. The path is: website → the app → Airflow. Same idea as <a href="../#architecture">Tower Services — How a job runs</a>.</p>
+<h2 id="services-and-source-code">Services and source code<a class="headerlink" href="#services-and-source-code" title="Permanent link">¶</a></h2>
 <table>
 <thead>
 <tr>
 <th>Service</th>
-<th>Nginx path</th>
-<th>URL</th>
+<th>Path</th>
 <th>What it is</th>
-<th>Repo</th>
+<th>Source</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Drone</strong></td>
 <td><code>/drone</code></td>
-<td><a href="https://www.cse.iitd.ernet.in/act4dws5/drone/">Open</a></td>
-<td>Tree-crown detection on a drone orthomosaic. Frontend + backend Docker.</td>
+<td>Tree-crown detection on a drone orthomosaic</td>
 <td><a href="https://github.com/anunay1206/drone_docker">anunay1206/drone_docker</a></td>
-</tr>
-<tr>
-<td><strong>Airflow + STACD</strong></td>
-<td><code>/airflow</code></td>
-<td><a href="https://www.cse.iitd.ernet.in/act4dws5/airflow/home">Open</a></td>
-<td>Shared orchestrator. Services trigger DAGs here and poll until the run finishes.</td>
-<td><a href="https://github.com/SaharshLaud/STACD_framework">SaharshLaud/STACD_framework</a> (<code>dev</code>)</td>
-</tr>
-<tr>
-<td><strong>CEM master</strong></td>
-<td><code>/bio-master</code></td>
-<td><a href="https://www.cse.iitd.ernet.in/act4dws5/bio-master/">Open</a></td>
-<td>Continuous Ecological Monitoring master page (explore spots, species, network).</td>
-<td><a href="https://github.com/xHrid/continuous-ecological-monitoring-toolkit">xHrid/continuous-ecological-monitoring-toolkit</a></td>
 </tr>
 <tr>
 <td><strong>DIY LULC</strong></td>
 <td><code>/diy-lulc</code></td>
-<td><a href="https://www.cse.iitd.ernet.in/act4dws5/diy-lulc/">Open</a></td>
-<td>10 m land-use / land-cover over India; grow classes from example polygons.</td>
+<td>10 m land-use / land-cover over India</td>
 <td><a href="https://github.com/salil-123/Project">salil-123/Project</a></td>
+</tr>
+<tr>
+<td><strong>CEM master</strong></td>
+<td><code>/bio-master</code></td>
+<td>Continuous Ecological Monitoring</td>
+<td><a href="https://github.com/xHrid/continuous-ecological-monitoring-toolkit">xHrid/continuous-ecological-monitoring-toolkit</a></td>
+</tr>
+<tr>
+<td><strong>Airflow + STACD</strong></td>
+<td><code>/airflow</code></td>
+<td>Shared job runner</td>
+<td><a href="https://github.com/SaharshLaud/STACD_framework">SaharshLaud/STACD_framework</a> (<code>dev</code>)</td>
 </tr>
 <tr>
 <td><strong>FileBrowser</strong></td>
 <td><code>/file</code></td>
-<td><a href="https://www.cse.iitd.ernet.in/act4dws5/file/">Open</a></td>
-<td>Shared file UI. After a successful run, browse and download <code>data/&lt;app-name&gt;/</code>.</td>
+<td>Shared file UI over <code>data/&lt;app-name&gt;/</code></td>
 <td><a href="https://github.com/filebrowser/filebrowser">filebrowser/filebrowser</a></td>
 </tr>
 </tbody>
 </table>
-<p>Install, image tags, and <code>.env</code> live in each service repo. Cluster standards are in <a href="../../../server/cluster-docker-services/">Cluster Docker Services</a>.</p>
+<p>How to install each app is in <strong>that repo’s README</strong>. Cluster-wide rules (mounts, STAC, checklist) are in <a href="../../../server/cluster-docker-services/">Cluster Docker Services</a> after you have read <a href="../">Tower Services</a>.</p>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>

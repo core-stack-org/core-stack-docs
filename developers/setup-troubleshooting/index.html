@@ -2939,7 +2939,7 @@
 <li>keep the Django server and Celery worker in separate terminals</li>
 <li>watch both logs while triggering an API</li>
 </ul>
-<p>Docker Compose runs compute <strong>in-process</strong> (<code>CELERY_TASK_ALWAYS_EAGER</code>). Do not start a Celery worker on the host for that path. See <a href="../docker/">Docker installation</a>.</p>
+<p>Docker Compose starts Celery workers. Layer APIs are <strong>async</strong> unless you set <code>LAYER_GENERATION_SYNC_MODE=True</code> or pass <code>"layer_generation_mode": "sync"</code>. See <a href="../docker/#two-methods-airflow--sync-or-no-airflow--async">Docker installation — two methods</a>.</p>
 <h2 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h2>
 <p>Use <a href="../docker/">Docker installation</a> for Compose commands. Common first-run issues:</p>
 <table>
@@ -2952,19 +2952,11 @@
 <tbody>
 <tr>
 <td>Port already in use</td>
-<td>Stop whatever is bound to 8000, 8080, or 5432, or set <code>BACKEND_PORT</code> / <code>GEOSERVER_PORT</code> / <code>POSTGRES_PORT</code> in a <code>.env</code> next to <code>docker-compose.yml</code></td>
-</tr>
-<tr>
-<td><code>denied</code> or <code>unauthorized</code> pulling the image</td>
-<td>The package should be public. Confirm <a href="https://github.com/core-stack-org/core-stack-backend/pkgs/container/core-stack-backend">ghcr.io/core-stack-org/core-stack-backend</a> opens without signing in, then retry <code>docker compose pull</code></td>
-</tr>
-<tr>
-<td><code>no matching manifest for linux/arm64</code></td>
-<td>Use <code>docker compose pull</code>, not a bare <code>docker pull</code> on Apple Silicon. Compose sets <code>platform: linux/amd64</code></td>
+<td>Stop whatever is bound to 8000, 8080, or 5432, or set ports in <code>nrm_app/.env</code></td>
 </tr>
 <tr>
 <td>Backend keeps restarting</td>
-<td><code>docker compose logs backend</code>. Common first-run waits: GeoServer health, the 8 GB admin-boundary download, or seed load. Local-compute layer downloads only run when <code>DOWNLOAD_LOCAL_COMPUTE_LAYERS</code> is set</td>
+<td><code>docker compose --env-file nrm_app/.env logs backend</code>. First-run waits: GeoServer health, admin-boundary download, seed load</td>
 </tr>
 <tr>
 <td><code>GEEAccount with id=N was not found</code></td>
@@ -2972,19 +2964,23 @@
 </tr>
 <tr>
 <td><code>Failed: projects//assets/apps/mws/...</code></td>
-<td><code>GEE_STORAGE_PROJECT</code> is empty. Set it in the Compose <code>.env</code> with <code>GCS_BUCKET_NAME</code>, then <code>docker compose up -d --force-recreate --no-deps backend</code></td>
+<td><code>GEE_STORAGE_PROJECT</code> is empty. Set it in <code>nrm_app/.env</code> with <code>GCS_BUCKET_NAME</code>, then recreate the backend</td>
 </tr>
 <tr>
-<td><code>Census data not available</code></td>
-<td>Admin-boundary files live on the data volume. Symlink: <code>docker compose exec backend ln -sfn /var/tmp/core-stack-data/admin-boundary /app/data/admin-boundary</code></td>
+<td>API returns <code>initiated</code> but nothing computes</td>
+<td>Async mode. Check Celery workers, or use <code>"layer_generation_mode": "sync"</code> / <code>LAYER_GENERATION_SYNC_MODE=True</code></td>
+</tr>
+<tr>
+<td>Airflow DAG skips STAC</td>
+<td>Need a sync response. Set <code>LAYER_GENERATION_SYNC_MODE=True</code> or <code>"layer_generation_mode": "sync"</code></td>
 </tr>
 <tr>
 <td>GEE jobs fail after a successful start</td>
-<td>Mount JSON at <code>gee_confs/gee-service-account.json</code>, add the account in Django admin, set <code>GCS_BUCKET_NAME</code> / <code>GEE_STORAGE_PROJECT</code> in Compose <code>.env</code>, then recreate the backend</td>
+<td>Mount JSON under <code>CORESTACK_HOST_DATA_DIR/gee_confs/</code>, add the account in Django admin, set <code>GCS_BUCKET_NAME</code> / <code>GEE_STORAGE_PROJECT</code>, recreate <code>gee-config</code> and <code>backend</code></td>
 </tr>
 </tbody>
 </table>
-<p>Wipe volumes (re-downloads ~8 GB next start): <code>docker compose down -v</code>.</p>
+<p>Wipe Postgres/GeoServer/Redis volumes (host data under <code>CORESTACK_HOST_DATA_DIR</code> stays): <code>docker compose --env-file nrm_app/.env down -v</code>.</p>
 <h2 id="api-issues">API Issues<a class="headerlink" href="#api-issues" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="Tower Services — small Docker compute apps (Drone, Bioacoustic, DIY LULC), architecture, and shared terms." name="description"/>
+<meta content="Shared cluster for anyone who wants to deploy an app — how a job becomes a downloadable file, why Airflow is used, and how to package your service." name="description"/>
 <link href="https://docs.core-stack.org/infra/tower-services/" rel="canonical"/>
 <link href="../../server/" rel="prev"/>
 <link href="../../server/cluster-docker-services/" rel="next"/>
@@ -1013,10 +1013,50 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#what-you-can-do-today">
+<span class="md-ellipsis">
+      
+        What you can do today
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#why-airflow">
+<span class="md-ellipsis">
+      
+        Why we use Airflow
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#architecture">
 <span class="md-ellipsis">
       
-        Architecture
+        How a job runs
+      
+    </span>
+</a>
+<nav aria-label="How a job runs" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#where-the-work-actually-runs">
+<span class="md-ellipsis">
+      
+        Where the work actually runs
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#folders-on-the-machine">
+<span class="md-ellipsis">
+      
+        Folders on the machine
       
     </span>
 </a>
@@ -1025,43 +1065,7 @@
 <a class="md-nav__link" href="#shared-terminology">
 <span class="md-ellipsis">
       
-        Shared terminology
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#how-to-prepare-docker-service-to-deploy-in-tower-services-cluster">
-<span class="md-ellipsis">
-      
-        How to prepare docker service to deploy in Tower services cluster
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#how-to-prepare-the-checklist-to-deploy-in-tower-services-cluster">
-<span class="md-ellipsis">
-      
-        How to prepare the checklist to deploy in Tower services cluster
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#shared-cluster-pieces">
-<span class="md-ellipsis">
-      
-        Shared cluster pieces
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#docker-pull-behind-the-iit-delhi-proxy">
-<span class="md-ellipsis">
-      
-        Docker pull behind the IIT Delhi proxy
+        Words you will see
       
     </span>
 </a>
@@ -1070,7 +1074,38 @@
 <a class="md-nav__link" href="#adding-a-service">
 <span class="md-ellipsis">
       
-        Adding a service
+        Add your own service
+      
+    </span>
+</a>
+<nav aria-label="Add your own service" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#checklist-mapped-to-the-runbook">
+<span class="md-ellipsis">
+      
+        Checklist mapped to the runbook
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#docker-pull-behind-the-iit-delhi-proxy">
+<span class="md-ellipsis">
+      
+        Docker pull on IIT Delhi campus
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#shared-pieces-on-the-host">
+<span class="md-ellipsis">
+      
+        Shared pieces on the host
       
     </span>
 </a>
@@ -1108,167 +1143,294 @@
 </nav>
 <article class="md-content__inner md-typeset">
 <h1 id="tower-services">Tower Services<a class="headerlink" href="#tower-services" title="Permanent link">¶</a></h1>
-<p><strong>Tower Services</strong> is the group of small Docker apps that run compute: <strong>Drone</strong>, <strong>Bioacoustic</strong> (CEM), <strong>DIY LULC</strong>, and others. Each service does one job (tree crowns, audio, land cover). They share <strong>Airflow</strong> and <strong>STACD</strong> when a job needs orchestration.</p>
-<p>The <strong>currently deployed</strong> nginx paths and GitHub repos are on <a href="deployed-architecture/">Deployed Architecture</a>.</p>
-<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">¶</a></h2>
-<p>Every Tower Service is <strong>interactive in the browser</strong>. The operator uses a <strong>frontend Docker</strong>. From there the app <strong>sends compute</strong> and <strong>polls status</strong>. When the run is <strong>success</strong>, it <strong>writes the relevant output into <code>data/</code></strong>. That directory is exposed by <strong>FileBrowser</strong>, so people can browse and download results in the FileBrowser UI.</p>
-<p><strong>Where compute runs</strong> is one env var:</p>
+<p>This page is for <strong>anyone who wants to share an app</strong> on the Tower Services cluster — students, researchers, and other teams. You do not need to know Docker, Airflow, or CoRE Stack already.</p>
+<p><strong>Tower Services</strong> is a <strong>shared cluster</strong>. You package your app as a Docker service; if it is accepted, it runs next to the others, uses the shared job runner when you opt in, and writes results where people can download them.</p>
+<p>It is <strong>not</strong> only the campus demo websites. Drone, CEM, and DIY LULC are <strong>examples already on the cluster</strong>. Your app can be next.</p>
+<p>Live URLs of what is running today: <a href="deployed-architecture/">Deployed Architecture</a>. To deploy yours: <a href="#adding-a-service">Add your own service</a>.</p>
+<h2 id="what-you-can-do-today">What you can do today<a class="headerlink" href="#what-you-can-do-today" title="Permanent link">¶</a></h2>
 <table>
 <thead>
 <tr>
-<th><code>AIRFLOW_API_BASE</code></th>
-<th>Compute</th>
+<th>If you want to…</th>
+<th>Do this</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Set</strong></td>
-<td>Frontend/backend sends the job to the <strong>Airflow–STACD Docker</strong>, then polls until <code>success</code> or <code>failed</code>.</td>
+<td><strong>Try an app that is already deployed</strong></td>
+<td>Open it from the table below. No install.</td>
 </tr>
 <tr>
-<td><strong>Empty</strong></td>
-<td>Compute runs on the <strong>local system</strong> (in the service container). No Airflow.</td>
+<td><strong>Download a finished result</strong></td>
+<td>Open <a href="https://www.cse.iitd.ernet.in/act4dws5/file/">FileBrowser</a>. Each app writes into its own folder (<code>data/drone/</code>, <code>data/diy-lulc/</code>, …).</td>
+</tr>
+<tr>
+<td><strong>Deploy your own app on the cluster</strong></td>
+<td>Read <a href="#why-airflow">Why we use Airflow</a> and <a href="#how-a-job-runs">How a job runs</a>, then <a href="#adding-a-service">Add your own service</a>.</td>
 </tr>
 </tbody>
 </table>
-<p>The browser never talks to Airflow. The frontend Docker talks to Airflow–STACD only when <code>AIRFLOW_API_BASE</code> is set.</p>
-<pre class="mermaid"><code>flowchart LR
-  Browser[Browser] --&gt; FE[Frontend Docker]
-  FE --&gt;|AIRFLOW_API_BASE set&lt;br/&gt;trigger + poll| AF[Airflow–STACD Docker]
-  FE --&gt;|AIRFLOW_API_BASE empty&lt;br/&gt;local compute| Local[Local system]
-  AF --&gt;|success| Data["data/"]
-  Local --&gt;|success| Data
-  Data --&gt; FB[FileBrowser UI]
-  Browser -.-&gt;|view / download output| FB</code></pre>
-<pre class="mermaid"><code>sequenceDiagram
-  participant Browser
-  participant Frontend as Frontend Docker
-  participant Compute as Airflow–STACD Docker or local system
-  participant Data as data/
-  participant FB as FileBrowser UI
-  Browser-&gt;&gt;Frontend: interactive UI
-  Frontend-&gt;&gt;Compute: send compute
-  loop poll until success or failed
-    Frontend-&gt;&gt;Compute: status
-  end
-  Compute--&gt;&gt;Frontend: success
-  Frontend-&gt;&gt;Data: write relevant output
-  Browser-&gt;&gt;FB: browse and download from data/</code></pre>
-<p>Supporting pieces on the host: bind-mounts <strong><code>code/</code></strong> → <code>/app</code>, <strong><code>models/</code></strong> → <code>/app/models</code>, <strong><code>data/</code></strong> → <code>/app/data</code>. Logs under <strong><code>data/logs/&lt;application_name&gt;/</code></strong>. Optional <strong>central Postgres</strong>. Image pulls through the campus proxy.</p>
-<h2 id="shared-terminology">Shared terminology<a class="headerlink" href="#shared-terminology" title="Permanent link">¶</a></h2>
-<p>Use these names in READMEs, <code>.env.example</code>, the runbook, and the checklist. Do not invent aliases.</p>
 <table>
 <thead>
 <tr>
-<th>Term</th>
-<th>Meaning</th>
+<th>App</th>
+<th>What it does</th>
+<th>Open</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Drone</strong></td>
+<td>Finds tree crowns on a drone orthomosaic</td>
+<td><a href="https://www.cse.iitd.ernet.in/act4dws5/drone/">act4dws5/drone</a></td>
+</tr>
+<tr>
+<td><strong>CEM (Bioacoustic)</strong></td>
+<td>Continuous Ecological Monitoring — spots, species, network</td>
+<td><a href="https://www.cse.iitd.ernet.in/act4dws5/bio-master/">act4dws5/bio-master</a></td>
+</tr>
+<tr>
+<td><strong>DIY LULC</strong></td>
+<td>10 m land-use / land-cover; grow classes from example polygons</td>
+<td><a href="https://www.cse.iitd.ernet.in/act4dws5/diy-lulc/">act4dws5/diy-lulc</a></td>
+</tr>
+<tr>
+<td><strong>FileBrowser</strong></td>
+<td>Browse and download job output</td>
+<td><a href="https://www.cse.iitd.ernet.in/act4dws5/file/">act4dws5/file</a></td>
+</tr>
+</tbody>
+</table>
+<p>You will also see <strong>Airflow</strong> at <a href="https://www.cse.iitd.ernet.in/act4dws5/airflow/home"><code>/airflow</code></a>. That is the shared <strong>job runner</strong>. The apps talk to it for you. You do not open Airflow to use Drone or DIY LULC.</p>
+<h2 id="why-airflow">Why we use Airflow<a class="headerlink" href="#why-airflow" title="Permanent link">¶</a></h2>
+<p>The apps on this host look like websites, but the work behind <strong>Run</strong> is not a quick page load. Detecting tree crowns, growing a land-cover map, or processing a recording can take <strong>minutes to hours</strong>, use a <strong>GPU or a lot of RAM</strong>, and often has <strong>several steps</strong> (prepare input → run a model → write a STAC result).</p>
+<p>If each app did that work <strong>inside its own web container</strong>:</p>
+<ul>
+<li>A second person clicking Run would compete with the first for the same CPU/GPU.</li>
+<li>Closing the tab or restarting the app could kill the job.</li>
+<li>Every team would invent its own retries, logs, and “is it done yet?” page.</li>
+<li>You could not see one shared picture of what is running on the cluster.</li>
+</ul>
+<p>So the cluster uses <strong>one shared Airflow</strong> (with <strong>STACD</strong> to describe the steps in YAML):</p>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>What Airflow + STACD give you</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Long jobs</td>
+<td>The website starts the job and <strong>polls</strong>. The worker keeps running if you close the tab.</td>
+</tr>
+<tr>
+<td>Many apps, one cluster</td>
+<td>Drone, DIY LULC, and <strong>your</strong> app <strong>queue on the same runner</strong> instead of each holding a private compute box.</td>
+</tr>
+<tr>
+<td>Several steps</td>
+<td>A <strong>DAG</strong> is a graph of tasks (fetch → compute → register). Airflow runs them in order and can retry a failed step.</td>
+</tr>
+<tr>
+<td>“What failed?”</td>
+<td>One <strong>Graph / Grid</strong> and task logs for every app, instead of grepping a different container each time.</td>
+</tr>
+<tr>
+<td>Thin app images</td>
+<td>The app Docker stays a <strong>UI + API</strong>. Heavy work is an executor Airflow starts.</td>
+</tr>
+<tr>
+<td>Lineage</td>
+<td>STACD records which algorithm produced which file, so a result is not a bare path on disk.</td>
+</tr>
+</tbody>
+</table>
+<p>That is why the cluster is <strong>Airflow-based</strong> for compute. The browser still only talks to your app’s path (for example <code>/drone</code> or <code>/diy-lulc</code>). Airflow is the back office.</p>
+<p>You can still turn Airflow <strong>off</strong> on a laptop: leave <code>AIRFLOW_API_BASE</code> empty and the same app runs the job inside its container. That is for local try-out, not for the shared cluster.</p>
+<h2 id="architecture">How a job runs<a class="headerlink" href="#architecture" title="Permanent link">¶</a></h2>
+<p>Think of three people:</p>
+<ol>
+<li><strong>You</strong> — the browser. You only talk to the app’s web page.</li>
+<li><strong>The app</strong> — a Docker container. It shows the UI, starts the job, and waits until the job finishes.</li>
+<li><strong>The job runner</strong> (Airflow + STACD) — optional. If the app is configured to use it, the app sends the job there and checks status until the run is <code>success</code> or <code>failed</code>.</li>
+</ol>
+<p>When the run succeeds, the app writes files under <strong><code>data/</code></strong>. FileBrowser is just a website over that folder.</p>
+<pre class="mermaid"><code>flowchart LR
+  You[You in the browser] --&gt; App[The app]
+  App --&gt;|job runner is configured| Runner[Airflow job runner]
+  App --&gt;|job runner is off| Local[Work inside the app]
+  Runner --&gt;|success| Data["data/ folder"]
+  Local --&gt;|success| Data
+  Data --&gt; FB[FileBrowser]
+  You -.-&gt;|download files| FB</code></pre>
+<pre class="mermaid"><code>sequenceDiagram
+  participant You
+  participant App as The app
+  participant Job as Job runner or the app itself
+  participant Data as data/ folder
+  participant FB as FileBrowser
+  You-&gt;&gt;App: open the page and start a job
+  App-&gt;&gt;Job: start work
+  loop wait until success or failed
+    App-&gt;&gt;Job: is it done?
+  end
+  Job--&gt;&gt;App: success
+  App-&gt;&gt;Data: write the result files
+  You-&gt;&gt;FB: download from data/</code></pre>
+<p><strong>The browser never talks to Airflow.</strong> Only the app does. That is why you use <code>/drone</code> or <code>/diy-lulc</code>, not <code>/airflow</code>, to start work.</p>
+<h3 id="where-the-work-actually-runs">Where the work actually runs<a class="headerlink" href="#where-the-work-actually-runs" title="Permanent link">¶</a></h3>
+<p>One setting on the app decides this: <strong><code>AIRFLOW_API_BASE</code></strong>.</p>
+<table>
+<thead>
+<tr>
+<th><code>AIRFLOW_API_BASE</code></th>
+<th>What it means for you</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Filled in</strong> (for example <code>http://airflow:8080/api/v1</code>)</td>
+<td>The app sends the job to the shared Airflow machine and waits.</td>
+</tr>
+<tr>
+<td><strong>Empty</strong></td>
+<td>The app does the work <strong>inside its own container</strong>. No Airflow.</td>
+</tr>
+</tbody>
+</table>
+<p>You do not invent a second switch such as <code>COMPUTE_MODE</code>. Empty vs set is the whole rule.</p>
+<h2 id="folders-on-the-machine">Folders on the machine<a class="headerlink" href="#folders-on-the-machine" title="Permanent link">¶</a></h2>
+<p>If you later deploy an app here, the host keeps three folders and <strong>mounts</strong> them into the container (the container sees them as local paths). Code is not baked into the Docker image.</p>
+<table>
+<thead>
+<tr>
+<th>Host folder</th>
+<th>Path inside the container</th>
+<th>What lives there</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>code/</code></strong></td>
+<td><code>/app</code></td>
+<td>The git checkout. Update with <code>git pull</code>, then restart the container.</td>
+</tr>
+<tr>
+<td><strong><code>models/</code></strong></td>
+<td><code>/app/models</code></td>
+<td>Trained weights (<code>.pt</code>, <code>.onnx</code>, and similar).</td>
+</tr>
+<tr>
+<td><strong><code>data/</code></strong></td>
+<td><code>/app/data</code></td>
+<td>Inputs, caches, <strong>every job output</strong>, and logs under <code>data/logs/&lt;app-name&gt;/</code>. FileBrowser shows this tree.</td>
+</tr>
+</tbody>
+</table>
+<p>The Docker image only has system libraries and Python/Node packages (a <strong>deps-only image</strong>). Rebuild the image when requirements change. Do not rebuild it just to change application code.</p>
+<h2 id="shared-terminology">Words you will see<a class="headerlink" href="#shared-terminology" title="Permanent link">¶</a></h2>
+<p>These are the names used on this host. Use the same words in a README or GitHub issue so others can follow.</p>
+<table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Plain meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Tower Services</strong></td>
-<td>This host and the small compute apps on it (Drone, Bioacoustic, DIY LULC).</td>
+<td>The shared <strong>cluster</strong> where anyone can deploy an app (not only the live campus demos).</td>
 </tr>
 <tr>
 <td><strong>Service</strong></td>
-<td>One Tower app (browser + frontend Docker) that sends compute and writes output to <code>data/</code>.</td>
+<td>One app (web UI + its Docker container).</td>
 </tr>
 <tr>
 <td><strong>Frontend Docker</strong></td>
-<td>The container the browser talks to. Sends compute, polls status, writes <code>data/</code> on success.</td>
+<td>The container your browser talks to. It starts jobs, waits, and writes <code>data/</code> when the job succeeds.</td>
 </tr>
 <tr>
 <td><strong>Airflow–STACD Docker</strong></td>
-<td>Shared orchestrator. Used only when <strong><code>AIRFLOW_API_BASE</code></strong> is set.</td>
+<td>The shared job runner. Used only when <strong><code>AIRFLOW_API_BASE</code></strong> is set.</td>
 </tr>
 <tr>
 <td><strong><code>AIRFLOW_API_BASE</code></strong></td>
-<td>Airflow 2.x REST root, e.g. <code>http://airflow:8080/api/v1</code>. <strong>Set</strong> → compute in Airflow–STACD Docker. <strong>Empty</strong> → <strong>local compute</strong> on this system.</td>
+<td>Address of Airflow’s REST API. Set = use the job runner. Empty = run inside the app.</td>
 </tr>
 <tr>
 <td><strong><code>AIRFLOW_DAG_ID</code></strong></td>
-<td>DAG this service triggers when <code>AIRFLOW_API_BASE</code> is set.</td>
+<td>Name of the workflow this app starts on Airflow.</td>
 </tr>
 <tr>
 <td><strong><code>CORESTACK_API_BASE</code></strong></td>
-<td>URL the <strong>Airflow worker</strong> uses to reach <strong>this</strong> service (LAN or Docker DNS, not <code>localhost</code> from the worker).</td>
+<td>Address the <strong>Airflow worker</strong> uses to call <strong>this</strong> app back. Must be a LAN or Docker name — not <code>localhost</code> from the worker’s point of view.</td>
 </tr>
 <tr>
 <td><strong>Same-origin proxy</strong></td>
-<td>Browser talks to the <strong>frontend Docker</strong> only. That container calls Airflow–STACD.</td>
+<td>Nginx sends <code>/drone</code>, <code>/diy-lulc</code>, … to the right container. Your browser only talks to that website.</td>
 </tr>
 <tr>
 <td><strong>FileBrowser</strong></td>
-<td>UI over <strong><code>data/</code></strong>. After a successful run, people view and download outputs here.</td>
-</tr>
-<tr>
-<td><strong><code>code/</code></strong></td>
-<td>Host git checkout. Bind-mount to <strong><code>/app</code></strong>. Update with <code>git pull</code> + restart.</td>
-</tr>
-<tr>
-<td><strong><code>models/</code></strong></td>
-<td>Host model weights. Bind-mount to <strong><code>/app/models</code></strong>.</td>
-</tr>
-<tr>
-<td><strong><code>data/</code></strong></td>
-<td>Host inputs, caches, <strong>all compute output</strong>. Bind-mount to <strong><code>/app/data</code></strong>. Exposed by <strong>FileBrowser</strong>.</td>
+<td>Website over <strong><code>data/</code></strong>. Download results here.</td>
 </tr>
 <tr>
 <td><strong>STACD</strong></td>
-<td>YAML → Airflow DAG generator. Three files: DAG YAML, Algorithm Repo YAML, Dataset Repo YAML.</td>
+<td>Tool that turns three YAML files into an Airflow workflow (DAG). You do not write Airflow Python by hand for cluster apps.</td>
 </tr>
 <tr>
 <td><strong>STAC Item</strong></td>
-<td>Required compute output: a STAC 1.x Feature (see runbook §9).</td>
+<td>The required job result: a STAC 1.x GeoJSON Feature that describes the output (see the <a href="../../server/cluster-docker-services/#9-always-return-output-in-stac-format">runbook §9</a>).</td>
 </tr>
 <tr>
 <td><strong>Deps-only image</strong></td>
-<td>Image has OS/Python deps and an entrypoint only. No application source, models, or outputs.</td>
+<td>Image has dependencies and a start command only — no source, models, or outputs.</td>
 </tr>
 <tr>
 <td><strong>GHCR or Docker Hub</strong></td>
-<td>Where you push the deps-only image. Either registry is fine.</td>
+<td>Where the image is pushed. Either registry is fine.</td>
 </tr>
 <tr>
 <td><strong><code>LOG_LEVEL</code></strong></td>
-<td><code>debug</code> | <code>info</code> | <code>error</code>. Logs on disk: <strong><code>data/logs/&lt;application_name&gt;/</code></strong>.</td>
+<td><code>debug</code>, <code>info</code>, or <code>error</code>. Logs on disk: <strong><code>data/logs/&lt;application_name&gt;/</code></strong>.</td>
 </tr>
 <tr>
 <td><strong>Central Postgres</strong></td>
-<td>Shared cluster database. Connect with <strong><code>DATABASE_URL</code></strong>. No per-service Postgres/SQLite on cluster.</td>
+<td>One shared database for the cluster. Connect with <strong><code>DATABASE_URL</code></strong>. Do not add a private Postgres/SQLite per app on the cluster.</td>
 </tr>
 <tr>
 <td><strong><code>outputs.yaml</code></strong></td>
-<td>Declares each tree under <code>data/</code>. Modes: <strong><code>public</code></strong>, <strong><code>private_persistent</code></strong>, <strong><code>delete</code></strong>.</td>
+<td>Lists each tree under <code>data/</code> and whether it is <code>public</code>, <code>private_persistent</code>, or <code>delete</code>.</td>
 </tr>
 <tr>
 <td><strong>Host data service</strong></td>
-<td>Cluster process that reads <code>outputs.yaml</code> and publishes, keeps, or deletes.</td>
+<td>Cluster process that reads <code>outputs.yaml</code> and publishes, keeps, or deletes those trees.</td>
 </tr>
 </tbody>
 </table>
-<p>Do <strong>not</strong> use <code>AIRFLOW_BASE_API_URL</code>, <code>AIRFLOW_BASE_URL</code> (unless you only mean the web UI host), <code>COMPUTE_MODE</code>, <code>/data</code> as the data mount, or <code>/models</code> as the models mount. Those names showed up in older notes and are not the contract.</p>
-<h2 id="how-to-prepare-docker-service-to-deploy-in-tower-services-cluster">How to prepare docker service to deploy in Tower services cluster<a class="headerlink" href="#how-to-prepare-docker-service-to-deploy-in-tower-services-cluster" title="Permanent link">¶</a></h2>
-<p><a href="../../server/cluster-docker-services/">Cluster Docker Services</a> is the <strong>standards and how-to</strong>: why deps-only images, how to write STACD YAML, how to trigger/poll Airflow, STAC Item shape, Custom LULC copy-this example. It is <strong>not</strong> a tick-box for deploy sign-off.</p>
-<p>The runbook is long. You can follow it if you already know:</p>
+<p>Do <strong>not</strong> use <code>AIRFLOW_BASE_API_URL</code>, <code>AIRFLOW_BASE_URL</code> (unless you only mean the Airflow web page), <code>COMPUTE_MODE</code>, <code>/data</code> as the data mount, or <code>/models</code> as the models mount. Older notes used those names; they are not the contract on this host.</p>
+<h2 id="adding-a-service">Add your own service<a class="headerlink" href="#adding-a-service" title="Permanent link">¶</a></h2>
+<p>If you want <strong>your</strong> app on this cluster, package it the same way as the apps already running. You do not need the full runbook to understand the idea. You do need it when you ask for a deploy.</p>
 <ol>
-<li><strong>Deps-only + three mounts</strong> — rebuild the image only when requirements change; <code>git pull</code> updates <strong><code>code/</code></strong>.</li>
-<li><strong><code>AIRFLOW_API_BASE</code> is the compute switch</strong> — set = Airflow–STACD Docker (trigger + poll); empty = local system.</li>
-<li><strong>STACD writes the DAG</strong> — you do not hand-write Airflow Python for cluster services. Algorithm YAML is <strong>API</strong> mode (HTTP work endpoint) or <strong>Docker</strong> mode (<code>image</code> + <code>module.function</code>).</li>
-<li><strong>The browser never talks to Airflow</strong> — browser → frontend Docker → Airflow–STACD (or local compute). On <strong>success</strong>, output goes to <strong><code>data/</code></strong>, which <strong>FileBrowser</strong> exposes.</li>
-<li><strong>Deliverable is a STAC Item</strong> — not a bare file path or GeoServer layer name.</li>
-<li><strong>Campus <code>docker pull</code> uses the daemon proxy</strong> — see <a href="#docker-pull-behind-the-iit-delhi-proxy">IIT Delhi proxy</a> below.</li>
+<li>Your app has a <strong>browser UI</strong>.</li>
+<li>When someone starts a job, <strong>your container</strong> starts the work (on Airflow if <code>AIRFLOW_API_BASE</code> is set, otherwise locally).</li>
+<li>Your container <strong>waits</strong> until the job is <code>success</code> or <code>failed</code>.</li>
+<li>On success it writes files under <strong><code>data/&lt;your-app&gt;/</code></strong> and returns a <strong>STAC Item</strong> (not only a file path).</li>
+<li>People download from <strong>FileBrowser</strong>.</li>
 </ol>
-<p>Then open the runbook in this order: §1–§2 (env + mounts) → §7–§9 (STACD, Airflow, STAC) → Custom LULC example → §3–§6, §10, and §11 as needed.</p>
-<p><a class="md-button md-button--primary" href="../../server/cluster-docker-services/">Open Cluster Docker Services</a></p>
-<h2 id="how-to-prepare-the-checklist-to-deploy-in-tower-services-cluster">How to prepare the checklist to deploy in Tower services cluster<a class="headerlink" href="#how-to-prepare-the-checklist-to-deploy-in-tower-services-cluster" title="Permanent link">¶</a></h2>
-<p><a href="../../server/cluster-service-checklist/">Cluster Service Checklist</a> is the <strong>acceptance list</strong> you copy into the GitHub issue. Tick a row only when the <strong>Acceptance</strong> line is true. It is <strong>not</strong> a second copy of the how-to. Each item points back to the runbook when you need the procedure.</p>
-<p>The checklist is eleven acceptance items. It does not re-teach STACD or STAC. Complete it <strong>after</strong> you understand the architecture on this page and the matching runbook sections.</p>
+<p>Short how-to (env, three mounts, STACD YAML, STAC, copy-this LULC): <a href="../../server/cluster-docker-services/">Cluster Docker Services</a>.</p>
+<p>Acceptance list to paste into a GitHub issue: <a href="../../server/cluster-service-checklist/">Cluster Service Checklist</a>. Tick a row only when the <strong>Acceptance</strong> line is true.</p>
+<p>The runbook is short. Read it top to bottom (§1 env → mounts → image → STACD → trigger → STAC → front page). Copy-this LULC is at the end.</p>
+<p><a class="md-button md-button--primary" href="../../server/cluster-docker-services/">Open Cluster Docker Services</a>
+<a class="md-button" href="../../server/cluster-service-checklist/">Open Cluster Service Checklist</a></p>
+<p>Keep install steps, image name, and a pinned tag in <strong>your</strong> repo <code>README</code> and <code>VERSION</code>. This page does not replace that.</p>
+<h3 id="checklist-mapped-to-the-runbook">Checklist mapped to the runbook<a class="headerlink" href="#checklist-mapped-to-the-runbook" title="Permanent link">¶</a></h3>
 <table>
 <thead>
 <tr>
 <th>Checklist item</th>
-<th>Same term as the runbook</th>
+<th>Same idea as above</th>
 </tr>
 </thead>
 <tbody>
@@ -1286,33 +1448,16 @@
 </tr>
 <tr>
 <td>4–10</td>
-<td>SSO, <code>LOG_LEVEL</code>, one container, frontend API base, per-service diagram, <strong>central Postgres</strong>, <strong><code>outputs.yaml</code></strong> — checklist is the source; runbook §1 / §6 covers env and logging</td>
+<td>Google SSO, <code>LOG_LEVEL</code>, one container, frontend API base, a diagram of <strong>your</strong> app, <strong>central Postgres</strong>, <strong><code>outputs.yaml</code></strong></td>
 </tr>
 <tr>
 <td>11. Front page + demo video</td>
-<td>Drone-style landing page; one video (manual + tutorial) on the front page; demo video reviewed and approved — <a href="../../server/cluster-docker-services/#11-front-page-and-demo-video">runbook §11</a></td>
+<td>Landing page like Drone; one video (manual + tutorial) on the front page; video reviewed and approved — <a href="../../server/cluster-docker-services/#11-front-page-and-demo-video">runbook §11</a></td>
 </tr>
 </tbody>
 </table>
-<p><a class="md-button" href="../../server/cluster-service-checklist/">Open Cluster Service Checklist</a></p>
-<h2 id="shared-cluster-pieces">Shared cluster pieces<a class="headerlink" href="#shared-cluster-pieces" title="Permanent link">¶</a></h2>
-<table>
-<thead>
-<tr>
-<th>Piece</th>
-<th>Role</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Airflow + STACD</td>
-<td>Orchestration — <a href="https://github.com/SaharshLaud/STACD_framework">STACD Framework</a> (<code>dev</code>)</td>
-</tr>
-</tbody>
-</table>
-<p>Install commands stay in each service repository.</p>
-<h2 id="docker-pull-behind-the-iit-delhi-proxy">Docker pull behind the IIT Delhi proxy<a class="headerlink" href="#docker-pull-behind-the-iit-delhi-proxy" title="Permanent link">¶</a></h2>
-<p>Campus hosts often cannot reach GHCR or Docker Hub directly. Configure the <strong>Docker daemon</strong> proxy. Do <strong>not</strong> put <code>registry-1.docker.io</code> or <code>auth.docker.io</code> in <code>NO_PROXY</code>.</p>
+<h2 id="docker-pull-behind-the-iit-delhi-proxy">Docker pull on IIT Delhi campus<a class="headerlink" href="#docker-pull-behind-the-iit-delhi-proxy" title="Permanent link">¶</a></h2>
+<p>Campus machines often cannot reach GitHub Container Registry or Docker Hub without the <strong>Docker daemon</strong> proxy. Do <strong>not</strong> put <code>registry-1.docker.io</code> or <code>auth.docker.io</code> in <code>NO_PROXY</code>.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/systemd/system/docker.service.d
 </span><span id="__span-0-2"><a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/systemd/system/docker.service.d/http-proxy.conf<span class="w"> </span><span class="s">&lt;&lt;'EOF'</span>
 </span><span id="__span-0-3"><a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="s">[Service]</span>
@@ -1324,13 +1469,30 @@
 </span><span id="__span-0-9"><a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>docker
 </span></code></pre></div>
 <p>Replace the proxy host with the one for your IITD account category. Same steps: <a href="../../server/cluster-docker-services/#cluster-notes-iit-delhi-proxy">Cluster Docker Services — IIT Delhi proxy</a>.</p>
-<h2 id="adding-a-service">Adding a service<a class="headerlink" href="#adding-a-service" title="Permanent link">¶</a></h2>
-<ol>
-<li>Read this page (architecture + terms).</li>
-<li>Follow <a href="../../server/cluster-docker-services/">Cluster Docker Services</a> for how to package, wire Airflow/STACD, and return a STAC Item.</li>
-<li>Tick <a href="../../server/cluster-service-checklist/">Cluster Service Checklist</a> in the service issue or README.</li>
-<li>Keep install steps, image name, and pinned tag in the service <code>README</code> and <code>VERSION</code>.</li>
-</ol>
+<h2 id="shared-pieces-on-the-host">Shared pieces on the host<a class="headerlink" href="#shared-pieces-on-the-host" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Airflow + STACD</td>
+<td>Shared job runner — <a href="https://github.com/SaharshLaud/STACD_framework">STACD Framework</a> (<code>dev</code>)</td>
+</tr>
+<tr>
+<td>FileBrowser</td>
+<td>Download UI over <code>data/</code></td>
+</tr>
+<tr>
+<td>Nginx</td>
+<td>Public entry: <code>/drone</code>, <code>/diy-lulc</code>, <code>/bio-master</code>, <code>/file</code>, <code>/airflow</code></td>
+</tr>
+</tbody>
+</table>
+<p>Install commands stay in each service repository. The live path map is on <a href="deployed-architecture/">Deployed Architecture</a>.</p>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
