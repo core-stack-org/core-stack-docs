@@ -1,157 +1,96 @@
 ---
 title: Setup Troubleshooting
-description: Fix common local installation, runtime, GEE, GCS, GeoServer, API, and Celery issues.
+description: Fix common Docker installation, runtime, GEE, GCS, GeoServer, API, and Celery issues.
 ---
 
 # Setup Troubleshooting
 
-Use this page when the installer, initialization check, Django server, or Celery worker names a specific failure. Keep the installer page clean; put the messy fixes here.
+Use this page when a Docker install, the API, or a Celery worker names a specific failure. Install steps stay on [Install CoRE Stack](installer.md). Compose detail stays on [Run with Docker](docker.md).
 
-## Rerun The Smallest Step
+Run every Compose command from the `core-stack-backend` folder, with `--env-file nrm_app/.env`.
 
-```bash
-# See available steps
-bash installation/install.sh --list-steps
+## Install problems
 
-# Validation only
-bash installation/install.sh --only initialisation_check
+| Symptom | Fix |
+| --- | --- |
+| `docker: command not found` | Install Docker, then open a new terminal. See [Install](installer.md#1-install-docker). |
+| `permission denied` on `docker` | On Linux, add your user to the `docker` group and open a new terminal. On macOS or Windows, start Docker Desktop. |
+| Port already in use | Stop whatever is bound to 8000, 8080, or 5432, or set `BACKEND_PORT`, `GEOSERVER_PORT`, or `POSTGRES_PORT` in `nrm_app/.env` |
+| `nrm_app/.env` missing | Copy it again: `cp installation/docker/env.template nrm_app/.env` |
+| Backend keeps restarting | `docker compose --env-file nrm_app/.env logs backend`. The first start waits on GeoServer health, the admin-boundary download, and seed data |
+| Admin-boundary download failed | Run `docker compose --env-file nrm_app/.env up -d --build` again. The download resumes |
 
-# Rebuild nrm_app/.env
-bash installation/install.sh --only env_file
-
-# Add GEE credentials later
-bash installation/install.sh \
-  --only gee_configuration,initialisation_check \
-  --gee-json /full/path/to/service-account.json
-
-# Add GeoServer values later
-bash installation/install.sh \
-  --only initialisation_check \
-  --input geoserver_url=https://host/geoserver \
-  --input geoserver_username=admin \
-  --input geoserver_password=your-password
-
-# Public API smoke test only
-bash installation/install.sh --only public_api_check
-```
-
-Use `--only` when you know the failing step. Use `--from` only when you want a broader rerun.
-
-## Install Problems
-
-| Symptom | Likely cause | Fix |
-| --- | --- | --- |
-| `conda: command not found` | shell has not loaded Miniconda yet | open a new terminal or source your shell profile, then run `conda activate corestackenv` |
-| PostgreSQL connection errors | service is down, user/db missing, or `.env` mismatch | check `sudo systemctl status postgresql`, then rerun `--only env_file,initialisation_check` if env values drifted |
-| RabbitMQ or Celery cannot connect | RabbitMQ is not running | check `sudo systemctl status rabbitmq-server`; start it before the worker |
-| `nrm_app/.env` missing | install stopped before env generation | rerun `bash installation/install.sh --only env_file` |
-| old repo-root `.env` confusion | stale env file from earlier setup | keep the real runtime env at `nrm_app/.env` |
-| Python dependency breakage | conda env is stale | rerun `bash installation/install.sh --only conda_env` |
-| admin-boundary download failed | interrupted download or bad extracted layout | rerun `bash installation/install.sh --only admin_boundary_data,initialisation_check` |
-
-## Validation Failures
-
-| Check | What it means | What to do |
-| --- | --- | --- |
-| `jwt-auth` | no active Django user or token setup failed | create or activate a user, then rerun `initialisation_check` |
-| `gee-probe` | `GEE_DEFAULT_ACCOUNT_ID` is missing or points to a bad `GEEAccount` | import a service-account JSON with `--gee-json` |
-| `gcs-upload-probe` | service account cannot write to the configured GCS bucket | grant the service account bucket access and rerun validation |
-| `geoserver-probe` | GeoServer URL or credentials are missing or invalid | set `GEOSERVER_URL`, `GEOSERVER_USERNAME`, and `GEOSERVER_PASSWORD` |
-| `admin-boundary-compute` | sample admin boundary data is missing or invalid | rerun the admin-boundary data step |
-| `first-computing-api` | the internal test could not trigger the sample API | check Django settings, Celery eager validation output, and admin-boundary artifacts |
-
-## GEE And GCS
-
-A real compute run usually needs both Earth Engine and GCS access:
-
-- `GEEAccount` stores encrypted service-account JSON in the database.
-- `GEE_DEFAULT_ACCOUNT_ID` points the backend to the default account.
-- Some raster publication paths export through the configured GCS bucket before GeoServer sees the file.
-
-Common fixes:
+A one-time job that shows an exit code other than `0` failed. Read its log:
 
 ```bash
-# Import or update the GEE account
-bash installation/install.sh \
-  --only gee_configuration,initialisation_check \
-  --gee-json /full/path/to/service-account.json
+docker compose --env-file nrm_app/.env ps -a
+docker compose --env-file nrm_app/.env logs <service>
 ```
 
-If GEE works but GCS fails, check bucket permissions for the same service-account email. The integration notes are in [Google Cloud Storage](integrations/gcs.md).
+## Runtime
+
+If the API will not answer, confirm `backend` is `Up`, then read its log:
+
+```bash
+docker compose --env-file nrm_app/.env ps
+docker compose --env-file nrm_app/.env logs backend
+```
+
+Look first for missing values in `nrm_app/.env` and for database errors.
+
+Celery workers start with the stack. If a computing API returns `initiated` and nothing else happens:
+
+```bash
+docker compose --env-file nrm_app/.env logs -f celery-nrm
+```
+
+`LAYER_GENERATION_SYNC_MODE=False` (the default) means the API queues the job and returns immediately. Set `LAYER_GENERATION_SYNC_MODE=True`, or pass `"layer_generation_mode": "sync"`, when the HTTP call must wait. See [Docker installation — two ways](docker.md#two-methods-airflow--sync-or-no-airflow--async).
+
+After you change `nrm_app/.env`:
+
+```bash
+docker compose --env-file nrm_app/.env up -d --force-recreate
+```
+
+## GEE and GCS
+
+A real Earth Engine run needs a `GEEAccount` in the database and `GEE_DEFAULT_ACCOUNT_ID` in `nrm_app/.env`. Some raster publication paths also export through the configured GCS bucket before GeoServer sees the file.
+
+Upload the service-account JSON in Django admin at `/admin/gee_computing/geeaccount/add/`, set `GEE_DEFAULT_ACCOUNT_ID` to that row’s id, then recreate the stack. Steps: [Google Earth Engine](docker.md#gee-and-gcs).
+
+| Symptom | Fix |
+| --- | --- |
+| `GEEAccount with id=N was not found` | Add the JSON in Django admin and pass that row’s id as `gee_account_id` |
+| `Failed: projects//assets/apps/mws/...` | `GEE_STORAGE_PROJECT` is empty. Set it in `nrm_app/.env` with `GCS_BUCKET_NAME`, then recreate the backend |
+| GEE works but GCS upload fails | Grant the same service account access to the bucket. See [Google Cloud Storage](integrations/gcs.md) |
 
 ## GeoServer
 
-GeoServer failures normally show up during publication, layer listing, or generated layer URL checks.
+Docker starts GeoServer at [http://127.0.0.1:8080/geoserver](http://127.0.0.1:8080/geoserver). Failures show up during publication, layer listing, or generated layer URL checks.
 
 Check:
 
-- the URL includes the GeoServer base, not a frontend URL
-- username and password are correct
+- `GEOSERVER_URL` is the GeoServer base, such as `http://geoserver:8080/geoserver` inside Compose, not a frontend URL
+- username and password match `nrm_app/.env`
 - the workspace exists or can be created
 - the style name exists when the pipeline publishes a style
-- the backend can reach GeoServer from the same machine
+- `geoserver` is `Up` in `docker compose ps`
 
-For a local setup path, see [GeoServer](integrations/geoserver.md).
-
-## Django Runtime
-
-If the server will not start:
-
-```bash
-conda activate corestackenv
-python manage.py check
-python manage.py migrate
-python manage.py runserver 127.0.0.1:8000
-```
-
-Look first for missing env values, database errors, and import errors from optional packages.
-
-## Celery Runtime
-
-Start the worker from the backend repo root:
-
-```bash
-conda activate corestackenv
-celery -A nrm_app worker -l info -Q nrm
-```
-
-If tasks never start:
-
-- confirm RabbitMQ is running
-- confirm the worker uses queue `nrm`
-- keep the Django server and Celery worker in separate terminals
-- watch both logs while triggering an API
-
-Docker Compose starts Celery workers. Layer APIs are **async** unless you set `LAYER_GENERATION_SYNC_MODE=True` or pass `"layer_generation_mode": "sync"`. See [Docker installation — two methods](docker.md#two-methods-airflow--sync-or-no-airflow--async).
-
-## Docker
-
-Use [Docker installation](docker.md) for Compose commands. Common first-run issues:
+## API issues
 
 | Symptom | Fix |
 | --- | --- |
-| Port already in use | Stop whatever is bound to 8000, 8080, or 5432, or set ports in `nrm_app/.env` |
-| Backend keeps restarting | `docker compose --env-file nrm_app/.env logs backend`. First-run waits: GeoServer health, admin-boundary download, seed load |
-| `GEEAccount with id=N was not found` | Add the JSON in Django admin (`/admin/gee_computing/geeaccount/add/`) and pass that row’s id as `gee_account_id` |
-| `Failed: projects//assets/apps/mws/...` | `GEE_STORAGE_PROJECT` is empty. Set it in `nrm_app/.env` with `GCS_BUCKET_NAME`, then recreate the backend |
-| API returns `initiated` but nothing computes | Async mode. Check Celery workers, or use `"layer_generation_mode": "sync"` / `LAYER_GENERATION_SYNC_MODE=True` |
-| Airflow DAG skips STAC | Need a sync response. Set `LAYER_GENERATION_SYNC_MODE=True` or `"layer_generation_mode": "sync"` |
-| GEE jobs fail after a successful start | Mount JSON under `CORESTACK_HOST_DATA_DIR/gee_confs/`, add the account in Django admin, set `GCS_BUCKET_NAME` / `GEE_STORAGE_PROJECT`, recreate `gee-config` and `backend` |
+| `401 Unauthorized` on public APIs | Send `X-API-Key` and verify the key is active |
+| JWT and API-key confusion | Use public API keys for public-data APIs. Use the JWT from `/api/v1/auth/login/` where the computing API requires it |
+| Generated layer URL returns nothing | Check that the layer metadata row exists and `is_sync_to_geoserver=True` |
+| API returns fast but no layer appears | Inspect `celery-nrm` logs and the Earth Engine task status |
+| Airflow DAG skips STAC | The DAG needs a sync response. Set `LAYER_GENERATION_SYNC_MODE=True` or `"layer_generation_mode": "sync"` |
 
-Wipe Postgres/GeoServer/Redis volumes (host data under `CORESTACK_HOST_DATA_DIR` stays): `docker compose --env-file nrm_app/.env down -v`.
+More first-run cases: [Docker troubleshooting](docker.md#troubleshooting).
 
-## API Issues
+## Public API helper
 
-| Symptom | Fix |
-| --- | --- |
-| `401 Unauthorized` on public APIs | send `X-API-Key` and verify the key is active |
-| JWT/API-key confusion | use public API keys for public-data APIs; use JWT only where the backend API requires it |
-| generated layer URL returns nothing | check that the layer metadata row exists and `is_sync_to_geoserver=True` |
-| API returns fast but no layer appears | inspect Celery logs and GEE task status |
-
-## Public API Helper
-
-The backend ships a small helper for public API checks:
+The backend ships a small helper for public API checks. It reads credentials from command-line flags, environment variables, or an env file:
 
 ```bash
 python installation/public_api_client.py smoke-test
@@ -162,8 +101,12 @@ python installation/public_api_client.py download \
   --tehsil lakhipur
 ```
 
-It can read credentials from command-line flags, environment variables, or an env file. It does not require the full `corestackenv`.
+## When to stop debugging setup
 
-## When To Stop Debugging Setup
+If `backend` and `celery-nrm` are `Up`, you can log in, and one small compute API returns `initiated` or `completed`, move on to [Build Pipelines](../pipelines/index.md).
 
-If Django starts, Celery connects, `initialisation_check` passes or names only optional integrations, and one small compute API can be triggered, move on to [Build Pipelines](../pipelines/index.md). Do not keep rerunning the whole installer unless you are fixing installation itself.
+Wipe Postgres, GeoServer, and Redis volumes only when you mean to start over. Host files under `CORESTACK_HOST_DATA_DIR` stay:
+
+```bash
+docker compose --env-file nrm_app/.env down -v
+```

@@ -35,7 +35,7 @@ flowchart LR
 
 Use one small request after the backend is running. Replace the place names and `gee_account_id` with values from your environment.
 
-On **Docker Compose**, start with [admin-boundary generate](../developers/docker.md#9-run-the-admin-boundary-local-compute-api) (`POST /api/v1/generate_block_layer/`). Pass `"layer_generation_mode": "sync"` (or set `LAYER_GENERATION_SYNC_MODE=True`) if the HTTP call must wait; otherwise Celery workers run the job asynchronously. See [two layer-generation methods](../developers/docker.md#two-methods-airflow--sync-or-no-airflow--async). For native Linux, keep a Celery worker on queue `nrm` as below.
+On Docker Compose, start with [admin-boundary generate](../developers/docker.md#9-run-the-admin-boundary-local-compute-api) (`POST /api/v1/generate_block_layer/`). Pass `"layer_generation_mode": "sync"` (or set `LAYER_GENERATION_SYNC_MODE=True`) if the HTTP call must wait; otherwise Celery workers run the job asynchronously. See [two layer-generation methods](../developers/docker.md#two-methods-airflow--sync-or-no-airflow--async).
 
 
 ```bash
@@ -52,7 +52,7 @@ curl -X POST \
   http://127.0.0.1:8000/api/v1/lulc_for_tehsil/
 ```
 !!! note
-    Make sure your Django server is running (`python manage.py runserver`) before trying it.
+    The Docker stack must be running (`docker compose --env-file nrm_app/.env ps` shows `backend` as `Up`) before you try this.
 
 The response should come back quickly:
 

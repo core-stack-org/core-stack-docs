@@ -7,14 +7,9 @@ description: Developer-facing integration docs for Earth Engine, Google Cloud St
 
 These pages explain the external systems the current backend can connect to once the base install is working.
 
-Read this section after [Installer](../installer.md) or [Docker](../docker.md), especially when the installer output names an integration blocker such as `gee-probe`, `gcs-upload-probe`, `geoserver-probe`, or `public_api_check`.
+Read this section after [Install CoRE Stack](../installer.md). Docker already starts GeoServer. Earth Engine and Cloud Storage are added later in Django admin and `nrm_app/.env`. See [Google Earth Engine on Docker](../docker.md#gee-and-gcs).
 
-You do not need every integration on day one. The current installer is designed so the base backend can come up first, and GEE, GeoServer, or public API credentials can be added later with targeted reruns.
+You do not need every integration on day one. The Docker stack comes up first. Add GEE or GCS when a pipeline asks for them.
 
-**Current backend install flow:**
-
-- GEE can now be imported directly during `install.sh` with `--gee-json` or `--input gee_json=...`.
-- GEE can also be skipped during first install and added later with `--only gee_configuration,initialisation_check`.
-- GCS matters operationally because many GEE and GeoServer flows stage artifacts through Cloud Storage.
-- GeoServer settings can be queued into the installer and are probed during `initialisation_check` when present.
-- GeoServer can also be added later with `--only initialisation_check --input geoserver_url=...`.
+- GCS matters because many GEE and GeoServer flows stage artifacts through Cloud Storage.
+- GeoServer is part of the Docker stack. Its URL and password live in `nrm_app/.env`.

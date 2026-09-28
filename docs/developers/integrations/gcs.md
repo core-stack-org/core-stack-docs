@@ -165,18 +165,15 @@ If you are inspecting bucket contents during debugging, these prefixes tell you 
 ## Minimum Setup Checklist
 
 1. Create the bucket in `us-central1`.
-2. Set `GCS_BUCKET_NAME` (Compose `.env` for Docker, `nrm_app/.env` for native). Django falls back to `core_stack` if the env is empty.
+2. Set `GCS_BUCKET_NAME` in `nrm_app/.env`. Django falls back to `core_stack` if the env is empty.
 3. Grant the GEE service account:
    - `roles/storage.objectViewer`
    - `roles/storage.legacyBucketReader`
    - write and cleanup permissions, typically `roles/storage.objectAdmin`
-4. Rerun the strict initialization check:
+4. Recreate the stack so the backend reads the new bucket name:
 
 ```bash
-source "$HOME/miniconda3/etc/profile.d/conda.sh"
-conda activate corestackenv
-cd /path/to/core-stack-backend
-python computing/misc/internal_api_initialisation_test.py --require-gee
+docker compose --env-file nrm_app/.env up -d --force-recreate
 ```
 
 The result to watch is:

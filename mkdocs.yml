@@ -148,8 +148,8 @@ nav:
   - Develop CoRE Stack:
       - developers/index.md
       - Installation:
-          - Native (Linux): developers/installer.md
-          - Docker: developers/docker.md
+          - Start here: developers/installer.md
+          - Docker reference: developers/docker.md
       - Backend Code Map: developers/backend-code-map.md
       - Develop New Pipelines: pipelines/index.md
       - Computing API Endpoints: pipelines/computing-endpoints.md

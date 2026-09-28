@@ -8,13 +8,7 @@ If you see `gee_account_id` in pipeline docs, API examples, or direct Python cal
 !!! warning
     For the current backend, you should assume GEE setup is required before trying to run most computing pipelines end-to-end. Without it, many local and queued compute paths will fail during `ee_initialize(...)`.
 
-If the shared JSON key is not available during your first install, you can still finish the base backend setup and come back later with a targeted rerun:
-
-```bash
-bash installation/install.sh \
-  --only gee_configuration,initialisation_check \
-  --gee-json /full/path/to/service-account.json
-```
+If the JSON key is not available during your first install, finish the Docker setup and add the account later in Django admin. See [Step 2](#step-2-import-the-credentials-into-the-backend).
 
 ---
 
@@ -26,7 +20,7 @@ Set up these pieces in order:
 2. a service account with the required Earth Engine permissions
 3. a downloaded JSON key for that service account
 4. a Google Cloud Storage bucket in `us-central1`, with read/write access for that same service account
-5. a Django `GEEAccount` entry, usually created through the installer or admin
+5. a Django `GEEAccount` entry, created in Django admin
 6. a usable `gee_account_id` for API calls, Celery tasks, and shell runs
 
 !!! important
@@ -67,37 +61,7 @@ The downloaded file will look something like `<project-name>-12345-356644b54.jso
 
 ## Step 2: Import The Credentials Into The Backend
 
-### Option A: Let The Installer Do It
-
-This is now the fastest and most aligned path.
-
-Run the installer with the JSON path:
-
-```bash
-bash installation/install.sh \
-  --only gee_configuration,initialisation_check \
-  --gee-json /full/path/to/service-account.json
-```
-
-You can also use the generic input style:
-
-```bash
-bash installation/install.sh \
-  --only gee_configuration,initialisation_check \
-  --input gee_json=/full/path/to/service-account.json
-```
-
-What the current installer does during `gee_configuration`:
-
-- stages the JSON file into `data/gee_confs/`
-- creates or updates a Django `GEEAccount`
-- sets `GEE_DEFAULT_ACCOUNT_ID` and `GEE_HELPER_ACCOUNT_ID` in `nrm_app/.env`
-- sets the key-path variables such as `GEE_SERVICE_ACCOUNT_KEY_PATH`
-- marks later validation as GEE-required so the initialization test fails fast on missing GEE readiness
-
-### Option B: Create The `GEEAccount` In Django Admin
-
-Use this path if you skipped the installer GEE step, are on [Docker Compose](../docker.md#gee-and-gcs), or want to inspect the account manually.
+Create the `GEEAccount` in Django admin. On Docker this is also covered in [Google Earth Engine](../docker.md#gee-and-gcs).
 
 1. Open the Django admin add form for GEE accounts:
    `http://127.0.0.1:8000/admin/gee_computing/geeaccount/add/`
@@ -115,7 +79,7 @@ Use this path if you skipped the installer GEE step, are on [Docker Compose](../
    - Example URL: `http://127.0.0.1:8000/admin/gee_computing/geeaccount/21/change/`
    - In this case, the `gee_account_id` is `21`
 
-If you use the admin path instead of the installer path, also make sure `nrm_app/.env` points to the correct default IDs when your workflow relies on default account lookup:
+Also make sure `nrm_app/.env` points to the correct default IDs when your workflow relies on default account lookup:
 
 - `GEE_DEFAULT_ACCOUNT_ID`
 - `GEE_HELPER_ACCOUNT_ID`
@@ -133,13 +97,10 @@ The current backend validation is stricter than just “can Earth Engine authent
 - Google Cloud Storage upload access through `probe_gcs_upload_access(...)`
 - the first authenticated computing API once GEE, GCS, GeoServer, and admin-boundary data are all ready
 
-Rerun it explicitly when you want a GEE-focused answer:
+On Docker, confirm the account after you recreate the stack:
 
 ```bash
-source "$HOME/miniconda3/etc/profile.d/conda.sh"
-conda activate corestackenv
-cd /path/to/core-stack-backend
-python computing/misc/internal_api_initialisation_test.py --require-gee
+docker compose --env-file nrm_app/.env logs backend
 ```
 
 Interpret the most important result names like this:

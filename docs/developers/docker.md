@@ -1,230 +1,58 @@
 ---
 title: Docker
-description: Run the CoRE Stack backend with Docker Compose in two parts — Part 1 Airflow/STACD sync (setup, upload DAG, trigger, full Graph, re-exec) or Part 2 Celery async.
+description: Install CoRE Stack with Docker in two ways — with Airflow and STACD, or without Airflow on Celery.
 ---
 
 # Run CoRE Stack Backend with Docker
 
-The repository-root `docker-compose.yml` is the only supported Compose definition. It builds the backend environment, mounts source from the host, starts PostgreSQL, Redis, GeoServer, Gunicorn and Celery, and runs initialization jobs in dependency order.
+!!! tip "First time here?"
+    Use [Install CoRE Stack](installer.md). That page walks through a first Docker install with no Airflow, and explains each command. Come back here for Airflow, Earth Engine, large datasets, GPU jobs, and the full settings list.
 
-Authoritative backend copy: [installation/DOCKER.md](https://github.com/core-stack-org/core-stack-backend/blob/main/installation/DOCKER.md). Native Linux: [Installer](installer.md). GEE / GCS background: [Google Earth Engine](integrations/google-earth-engine.md) and [Google Cloud Storage](integrations/gcs.md). Airflow + STACD: [STACD Framework](https://github.com/SaharshLaud/STACD_framework) (`dev`).
+CoRE Stack Docker installation has **two ways**. Both use the same Compose stack from [installation/DOCKER.md](https://github.com/core-stack-org/core-stack-backend/blob/main/installation/DOCKER.md). Airflow is installed beside that stack, only on the first way.
 
-## Installation in two parts { #two-methods-airflow--sync-or-no-airflow--async }
-
-Docker install is **two parts**. Do the [shared first start](#first-start) once, then finish **either** Part 1 or Part 2.
-
-| Part | Use when | `LAYER_GENERATION_SYNC_MODE` | `layer_generation_mode` | What happens |
-| --- | --- | --- | --- | --- |
-| **[Part 1 — With Airflow (sync)](#part-1-with-airflow-sync)** | You will set up Airflow + STACD, **upload** the layer DAGs, **trigger** a run, and need a finished STAC payload (`asset_id`, `stac_items`) | `True` | `"sync"` | The HTTP call **waits**. Celery `apply_async` runs **in-process**. Response status becomes `completed`. |
-| **[Part 2 — Without Airflow (async)](#part-2-without-airflow-async)** | Default Docker stack. Celery workers do the work. No Airflow install. | `False` (default) | `"async"` or omit | The API **queues** the task and returns `initiated`. Watch `celery-nrm` / `celery-layer-bulk`. |
-
-The switch is **`LAYER_GENERATION_SYNC_MODE`** in `nrm_app/.env`. One request can override that with **`layer_generation_mode`** in the JSON body (`sync` or `async`). Aliases: `layerGenerationMode`, `layer_mode`, `mode`.
-
-Do not confuse this with **`SYNC_LAYER`**. That is a separate older flag. Layer method is **`LAYER_GENERATION_SYNC_MODE`** / **`layer_generation_mode`**.
-
-Airflow is **not** in the backend Compose file. Part 1 installs Airflow + STACD next to the stack, then points the generated DAGs at `http://<backend-host>:8000`.
-
-## Architecture
-
-| State | Location | Persistence |
+| Way | What you install | Layer jobs |
 | --- | --- | --- |
-| Backend source | Host checkout mounted at `/app` | Git / host filesystem |
-| Downloaded and generated layers | `${CORESTACK_HOST_DATA_DIR:-.}/data` mounted at `/var/tmp/core-stack-data` | Host filesystem |
-| PostgreSQL | Separate `postgres` container | Docker volume `postgres_data` |
-| GeoServer catalog | Separate `geoserver` container | Docker volume `geoserver_data` |
-| Celery broker | Separate `redis` container with AOF | Docker volume `redis_data` |
-| GEE JSON | `${CORESTACK_HOST_DATA_DIR:-.}/gee_confs` | Read-only host mount |
-| Database backups | `${CORESTACK_HOST_DATA_DIR:-.}/backups/postgres` | Host filesystem |
-| GeoServer backups | `${CORESTACK_HOST_DATA_DIR:-.}/backups/geoserver` | Host filesystem |
+| **[1 — With Airflow](#part-1-with-airflow-sync)** | Airflow + STACD, then the Docker stack in sync mode | Airflow runs the layer DAG. Each algorithm call **waits** and returns a finished STAC body (`asset_id`, `stac_items`). |
+| **[2 — Without Airflow](#part-2-without-airflow-async)** | The Docker stack only | Celery workers run the jobs. The API returns `initiated`. |
 
-PostgreSQL is never stored in the backend container. `docker compose --env-file nrm_app/.env down` keeps volumes. Adding `-v` deletes the database, GeoServer catalog, and Redis.
+The switch is **`LAYER_GENERATION_SYNC_MODE`** in `nrm_app/.env` (`False` in the template). One request can override it with **`layer_generation_mode`** (`sync` or `async`). Aliases: `layerGenerationMode`, `layer_mode`, `mode`. **`SYNC_LAYER`** is a separate older flag.
 
-## What you get
+First install: [Install CoRE Stack](installer.md). GEE and GCS background: [Google Earth Engine](integrations/google-earth-engine.md), [Google Cloud Storage](integrations/gcs.md).
 
-| Service | URL |
-| --- | --- |
-| Django / API | http://localhost:8000 |
-| Django admin | http://localhost:8000/admin/ |
-| GeoServer | http://localhost:8080/geoserver |
-| Airflow (Part 1 only) | http://localhost:8081 — not in Compose; see [setup Airflow](#setup-airflow-and-stacd) |
+## Installation in two ways { #two-methods-airflow--sync-or-no-airflow--async }
 
-Postgres is on `127.0.0.1:5432` (`DB_USER` / `DB_PASSWORD` / `DB_NAME` from `nrm_app/.env`). Create a superuser after first start (see [Superuser](#superuser)).
+| Way | `LAYER_GENERATION_SYNC_MODE` | `layer_generation_mode` | What happens |
+| --- | --- | --- | --- |
+| **[1 — With Airflow](#part-1-with-airflow-sync)** | `True` | `"sync"` | The HTTP call waits. The response status becomes `completed`. |
+| **[2 — Without Airflow](#part-2-without-airflow-async)** | `False` (default) | `"async"` or omit | The API queues the task and returns `initiated`. Watch `celery-nrm` / `celery-layer-bulk`. |
 
-## Requirements
+## 1. CoRE Stack with Airflow integration { #part-1-with-airflow-sync }
 
-- Docker Engine or Docker Desktop with Compose v2
-- Linux/amd64; Apple Silicon uses Docker emulation
-- Enough disk for images and requested layers (admin-boundary alone is about 8 GB)
-- Ports **8000**, **8080**, and **5432** free on loopback, or overridden in `nrm_app/.env`
-- Git, to clone [core-stack-backend](https://github.com/core-stack-org/core-stack-backend)
+Do these in order:
 
-## First start
+1. [Read what Airflow is](#what-airflow-is) on this path.
+2. [Install Airflow and STACD](#setup-airflow-and-stacd).
+3. [Install CoRE Stack](#docker-install-steps) with the steps in `installation/DOCKER.md`, and set `LAYER_GENERATION_SYNC_MODE=True`.
+4. [Point the DAGs at the API](#corestack-auth-token), [upload them](#upload-the-dag), [trigger a run](#trigger-the-dag), and use [re-exec](#re-exec) when a task fails.
 
-```bash
-git clone https://github.com/core-stack-org/core-stack-backend.git
-cd core-stack-backend
-cp installation/docker/env.template nrm_app/.env
-chmod 600 nrm_app/.env
-```
+### What Airflow is { #what-airflow-is }
 
-Pick a layer method in that file (`LAYER_GENERATION_SYNC_MODE`). Use `True` if you will continue with [Part 1](#part-1-with-airflow-sync); leave `False` for [Part 2](#part-2-without-airflow-async). For a server, also set an absolute data root:
+[Apache Airflow](https://airflow.apache.org/) is a workflow scheduler. A workflow is a **DAG** (directed acyclic graph): tasks are nodes, and edges say which task must finish before the next one starts. The scheduler starts a task only after its upstream tasks succeed. The web UI shows that graph, the logs, and a way to run the workflow again with new parameters.
 
-```dotenv
-CORESTACK_HOST_DATA_DIR=/srv/core-stack-data
-LAYER_GENERATION_SYNC_MODE=False
-```
+CoRE Stack uses Airflow when layer generation should be that graph, instead of one API call handed to Celery:
 
-Replace the placeholder database and GeoServer passwords before any shared host. Then:
+- Two root datasets run first: admin boundary and microwatersheds.
+- Each algorithm task POSTs a Django computing API and **waits** for a finished body. That requires sync mode (`LAYER_GENERATION_SYNC_MODE=True`, or `"layer_generation_mode": "sync"` on the request). The body includes `asset_id` and `stac_items`.
+- The matching `*_Asset` task registers that STAC payload.
+- STACD stores which algorithms succeeded or failed for a state, district, and block, so a later run can retry only the failures.
 
-```bash
-docker compose --env-file nrm_app/.env up -d --build
-```
+**STACD** (SpatioTemporal Asset Catalog for Dataflows) is the YAML layer on Airflow. You upload three files — DAG, algorithm repo, and dataset repo. STACD loads them into its database, generates the Python DAG, and places it in Airflow’s `dags/` folder. You then trigger and watch that DAG in the Airflow UI. Framework reference: [STACD Framework](https://github.com/SaharshLaud/STACD_framework) (`dev`).
 
-Run **all** Compose commands from the repository root with `--env-file nrm_app/.env`. Compose does not auto-load `nrm_app/.env`. The retired parent-repo `.env.core-stack` is not read.
+Airflow is a separate install next to Compose. GeoServer already listens on **8080**, so the Airflow webserver uses **8081**.
 
-`CORESTACK_HOST_DATA_DIR` defaults to the repository root (`./data`, `./gee_confs`, `./backups`). Compose creates those bind-mount directories on start.
+### Install Airflow and STACD { #setup-airflow-and-stacd }
 
-One-shot jobs run before Gunicorn:
-
-1. `app-init` completes `nrm_app/.env` and normalizes database, GeoServer, Celery, and runtime values.
-2. `database-init` creates installation-local migrations, applies them with `--fake-initial`, collects static files, and loads seed data once.
-3. `geoserver-init` reconciles workspaces and bundled styles.
-4. `data-download` downloads only requested or missing source layers.
-5. `gee-config` discovers optional mounted GEE JSON.
-6. `tehsil-watershed-setup` downloads active tehsil watershed layers from the GeoServer `mws` WFS workspace.
-7. Gunicorn and the queue-specific Celery workers start.
-
-```bash
-docker compose --env-file nrm_app/.env ps
-docker compose --env-file nrm_app/.env logs -f app-init database-init data-download geoserver-init \
-  gee-config tehsil-watershed-setup backend
-```
-
-## Large-download controls
-
-| Variable | Effect when set to `1` |
-| --- | --- |
-| `SKIP_ADMIN_BOUNDARY_DOWNLOAD` | Skip the ~8 GB admin-boundary archive |
-| `SKIP_BASE_LAYER_DOWNLOAD` | Skip terrain, MWS, LULC, and static/tehsil-level base layers |
-| `SKIP_TEHSIL_WATERSHEDS` | Do not fetch active tehsil watershed GPKGs from GeoServer |
-
-Set them in `nrm_app/.env` or on one invocation:
-
-```bash
-SKIP_ADMIN_BOUNDARY_DOWNLOAD=1 \
-SKIP_BASE_LAYER_DOWNLOAD=1 \
-SKIP_TEHSIL_WATERSHEDS=1 \
-docker compose --env-file nrm_app/.env up -d --build
-```
-
-Refresh the admin-boundary archive:
-
-```bash
-FORCE_DATA_DOWNLOAD=1 docker compose --env-file nrm_app/.env run --rm data-download
-```
-
-Fetch base layers later:
-
-```bash
-SKIP_ADMIN_BOUNDARY_DOWNLOAD=1 \
-SKIP_BASE_LAYER_DOWNLOAD=0 \
-docker compose --env-file nrm_app/.env run --rm data-download
-```
-
-Tehsil watersheds land at:
-
-```text
-<CORESTACK_HOST_DATA_DIR>/data/base_layers/tehsil_watersheds/<state>/<district>/<tehsil>.gpkg
-```
-
-Retry a failed fetch:
-
-```bash
-docker compose --env-file nrm_app/.env run --rm tehsil-watershed-setup
-```
-
-## GEE and GCS { #gee-and-gcs }
-
-The stack starts without GEE. Earth Engine jobs need a service-account JSON, a Django `GEEAccount`, `GCS_BUCKET_NAME`, and `GEE_STORAGE_PROJECT`.
-
-```bash
-mkdir -p /srv/core-stack-data/gee_confs
-cp /secure/path/service-account.json /srv/core-stack-data/gee_confs/gee-service-account.json
-chmod 600 /srv/core-stack-data/gee_confs/gee-service-account.json
-```
-
-Put the GCS bucket and GEE project in `nrm_app/.env`:
-
-```bash
-GCS_BUCKET_NAME=your-gcs-bucket
-GEE_STORAGE_PROJECT=ee-your-project
-GEE_STORAGE_PROJECT_HELPER=ee-your-project
-```
-
-Create the bucket in **`us-central1`** (see [Google Cloud Storage](integrations/gcs.md)). Then:
-
-```bash
-docker compose --env-file nrm_app/.env run --rm gee-config
-docker compose --env-file nrm_app/.env up -d --force-recreate backend \
-  celery-nrm celery-layer-bulk celery-geoserver celery-general
-```
-
-The mount is read-only. Add the matching `GEEAccount` in Django admin if it is not already in the database:
-
-1. Open [http://localhost:8000/admin/gee_computing/geeaccount/add/](http://localhost:8000/admin/gee_computing/geeaccount/add/).
-2. **Name:** GEE project id (same as `GEE_STORAGE_PROJECT`).
-3. **Service account email:** `client_email` from the JSON.
-4. **Credentials file:** upload the same JSON.
-5. Save. The numeric id in the change URL is `gee_account_id`.
-
-Use `SKIP_GEE_CONFIG=1` to disable GEE setup entirely.
-
-### Optional Google Cloud Storage { #3-optional-google-cloud-storage }
-
-Same bucket rules as above: unique name, `us-central1`, grant the GEE service account `roles/storage.objectViewer`, `roles/storage.legacyBucketReader`, and `roles/storage.objectAdmin`. Set `GCS_BUCKET_NAME` in `nrm_app/.env` and recreate `gee-config` plus `backend`.
-
-## Superuser
-
-Set `DJANGO_SUPERUSER_USERNAME`, `DJANGO_SUPERUSER_EMAIL`, and `DJANGO_SUPERUSER_PASSWORD` before first start, or create one:
-
-```bash
-docker compose --env-file nrm_app/.env exec backend python manage.py createsuperuser
-```
-
-## Part 1 — With Airflow (sync) { #part-1-with-airflow-sync }
-
-Part 1 is: start the backend in **sync**, install **Airflow 2.10.4 + STACD**, **upload** the three YAML files, **trigger** the DAG, open the **full Graph**, and use **re-exec** (`resume_exec`) when a run fails.
-
-### 1. Enable sync on the backend
-
-Airflow algorithm tasks POST the Django APIs and must receive a finished STAC body. Set this **before** start, or recreate the backend after changing it:
-
-```bash
-# nrm_app/.env
-LAYER_GENERATION_SYNC_MODE=True
-```
-
-```bash
-docker compose --env-file nrm_app/.env up -d --force-recreate backend
-```
-
-Per-request override (wins over the env default):
-
-```json
-{
-  "state": "Rajasthan",
-  "district": "Bhilwara",
-  "block": "Mandalgarh",
-  "gee_account_id": 1,
-  "layer_generation_mode": "sync"
-}
-```
-
-`url:` values in the algorithm YAML must be reachable from the **Airflow worker**, not from your laptop. The bundled files use `http://core-stack:8000/...` (Compose service name). If Airflow runs on the host, change those URLs to `http://127.0.0.1:8000/...` or the LAN IP before you upload.
-
-### 2. Set up Airflow and STACD { #setup-airflow-and-stacd }
-
-Authoritative install: [STACD Framework README](https://github.com/SaharshLaud/STACD_framework/blob/dev/README.md) (`dev` branch). Short path:
+Authoritative install: [STACD Framework README](https://github.com/SaharshLaud/STACD_framework/blob/dev/README.md) (`dev`). You need Python 3.10+, pip, and Git.
 
 ```bash
 mkdir airflow_stacd && cd airflow_stacd
@@ -252,21 +80,69 @@ airflow users create \
   --lastname admin \
   --role Admin \
   --email admin@example.com
+```
 
+`airflow users create` asks for a password.
+
+Start the scheduler and the webserver in two terminals. In each one, `cd` to `airflow_stacd`, activate `venv`, and export `AIRFLOW_HOME` and `PYTHONPATH` as above.
+
+Terminal 1:
+
+```bash
 airflow scheduler
 ```
 
-In a second terminal (same `AIRFLOW_HOME` / venv / `PYTHONPATH`):
+Terminal 2 — port **8081**, because GeoServer uses 8080:
 
 ```bash
 airflow webserver --port 8081
 ```
 
-GeoServer already uses **8080** on this Compose stack, so do not bind Airflow there. Open [http://localhost:8081](http://localhost:8081) and log in.
+Open [http://localhost:8081](http://localhost:8081) and log in. `airflow standalone` is fine only after you move GeoServer (`GEOSERVER_PORT`) or Airflow off 8080.
 
-`airflow standalone` is fine only if you first move GeoServer (`GEOSERVER_PORT`) or Airflow off 8080.
+`$AIRFLOW_HOME` then contains `stacd/` (database, DAG generator, YAML configs) and `plugins/` (the STACD pages in the Airflow menu). Airflow creates `dags/` when the first workflow is uploaded.
 
-In **Admin → Variables** (or CLI), set the backend JWT so DAG tasks can call the APIs:
+Leave this running and continue with the CoRE Stack install below. The auth token and the DAG upload happen after the API is up.
+
+### Install CoRE Stack (with Airflow)
+
+Follow [Docker install steps](#docker-install-steps) — the same sequence as [installation/DOCKER.md](https://github.com/core-stack-org/core-stack-backend/blob/main/installation/DOCKER.md).
+
+In `nrm_app/.env`, before the first `docker compose up`, also set:
+
+```dotenv
+LAYER_GENERATION_SYNC_MODE=True
+```
+
+Apply a later change with:
+
+```bash
+docker compose --env-file nrm_app/.env up -d --force-recreate backend
+```
+
+`url:` values in the algorithm YAML must be reachable from the **Airflow worker**. The bundled files use `http://core-stack:8000/...` (the Compose service name). When Airflow runs on the host, change those URLs to `http://127.0.0.1:8000/...` (or the LAN IP) before you upload.
+
+A single request can force sync even when the env default is `False`:
+
+```json
+{
+  "state": "Rajasthan",
+  "district": "Bhilwara",
+  "block": "Mandalgarh",
+  "gee_account_id": 1,
+  "layer_generation_mode": "sync"
+}
+```
+
+### Point Airflow at the API { #corestack-auth-token }
+
+After [step 6 of the Docker install](#6-check-that-it-works) returns a token, store it as an Airflow Variable so DAG tasks can call the APIs. In the Airflow UI use **Admin → Variables**, or:
+
+```bash
+airflow variables set CORESTACK_AUTH_TOKEN '<access token>'
+```
+
+You can also log in yourself:
 
 ```bash
 curl -s -X POST http://127.0.0.1:8000/api/v1/auth/login/ \
@@ -274,15 +150,11 @@ curl -s -X POST http://127.0.0.1:8000/api/v1/auth/login/ \
   -d '{"username":"<admin_user>","password":"<password>"}'
 ```
 
-```bash
-airflow variables set CORESTACK_AUTH_TOKEN '<access token>'
-```
+Copy `access` into `CORESTACK_AUTH_TOKEN`. Tokens expire (typically 90 days). Reset the variable when calls start returning 401.
 
-Tokens expire (typically 90 days). Reset the variable when calls start returning 401.
+### Upload the DAG { #upload-the-dag }
 
-### 3. Upload the DAG { #upload-the-dag }
-
-The backend already ships the STACD trio for both layer DAGs:
+The backend ships the STACD trio for both layer DAGs:
 
 | DAG id | Folder under `computing/dags/generated_yamls/` |
 | --- | --- |
@@ -303,9 +175,9 @@ STACD writes the YAMLs under `$AIRFLOW_HOME/stacd/yaml_configs/`, builds the Pyt
 
 Repeat for Dynamic Layers if you need yearly / inter-dependent layers (`start_year`, `end_year`, `gee_account_id`).
 
-Do not hand-edit the generated `.py`. To change the graph later, use STACD **Register Algorithm**, **Register Dataset**, or **Update DAG**.
+Leave the generated `.py` as STACD wrote it. To change the graph later, use STACD **Register Algorithm**, **Register Dataset**, or **Update DAG**.
 
-### 4. Trigger the DAG { #trigger-the-dag }
+### Trigger the DAG { #trigger-the-dag }
 
 1. **DAGs** → `CoreStack_DAG_LocalCompute_StaticLayers`
 2. Click **▶ Trigger DAG**
@@ -323,7 +195,7 @@ Do not hand-edit the generated `.py`. To change the graph later, use STACD **Reg
 | `updated_algo` | `River` | Only `update_algo` |
 | `updated_dataset` | `MWS_Boundaries` | Only `update_dataset` |
 
-REST (same conf). Enable Basic Auth in `airflow.cfg` (`[api] auth_backends = airflow.api.auth.backend.basic_auth`) and restart the webserver:
+REST uses the same conf. Enable Basic Auth in `airflow.cfg` (`[api] auth_backends = airflow.api.auth.backend.basic_auth`) and restart the webserver:
 
 ```bash
 curl -X POST "http://127.0.0.1:8081/api/v1/dags/CoreStack_DAG_LocalCompute_StaticLayers/dagRuns" \
@@ -341,13 +213,13 @@ curl -X POST "http://127.0.0.1:8081/api/v1/dags/CoreStack_DAG_LocalCompute_Stati
 
 Watch **Grid** or **Graph**. Each algorithm task POSTs a sync layer API; the matching `*_Asset` task registers STAC from that response.
 
-### 5. Full DAG (Airflow Graph) { #full-dag-graph }
+### Full DAG (Airflow Graph) { #full-dag-graph }
 
 Open the DAG → **Graph**. That is the full static-layers workflow: one branch, two root datasets, every algorithm, then every output asset.
 
 ![Airflow Graph view of CoreStack_DAG_LocalCompute_StaticLayers — determine_execution_path, Admin_Boundary_Asset and MWS_Boundaries, all algorithms, and all *_Asset outputs](../assets/airflow-static-layers-full-dag.svg)
 
-`determine_execution_path` is the only branch. It has a direct edge to every algorithm **and** to the two root datasets so `resume_exec` / `update_*` can start in the middle of the graph. `fullexec` still runs the roots first (`Admin_Boundary_Asset`, `MWS_Boundaries`), then the algorithms that consume them, then each `*_Asset`.
+`determine_execution_path` is the only branch. It has a direct edge to every algorithm and to the two root datasets so `resume_exec` / `update_*` can start in the middle of the graph. `fullexec` still runs the roots first (`Admin_Boundary_Asset`, `MWS_Boundaries`), then the algorithms that consume them, then each `*_Asset`.
 
 ```mermaid
 flowchart TB
@@ -425,19 +297,19 @@ flowchart TB
   Soil --> Soil_Type_Asset
 ```
 
-### 6. Re-exec (`resume_exec`) { #re-exec }
+### Re-exec (`resume_exec`) { #re-exec }
 
-**Re-exec** on these DAGs is the STACD primitive **`execution_type=resume_exec`**. It is not Airflow’s Clear-and-rerun of the whole Graph (that still works, but it is a different action).
+**Re-exec** on these DAGs is the STACD primitive **`execution_type=resume_exec`**. Airflow’s Clear-and-rerun of the whole Graph is a different action.
 
-On failure, `log_algo_failure` writes the failed algorithm, region, and years into the STACD database. The next trigger with the **same** `state` / `district` / `block` (and years, if used) plus `resume_exec` queries that table and runs **only** the failed algorithm nodes. Successful tasks stay skipped.
+On failure, `log_algo_failure` writes the failed algorithm, region, and years into the STACD database. The next trigger with the **same** `state` / `district` / `block` (and years, if used) plus `resume_exec` queries that table and runs the failed algorithm nodes. Successful tasks stay skipped.
 
 | `execution_type` | What runs | When to use |
 | --- | --- | --- |
 | `fullexec` | Both root datasets and every algorithm, then every `*_Asset` | First run, or a full recompute |
-| **`resume_exec`** (**re-exec**) | Only algorithms that **failed** last time for this region / years | Partial failure — retry without recomputing successes |
+| **`resume_exec`** (**re-exec**) | Algorithms that **failed** last time for this region / years | Partial failure — retry the failed nodes |
 | `update_algo` | One algorithm (`updated_algo`) and its downstream assets | Algorithm code or version changed |
 | `update_dataset` | One root dataset (`updated_dataset`) and the algorithms that consume it | Boundary / MWS input changed |
-| `update_dag` | Algorithm nodes that have **never** succeeded in the STACD DB | You added nodes to the YAML and do not want to re-run the old ones |
+| `update_dag` | Algorithm nodes that have **never** succeeded in the STACD DB | You added nodes to the YAML and want to run only the new ones |
 
 Trigger a re-exec from the UI (**▶ Trigger DAG**) or REST:
 
@@ -455,25 +327,19 @@ curl -X POST "http://127.0.0.1:8081/api/v1/dags/CoreStack_DAG_LocalCompute_Stati
   }'
 ```
 
-If `resume_exec` finds **no** failed tasks for those params, `determine_execution_path` raises `ValueError` and the run fails immediately — use `fullexec` instead. The same happens for `update_dag` when every algorithm already has a successful execution.
+If `resume_exec` finds no failed tasks for those params, `determine_execution_path` raises `ValueError` and the run fails immediately — use `fullexec` for a full run. The same happens for `update_dag` when every algorithm already has a successful execution.
 
-Airflow **Clear** on selected failed boxes re-runs those task instances in the **same** dag run. Prefer **`resume_exec`** for a new run that STACD can record, because lineage and `get_failed_executions` stay consistent.
+Airflow **Clear** on selected failed boxes re-runs those task instances in the **same** dag run. **`resume_exec`** starts a new run that STACD can record, so lineage and `get_failed_executions` stay consistent.
 
-## Part 2 — Without Airflow (async) { #part-2-without-airflow-async }
+## 2. CoRE Stack without Airflow { #part-2-without-airflow-async }
 
-Skip Airflow. Leave the Compose default and let Celery workers run layers in the background.
+Skip Airflow and STACD. Leave the template default:
 
-```bash
-# nrm_app/.env
+```dotenv
 LAYER_GENERATION_SYNC_MODE=False
 ```
 
-```bash
-docker compose --env-file nrm_app/.env up -d --force-recreate backend \
-  celery-nrm celery-layer-bulk celery-geoserver celery-general
-```
-
-Call any computing API with `"layer_generation_mode": "async"` (or omit the field). The response is `initiated`. Follow work here:
+Follow [Docker install steps](#docker-install-steps). Celery workers run layer jobs in the background. Call a computing API with `"layer_generation_mode": "async"`, or omit the field. The response is `initiated`. Follow the work here:
 
 ```bash
 docker compose --env-file nrm_app/.env logs -f backend celery-nrm celery-layer-bulk
@@ -491,43 +357,342 @@ Example:
 }
 ```
 
-You can later switch the same stack to Part 1 by setting `LAYER_GENERATION_SYNC_MODE=True` and recreating `backend` — you do not reinstall Compose.
+The same stack can take the Airflow path later: install [Airflow and STACD](#setup-airflow-and-stacd), set `LAYER_GENERATION_SYNC_MODE=True`, and recreate `backend`. You do not reinstall Compose.
 
-## NASA Earthdata (ET download)
+## Docker install steps { #docker-install-steps }
 
-Create an account at [urs.earthdata.nasa.gov](https://urs.earthdata.nasa.gov), authorize **NASA GESDISC DATA ARCHIVE**, then in `nrm_app/.env`:
+These are the steps in [installation/DOCKER.md](https://github.com/core-stack-org/core-stack-backend/blob/main/installation/DOCKER.md). Run every Compose command from the repository root with `--env-file nrm_app/.env`. Compose does not auto-load that file.
+
+When it is done you have:
+
+| Service | URL |
+| --- | --- |
+| API and Django admin | http://localhost:8000 and http://localhost:8000/admin/ |
+| GeoServer | http://localhost:8080/geoserver |
+| Airflow (way 1 only) | http://localhost:8081 |
+
+Postgres is on `127.0.0.1:5432` (`DB_USER` / `DB_PASSWORD` / `DB_NAME` from `nrm_app/.env`).
+
+| State | Location | Persistence |
+| --- | --- | --- |
+| Backend source | Host checkout mounted at `/app` | Git / host filesystem |
+| Downloaded and generated layers | `${CORESTACK_HOST_DATA_DIR:-.}/data` mounted at `/var/tmp/core-stack-data` | Host filesystem |
+| PostgreSQL | Separate `postgres` container | Docker volume `postgres_data` |
+| GeoServer catalog | Separate `geoserver` container | Docker volume `geoserver_data` |
+| Celery broker | Separate `redis` container with AOF | Docker volume `redis_data` |
+| Database backups | `${CORESTACK_HOST_DATA_DIR:-.}/backups/postgres` | Host filesystem |
+| GeoServer backups | `${CORESTACK_HOST_DATA_DIR:-.}/backups/geoserver` | Host filesystem |
+
+`docker compose --env-file nrm_app/.env down` keeps volumes. Adding `-v` deletes the database, GeoServer catalog, and Redis. Files under `CORESTACK_HOST_DATA_DIR` stay.
+
+### 1. Before you start
+
+| You need | Check |
+| --- | --- |
+| Docker Engine with Compose v2 | `docker compose version` |
+| Your user can run Docker (member of the `docker` group) | `docker ps` works without `sudo` |
+| Git | `git --version` |
+| About 20 GB free disk, plus space for the [data](#data-for-local-compute) you add | `df -h .` |
+| Ports 8000, 8080, and 5432 free | `ss -ltn \| grep -E ':(8000\|8080\|5432) '` prints nothing |
+
+For the GPU jobs you also need an NVIDIA driver and the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html). This must print your GPU:
 
 ```bash
-USERNAME_GESDISC=your-earthdata-username
-PASSWORD_GESDISC='your-earthdata-password'
+docker run --rm --gpus all nvidia/cuda:12.9.0-base-ubuntu22.04 nvidia-smi
 ```
+
+On Apple Silicon, Docker emulates linux/amd64. On a network that only reaches the internet through a proxy, read [Behind a proxy](#behind-a-proxy) first.
+
+### 2. Get the code
+
+```bash
+git clone https://github.com/core-stack-org/core-stack-backend.git
+cd core-stack-backend
+```
+
+### 3. Create the settings file
+
+```bash
+cp installation/docker/env.template nrm_app/.env
+chmod 600 nrm_app/.env
+```
+
+`nrm_app/.env` holds every setting and password. Docker Compose and Django both read it.
+
+### 4. Edit `nrm_app/.env`
+
+Set the admin account you will log in with:
+
+```dotenv
+DJANGO_SUPERUSER_USERNAME=admin
+DJANGO_SUPERUSER_EMAIL=you@example.com
+DJANGO_SUPERUSER_PASSWORD='choose-a-password'
+```
+
+Way 1 (Airflow): set `LAYER_GENERATION_SYNC_MODE=True`. Way 2: leave it `False`.
+
+On a machine with an NVIDIA GPU, uncomment this line (see [GPU and long jobs](#gpu-and-long-jobs)):
+
+```dotenv
+COMPOSE_PROFILES=heavy
+```
+
+On a server, set an absolute data root before the first start, for example `CORESTACK_HOST_DATA_DIR=/srv/core-stack-data`. Replace `DB_PASSWORD` and `GEOSERVER_PASSWORD` before any shared host. Leave everything else as it is for a first local run.
+
+### 5. Optional: download the admin boundaries yourself
+
+The first start downloads the admin-boundary archive (about 600 MB) from Google Drive. To use a browser download instead, which is often faster, download it from [here](https://drive.google.com/file/d/1VqIhB6HrKFDkDnlk1vedcEHhh5fk4f1d/view) and save it as `data/dataset.7z` in the repository.
+
+### 6. Build and start
+
+```bash
+docker compose --env-file nrm_app/.env up -d --build
+```
+
+The first run takes 5 to 60 minutes, depending on your connection. The command waits while the database is set up and the data is downloaded. If it is interrupted, run the same command again.
+
+One-shot jobs run before Gunicorn:
+
+1. `app-init` completes `nrm_app/.env` and normalizes database, GeoServer, Celery, and runtime values.
+2. `database-init` creates installation-local migrations, applies them with `--fake-initial`, collects static files, and loads seed data once.
+3. `geoserver-init` reconciles workspaces and bundled styles.
+4. `data-download` downloads only requested or missing source layers.
+5. `gee-config` discovers optional mounted GEE JSON.
+6. `tehsil-watershed-setup` downloads active tehsil watershed layers from the GeoServer `mws` WFS workspace.
+7. Gunicorn and the queue-specific Celery workers start.
+
+### 7. Check that it works { #6-check-that-it-works }
+
+```bash
+docker compose --env-file nrm_app/.env ps -a
+```
+
+- `app-init`, `database-init`, `geoserver-init`, `data-download`, `gee-config`, and `tehsil-watershed-setup` show `Exited (0)`.
+- `backend`, `postgres`, `redis`, and `geoserver` show `Up (healthy)`.
+- The `celery-*` workers show `Up`. `celery-heavy` is there only with `COMPOSE_PROFILES=heavy`.
+
+If a job shows a non-zero exit code, read its log: `docker compose --env-file nrm_app/.env logs <service>`.
+
+Log in to the API. This reads the username and password from `nrm_app/.env` and keeps the token in `$TOKEN` for [Test the APIs](#9-run-the-admin-boundary-local-compute-api):
+
+```bash
+export no_proxy=localhost,127.0.0.1 NO_PROXY=localhost,127.0.0.1
+TOKEN=$(set -a; . nrm_app/.env; set +a; python3 -c '
+import json, os, urllib.request
+req = urllib.request.Request("http://localhost:8000/api/v1/auth/login/",
+    data=json.dumps({"username": os.environ["DJANGO_SUPERUSER_USERNAME"],
+                     "password": os.environ["DJANGO_SUPERUSER_PASSWORD"]}).encode(),
+    headers={"Content-Type": "application/json"})
+print(json.load(urllib.request.urlopen(req))["access"])')
+echo "${TOKEN:0:20}"
+```
+
+It prints the start of a token (`eyJhbGci...`). You can also log in to Django admin at http://localhost:8000/admin/.
+
+On way 1, continue with [Point Airflow at the API](#corestack-auth-token).
+
+## What to set up next
+
+The stack now runs. Set up only what you need:
+
+| To | Set up |
+| --- | --- |
+| Compute layers locally (LULC, hydrology, runoff) | [Data for local compute](#data-for-local-compute) |
+| Run Google Earth Engine jobs | [Google Earth Engine](#gee-and-gcs) |
+| Download ET (evapotranspiration) data | [NASA Earthdata](#nasa-earthdata) |
+| Run the GPU and multi-hour jobs | [GPU and long jobs](#gpu-and-long-jobs) |
+| Work behind a proxy | [Behind a proxy](#behind-a-proxy) |
+
+Other settings are listed in [Settings](#settings).
+
+## Data for local compute { #data-for-local-compute }
+
+Local computation (`"compute": "local"` in a request) reads its inputs from `data/base_layers/`. Download what the APIs you use need and place it as shown.
+
+| Data | Place at `data/base_layers/` | Needed by |
+| --- | --- | --- |
+| Terrain (569 MB) | `terrain_raster_fabdam_pan_india.tif` | runoff |
+| Soil (6 MB) | `soil/hysogs_india_250m_4326.tif` | runoff |
+| LULC, one file per year (63 GB) | `lulc/lulc_v3_<year>_<year+1>.tif` | runoff, LULC |
+| India boundary (8 MB) | `PanIndia_Boundaries/india_state_outer_no_islands.geojson` | pan-India runoff |
+| Aquifer (102 MB) | `aquifer/aquifer.geojson` | pan-India hydrology |
+| Microwatersheds (5.4 GB) | `static_layers/mws/Microwatershed_v2_with_details.geojson` | MWS layers |
+| SOI tehsils (316 MB) | `admin_boundary/soi_tehsil.geojson` | tehsil watersheds |
+| Tehsil watersheds | `tehsil_watersheds/<state>/<district>/<tehsil>.gpkg` | every tehsil-level request |
+| Runoff (164 GB) | `hydrology/runoff/` | pan-India hydrology |
+| ET (114 GB) | `hydrology/et/` | pan-India hydrology |
+| Pan-India annual hydrology (20 GB) | `hydrology/annual/` | tehsil hydrology |
+
+Files can be added while the stack runs; no restart is needed.
+
+Runoff, ET, and pan-India annual hydrology can also be generated with the APIs in [Test the APIs](#9-run-the-admin-boundary-local-compute-api). That takes many hours. Tehsil hydrology needs the pan-India annual layer for every year it covers; the API tells you which years are missing.
+
+With S3 credentials for the CoRE Stack datasets bucket, terrain, LULC, aquifer, and microwatersheds can be downloaded automatically: set `S3_ACCESS_KEY`, `S3_SECRET_KEY`, `S3_REGION`, `S3_BUCKET`, and `SKIP_BASE_LAYER_DOWNLOAD=0`, then run:
+
+```bash
+docker compose --env-file nrm_app/.env run --rm data-download
+```
+
+Large-download switches (set in `nrm_app/.env`, or on one invocation). `1` means skip:
+
+| Variable | Effect when set to `1` |
+| --- | --- |
+| `SKIP_ADMIN_BOUNDARY_DOWNLOAD` | Skip the admin-boundary archive |
+| `SKIP_BASE_LAYER_DOWNLOAD` | Skip S3 base-layer download (this is already the default) |
+| `SKIP_TEHSIL_WATERSHEDS` | Do not fetch active tehsil watershed GPKGs from GeoServer |
+
+```bash
+SKIP_ADMIN_BOUNDARY_DOWNLOAD=1 \
+SKIP_TEHSIL_WATERSHEDS=1 \
+docker compose --env-file nrm_app/.env up -d --build
+```
+
+Tehsil watersheds land at `<CORESTACK_HOST_DATA_DIR>/data/base_layers/tehsil_watersheds/<state>/<district>/<tehsil>.gpkg`. Retry a failed fetch with `docker compose --env-file nrm_app/.env run --rm tehsil-watershed-setup`.
+
+## Google Earth Engine { #gee-and-gcs }
+
+The stack starts without Earth Engine. Local compute does not need it. Earth Engine jobs need a Google Cloud service account with Earth Engine access and its JSON key.
+
+1. Open http://localhost:8000/admin/gee_computing/geeaccount/add/ and log in.
+2. Fill in a name, the `client_email` from the JSON as the service account email, and upload the JSON as the credentials file. Save.
+3. Open the account again, set **Helper account** to the same account, and save.
+4. The account id is the number in the page address (`.../geeaccount/1/change/`). Put it in `nrm_app/.env`:
+
+```dotenv
+GEE_DEFAULT_ACCOUNT_ID=1
+GEE_HELPER_ACCOUNT_ID=1
+```
+
+5. Apply it:
 
 ```bash
 docker compose --env-file nrm_app/.env up -d --force-recreate
 ```
 
-Wrap passwords that contain `$` in single quotes.
+The key is stored encrypted in the database and the uploaded file is deleted, so keep your own copy. The encryption key is `FERNET_KEY` in `nrm_app/.env`. If it changes, upload the JSON again.
 
-## Run a computing API { #9-run-the-admin-boundary-local-compute-api }
+Pass that numeric id as `gee_account_id` on computing requests. Background: [Google Earth Engine](integrations/google-earth-engine.md).
 
-Computing APIs use **JWT**, not the Django session. Base URL: `http://127.0.0.1:8000`.
+### Optional Google Cloud Storage { #3-optional-google-cloud-storage }
 
-### Log in
+GEE-backed raster publication also needs a bucket. Create it in **`us-central1`**, grant the same service account `roles/storage.objectViewer`, `roles/storage.legacyBucketReader`, and `roles/storage.objectAdmin`, then set `GCS_BUCKET_NAME` (and `GEE_STORAGE_PROJECT` if the pipeline reads it) in `nrm_app/.env` and recreate the stack as above. Details: [Google Cloud Storage](integrations/gcs.md).
 
-```bash
-curl -s -X POST http://127.0.0.1:8000/api/v1/auth/login/ \
-  -H "Content-Type: application/json" \
-  -d '{"username":"YOUR_USERNAME","password":"YOUR_PASSWORD"}'
+Use `SKIP_GEE_CONFIG=1` to disable the `gee-config` init job.
+
+## NASA Earthdata { #nasa-earthdata }
+
+The ET download (`/api/v1/et_download/`) fetches FLDAS data from NASA GES DISC.
+
+1. Create an account at [urs.earthdata.nasa.gov](https://urs.earthdata.nasa.gov).
+2. In your profile, under **Applications → Authorized Apps**, approve **NASA GESDISC DATA ARCHIVE**.
+3. Put the login in `nrm_app/.env`. Keep the single quotes if the password contains `$`:
+
+```dotenv
+USERNAME_GESDISC=your-username
+PASSWORD_GESDISC='your-password'
 ```
 
-Copy `access`.
+4. Apply it:
 
-### Generate a block layer
+```bash
+docker compose --env-file nrm_app/.env up -d --force-recreate
+```
+
+A wrong password or an unapproved application makes the task fail with an HTML page from GES DISC in the `celery-heavy` log.
+
+## GPU and long jobs { #gpu-and-long-jobs }
+
+Four endpoints start jobs that run for hours:
+
+| Endpoint | Uses the GPU |
+| --- | --- |
+| `/api/v1/runoff_gpu/` | yes |
+| `/api/v1/et_download/` | no |
+| `/api/v1/pan-india/hydrology_annual/` | no |
+| `/api/v1/pan-india/hydrology_fortnightly/` | no |
+
+They run on the `celery-heavy` worker, one at a time, so they never block the other layers. `COMPOSE_PROFILES=heavy` in `nrm_app/.env` creates that worker and gives it the GPU. Without it, these four endpoints answer `503`.
+
+To run the three CPU jobs on a machine without a GPU, set both:
+
+```dotenv
+COMPOSE_PROFILES=heavy
+GPU_AVAILABLE=False
+```
+
+After changing the profile:
+
+```bash
+docker compose --env-file nrm_app/.env up -d --remove-orphans
+```
+
+Check that the worker sees the GPU:
+
+```bash
+docker compose --env-file nrm_app/.env exec celery-heavy nvidia-smi
+```
+
+## Behind a proxy { #behind-a-proxy }
+
+Image pulls are done by the Docker daemon, which needs its own proxy setting: see [Docker daemon proxy](https://docs.docker.com/engine/daemon/proxy/). `docker info | grep -i proxy` shows the current one.
+
+Builds and containers use the proxy from your shell. If `http_proxy` and `https_proxy` are exported, nothing else is needed. Otherwise uncomment and set these in `nrm_app/.env`:
+
+```dotenv
+HTTP_PROXY=http://proxy.example.org:3128
+HTTPS_PROXY=http://proxy.example.org:3128
+```
+
+Service names (`postgres`, `redis`, `geoserver`, `backend`) stay on `NO_PROXY`. For your own `curl` calls to the stack, keep local addresses off the proxy:
+
+```bash
+export no_proxy=localhost,127.0.0.1 NO_PROXY=localhost,127.0.0.1
+```
+
+## Settings { #settings }
+
+All in `nrm_app/.env`. After a change, run `docker compose --env-file nrm_app/.env up -d --force-recreate`.
+
+| Setting | Default | Meaning |
+| --- | --- | --- |
+| `LAYER_GENERATION_SYNC_MODE` | `False` | `True` on [way 1](#part-1-with-airflow-sync) so Airflow algorithm calls wait for a finished STAC body. |
+| `CORESTACK_HOST_DATA_DIR` | `.` | Where `data/`, `gee_confs/`, and `backups/` live on the host. Set before the first start. |
+| `BACKEND_PORT`, `GEOSERVER_PORT`, `POSTGRES_PORT` | `8000`, `8080`, `5432` | Host ports, bound to `127.0.0.1` only. |
+| `DB_PASSWORD`, `GEOSERVER_PASSWORD` | placeholders | Change before the first start on any shared machine. |
+| `CELERY_NRM_CONCURRENCY` | `3` | Layer jobs that run in parallel. |
+| `SKIP_ADMIN_BOUNDARY_DOWNLOAD` | `0` | `1` skips the admin-boundary download. |
+| `SKIP_BASE_LAYER_DOWNLOAD` | `1` | `0` downloads base layers from S3 (needs S3 credentials). |
+| `SKIP_TEHSIL_WATERSHEDS` | `0` | `1` skips fetching tehsil watersheds from GeoServer. |
+| `CELERY_TASK_ALWAYS_EAGER` | `False` | Keep `False`. `True` runs every task inside the web server and bypasses the workers. |
+
+## Test the APIs { #9-run-the-admin-boundary-local-compute-api }
+
+Log in first ([check that it works](#6-check-that-it-works)). Base URL: `http://127.0.0.1:8000`. Computing APIs use the JWT in `$TOKEN`.
+
+On [way 2](#part-2-without-airflow-async) each request answers at once and queues a task. Follow it in the worker log, for example `docker compose --env-file nrm_app/.env logs -f celery-nrm`. On [way 1](#part-1-with-airflow-sync) the same call waits until the layer is finished.
+
+```bash
+api() { curl -s -X POST "http://localhost:8000/api/v1/$1/" \
+  -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' -d "$2"; echo; }
+```
+
+| Test | Request | Worker | Output |
+| --- | --- | --- | --- |
+| LULC | `api lulc_vector '{"compute":"local","state":"karnataka","district":"raichur","block":"devadurga","start_year":2023,"end_year":2023}'` | `celery-nrm` | `data/lulc/lulc_vector_local/...`, GeoServer workspace `lulc_vector` |
+| Tehsil hydrology | `api hydrology_annual '{"compute":"local","state":"karnataka","district":"raichur","block":"devadurga","start_year":2017,"end_year":2024}'` | `celery-nrm` | `data/hydrology/hydrology_local/...`, GeoServer workspace `mws_layers` |
+| ET download | `api et_download '{"compute":"local","pan_india":true,"start_date":"2023-07-01","end_date":"2023-07-03"}'` | `celery-heavy` | `data/base_layers/hydrology/et/` |
+| Pan-India annual | `api pan-india/hydrology_annual '{"compute":"local","start_year":2017,"end_year":2018}'` | `celery-heavy` | `data/base_layers/hydrology/annual/` |
+| Pan-India fortnightly | `api pan-india/hydrology_fortnightly '{"compute":"local","start_year":2017,"end_year":2018}'` | `celery-heavy` | `data/base_layers/hydrology/fortnightly/` |
+| Runoff (hours) | `api runoff_gpu '{"compute":"local","pan_india":true,"start_year":2023,"end_year":2024}'` | `celery-heavy` | `data/base_layers/hydrology/runoff/` |
+
+Tehsil hydrology needs `start_year` 2017. Pan-India requests take one year per call: `end_year` is `start_year + 1`.
+
+Admin-boundary generation (used by the Airflow static-layers DAG) is `POST /api/v1/generate_block_layer/`:
 
 ```bash
 curl -s http://127.0.0.1:8000/api/v1/generate_block_layer/ \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer ACCESS_TOKEN" \
+  -H "Authorization: Bearer $TOKEN" \
   -d '{
     "state": "Rajasthan",
     "district": "Bhilwara",
@@ -542,12 +707,6 @@ curl -s http://127.0.0.1:8000/api/v1/generate_block_layer/ \
 | `"async"` (or omitted when env is `False`) | `{"Success": "Successfully initiated"}` — follow Celery logs |
 | `"sync"` (or env `True`) | Waits until done; body includes `status: completed` and STAC / `asset_id` when the layer was produced |
 
-Watch workers in async mode:
-
-```bash
-docker compose --env-file nrm_app/.env logs -f backend celery-nrm celery-layer-bulk
-```
-
 More routes: [Computing API Endpoints](../pipelines/computing-endpoints.md). Auth errors: [API Errors](../reference/api-errors.md).
 
 ### Postman
@@ -557,15 +716,25 @@ More routes: [Computing API Endpoints](../pipelines/computing-endpoints.md). Aut
 | Collection | [core-stack-api.postman_collection.json](../assets/postman/core-stack-api.postman_collection.json) |
 | Environment (Docker) | [core-stack-docker.postman_environment.json](../assets/postman/core-stack-docker.postman_environment.json) |
 
-## Day-to-day operations
+## Everyday use
 
 ```bash
 docker compose --env-file nrm_app/.env ps
 docker compose --env-file nrm_app/.env logs -f backend
-docker compose --env-file nrm_app/.env logs -f celery-nrm celery-layer-bulk celery-geoserver celery-general
 docker compose --env-file nrm_app/.env stop
-docker compose --env-file nrm_app/.env start
-docker compose --env-file nrm_app/.env down
+docker compose --env-file nrm_app/.env up -d
+```
+
+After `git pull`:
+
+```bash
+docker compose --env-file nrm_app/.env up -d --build --force-recreate
+```
+
+Commands that write files, such as `manage.py` commands, should run as your user so the files stay yours:
+
+```bash
+docker compose --env-file nrm_app/.env exec --user "$(id -u):$(id -g)" backend python manage.py <command>
 ```
 
 Celery Beat is opt-in:
@@ -574,37 +743,15 @@ Celery Beat is opt-in:
 docker compose --env-file nrm_app/.env --profile periodic up -d celery-beat
 ```
 
-## Code and dependency updates
+`docker compose --env-file nrm_app/.env down -v` deletes the database, GeoServer, and Redis data. `data/` on the host is kept.
 
-Source is host-mounted. A code-only update:
-
-```bash
-git pull --ff-only
-docker compose --env-file nrm_app/.env run --rm database-init
-docker compose --env-file nrm_app/.env up -d --force-recreate backend \
-  celery-nrm celery-layer-bulk celery-geoserver celery-general
-```
-
-When `Dockerfile` or `installation/environment.yml` changes:
-
-```bash
-docker compose --env-file nrm_app/.env build --pull
-docker compose --env-file nrm_app/.env up -d --force-recreate
-```
-
-Do not install packages in running containers. Pin `CORESTACK_IMAGE_TAG` or `CORESTACK_IMAGE` and the Git commit for production.
-
-## Database, migrations, and backups
-
-PostgreSQL 16 is a separate container. Migrations stay Git-ignored (same as `installation/install.sh`). Only `database-init` changes schema.
+Back up the database:
 
 ```bash
 docker compose --env-file nrm_app/.env --profile maintenance run --rm database-backup
-ls -lh /srv/core-stack-data/backups/postgres
-tar -czf /srv/core-stack-data/backups/postgres/local-migrations.tgz */migrations
 ```
 
-GeoServer catalog (stop GeoServer first):
+The dump is written to `backups/postgres/`. GeoServer catalog (stop GeoServer first):
 
 ```bash
 docker compose --env-file nrm_app/.env stop geoserver
@@ -612,78 +759,48 @@ docker compose --env-file nrm_app/.env --profile maintenance run --rm geoserver-
 docker compose --env-file nrm_app/.env start geoserver
 ```
 
-Downloaded layers stay in `CORESTACK_HOST_DATA_DIR/data` on the host — back that directory up with the host, not as a Docker image.
+Downloaded layers stay in `CORESTACK_HOST_DATA_DIR/data` on the host. Restore procedure and `--fake-initial` rules: [installation/DOCKER.md](https://github.com/core-stack-org/core-stack-backend/blob/main/installation/DOCKER.md#restore). Set `RESET_LOCAL_MIGRATIONS=1` only for a fresh or verified-matching restored database.
 
-Restore procedure and `--fake-initial` rules: [installation/DOCKER.md](https://github.com/core-stack-org/core-stack-backend/blob/main/installation/DOCKER.md#restore). Never use `down -v` as a restore.
+## Running on a server
 
-Set `RESET_LOCAL_MIGRATIONS=1` only for a fresh or verified-matching restored database.
-
-## Behind a campus or corporate proxy
-
-Compose reads `HTTP_PROXY` / `HTTPS_PROXY` from the shell or `nrm_app/.env` and passes them as build args and container env. Service names (`postgres`, `redis`, `geoserver`, `backend`) are always on `NO_PROXY`.
-
-```bash
-export HTTP_PROXY=http://proxy.example.org:3128/
-export HTTPS_PROXY=http://proxy.example.org:3128/
-docker compose --env-file nrm_app/.env up -d
-```
-
-Pulling base images is the **daemon** proxy. Check `docker info | grep -i proxy`.
-
-## Testing
-
-```bash
-docker compose --env-file nrm_app/.env config --quiet
-bash -n installation/docker/*.sh
-python3 -m unittest discover -s installation/tests
-docker compose --env-file nrm_app/.env run --rm backend python manage.py check
-docker compose --env-file nrm_app/.env run --rm backend python manage.py test
-```
-
-Production must run `DEBUG=False` and explicit hosts/origins.
-
-## Production checklist
-
-1. Pin the Git commit and image tag; do not deploy moving `latest`.
-2. Replace PostgreSQL and GeoServer passwords in `nrm_app/.env` before creating the database volume.
-3. Set `DEBUG=False`, exact `ALLOWED_HOSTS`, and trusted HTTPS origins.
-4. Keep 8000, 8080, and 5432 on loopback; expose only the HTTPS reverse proxy.
-5. Back up PostgreSQL, local migration files, the GeoServer catalog, `CORESTACK_HOST_DATA_DIR/data`, and GEE secrets.
-6. Run tests and `check --deploy`; review the `database-init` plan on a restored clone.
-7. Run `database-init` once before recreating Gunicorn/Celery.
-8. Review Beat schedules before enabling the `periodic` profile.
-9. For [Part 1](#part-1-with-airflow-sync), set `LAYER_GENERATION_SYNC_MODE=True` and run Airflow on a port that is not GeoServer’s 8080 (8081). Leave `False` for [Part 2](#part-2-without-airflow-async).
-10. Monitor health, queue depth, disk, and backups. Test rollback before launch.
-
-## Complete reset
-
-Destructive — deletes PostgreSQL, Redis, and GeoServer volumes. Files under `CORESTACK_HOST_DATA_DIR` stay:
-
-```bash
-docker compose --env-file nrm_app/.env down -v
-```
+- Change `DB_PASSWORD`, `GEOSERVER_PASSWORD`, and the admin password before the first start.
+- Set `DEBUG=False`, and `ALLOWED_HOSTS` to the server's host name.
+- Keep ports bound to `127.0.0.1`; put an HTTPS reverse proxy in front.
+- Set `CORESTACK_HOST_DATA_DIR` to a path on a disk with room for the data, for example `/srv/core-stack-data`.
+- For [way 1](#part-1-with-airflow-sync), set `LAYER_GENERATION_SYNC_MODE=True` and run Airflow on **8081**. Leave `False` for [way 2](#part-2-without-airflow-async).
+- Back up PostgreSQL, the GeoServer catalog, `CORESTACK_HOST_DATA_DIR/data`, and GEE secrets.
+- Pin the Git commit and image tag. Review Beat schedules before enabling the `periodic` profile.
 
 ## Troubleshooting
 
-**Port already in use**  
-Stop whatever is on 8000, 8080, or 5432, or set `BACKEND_PORT` / `GEOSERVER_PORT` / `POSTGRES_PORT` in `nrm_app/.env`.
+| Problem | Cause and fix |
+| --- | --- |
+| `curl` to `localhost` returns `503` | Your proxy is answering. `export no_proxy=localhost,127.0.0.1 NO_PROXY=localhost,127.0.0.1`. |
+| Port already in use | Stop whatever is on 8000, 8080, or 5432, or set `BACKEND_PORT` / `GEOSERVER_PORT` / `POSTGRES_PORT`. Airflow must use 8081 while GeoServer uses 8080. |
+| `backend` never starts | An init job failed. `ps -a` shows which; read its log. |
+| Build fails at `apt-get` or `pip` | No internet from the build. See [Behind a proxy](#behind-a-proxy). |
+| `manage.py` not found / empty `/app` | Start Compose from a [core-stack-backend](https://github.com/core-stack-org/core-stack-backend) clone (or set `BACKEND_CODE_DIR`). Recreate after changing the mount. |
+| `Missing Pan-India hydrology annual base layer(s)` | Tehsil hydrology needs the pan-India annual layer for those years. Add it from [Data](#data-for-local-compute) or generate it. |
+| `JSONDecodeError` on a tehsil request | `data/base_layers/tehsil_watersheds/<state>/<district>/<tehsil>.gpkg` is missing. |
+| The four long-job endpoints return `503` | `COMPOSE_PROFILES=heavy` is not set. See [GPU and long jobs](#gpu-and-long-jobs). |
+| `Earth Engine client library not initialized` in logs | Earth Engine is not set up. Harmless for local compute. |
+| `GEEAccount with id=N was not found` | Add the JSON in Django admin and pass that row’s id as `gee_account_id`. |
+| `401` from `geoserver.core-stack.org` in logs | The STAC catalog step uses the public CoRE Stack GeoServer. The layer itself is saved and published locally. |
+| Admin page has no styling | Static files are not served by the web server. The admin still works. |
+| `Permission denied` on files in the repository | Left by an older setup that ran as root. `docker compose --env-file nrm_app/.env up -d` gives them back to you. |
+| A second copy of the repository uses the first one's database | All copies share the Compose project name `core-stack`. Run one installation per machine. |
+| API returns `initiated` but nothing runs | You are on [way 2](#part-2-without-airflow-async). Confirm Celery workers are up and watch `celery-nrm` / `celery-layer-bulk`. Or set `"layer_generation_mode": "sync"`. |
+| Airflow DAG skips STAC registration | The DAG needs a sync response with `asset_id` / `stac_items`. Set `LAYER_GENERATION_SYNC_MODE=True` or `"layer_generation_mode": "sync"`. |
 
-**Backend keeps restarting**  
-`docker compose --env-file nrm_app/.env logs backend`. First-run waits: GeoServer health, admin-boundary download, seed load.
+To stop a long job that is running on `celery-heavy`:
 
-**`manage.py` not found / empty `/app`**  
-Start Compose from a [core-stack-backend](https://github.com/core-stack-org/core-stack-backend) clone (or set `BACKEND_CODE_DIR`). Recreate after changing the mount.
+```bash
+docker compose --env-file nrm_app/.env kill celery-heavy
+docker compose --env-file nrm_app/.env exec celery-nrm celery -A nrm_app purge -Q heavy -f
+docker compose --env-file nrm_app/.env exec redis redis-cli del unacked unacked_index
+docker compose --env-file nrm_app/.env up -d celery-heavy
+```
 
-**`GEEAccount with id=N was not found`**  
-Add the JSON in Django admin and pass that row’s id as `gee_account_id`.
-
-**`Failed: projects//assets/apps/mws/...`**  
-`GEE_STORAGE_PROJECT` is empty. Set it in `nrm_app/.env` and recreate the backend.
-
-**API returns `initiated` but nothing runs**  
-You are in **async** mode. Confirm Celery workers are up (`docker compose --env-file nrm_app/.env ps`) and watch `celery-nrm` / `celery-layer-bulk`. Or set `"layer_generation_mode": "sync"` / `LAYER_GENERATION_SYNC_MODE=True`.
-
-**Airflow DAG skips STAC registration**  
-The DAG needs a **sync** response with `asset_id` / `stac_items`. Use `LAYER_GENERATION_SYNC_MODE=True` or `"layer_generation_mode": "sync"`.
+Without the `purge` and `redis-cli` steps the job starts again when the worker restarts. The `redis-cli` step also drops tasks started but not finished on other workers.
 
 More setup fixes: [Setup Troubleshooting](setup-troubleshooting.md).

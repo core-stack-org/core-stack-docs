@@ -8,7 +8,7 @@ You need it when:
 - public geometry APIs such as `get_mws_geometries` and `get_village_geometries` must work
 - you want the installer validation to verify the full publish path instead of stopping with a warning
 
-If GeoServer is not ready on day one, the backend can still install and boot. Add it later and rerun `initialisation_check`.
+Docker starts GeoServer for you at [http://127.0.0.1:8080/geoserver](http://127.0.0.1:8080/geoserver). Username `admin`, password from `GEOSERVER_PASSWORD` in `nrm_app/.env`.
 
 ---
 
@@ -22,14 +22,10 @@ GEOSERVER_USERNAME=admin
 GEOSERVER_PASSWORD=your-password
 ```
 
-You can write those values directly through the installer and validate them in the same run:
+After you change them, recreate the backend:
 
 ```bash
-bash installation/install.sh \
-  --only initialisation_check \
-  --input geoserver_url=https://host/geoserver \
-  --input geoserver_username=admin \
-  --input geoserver_password=your-password
+docker compose --env-file nrm_app/.env up -d --force-recreate backend
 ```
 
 Use the full GeoServer root URL, not just the host.
@@ -59,120 +55,17 @@ If GeoServer is blank, the install can still complete, but publish and public-ge
 
 ---
 
-## Local GeoServer On Ubuntu Or WSL
+## GeoServer in Docker
 
-If you do not already have a GeoServer instance, the local setup guide in this repo uses:
+The Compose stack starts GeoServer. You do not install Tomcat or a GeoServer war yourself.
 
-- Java 21
-- Apache Tomcat `9.0.98`
-- GeoServer `2.23.6`
+| | |
+| --- | --- |
+| Web UI | [http://127.0.0.1:8080/geoserver](http://127.0.0.1:8080/geoserver) |
+| Username | `admin` |
+| Password | `GEOSERVER_PASSWORD` in `nrm_app/.env` |
 
-Tomcat 9 matters here. The local guide is based on the Tomcat 9 compatible GeoServer line, not Tomcat 10.
-
-### 1. Install Java
-
-```bash
-sudo apt update
-sudo apt install -y default-jdk
-java --version
-```
-
-### 2. Create The Tomcat User
-
-```bash
-sudo groupadd tomcat
-sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
-```
-
-If those already exist, `groupadd` or `useradd` may report that and you can continue.
-
-### 3. Install Tomcat 9
-
-```bash
-cd /tmp
-wget -L "https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.98/bin/apache-tomcat-9.0.98.tar.gz" -O apache-tomcat-9.0.98.tar.gz
-sudo mkdir -p /opt/tomcat
-sudo tar xzvf apache-tomcat-9.0.98.tar.gz -C /opt/tomcat --strip-components=1
-
-cd /opt/tomcat
-sudo chgrp -R tomcat /opt/tomcat
-sudo chmod -R g+r conf
-sudo chmod g+x conf
-sudo chown -R tomcat webapps/ work/ temp/ logs/
-```
-
-Start it and verify:
-
-```bash
-sudo /opt/tomcat/bin/startup.sh
-curl http://localhost:8080
-```
-
-### 4. Deploy GeoServer
-
-```bash
-cd /tmp
-wget -L "https://sourceforge.net/projects/geoserver/files/GeoServer/2.23.6/geoserver-2.23.6-war.zip/download" -O geoserver-2.23.6-war.zip
-sudo apt install -y unzip
-unzip geoserver-2.23.6-war.zip -d /tmp/geoserver-war
-sudo cp /tmp/geoserver-war/geoserver.war /opt/tomcat/webapps/
-sleep 45
-sudo tail -20 /opt/tomcat/logs/catalina.out
-```
-
-When deployment finishes, GeoServer should be available at:
-
-```text
-http://localhost:8080/geoserver/web/
-```
-
-Default login:
-
-- username: `admin`
-- password: `geoserver`
-
-Change that password after first login if this is anything other than an isolated local setup.
-
-### 5. Point CoRE Stack To The Local Instance
-
-Set these values in `nrm_app/.env`:
-
-```env
-GEOSERVER_URL=http://localhost:8080/geoserver
-GEOSERVER_USERNAME=admin
-GEOSERVER_PASSWORD=geoserver
-```
-
-Then rerun the internal validation:
-
-```bash
-bash installation/install.sh \
-  --only initialisation_check \
-  --input geoserver_url=http://localhost:8080/geoserver \
-  --input geoserver_username=admin \
-  --input geoserver_password=geoserver
-```
-
-### 6. Useful Tomcat Commands
-
-```bash
-# Start
-sudo /opt/tomcat/bin/startup.sh
-
-# Stop
-sudo /opt/tomcat/bin/shutdown.sh
-
-# Logs
-sudo tail -f /opt/tomcat/logs/catalina.out
-
-# Tomcat health
-curl http://localhost:8080
-
-# GeoServer health
-curl -s -o /dev/null -w "%{http_code}\n" http://localhost:8080/geoserver/web/
-```
-
-If you are using WSL, Tomcat usually does not auto-start when the WSL session restarts. Start it again before testing GeoServer-backed flows.
+If the container is not `Up`, read `docker compose --env-file nrm_app/.env logs geoserver`.
 
 ---
 
@@ -236,12 +129,4 @@ Check:
 3. the configured workspace or layer name for that pipeline
 4. whether the pipeline actually reached its publication step
 
-If `first-computing-api` did not pass during `initialisation_check`, fix that before debugging a larger pipeline.
-
-### Local GeoServer stops working after a reboot or WSL restart
-
-Tomcat is usually just not running. Start it again:
-
-```bash
-sudo /opt/tomcat/bin/startup.sh
-```
+If the container is not running, start the stack again with `docker compose --env-file nrm_app/.env up -d` before debugging a larger pipeline.
