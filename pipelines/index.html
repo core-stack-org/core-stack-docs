@@ -417,7 +417,7 @@
 <span class="md-ellipsis">
     
   
-    Native (Linux)
+    Start here
   
 
     
@@ -429,7 +429,7 @@
 <span class="md-ellipsis">
     
   
-    Docker
+    Docker reference
   
 
     
@@ -1279,7 +1279,7 @@
     H --&gt; I</code></pre>
 <h2 id="first-manual-run">First Computing API test-run<a class="headerlink" href="#first-manual-run" title="Permanent link">¶</a></h2>
 <p>Use one small request after the backend is running. Replace the place names and <code>gee_account_id</code> with values from your environment.</p>
-<p>On <strong>Docker Compose</strong>, start with <a href="../developers/docker/#9-run-the-admin-boundary-local-compute-api">admin-boundary generate</a> (<code>POST /api/v1/generate_block_layer/</code>). Pass <code>"layer_generation_mode": "sync"</code> (or set <code>LAYER_GENERATION_SYNC_MODE=True</code>) if the HTTP call must wait; otherwise Celery workers run the job asynchronously. See <a href="../developers/docker/#two-methods-airflow--sync-or-no-airflow--async">two layer-generation methods</a>. For native Linux, keep a Celery worker on queue <code>nrm</code> as below.</p>
+<p>On Docker Compose, start with <a href="../developers/docker/#9-run-the-admin-boundary-local-compute-api">admin-boundary generate</a> (<code>POST /api/v1/generate_block_layer/</code>). Pass <code>"layer_generation_mode": "sync"</code> (or set <code>LAYER_GENERATION_SYNC_MODE=True</code>) if the HTTP call must wait; otherwise Celery workers run the job asynchronously. See <a href="../developers/docker/#two-methods-airflow--sync-or-no-airflow--async">two layer-generation methods</a>.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-0-2"><a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
 </span><span id="__span-0-3"><a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{</span>
@@ -1294,7 +1294,7 @@
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Make sure your Django server is running (<code>python manage.py runserver</code>) before trying it.</p>
+<p>The Docker stack must be running (<code>docker compose --env-file nrm_app/.env ps</code> shows <code>backend</code> as <code>Up</code>) before you try this.</p>
 </div>
 <p>The response should come back quickly:</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="p">{</span>

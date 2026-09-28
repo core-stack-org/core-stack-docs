@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="Run the CoRE Stack backend with Docker Compose in two parts — Part 1 Airflow/STACD sync (setup, upload DAG, trigger, full Graph, re-exec) or Part 2 Celery async." name="description"/>
+<meta content="Install CoRE Stack with Docker in two ways — with Airflow and STACD, or without Airflow on Celery." name="description"/>
 <link href="https://docs.core-stack.org/developers/docker/" rel="canonical"/>
 <link href="../installer/" rel="prev"/>
 <link href="../backend-code-map/" rel="next"/>
@@ -417,7 +417,7 @@
 <span class="md-ellipsis">
     
   
-    Native (Linux)
+    Start here
   
 
     
@@ -430,7 +430,7 @@
 <span class="md-ellipsis">
     
   
-    Docker
+    Docker reference
   
 
     
@@ -441,7 +441,7 @@
 <span class="md-ellipsis">
     
   
-    Docker
+    Docker reference
   
 
     
@@ -457,52 +457,195 @@
 <a class="md-nav__link" href="#two-methods-airflow--sync-or-no-airflow--async">
 <span class="md-ellipsis">
       
-        Installation in two parts
+        Installation in two ways
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#architecture">
+<a class="md-nav__link" href="#part-1-with-airflow-sync">
 <span class="md-ellipsis">
       
-        Architecture
+        1. CoRE Stack with Airflow integration
+      
+    </span>
+</a>
+<nav aria-label="1. CoRE Stack with Airflow integration" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-airflow-is">
+<span class="md-ellipsis">
+      
+        What Airflow is
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#what-you-get">
+<a class="md-nav__link" href="#setup-airflow-and-stacd">
 <span class="md-ellipsis">
       
-        What you get
+        Install Airflow and STACD
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#requirements">
+<a class="md-nav__link" href="#install-core-stack-with-airflow">
 <span class="md-ellipsis">
       
-        Requirements
+        Install CoRE Stack (with Airflow)
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#first-start">
+<a class="md-nav__link" href="#corestack-auth-token">
 <span class="md-ellipsis">
       
-        First start
+        Point Airflow at the API
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#large-download-controls">
+<a class="md-nav__link" href="#upload-the-dag">
 <span class="md-ellipsis">
       
-        Large-download controls
+        Upload the DAG
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#trigger-the-dag">
+<span class="md-ellipsis">
+      
+        Trigger the DAG
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#full-dag-graph">
+<span class="md-ellipsis">
+      
+        Full DAG (Airflow Graph)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#re-exec">
+<span class="md-ellipsis">
+      
+        Re-exec (resume_exec)
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#part-2-without-airflow-async">
+<span class="md-ellipsis">
+      
+        2. CoRE Stack without Airflow
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#docker-install-steps">
+<span class="md-ellipsis">
+      
+        Docker install steps
+      
+    </span>
+</a>
+<nav aria-label="Docker install steps" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-before-you-start">
+<span class="md-ellipsis">
+      
+        1. Before you start
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-get-the-code">
+<span class="md-ellipsis">
+      
+        2. Get the code
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-create-the-settings-file">
+<span class="md-ellipsis">
+      
+        3. Create the settings file
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-edit-nrm_appenv">
+<span class="md-ellipsis">
+      
+        4. Edit nrm_app/.env
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-optional-download-the-admin-boundaries-yourself">
+<span class="md-ellipsis">
+      
+        5. Optional: download the admin boundaries yourself
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-build-and-start">
+<span class="md-ellipsis">
+      
+        6. Build and start
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-check-that-it-works">
+<span class="md-ellipsis">
+      
+        7. Check that it works
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-to-set-up-next">
+<span class="md-ellipsis">
+      
+        What to set up next
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#data-for-local-compute">
+<span class="md-ellipsis">
+      
+        Data for local compute
       
     </span>
 </a>
@@ -511,11 +654,11 @@
 <a class="md-nav__link" href="#gee-and-gcs">
 <span class="md-ellipsis">
       
-        GEE and GCS
+        Google Earth Engine
       
     </span>
 </a>
-<nav aria-label="GEE and GCS" class="md-nav">
+<nav aria-label="Google Earth Engine" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#3-optional-google-cloud-storage">
@@ -530,95 +673,37 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#superuser">
+<a class="md-nav__link" href="#nasa-earthdata">
 <span class="md-ellipsis">
       
-        Superuser
+        NASA Earthdata
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#part-1-with-airflow-sync">
+<a class="md-nav__link" href="#gpu-and-long-jobs">
 <span class="md-ellipsis">
       
-        Part 1 — With Airflow (sync)
-      
-    </span>
-</a>
-<nav aria-label="Part 1 — With Airflow (sync)" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#1-enable-sync-on-the-backend">
-<span class="md-ellipsis">
-      
-        1. Enable sync on the backend
+        GPU and long jobs
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#setup-airflow-and-stacd">
+<a class="md-nav__link" href="#behind-a-proxy">
 <span class="md-ellipsis">
       
-        2. Set up Airflow and STACD
+        Behind a proxy
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#upload-the-dag">
+<a class="md-nav__link" href="#settings">
 <span class="md-ellipsis">
       
-        3. Upload the DAG
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#trigger-the-dag">
-<span class="md-ellipsis">
-      
-        4. Trigger the DAG
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#full-dag-graph">
-<span class="md-ellipsis">
-      
-        5. Full DAG (Airflow Graph)
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#re-exec">
-<span class="md-ellipsis">
-      
-        6. Re-exec (resume_exec)
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#part-2-without-airflow-async">
-<span class="md-ellipsis">
-      
-        Part 2 — Without Airflow (async)
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#nasa-earthdata-et-download">
-<span class="md-ellipsis">
-      
-        NASA Earthdata (ET download)
+        Settings
       
     </span>
 </a>
@@ -627,30 +712,12 @@
 <a class="md-nav__link" href="#9-run-the-admin-boundary-local-compute-api">
 <span class="md-ellipsis">
       
-        Run a computing API
+        Test the APIs
       
     </span>
 </a>
-<nav aria-label="Run a computing API" class="md-nav">
+<nav aria-label="Test the APIs" class="md-nav">
 <ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#log-in">
-<span class="md-ellipsis">
-      
-        Log in
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#generate-a-block-layer">
-<span class="md-ellipsis">
-      
-        Generate a block layer
-      
-    </span>
-</a>
-</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#postman">
 <span class="md-ellipsis">
@@ -664,64 +731,19 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#day-to-day-operations">
+<a class="md-nav__link" href="#everyday-use">
 <span class="md-ellipsis">
       
-        Day-to-day operations
+        Everyday use
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#code-and-dependency-updates">
+<a class="md-nav__link" href="#running-on-a-server">
 <span class="md-ellipsis">
       
-        Code and dependency updates
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#database-migrations-and-backups">
-<span class="md-ellipsis">
-      
-        Database, migrations, and backups
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#behind-a-campus-or-corporate-proxy">
-<span class="md-ellipsis">
-      
-        Behind a campus or corporate proxy
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#testing">
-<span class="md-ellipsis">
-      
-        Testing
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#production-checklist">
-<span class="md-ellipsis">
-      
-        Production checklist
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#complete-reset">
-<span class="md-ellipsis">
-      
-        Complete reset
+        Running on a server
       
     </span>
 </a>
@@ -1318,52 +1340,195 @@
 <a class="md-nav__link" href="#two-methods-airflow--sync-or-no-airflow--async">
 <span class="md-ellipsis">
       
-        Installation in two parts
+        Installation in two ways
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#architecture">
+<a class="md-nav__link" href="#part-1-with-airflow-sync">
 <span class="md-ellipsis">
       
-        Architecture
+        1. CoRE Stack with Airflow integration
+      
+    </span>
+</a>
+<nav aria-label="1. CoRE Stack with Airflow integration" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-airflow-is">
+<span class="md-ellipsis">
+      
+        What Airflow is
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#what-you-get">
+<a class="md-nav__link" href="#setup-airflow-and-stacd">
 <span class="md-ellipsis">
       
-        What you get
+        Install Airflow and STACD
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#requirements">
+<a class="md-nav__link" href="#install-core-stack-with-airflow">
 <span class="md-ellipsis">
       
-        Requirements
+        Install CoRE Stack (with Airflow)
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#first-start">
+<a class="md-nav__link" href="#corestack-auth-token">
 <span class="md-ellipsis">
       
-        First start
+        Point Airflow at the API
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#large-download-controls">
+<a class="md-nav__link" href="#upload-the-dag">
 <span class="md-ellipsis">
       
-        Large-download controls
+        Upload the DAG
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#trigger-the-dag">
+<span class="md-ellipsis">
+      
+        Trigger the DAG
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#full-dag-graph">
+<span class="md-ellipsis">
+      
+        Full DAG (Airflow Graph)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#re-exec">
+<span class="md-ellipsis">
+      
+        Re-exec (resume_exec)
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#part-2-without-airflow-async">
+<span class="md-ellipsis">
+      
+        2. CoRE Stack without Airflow
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#docker-install-steps">
+<span class="md-ellipsis">
+      
+        Docker install steps
+      
+    </span>
+</a>
+<nav aria-label="Docker install steps" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-before-you-start">
+<span class="md-ellipsis">
+      
+        1. Before you start
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-get-the-code">
+<span class="md-ellipsis">
+      
+        2. Get the code
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-create-the-settings-file">
+<span class="md-ellipsis">
+      
+        3. Create the settings file
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-edit-nrm_appenv">
+<span class="md-ellipsis">
+      
+        4. Edit nrm_app/.env
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-optional-download-the-admin-boundaries-yourself">
+<span class="md-ellipsis">
+      
+        5. Optional: download the admin boundaries yourself
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-build-and-start">
+<span class="md-ellipsis">
+      
+        6. Build and start
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-check-that-it-works">
+<span class="md-ellipsis">
+      
+        7. Check that it works
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-to-set-up-next">
+<span class="md-ellipsis">
+      
+        What to set up next
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#data-for-local-compute">
+<span class="md-ellipsis">
+      
+        Data for local compute
       
     </span>
 </a>
@@ -1372,11 +1537,11 @@
 <a class="md-nav__link" href="#gee-and-gcs">
 <span class="md-ellipsis">
       
-        GEE and GCS
+        Google Earth Engine
       
     </span>
 </a>
-<nav aria-label="GEE and GCS" class="md-nav">
+<nav aria-label="Google Earth Engine" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#3-optional-google-cloud-storage">
@@ -1391,95 +1556,37 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#superuser">
+<a class="md-nav__link" href="#nasa-earthdata">
 <span class="md-ellipsis">
       
-        Superuser
+        NASA Earthdata
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#part-1-with-airflow-sync">
+<a class="md-nav__link" href="#gpu-and-long-jobs">
 <span class="md-ellipsis">
       
-        Part 1 — With Airflow (sync)
-      
-    </span>
-</a>
-<nav aria-label="Part 1 — With Airflow (sync)" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#1-enable-sync-on-the-backend">
-<span class="md-ellipsis">
-      
-        1. Enable sync on the backend
+        GPU and long jobs
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#setup-airflow-and-stacd">
+<a class="md-nav__link" href="#behind-a-proxy">
 <span class="md-ellipsis">
       
-        2. Set up Airflow and STACD
+        Behind a proxy
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#upload-the-dag">
+<a class="md-nav__link" href="#settings">
 <span class="md-ellipsis">
       
-        3. Upload the DAG
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#trigger-the-dag">
-<span class="md-ellipsis">
-      
-        4. Trigger the DAG
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#full-dag-graph">
-<span class="md-ellipsis">
-      
-        5. Full DAG (Airflow Graph)
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#re-exec">
-<span class="md-ellipsis">
-      
-        6. Re-exec (resume_exec)
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#part-2-without-airflow-async">
-<span class="md-ellipsis">
-      
-        Part 2 — Without Airflow (async)
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#nasa-earthdata-et-download">
-<span class="md-ellipsis">
-      
-        NASA Earthdata (ET download)
+        Settings
       
     </span>
 </a>
@@ -1488,30 +1595,12 @@
 <a class="md-nav__link" href="#9-run-the-admin-boundary-local-compute-api">
 <span class="md-ellipsis">
       
-        Run a computing API
+        Test the APIs
       
     </span>
 </a>
-<nav aria-label="Run a computing API" class="md-nav">
+<nav aria-label="Test the APIs" class="md-nav">
 <ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#log-in">
-<span class="md-ellipsis">
-      
-        Log in
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#generate-a-block-layer">
-<span class="md-ellipsis">
-      
-        Generate a block layer
-      
-    </span>
-</a>
-</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#postman">
 <span class="md-ellipsis">
@@ -1525,64 +1614,19 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#day-to-day-operations">
+<a class="md-nav__link" href="#everyday-use">
 <span class="md-ellipsis">
       
-        Day-to-day operations
+        Everyday use
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#code-and-dependency-updates">
+<a class="md-nav__link" href="#running-on-a-server">
 <span class="md-ellipsis">
       
-        Code and dependency updates
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#database-migrations-and-backups">
-<span class="md-ellipsis">
-      
-        Database, migrations, and backups
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#behind-a-campus-or-corporate-proxy">
-<span class="md-ellipsis">
-      
-        Behind a campus or corporate proxy
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#testing">
-<span class="md-ellipsis">
-      
-        Testing
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#production-checklist">
-<span class="md-ellipsis">
-      
-        Production checklist
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#complete-reset">
-<span class="md-ellipsis">
-      
-        Complete reset
+        Running on a server
       
     </span>
 </a>
@@ -1629,15 +1673,39 @@
 </nav>
 <article class="md-content__inner md-typeset">
 <h1 id="run-core-stack-backend-with-docker">Run CoRE Stack Backend with Docker<a class="headerlink" href="#run-core-stack-backend-with-docker" title="Permanent link">¶</a></h1>
-<p>The repository-root <code>docker-compose.yml</code> is the only supported Compose definition. It builds the backend environment, mounts source from the host, starts PostgreSQL, Redis, GeoServer, Gunicorn and Celery, and runs initialization jobs in dependency order.</p>
-<p>Authoritative backend copy: <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/installation/DOCKER.md">installation/DOCKER.md</a>. Native Linux: <a href="../installer/">Installer</a>. GEE / GCS background: <a href="../integrations/google-earth-engine/">Google Earth Engine</a> and <a href="../integrations/gcs/">Google Cloud Storage</a>. Airflow + STACD: <a href="https://github.com/SaharshLaud/STACD_framework">STACD Framework</a> (<code>dev</code>).</p>
-<h2 id="two-methods-airflow--sync-or-no-airflow--async">Installation in two parts<a class="headerlink" href="#two-methods-airflow--sync-or-no-airflow--async" title="Permanent link">¶</a></h2>
-<p>Docker install is <strong>two parts</strong>. Do the <a href="#first-start">shared first start</a> once, then finish <strong>either</strong> Part 1 or Part 2.</p>
+<div class="admonition tip">
+<p class="admonition-title">First time here?</p>
+<p>Use <a href="../installer/">Install CoRE Stack</a>. That page walks through a first Docker install with no Airflow, and explains each command. Come back here for Airflow, Earth Engine, large datasets, GPU jobs, and the full settings list.</p>
+</div>
+<p>CoRE Stack Docker installation has <strong>two ways</strong>. Both use the same Compose stack from <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/installation/DOCKER.md">installation/DOCKER.md</a>. Airflow is installed beside that stack, only on the first way.</p>
 <table>
 <thead>
 <tr>
-<th>Part</th>
-<th>Use when</th>
+<th>Way</th>
+<th>What you install</th>
+<th>Layer jobs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="#part-1-with-airflow-sync">1 — With Airflow</a></strong></td>
+<td>Airflow + STACD, then the Docker stack in sync mode</td>
+<td>Airflow runs the layer DAG. Each algorithm call <strong>waits</strong> and returns a finished STAC body (<code>asset_id</code>, <code>stac_items</code>).</td>
+</tr>
+<tr>
+<td><strong><a href="#part-2-without-airflow-async">2 — Without Airflow</a></strong></td>
+<td>The Docker stack only</td>
+<td>Celery workers run the jobs. The API returns <code>initiated</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>The switch is <strong><code>LAYER_GENERATION_SYNC_MODE</code></strong> in <code>nrm_app/.env</code> (<code>False</code> in the template). One request can override it with <strong><code>layer_generation_mode</code></strong> (<code>sync</code> or <code>async</code>). Aliases: <code>layerGenerationMode</code>, <code>layer_mode</code>, <code>mode</code>. <strong><code>SYNC_LAYER</code></strong> is a separate older flag.</p>
+<p>First install: <a href="../installer/">Install CoRE Stack</a>. GEE and GCS background: <a href="../integrations/google-earth-engine/">Google Earth Engine</a>, <a href="../integrations/gcs/">Google Cloud Storage</a>.</p>
+<h2 id="two-methods-airflow--sync-or-no-airflow--async">Installation in two ways<a class="headerlink" href="#two-methods-airflow--sync-or-no-airflow--async" title="Permanent link">¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Way</th>
 <th><code>LAYER_GENERATION_SYNC_MODE</code></th>
 <th><code>layer_generation_mode</code></th>
 <th>What happens</th>
@@ -1645,280 +1713,107 @@
 </thead>
 <tbody>
 <tr>
-<td><strong><a href="#part-1-with-airflow-sync">Part 1 — With Airflow (sync)</a></strong></td>
-<td>You will set up Airflow + STACD, <strong>upload</strong> the layer DAGs, <strong>trigger</strong> a run, and need a finished STAC payload (<code>asset_id</code>, <code>stac_items</code>)</td>
+<td><strong><a href="#part-1-with-airflow-sync">1 — With Airflow</a></strong></td>
 <td><code>True</code></td>
 <td><code>"sync"</code></td>
-<td>The HTTP call <strong>waits</strong>. Celery <code>apply_async</code> runs <strong>in-process</strong>. Response status becomes <code>completed</code>.</td>
+<td>The HTTP call waits. The response status becomes <code>completed</code>.</td>
 </tr>
 <tr>
-<td><strong><a href="#part-2-without-airflow-async">Part 2 — Without Airflow (async)</a></strong></td>
-<td>Default Docker stack. Celery workers do the work. No Airflow install.</td>
+<td><strong><a href="#part-2-without-airflow-async">2 — Without Airflow</a></strong></td>
 <td><code>False</code> (default)</td>
 <td><code>"async"</code> or omit</td>
-<td>The API <strong>queues</strong> the task and returns <code>initiated</code>. Watch <code>celery-nrm</code> / <code>celery-layer-bulk</code>.</td>
+<td>The API queues the task and returns <code>initiated</code>. Watch <code>celery-nrm</code> / <code>celery-layer-bulk</code>.</td>
 </tr>
 </tbody>
 </table>
-<p>The switch is <strong><code>LAYER_GENERATION_SYNC_MODE</code></strong> in <code>nrm_app/.env</code>. One request can override that with <strong><code>layer_generation_mode</code></strong> in the JSON body (<code>sync</code> or <code>async</code>). Aliases: <code>layerGenerationMode</code>, <code>layer_mode</code>, <code>mode</code>.</p>
-<p>Do not confuse this with <strong><code>SYNC_LAYER</code></strong>. That is a separate older flag. Layer method is <strong><code>LAYER_GENERATION_SYNC_MODE</code></strong> / <strong><code>layer_generation_mode</code></strong>.</p>
-<p>Airflow is <strong>not</strong> in the backend Compose file. Part 1 installs Airflow + STACD next to the stack, then points the generated DAGs at <code>http://&lt;backend-host&gt;:8000</code>.</p>
-<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">¶</a></h2>
-<table>
-<thead>
-<tr>
-<th>State</th>
-<th>Location</th>
-<th>Persistence</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Backend source</td>
-<td>Host checkout mounted at <code>/app</code></td>
-<td>Git / host filesystem</td>
-</tr>
-<tr>
-<td>Downloaded and generated layers</td>
-<td><code>${CORESTACK_HOST_DATA_DIR:-.}/data</code> mounted at <code>/var/tmp/core-stack-data</code></td>
-<td>Host filesystem</td>
-</tr>
-<tr>
-<td>PostgreSQL</td>
-<td>Separate <code>postgres</code> container</td>
-<td>Docker volume <code>postgres_data</code></td>
-</tr>
-<tr>
-<td>GeoServer catalog</td>
-<td>Separate <code>geoserver</code> container</td>
-<td>Docker volume <code>geoserver_data</code></td>
-</tr>
-<tr>
-<td>Celery broker</td>
-<td>Separate <code>redis</code> container with AOF</td>
-<td>Docker volume <code>redis_data</code></td>
-</tr>
-<tr>
-<td>GEE JSON</td>
-<td><code>${CORESTACK_HOST_DATA_DIR:-.}/gee_confs</code></td>
-<td>Read-only host mount</td>
-</tr>
-<tr>
-<td>Database backups</td>
-<td><code>${CORESTACK_HOST_DATA_DIR:-.}/backups/postgres</code></td>
-<td>Host filesystem</td>
-</tr>
-<tr>
-<td>GeoServer backups</td>
-<td><code>${CORESTACK_HOST_DATA_DIR:-.}/backups/geoserver</code></td>
-<td>Host filesystem</td>
-</tr>
-</tbody>
-</table>
-<p>PostgreSQL is never stored in the backend container. <code>docker compose --env-file nrm_app/.env down</code> keeps volumes. Adding <code>-v</code> deletes the database, GeoServer catalog, and Redis.</p>
-<h2 id="what-you-get">What you get<a class="headerlink" href="#what-you-get" title="Permanent link">¶</a></h2>
-<table>
-<thead>
-<tr>
-<th>Service</th>
-<th>URL</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Django / API</td>
-<td>http://localhost:8000</td>
-</tr>
-<tr>
-<td>Django admin</td>
-<td>http://localhost:8000/admin/</td>
-</tr>
-<tr>
-<td>GeoServer</td>
-<td>http://localhost:8080/geoserver</td>
-</tr>
-<tr>
-<td>Airflow (Part 1 only)</td>
-<td>http://localhost:8081 — not in Compose; see <a href="#setup-airflow-and-stacd">setup Airflow</a></td>
-</tr>
-</tbody>
-</table>
-<p>Postgres is on <code>127.0.0.1:5432</code> (<code>DB_USER</code> / <code>DB_PASSWORD</code> / <code>DB_NAME</code> from <code>nrm_app/.env</code>). Create a superuser after first start (see <a href="#superuser">Superuser</a>).</p>
-<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">¶</a></h2>
+<h2 id="part-1-with-airflow-sync">1. CoRE Stack with Airflow integration<a class="headerlink" href="#part-1-with-airflow-sync" title="Permanent link">¶</a></h2>
+<p>Do these in order:</p>
+<ol>
+<li><a href="#what-airflow-is">Read what Airflow is</a> on this path.</li>
+<li><a href="#setup-airflow-and-stacd">Install Airflow and STACD</a>.</li>
+<li><a href="#docker-install-steps">Install CoRE Stack</a> with the steps in <code>installation/DOCKER.md</code>, and set <code>LAYER_GENERATION_SYNC_MODE=True</code>.</li>
+<li><a href="#corestack-auth-token">Point the DAGs at the API</a>, <a href="#upload-the-dag">upload them</a>, <a href="#trigger-the-dag">trigger a run</a>, and use <a href="#re-exec">re-exec</a> when a task fails.</li>
+</ol>
+<h3 id="what-airflow-is">What Airflow is<a class="headerlink" href="#what-airflow-is" title="Permanent link">¶</a></h3>
+<p><a href="https://airflow.apache.org/">Apache Airflow</a> is a workflow scheduler. A workflow is a <strong>DAG</strong> (directed acyclic graph): tasks are nodes, and edges say which task must finish before the next one starts. The scheduler starts a task only after its upstream tasks succeed. The web UI shows that graph, the logs, and a way to run the workflow again with new parameters.</p>
+<p>CoRE Stack uses Airflow when layer generation should be that graph, instead of one API call handed to Celery:</p>
 <ul>
-<li>Docker Engine or Docker Desktop with Compose v2</li>
-<li>Linux/amd64; Apple Silicon uses Docker emulation</li>
-<li>Enough disk for images and requested layers (admin-boundary alone is about 8 GB)</li>
-<li>Ports <strong>8000</strong>, <strong>8080</strong>, and <strong>5432</strong> free on loopback, or overridden in <code>nrm_app/.env</code></li>
-<li>Git, to clone <a href="https://github.com/core-stack-org/core-stack-backend">core-stack-backend</a></li>
+<li>Two root datasets run first: admin boundary and microwatersheds.</li>
+<li>Each algorithm task POSTs a Django computing API and <strong>waits</strong> for a finished body. That requires sync mode (<code>LAYER_GENERATION_SYNC_MODE=True</code>, or <code>"layer_generation_mode": "sync"</code> on the request). The body includes <code>asset_id</code> and <code>stac_items</code>.</li>
+<li>The matching <code>*_Asset</code> task registers that STAC payload.</li>
+<li>STACD stores which algorithms succeeded or failed for a state, district, and block, so a later run can retry only the failures.</li>
 </ul>
-<h2 id="first-start">First start<a class="headerlink" href="#first-start" title="Permanent link">¶</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/core-stack-org/core-stack-backend.git
-</span><span id="__span-0-2"><a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>core-stack-backend
-</span><span id="__span-0-3"><a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>cp<span class="w"> </span>installation/docker/env.template<span class="w"> </span>nrm_app/.env
-</span><span id="__span-0-4"><a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>nrm_app/.env
+<p><strong>STACD</strong> (SpatioTemporal Asset Catalog for Dataflows) is the YAML layer on Airflow. You upload three files — DAG, algorithm repo, and dataset repo. STACD loads them into its database, generates the Python DAG, and places it in Airflow’s <code>dags/</code> folder. You then trigger and watch that DAG in the Airflow UI. Framework reference: <a href="https://github.com/SaharshLaud/STACD_framework">STACD Framework</a> (<code>dev</code>).</p>
+<p>Airflow is a separate install next to Compose. GeoServer already listens on <strong>8080</strong>, so the Airflow webserver uses <strong>8081</strong>.</p>
+<h3 id="setup-airflow-and-stacd">Install Airflow and STACD<a class="headerlink" href="#setup-airflow-and-stacd" title="Permanent link">¶</a></h3>
+<p>Authoritative install: <a href="https://github.com/SaharshLaud/STACD_framework/blob/dev/README.md">STACD Framework README</a> (<code>dev</code>). You need Python 3.10+, pip, and Git.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>mkdir<span class="w"> </span>airflow_stacd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>airflow_stacd
+</span><span id="__span-0-2"><a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+</span><span id="__span-0-3"><a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+</span><span id="__span-0-4"><a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+</span><span id="__span-0-5"><a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AIRFLOW_HOME</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/airflow
+</span><span id="__span-0-7"><a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span><span class="nv">$AIRFLOW_HOME</span><span class="s2">"</span>
+</span><span id="__span-0-8"><a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="nv">AIRFLOW_VERSION</span><span class="o">=</span><span class="m">2</span>.10.4
+</span><span id="__span-0-10"><a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="nv">PYTHON_VERSION</span><span class="o">=</span><span class="k">$(</span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">"import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')"</span><span class="k">)</span>
+</span><span id="__span-0-11"><a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">"apache-airflow==</span><span class="si">${</span><span class="nv">AIRFLOW_VERSION</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-12"><a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">  </span>--constraint<span class="w"> </span><span class="s2">"https://raw.githubusercontent.com/apache/airflow/constraints-</span><span class="si">${</span><span class="nv">AIRFLOW_VERSION</span><span class="si">}</span><span class="s2">/constraints-</span><span class="si">${</span><span class="nv">PYTHON_VERSION</span><span class="si">}</span><span class="s2">.txt"</span>
+</span><span id="__span-0-13"><a href="#__codelineno-0-13" id="__codelineno-0-13" name="__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a href="#__codelineno-0-14" id="__codelineno-0-14" name="__codelineno-0-14"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>dev<span class="w"> </span>https://github.com/SaharshLaud/STACD_framework.git
+</span><span id="__span-0-15"><a href="#__codelineno-0-15" id="__codelineno-0-15" name="__codelineno-0-15"></a>cp<span class="w"> </span>-r<span class="w"> </span>STACD_framework/stacd<span class="w"> </span><span class="s2">"</span><span class="nv">$AIRFLOW_HOME</span><span class="s2">/"</span>
+</span><span id="__span-0-16"><a href="#__codelineno-0-16" id="__codelineno-0-16" name="__codelineno-0-16"></a>cp<span class="w"> </span>-r<span class="w"> </span>STACD_framework/plugins<span class="w"> </span><span class="s2">"</span><span class="nv">$AIRFLOW_HOME</span><span class="s2">/"</span>
+</span><span id="__span-0-17"><a href="#__codelineno-0-17" id="__codelineno-0-17" name="__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a href="#__codelineno-0-18" id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$AIRFLOW_HOME</span>:<span class="nv">$AIRFLOW_HOME</span>/stacd:<span class="nv">$PYTHONPATH</span>
+</span><span id="__span-0-19"><a href="#__codelineno-0-19" id="__codelineno-0-19" name="__codelineno-0-19"></a>airflow<span class="w"> </span>db<span class="w"> </span>init
+</span><span id="__span-0-20"><a href="#__codelineno-0-20" id="__codelineno-0-20" name="__codelineno-0-20"></a>airflow<span class="w"> </span>users<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-21"><a href="#__codelineno-0-21" id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="w">  </span>--username<span class="w"> </span>admin<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-22"><a href="#__codelineno-0-22" id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="w">  </span>--firstname<span class="w"> </span>admin<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-23"><a href="#__codelineno-0-23" id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="w">  </span>--lastname<span class="w"> </span>admin<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-24"><a href="#__codelineno-0-24" id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="w">  </span>--role<span class="w"> </span>Admin<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-25"><a href="#__codelineno-0-25" id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="w">  </span>--email<span class="w"> </span>admin@example.com
 </span></code></pre></div>
-<p>Pick a layer method in that file (<code>LAYER_GENERATION_SYNC_MODE</code>). Use <code>True</code> if you will continue with <a href="#part-1-with-airflow-sync">Part 1</a>; leave <code>False</code> for <a href="#part-2-without-airflow-async">Part 2</a>. For a server, also set an absolute data root:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>CORESTACK_HOST_DATA_DIR=/srv/core-stack-data
-</span><span id="__span-1-2"><a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>LAYER_GENERATION_SYNC_MODE=False
+<p><code>airflow users create</code> asks for a password.</p>
+<p>Start the scheduler and the webserver in two terminals. In each one, <code>cd</code> to <code>airflow_stacd</code>, activate <code>venv</code>, and export <code>AIRFLOW_HOME</code> and <code>PYTHONPATH</code> as above.</p>
+<p>Terminal 1:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>airflow<span class="w"> </span>scheduler
 </span></code></pre></div>
-<p>Replace the placeholder database and GeoServer passwords before any shared host. Then:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
+<p>Terminal 2 — port <strong>8081</strong>, because GeoServer uses 8080:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>airflow<span class="w"> </span>webserver<span class="w"> </span>--port<span class="w"> </span><span class="m">8081</span>
 </span></code></pre></div>
-<p>Run <strong>all</strong> Compose commands from the repository root with <code>--env-file nrm_app/.env</code>. Compose does not auto-load <code>nrm_app/.env</code>. The retired parent-repo <code>.env.core-stack</code> is not read.</p>
-<p><code>CORESTACK_HOST_DATA_DIR</code> defaults to the repository root (<code>./data</code>, <code>./gee_confs</code>, <code>./backups</code>). Compose creates those bind-mount directories on start.</p>
-<p>One-shot jobs run before Gunicorn:</p>
-<ol>
-<li><code>app-init</code> completes <code>nrm_app/.env</code> and normalizes database, GeoServer, Celery, and runtime values.</li>
-<li><code>database-init</code> creates installation-local migrations, applies them with <code>--fake-initial</code>, collects static files, and loads seed data once.</li>
-<li><code>geoserver-init</code> reconciles workspaces and bundled styles.</li>
-<li><code>data-download</code> downloads only requested or missing source layers.</li>
-<li><code>gee-config</code> discovers optional mounted GEE JSON.</li>
-<li><code>tehsil-watershed-setup</code> downloads active tehsil watershed layers from the GeoServer <code>mws</code> WFS workspace.</li>
-<li>Gunicorn and the queue-specific Celery workers start.</li>
-</ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>ps
-</span><span id="__span-3-2"><a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>app-init<span class="w"> </span>database-init<span class="w"> </span>data-download<span class="w"> </span>geoserver-init<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-3-3"><a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">  </span>gee-config<span class="w"> </span>tehsil-watershed-setup<span class="w"> </span>backend
+<p>Open <a href="http://localhost:8081">http://localhost:8081</a> and log in. <code>airflow standalone</code> is fine only after you move GeoServer (<code>GEOSERVER_PORT</code>) or Airflow off 8080.</p>
+<p><code>$AIRFLOW_HOME</code> then contains <code>stacd/</code> (database, DAG generator, YAML configs) and <code>plugins/</code> (the STACD pages in the Airflow menu). Airflow creates <code>dags/</code> when the first workflow is uploaded.</p>
+<p>Leave this running and continue with the CoRE Stack install below. The auth token and the DAG upload happen after the API is up.</p>
+<h3 id="install-core-stack-with-airflow">Install CoRE Stack (with Airflow)<a class="headerlink" href="#install-core-stack-with-airflow" title="Permanent link">¶</a></h3>
+<p>Follow <a href="#docker-install-steps">Docker install steps</a> — the same sequence as <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/installation/DOCKER.md">installation/DOCKER.md</a>.</p>
+<p>In <code>nrm_app/.env</code>, before the first <code>docker compose up</code>, also set:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>LAYER_GENERATION_SYNC_MODE=True
 </span></code></pre></div>
-<h2 id="large-download-controls">Large-download controls<a class="headerlink" href="#large-download-controls" title="Permanent link">¶</a></h2>
-<table>
-<thead>
-<tr>
-<th>Variable</th>
-<th>Effect when set to <code>1</code></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>SKIP_ADMIN_BOUNDARY_DOWNLOAD</code></td>
-<td>Skip the ~8 GB admin-boundary archive</td>
-</tr>
-<tr>
-<td><code>SKIP_BASE_LAYER_DOWNLOAD</code></td>
-<td>Skip terrain, MWS, LULC, and static/tehsil-level base layers</td>
-</tr>
-<tr>
-<td><code>SKIP_TEHSIL_WATERSHEDS</code></td>
-<td>Do not fetch active tehsil watershed GPKGs from GeoServer</td>
-</tr>
-</tbody>
-</table>
-<p>Set them in <code>nrm_app/.env</code> or on one invocation:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nv">SKIP_ADMIN_BOUNDARY_DOWNLOAD</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-2"><a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="nv">SKIP_BASE_LAYER_DOWNLOAD</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-3"><a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="nv">SKIP_TEHSIL_WATERSHEDS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-4-4"><a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
+<p>Apply a later change with:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate<span class="w"> </span>backend
 </span></code></pre></div>
-<p>Refresh the admin-boundary archive:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="nv">FORCE_DATA_DOWNLOAD</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>data-download
+<p><code>url:</code> values in the algorithm YAML must be reachable from the <strong>Airflow worker</strong>. The bundled files use <code>http://core-stack:8000/...</code> (the Compose service name). When Airflow runs on the host, change those URLs to <code>http://127.0.0.1:8000/...</code> (or the LAN IP) before you upload.</p>
+<p>A single request can force sync even when the env default is <code>False</code>:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="p">{</span>
+</span><span id="__span-5-2"><a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="w">  </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rajasthan"</span><span class="p">,</span>
+</span><span id="__span-5-3"><a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">  </span><span class="nt">"district"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bhilwara"</span><span class="p">,</span>
+</span><span id="__span-5-4"><a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">  </span><span class="nt">"block"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mandalgarh"</span><span class="p">,</span>
+</span><span id="__span-5-5"><a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">  </span><span class="nt">"gee_account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+</span><span id="__span-5-6"><a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">  </span><span class="nt">"layer_generation_mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sync"</span>
+</span><span id="__span-5-7"><a href="#__codelineno-5-7" id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="p">}</span>
 </span></code></pre></div>
-<p>Fetch base layers later:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="nv">SKIP_ADMIN_BOUNDARY_DOWNLOAD</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-2"><a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="nv">SKIP_BASE_LAYER_DOWNLOAD</span><span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-6-3"><a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>data-download
+<h3 id="corestack-auth-token">Point Airflow at the API<a class="headerlink" href="#corestack-auth-token" title="Permanent link">¶</a></h3>
+<p>After <a href="#6-check-that-it-works">step 6 of the Docker install</a> returns a token, store it as an Airflow Variable so DAG tasks can call the APIs. In the Airflow UI use <strong>Admin → Variables</strong>, or:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a>airflow<span class="w"> </span>variables<span class="w"> </span><span class="nb">set</span><span class="w"> </span>CORESTACK_AUTH_TOKEN<span class="w"> </span><span class="s1">'&lt;access token&gt;'</span>
 </span></code></pre></div>
-<p>Tehsil watersheds land at:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a>&lt;CORESTACK_HOST_DATA_DIR&gt;/data/base_layers/tehsil_watersheds/&lt;state&gt;/&lt;district&gt;/&lt;tehsil&gt;.gpkg
+<p>You can also log in yourself:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://127.0.0.1:8000/api/v1/auth/login/<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-3"><a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{"username":"&lt;admin_user&gt;","password":"&lt;password&gt;"}'</span>
 </span></code></pre></div>
-<p>Retry a failed fetch:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>tehsil-watershed-setup
-</span></code></pre></div>
-<h2 id="gee-and-gcs">GEE and GCS<a class="headerlink" href="#gee-and-gcs" title="Permanent link">¶</a></h2>
-<p>The stack starts without GEE. Earth Engine jobs need a service-account JSON, a Django <code>GEEAccount</code>, <code>GCS_BUCKET_NAME</code>, and <code>GEE_STORAGE_PROJECT</code>.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>/srv/core-stack-data/gee_confs
-</span><span id="__span-9-2"><a href="#__codelineno-9-2" id="__codelineno-9-2" name="__codelineno-9-2"></a>cp<span class="w"> </span>/secure/path/service-account.json<span class="w"> </span>/srv/core-stack-data/gee_confs/gee-service-account.json
-</span><span id="__span-9-3"><a href="#__codelineno-9-3" id="__codelineno-9-3" name="__codelineno-9-3"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>/srv/core-stack-data/gee_confs/gee-service-account.json
-</span></code></pre></div>
-<p>Put the GCS bucket and GEE project in <code>nrm_app/.env</code>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="nv">GCS_BUCKET_NAME</span><span class="o">=</span>your-gcs-bucket
-</span><span id="__span-10-2"><a href="#__codelineno-10-2" id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="nv">GEE_STORAGE_PROJECT</span><span class="o">=</span>ee-your-project
-</span><span id="__span-10-3"><a href="#__codelineno-10-3" id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="nv">GEE_STORAGE_PROJECT_HELPER</span><span class="o">=</span>ee-your-project
-</span></code></pre></div>
-<p>Create the bucket in <strong><code>us-central1</code></strong> (see <a href="../integrations/gcs/">Google Cloud Storage</a>). Then:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>gee-config
-</span><span id="__span-11-2"><a href="#__codelineno-11-2" id="__codelineno-11-2" name="__codelineno-11-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate<span class="w"> </span>backend<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-11-3"><a href="#__codelineno-11-3" id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="w">  </span>celery-nrm<span class="w"> </span>celery-layer-bulk<span class="w"> </span>celery-geoserver<span class="w"> </span>celery-general
-</span></code></pre></div>
-<p>The mount is read-only. Add the matching <code>GEEAccount</code> in Django admin if it is not already in the database:</p>
-<ol>
-<li>Open <a href="http://localhost:8000/admin/gee_computing/geeaccount/add/">http://localhost:8000/admin/gee_computing/geeaccount/add/</a>.</li>
-<li><strong>Name:</strong> GEE project id (same as <code>GEE_STORAGE_PROJECT</code>).</li>
-<li><strong>Service account email:</strong> <code>client_email</code> from the JSON.</li>
-<li><strong>Credentials file:</strong> upload the same JSON.</li>
-<li>Save. The numeric id in the change URL is <code>gee_account_id</code>.</li>
-</ol>
-<p>Use <code>SKIP_GEE_CONFIG=1</code> to disable GEE setup entirely.</p>
-<h3 id="3-optional-google-cloud-storage">Optional Google Cloud Storage<a class="headerlink" href="#3-optional-google-cloud-storage" title="Permanent link">¶</a></h3>
-<p>Same bucket rules as above: unique name, <code>us-central1</code>, grant the GEE service account <code>roles/storage.objectViewer</code>, <code>roles/storage.legacyBucketReader</code>, and <code>roles/storage.objectAdmin</code>. Set <code>GCS_BUCKET_NAME</code> in <code>nrm_app/.env</code> and recreate <code>gee-config</code> plus <code>backend</code>.</p>
-<h2 id="superuser">Superuser<a class="headerlink" href="#superuser" title="Permanent link">¶</a></h2>
-<p>Set <code>DJANGO_SUPERUSER_USERNAME</code>, <code>DJANGO_SUPERUSER_EMAIL</code>, and <code>DJANGO_SUPERUSER_PASSWORD</code> before first start, or create one:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>backend<span class="w"> </span>python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
-</span></code></pre></div>
-<h2 id="part-1-with-airflow-sync">Part 1 — With Airflow (sync)<a class="headerlink" href="#part-1-with-airflow-sync" title="Permanent link">¶</a></h2>
-<p>Part 1 is: start the backend in <strong>sync</strong>, install <strong>Airflow 2.10.4 + STACD</strong>, <strong>upload</strong> the three YAML files, <strong>trigger</strong> the DAG, open the <strong>full Graph</strong>, and use <strong>re-exec</strong> (<code>resume_exec</code>) when a run fails.</p>
-<h3 id="1-enable-sync-on-the-backend">1. Enable sync on the backend<a class="headerlink" href="#1-enable-sync-on-the-backend" title="Permanent link">¶</a></h3>
-<p>Airflow algorithm tasks POST the Django APIs and must receive a finished STAC body. Set this <strong>before</strong> start, or recreate the backend after changing it:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="c1"># nrm_app/.env</span>
-</span><span id="__span-13-2"><a href="#__codelineno-13-2" id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="nv">LAYER_GENERATION_SYNC_MODE</span><span class="o">=</span>True
-</span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a href="#__codelineno-14-1" id="__codelineno-14-1" name="__codelineno-14-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate<span class="w"> </span>backend
-</span></code></pre></div>
-<p>Per-request override (wins over the env default):</p>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-15-1"><a href="#__codelineno-15-1" id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="p">{</span>
-</span><span id="__span-15-2"><a href="#__codelineno-15-2" id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="w">  </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rajasthan"</span><span class="p">,</span>
-</span><span id="__span-15-3"><a href="#__codelineno-15-3" id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="w">  </span><span class="nt">"district"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bhilwara"</span><span class="p">,</span>
-</span><span id="__span-15-4"><a href="#__codelineno-15-4" id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="w">  </span><span class="nt">"block"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mandalgarh"</span><span class="p">,</span>
-</span><span id="__span-15-5"><a href="#__codelineno-15-5" id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="w">  </span><span class="nt">"gee_account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-</span><span id="__span-15-6"><a href="#__codelineno-15-6" id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="w">  </span><span class="nt">"layer_generation_mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sync"</span>
-</span><span id="__span-15-7"><a href="#__codelineno-15-7" id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="p">}</span>
-</span></code></pre></div>
-<p><code>url:</code> values in the algorithm YAML must be reachable from the <strong>Airflow worker</strong>, not from your laptop. The bundled files use <code>http://core-stack:8000/...</code> (Compose service name). If Airflow runs on the host, change those URLs to <code>http://127.0.0.1:8000/...</code> or the LAN IP before you upload.</p>
-<h3 id="setup-airflow-and-stacd">2. Set up Airflow and STACD<a class="headerlink" href="#setup-airflow-and-stacd" title="Permanent link">¶</a></h3>
-<p>Authoritative install: <a href="https://github.com/SaharshLaud/STACD_framework/blob/dev/README.md">STACD Framework README</a> (<code>dev</code> branch). Short path:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a href="#__codelineno-16-1" id="__codelineno-16-1" name="__codelineno-16-1"></a>mkdir<span class="w"> </span>airflow_stacd<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>airflow_stacd
-</span><span id="__span-16-2"><a href="#__codelineno-16-2" id="__codelineno-16-2" name="__codelineno-16-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
-</span><span id="__span-16-3"><a href="#__codelineno-16-3" id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-</span><span id="__span-16-4"><a href="#__codelineno-16-4" id="__codelineno-16-4" name="__codelineno-16-4"></a>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
-</span><span id="__span-16-5"><a href="#__codelineno-16-5" id="__codelineno-16-5" name="__codelineno-16-5"></a>
-</span><span id="__span-16-6"><a href="#__codelineno-16-6" id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AIRFLOW_HOME</span><span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/airflow
-</span><span id="__span-16-7"><a href="#__codelineno-16-7" id="__codelineno-16-7" name="__codelineno-16-7"></a>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span><span class="nv">$AIRFLOW_HOME</span><span class="s2">"</span>
-</span><span id="__span-16-8"><a href="#__codelineno-16-8" id="__codelineno-16-8" name="__codelineno-16-8"></a>
-</span><span id="__span-16-9"><a href="#__codelineno-16-9" id="__codelineno-16-9" name="__codelineno-16-9"></a><span class="nv">AIRFLOW_VERSION</span><span class="o">=</span><span class="m">2</span>.10.4
-</span><span id="__span-16-10"><a href="#__codelineno-16-10" id="__codelineno-16-10" name="__codelineno-16-10"></a><span class="nv">PYTHON_VERSION</span><span class="o">=</span><span class="k">$(</span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">"import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')"</span><span class="k">)</span>
-</span><span id="__span-16-11"><a href="#__codelineno-16-11" id="__codelineno-16-11" name="__codelineno-16-11"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">"apache-airflow==</span><span class="si">${</span><span class="nv">AIRFLOW_VERSION</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-16-12"><a href="#__codelineno-16-12" id="__codelineno-16-12" name="__codelineno-16-12"></a><span class="w">  </span>--constraint<span class="w"> </span><span class="s2">"https://raw.githubusercontent.com/apache/airflow/constraints-</span><span class="si">${</span><span class="nv">AIRFLOW_VERSION</span><span class="si">}</span><span class="s2">/constraints-</span><span class="si">${</span><span class="nv">PYTHON_VERSION</span><span class="si">}</span><span class="s2">.txt"</span>
-</span><span id="__span-16-13"><a href="#__codelineno-16-13" id="__codelineno-16-13" name="__codelineno-16-13"></a>
-</span><span id="__span-16-14"><a href="#__codelineno-16-14" id="__codelineno-16-14" name="__codelineno-16-14"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>dev<span class="w"> </span>https://github.com/SaharshLaud/STACD_framework.git
-</span><span id="__span-16-15"><a href="#__codelineno-16-15" id="__codelineno-16-15" name="__codelineno-16-15"></a>cp<span class="w"> </span>-r<span class="w"> </span>STACD_framework/stacd<span class="w"> </span><span class="s2">"</span><span class="nv">$AIRFLOW_HOME</span><span class="s2">/"</span>
-</span><span id="__span-16-16"><a href="#__codelineno-16-16" id="__codelineno-16-16" name="__codelineno-16-16"></a>cp<span class="w"> </span>-r<span class="w"> </span>STACD_framework/plugins<span class="w"> </span><span class="s2">"</span><span class="nv">$AIRFLOW_HOME</span><span class="s2">/"</span>
-</span><span id="__span-16-17"><a href="#__codelineno-16-17" id="__codelineno-16-17" name="__codelineno-16-17"></a>
-</span><span id="__span-16-18"><a href="#__codelineno-16-18" id="__codelineno-16-18" name="__codelineno-16-18"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$AIRFLOW_HOME</span>:<span class="nv">$AIRFLOW_HOME</span>/stacd:<span class="nv">$PYTHONPATH</span>
-</span><span id="__span-16-19"><a href="#__codelineno-16-19" id="__codelineno-16-19" name="__codelineno-16-19"></a>airflow<span class="w"> </span>db<span class="w"> </span>init
-</span><span id="__span-16-20"><a href="#__codelineno-16-20" id="__codelineno-16-20" name="__codelineno-16-20"></a>airflow<span class="w"> </span>users<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-16-21"><a href="#__codelineno-16-21" id="__codelineno-16-21" name="__codelineno-16-21"></a><span class="w">  </span>--username<span class="w"> </span>admin<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-16-22"><a href="#__codelineno-16-22" id="__codelineno-16-22" name="__codelineno-16-22"></a><span class="w">  </span>--firstname<span class="w"> </span>admin<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-16-23"><a href="#__codelineno-16-23" id="__codelineno-16-23" name="__codelineno-16-23"></a><span class="w">  </span>--lastname<span class="w"> </span>admin<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-16-24"><a href="#__codelineno-16-24" id="__codelineno-16-24" name="__codelineno-16-24"></a><span class="w">  </span>--role<span class="w"> </span>Admin<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-16-25"><a href="#__codelineno-16-25" id="__codelineno-16-25" name="__codelineno-16-25"></a><span class="w">  </span>--email<span class="w"> </span>admin@example.com
-</span><span id="__span-16-26"><a href="#__codelineno-16-26" id="__codelineno-16-26" name="__codelineno-16-26"></a>
-</span><span id="__span-16-27"><a href="#__codelineno-16-27" id="__codelineno-16-27" name="__codelineno-16-27"></a>airflow<span class="w"> </span>scheduler
-</span></code></pre></div>
-<p>In a second terminal (same <code>AIRFLOW_HOME</code> / venv / <code>PYTHONPATH</code>):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a href="#__codelineno-17-1" id="__codelineno-17-1" name="__codelineno-17-1"></a>airflow<span class="w"> </span>webserver<span class="w"> </span>--port<span class="w"> </span><span class="m">8081</span>
-</span></code></pre></div>
-<p>GeoServer already uses <strong>8080</strong> on this Compose stack, so do not bind Airflow there. Open <a href="http://localhost:8081">http://localhost:8081</a> and log in.</p>
-<p><code>airflow standalone</code> is fine only if you first move GeoServer (<code>GEOSERVER_PORT</code>) or Airflow off 8080.</p>
-<p>In <strong>Admin → Variables</strong> (or CLI), set the backend JWT so DAG tasks can call the APIs:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a href="#__codelineno-18-1" id="__codelineno-18-1" name="__codelineno-18-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://127.0.0.1:8000/api/v1/auth/login/<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-18-2"><a href="#__codelineno-18-2" id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-18-3"><a href="#__codelineno-18-3" id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{"username":"&lt;admin_user&gt;","password":"&lt;password&gt;"}'</span>
-</span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a href="#__codelineno-19-1" id="__codelineno-19-1" name="__codelineno-19-1"></a>airflow<span class="w"> </span>variables<span class="w"> </span><span class="nb">set</span><span class="w"> </span>CORESTACK_AUTH_TOKEN<span class="w"> </span><span class="s1">'&lt;access token&gt;'</span>
-</span></code></pre></div>
-<p>Tokens expire (typically 90 days). Reset the variable when calls start returning 401.</p>
-<h3 id="upload-the-dag">3. Upload the DAG<a class="headerlink" href="#upload-the-dag" title="Permanent link">¶</a></h3>
-<p>The backend already ships the STACD trio for both layer DAGs:</p>
+<p>Copy <code>access</code> into <code>CORESTACK_AUTH_TOKEN</code>. Tokens expire (typically 90 days). Reset the variable when calls start returning 401.</p>
+<h3 id="upload-the-dag">Upload the DAG<a class="headerlink" href="#upload-the-dag" title="Permanent link">¶</a></h3>
+<p>The backend ships the STACD trio for both layer DAGs:</p>
 <table>
 <thead>
 <tr>
@@ -1948,8 +1843,8 @@
 <p>Success looks like: <em>Database initialized | DAG script generated | DAG <code>CoreStack_DAG_LocalCompute_StaticLayers</code> deployed to Airflow</em>.</p>
 <p>STACD writes the YAMLs under <code>$AIRFLOW_HOME/stacd/yaml_configs/</code>, builds the Python DAG, and drops it in <code>$AIRFLOW_HOME/dags/</code>. Wait up to 30 seconds, then refresh <strong>DAGs</strong>. Toggle the DAG <strong>ON</strong>.</p>
 <p>Repeat for Dynamic Layers if you need yearly / inter-dependent layers (<code>start_year</code>, <code>end_year</code>, <code>gee_account_id</code>).</p>
-<p>Do not hand-edit the generated <code>.py</code>. To change the graph later, use STACD <strong>Register Algorithm</strong>, <strong>Register Dataset</strong>, or <strong>Update DAG</strong>.</p>
-<h3 id="trigger-the-dag">4. Trigger the DAG<a class="headerlink" href="#trigger-the-dag" title="Permanent link">¶</a></h3>
+<p>Leave the generated <code>.py</code> as STACD wrote it. To change the graph later, use STACD <strong>Register Algorithm</strong>, <strong>Register Dataset</strong>, or <strong>Update DAG</strong>.</p>
+<h3 id="trigger-the-dag">Trigger the DAG<a class="headerlink" href="#trigger-the-dag" title="Permanent link">¶</a></h3>
 <ol>
 <li><strong>DAGs</strong> → <code>CoreStack_DAG_LocalCompute_StaticLayers</code></li>
 <li>Click <strong>▶ Trigger DAG</strong></li>
@@ -2011,24 +1906,24 @@
 </tr>
 </tbody>
 </table>
-<p>REST (same conf). Enable Basic Auth in <code>airflow.cfg</code> (<code>[api] auth_backends = airflow.api.auth.backend.basic_auth</code>) and restart the webserver:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a href="#__codelineno-20-1" id="__codelineno-20-1" name="__codelineno-20-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">"http://127.0.0.1:8081/api/v1/dags/CoreStack_DAG_LocalCompute_StaticLayers/dagRuns"</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-20-2"><a href="#__codelineno-20-2" id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-20-3"><a href="#__codelineno-20-3" id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="w">  </span>-u<span class="w"> </span><span class="s2">"admin:admin"</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-20-4"><a href="#__codelineno-20-4" id="__codelineno-20-4" name="__codelineno-20-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{</span>
-</span><span id="__span-20-5"><a href="#__codelineno-20-5" id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="s1">    "conf": {</span>
-</span><span id="__span-20-6"><a href="#__codelineno-20-6" id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="s1">      "execution_type": "fullexec",</span>
-</span><span id="__span-20-7"><a href="#__codelineno-20-7" id="__codelineno-20-7" name="__codelineno-20-7"></a><span class="s1">      "state": "jharkhand",</span>
-</span><span id="__span-20-8"><a href="#__codelineno-20-8" id="__codelineno-20-8" name="__codelineno-20-8"></a><span class="s1">      "district": "dumka",</span>
-</span><span id="__span-20-9"><a href="#__codelineno-20-9" id="__codelineno-20-9" name="__codelineno-20-9"></a><span class="s1">      "block": "masalia"</span>
-</span><span id="__span-20-10"><a href="#__codelineno-20-10" id="__codelineno-20-10" name="__codelineno-20-10"></a><span class="s1">    }</span>
-</span><span id="__span-20-11"><a href="#__codelineno-20-11" id="__codelineno-20-11" name="__codelineno-20-11"></a><span class="s1">  }'</span>
+<p>REST uses the same conf. Enable Basic Auth in <code>airflow.cfg</code> (<code>[api] auth_backends = airflow.api.auth.backend.basic_auth</code>) and restart the webserver:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">"http://127.0.0.1:8081/api/v1/dags/CoreStack_DAG_LocalCompute_StaticLayers/dagRuns"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-2"><a href="#__codelineno-8-2" id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-3"><a href="#__codelineno-8-3" id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">  </span>-u<span class="w"> </span><span class="s2">"admin:admin"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-4"><a href="#__codelineno-8-4" id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{</span>
+</span><span id="__span-8-5"><a href="#__codelineno-8-5" id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="s1">    "conf": {</span>
+</span><span id="__span-8-6"><a href="#__codelineno-8-6" id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="s1">      "execution_type": "fullexec",</span>
+</span><span id="__span-8-7"><a href="#__codelineno-8-7" id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="s1">      "state": "jharkhand",</span>
+</span><span id="__span-8-8"><a href="#__codelineno-8-8" id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="s1">      "district": "dumka",</span>
+</span><span id="__span-8-9"><a href="#__codelineno-8-9" id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="s1">      "block": "masalia"</span>
+</span><span id="__span-8-10"><a href="#__codelineno-8-10" id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="s1">    }</span>
+</span><span id="__span-8-11"><a href="#__codelineno-8-11" id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="s1">  }'</span>
 </span></code></pre></div>
 <p>Watch <strong>Grid</strong> or <strong>Graph</strong>. Each algorithm task POSTs a sync layer API; the matching <code>*_Asset</code> task registers STAC from that response.</p>
-<h3 id="full-dag-graph">5. Full DAG (Airflow Graph)<a class="headerlink" href="#full-dag-graph" title="Permanent link">¶</a></h3>
+<h3 id="full-dag-graph">Full DAG (Airflow Graph)<a class="headerlink" href="#full-dag-graph" title="Permanent link">¶</a></h3>
 <p>Open the DAG → <strong>Graph</strong>. That is the full static-layers workflow: one branch, two root datasets, every algorithm, then every output asset.</p>
 <p><img alt="Airflow Graph view of CoreStack_DAG_LocalCompute_StaticLayers — determine_execution_path, Admin_Boundary_Asset and MWS_Boundaries, all algorithms, and all *_Asset outputs" src="../../assets/airflow-static-layers-full-dag.svg"/></p>
-<p><code>determine_execution_path</code> is the only branch. It has a direct edge to every algorithm <strong>and</strong> to the two root datasets so <code>resume_exec</code> / <code>update_*</code> can start in the middle of the graph. <code>fullexec</code> still runs the roots first (<code>Admin_Boundary_Asset</code>, <code>MWS_Boundaries</code>), then the algorithms that consume them, then each <code>*_Asset</code>.</p>
+<p><code>determine_execution_path</code> is the only branch. It has a direct edge to every algorithm and to the two root datasets so <code>resume_exec</code> / <code>update_*</code> can start in the middle of the graph. <code>fullexec</code> still runs the roots first (<code>Admin_Boundary_Asset</code>, <code>MWS_Boundaries</code>), then the algorithms that consume them, then each <code>*_Asset</code>.</p>
 <pre class="mermaid"><code>flowchart TB
   B[determine_execution_path]
   B --&gt; Admin[Admin_Boundary_Asset]
@@ -2102,9 +1997,9 @@
   Conn --&gt; MWS_Connectivity_Asset
   Cent --&gt; MWS_Centroid_Asset
   Soil --&gt; Soil_Type_Asset</code></pre>
-<h3 id="re-exec">6. Re-exec (<code>resume_exec</code>)<a class="headerlink" href="#re-exec" title="Permanent link">¶</a></h3>
-<p><strong>Re-exec</strong> on these DAGs is the STACD primitive <strong><code>execution_type=resume_exec</code></strong>. It is not Airflow’s Clear-and-rerun of the whole Graph (that still works, but it is a different action).</p>
-<p>On failure, <code>log_algo_failure</code> writes the failed algorithm, region, and years into the STACD database. The next trigger with the <strong>same</strong> <code>state</code> / <code>district</code> / <code>block</code> (and years, if used) plus <code>resume_exec</code> queries that table and runs <strong>only</strong> the failed algorithm nodes. Successful tasks stay skipped.</p>
+<h3 id="re-exec">Re-exec (<code>resume_exec</code>)<a class="headerlink" href="#re-exec" title="Permanent link">¶</a></h3>
+<p><strong>Re-exec</strong> on these DAGs is the STACD primitive <strong><code>execution_type=resume_exec</code></strong>. Airflow’s Clear-and-rerun of the whole Graph is a different action.</p>
+<p>On failure, <code>log_algo_failure</code> writes the failed algorithm, region, and years into the STACD database. The next trigger with the <strong>same</strong> <code>state</code> / <code>district</code> / <code>block</code> (and years, if used) plus <code>resume_exec</code> queries that table and runs the failed algorithm nodes. Successful tasks stay skipped.</p>
 <table>
 <thead>
 <tr>
@@ -2121,8 +2016,8 @@
 </tr>
 <tr>
 <td><strong><code>resume_exec</code></strong> (<strong>re-exec</strong>)</td>
-<td>Only algorithms that <strong>failed</strong> last time for this region / years</td>
-<td>Partial failure — retry without recomputing successes</td>
+<td>Algorithms that <strong>failed</strong> last time for this region / years</td>
+<td>Partial failure — retry the failed nodes</td>
 </tr>
 <tr>
 <td><code>update_algo</code></td>
@@ -2137,73 +2032,551 @@
 <tr>
 <td><code>update_dag</code></td>
 <td>Algorithm nodes that have <strong>never</strong> succeeded in the STACD DB</td>
-<td>You added nodes to the YAML and do not want to re-run the old ones</td>
+<td>You added nodes to the YAML and want to run only the new ones</td>
 </tr>
 </tbody>
 </table>
 <p>Trigger a re-exec from the UI (<strong>▶ Trigger DAG</strong>) or REST:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a href="#__codelineno-21-1" id="__codelineno-21-1" name="__codelineno-21-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">"http://127.0.0.1:8081/api/v1/dags/CoreStack_DAG_LocalCompute_StaticLayers/dagRuns"</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-21-2"><a href="#__codelineno-21-2" id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-21-3"><a href="#__codelineno-21-3" id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="w">  </span>-u<span class="w"> </span><span class="s2">"admin:admin"</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-21-4"><a href="#__codelineno-21-4" id="__codelineno-21-4" name="__codelineno-21-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{</span>
-</span><span id="__span-21-5"><a href="#__codelineno-21-5" id="__codelineno-21-5" name="__codelineno-21-5"></a><span class="s1">    "conf": {</span>
-</span><span id="__span-21-6"><a href="#__codelineno-21-6" id="__codelineno-21-6" name="__codelineno-21-6"></a><span class="s1">      "execution_type": "resume_exec",</span>
-</span><span id="__span-21-7"><a href="#__codelineno-21-7" id="__codelineno-21-7" name="__codelineno-21-7"></a><span class="s1">      "state": "jharkhand",</span>
-</span><span id="__span-21-8"><a href="#__codelineno-21-8" id="__codelineno-21-8" name="__codelineno-21-8"></a><span class="s1">      "district": "dumka",</span>
-</span><span id="__span-21-9"><a href="#__codelineno-21-9" id="__codelineno-21-9" name="__codelineno-21-9"></a><span class="s1">      "block": "masalia"</span>
-</span><span id="__span-21-10"><a href="#__codelineno-21-10" id="__codelineno-21-10" name="__codelineno-21-10"></a><span class="s1">    }</span>
-</span><span id="__span-21-11"><a href="#__codelineno-21-11" id="__codelineno-21-11" name="__codelineno-21-11"></a><span class="s1">  }'</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">"http://127.0.0.1:8081/api/v1/dags/CoreStack_DAG_LocalCompute_StaticLayers/dagRuns"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-2"><a href="#__codelineno-9-2" id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-3"><a href="#__codelineno-9-3" id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">  </span>-u<span class="w"> </span><span class="s2">"admin:admin"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-4"><a href="#__codelineno-9-4" id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{</span>
+</span><span id="__span-9-5"><a href="#__codelineno-9-5" id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="s1">    "conf": {</span>
+</span><span id="__span-9-6"><a href="#__codelineno-9-6" id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="s1">      "execution_type": "resume_exec",</span>
+</span><span id="__span-9-7"><a href="#__codelineno-9-7" id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="s1">      "state": "jharkhand",</span>
+</span><span id="__span-9-8"><a href="#__codelineno-9-8" id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="s1">      "district": "dumka",</span>
+</span><span id="__span-9-9"><a href="#__codelineno-9-9" id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="s1">      "block": "masalia"</span>
+</span><span id="__span-9-10"><a href="#__codelineno-9-10" id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="s1">    }</span>
+</span><span id="__span-9-11"><a href="#__codelineno-9-11" id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="s1">  }'</span>
 </span></code></pre></div>
-<p>If <code>resume_exec</code> finds <strong>no</strong> failed tasks for those params, <code>determine_execution_path</code> raises <code>ValueError</code> and the run fails immediately — use <code>fullexec</code> instead. The same happens for <code>update_dag</code> when every algorithm already has a successful execution.</p>
-<p>Airflow <strong>Clear</strong> on selected failed boxes re-runs those task instances in the <strong>same</strong> dag run. Prefer <strong><code>resume_exec</code></strong> for a new run that STACD can record, because lineage and <code>get_failed_executions</code> stay consistent.</p>
-<h2 id="part-2-without-airflow-async">Part 2 — Without Airflow (async)<a class="headerlink" href="#part-2-without-airflow-async" title="Permanent link">¶</a></h2>
-<p>Skip Airflow. Leave the Compose default and let Celery workers run layers in the background.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a href="#__codelineno-22-1" id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="c1"># nrm_app/.env</span>
-</span><span id="__span-22-2"><a href="#__codelineno-22-2" id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="nv">LAYER_GENERATION_SYNC_MODE</span><span class="o">=</span>False
+<p>If <code>resume_exec</code> finds no failed tasks for those params, <code>determine_execution_path</code> raises <code>ValueError</code> and the run fails immediately — use <code>fullexec</code> for a full run. The same happens for <code>update_dag</code> when every algorithm already has a successful execution.</p>
+<p>Airflow <strong>Clear</strong> on selected failed boxes re-runs those task instances in the <strong>same</strong> dag run. <strong><code>resume_exec</code></strong> starts a new run that STACD can record, so lineage and <code>get_failed_executions</code> stay consistent.</p>
+<h2 id="part-2-without-airflow-async">2. CoRE Stack without Airflow<a class="headerlink" href="#part-2-without-airflow-async" title="Permanent link">¶</a></h2>
+<p>Skip Airflow and STACD. Leave the template default:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a>LAYER_GENERATION_SYNC_MODE=False
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a href="#__codelineno-23-1" id="__codelineno-23-1" name="__codelineno-23-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate<span class="w"> </span>backend<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-23-2"><a href="#__codelineno-23-2" id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="w">  </span>celery-nrm<span class="w"> </span>celery-layer-bulk<span class="w"> </span>celery-geoserver<span class="w"> </span>celery-general
-</span></code></pre></div>
-<p>Call any computing API with <code>"layer_generation_mode": "async"</code> (or omit the field). The response is <code>initiated</code>. Follow work here:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a href="#__codelineno-24-1" id="__codelineno-24-1" name="__codelineno-24-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>backend<span class="w"> </span>celery-nrm<span class="w"> </span>celery-layer-bulk
+<p>Follow <a href="#docker-install-steps">Docker install steps</a>. Celery workers run layer jobs in the background. Call a computing API with <code>"layer_generation_mode": "async"</code>, or omit the field. The response is <code>initiated</code>. Follow the work here:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>backend<span class="w"> </span>celery-nrm<span class="w"> </span>celery-layer-bulk
 </span></code></pre></div>
 <p>Example:</p>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-25-1"><a href="#__codelineno-25-1" id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="p">{</span>
-</span><span id="__span-25-2"><a href="#__codelineno-25-2" id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="w">  </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rajasthan"</span><span class="p">,</span>
-</span><span id="__span-25-3"><a href="#__codelineno-25-3" id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="w">  </span><span class="nt">"district"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bhilwara"</span><span class="p">,</span>
-</span><span id="__span-25-4"><a href="#__codelineno-25-4" id="__codelineno-25-4" name="__codelineno-25-4"></a><span class="w">  </span><span class="nt">"block"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mandalgarh"</span><span class="p">,</span>
-</span><span id="__span-25-5"><a href="#__codelineno-25-5" id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="w">  </span><span class="nt">"gee_account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-</span><span id="__span-25-6"><a href="#__codelineno-25-6" id="__codelineno-25-6" name="__codelineno-25-6"></a><span class="w">  </span><span class="nt">"layer_generation_mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"async"</span>
-</span><span id="__span-25-7"><a href="#__codelineno-25-7" id="__codelineno-25-7" name="__codelineno-25-7"></a><span class="p">}</span>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-12-1"><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="p">{</span>
+</span><span id="__span-12-2"><a href="#__codelineno-12-2" id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="w">  </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rajasthan"</span><span class="p">,</span>
+</span><span id="__span-12-3"><a href="#__codelineno-12-3" id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="w">  </span><span class="nt">"district"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bhilwara"</span><span class="p">,</span>
+</span><span id="__span-12-4"><a href="#__codelineno-12-4" id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="w">  </span><span class="nt">"block"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mandalgarh"</span><span class="p">,</span>
+</span><span id="__span-12-5"><a href="#__codelineno-12-5" id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="w">  </span><span class="nt">"gee_account_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+</span><span id="__span-12-6"><a href="#__codelineno-12-6" id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="w">  </span><span class="nt">"layer_generation_mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"async"</span>
+</span><span id="__span-12-7"><a href="#__codelineno-12-7" id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="p">}</span>
 </span></code></pre></div>
-<p>You can later switch the same stack to Part 1 by setting <code>LAYER_GENERATION_SYNC_MODE=True</code> and recreating <code>backend</code> — you do not reinstall Compose.</p>
-<h2 id="nasa-earthdata-et-download">NASA Earthdata (ET download)<a class="headerlink" href="#nasa-earthdata-et-download" title="Permanent link">¶</a></h2>
-<p>Create an account at <a href="https://urs.earthdata.nasa.gov">urs.earthdata.nasa.gov</a>, authorize <strong>NASA GESDISC DATA ARCHIVE</strong>, then in <code>nrm_app/.env</code>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a href="#__codelineno-26-1" id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="nv">USERNAME_GESDISC</span><span class="o">=</span>your-earthdata-username
-</span><span id="__span-26-2"><a href="#__codelineno-26-2" id="__codelineno-26-2" name="__codelineno-26-2"></a><span class="nv">PASSWORD_GESDISC</span><span class="o">=</span><span class="s1">'your-earthdata-password'</span>
+<p>The same stack can take the Airflow path later: install <a href="#setup-airflow-and-stacd">Airflow and STACD</a>, set <code>LAYER_GENERATION_SYNC_MODE=True</code>, and recreate <code>backend</code>. You do not reinstall Compose.</p>
+<h2 id="docker-install-steps">Docker install steps<a class="headerlink" href="#docker-install-steps" title="Permanent link">¶</a></h2>
+<p>These are the steps in <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/installation/DOCKER.md">installation/DOCKER.md</a>. Run every Compose command from the repository root with <code>--env-file nrm_app/.env</code>. Compose does not auto-load that file.</p>
+<p>When it is done you have:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API and Django admin</td>
+<td>http://localhost:8000 and http://localhost:8000/admin/</td>
+</tr>
+<tr>
+<td>GeoServer</td>
+<td>http://localhost:8080/geoserver</td>
+</tr>
+<tr>
+<td>Airflow (way 1 only)</td>
+<td>http://localhost:8081</td>
+</tr>
+</tbody>
+</table>
+<p>Postgres is on <code>127.0.0.1:5432</code> (<code>DB_USER</code> / <code>DB_PASSWORD</code> / <code>DB_NAME</code> from <code>nrm_app/.env</code>).</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Location</th>
+<th>Persistence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Backend source</td>
+<td>Host checkout mounted at <code>/app</code></td>
+<td>Git / host filesystem</td>
+</tr>
+<tr>
+<td>Downloaded and generated layers</td>
+<td><code>${CORESTACK_HOST_DATA_DIR:-.}/data</code> mounted at <code>/var/tmp/core-stack-data</code></td>
+<td>Host filesystem</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td>Separate <code>postgres</code> container</td>
+<td>Docker volume <code>postgres_data</code></td>
+</tr>
+<tr>
+<td>GeoServer catalog</td>
+<td>Separate <code>geoserver</code> container</td>
+<td>Docker volume <code>geoserver_data</code></td>
+</tr>
+<tr>
+<td>Celery broker</td>
+<td>Separate <code>redis</code> container with AOF</td>
+<td>Docker volume <code>redis_data</code></td>
+</tr>
+<tr>
+<td>Database backups</td>
+<td><code>${CORESTACK_HOST_DATA_DIR:-.}/backups/postgres</code></td>
+<td>Host filesystem</td>
+</tr>
+<tr>
+<td>GeoServer backups</td>
+<td><code>${CORESTACK_HOST_DATA_DIR:-.}/backups/geoserver</code></td>
+<td>Host filesystem</td>
+</tr>
+</tbody>
+</table>
+<p><code>docker compose --env-file nrm_app/.env down</code> keeps volumes. Adding <code>-v</code> deletes the database, GeoServer catalog, and Redis. Files under <code>CORESTACK_HOST_DATA_DIR</code> stay.</p>
+<h3 id="1-before-you-start">1. Before you start<a class="headerlink" href="#1-before-you-start" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>You need</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Docker Engine with Compose v2</td>
+<td><code>docker compose version</code></td>
+</tr>
+<tr>
+<td>Your user can run Docker (member of the <code>docker</code> group)</td>
+<td><code>docker ps</code> works without <code>sudo</code></td>
+</tr>
+<tr>
+<td>Git</td>
+<td><code>git --version</code></td>
+</tr>
+<tr>
+<td>About 20 GB free disk, plus space for the <a href="#data-for-local-compute">data</a> you add</td>
+<td><code>df -h .</code></td>
+</tr>
+<tr>
+<td>Ports 8000, 8080, and 5432 free</td>
+<td><code>ss -ltn \| grep -E ':(8000\|8080\|5432) '</code> prints nothing</td>
+</tr>
+</tbody>
+</table>
+<p>For the GPU jobs you also need an NVIDIA driver and the <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html">NVIDIA Container Toolkit</a>. This must print your GPU:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>nvidia/cuda:12.9.0-base-ubuntu22.04<span class="w"> </span>nvidia-smi
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a href="#__codelineno-27-1" id="__codelineno-27-1" name="__codelineno-27-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate
+<p>On Apple Silicon, Docker emulates linux/amd64. On a network that only reaches the internet through a proxy, read <a href="#behind-a-proxy">Behind a proxy</a> first.</p>
+<h3 id="2-get-the-code">2. Get the code<a class="headerlink" href="#2-get-the-code" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a href="#__codelineno-14-1" id="__codelineno-14-1" name="__codelineno-14-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/core-stack-org/core-stack-backend.git
+</span><span id="__span-14-2"><a href="#__codelineno-14-2" id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="nb">cd</span><span class="w"> </span>core-stack-backend
 </span></code></pre></div>
-<p>Wrap passwords that contain <code>$</code> in single quotes.</p>
-<h2 id="9-run-the-admin-boundary-local-compute-api">Run a computing API<a class="headerlink" href="#9-run-the-admin-boundary-local-compute-api" title="Permanent link">¶</a></h2>
-<p>Computing APIs use <strong>JWT</strong>, not the Django session. Base URL: <code>http://127.0.0.1:8000</code>.</p>
-<h3 id="log-in">Log in<a class="headerlink" href="#log-in" title="Permanent link">¶</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a href="#__codelineno-28-1" id="__codelineno-28-1" name="__codelineno-28-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://127.0.0.1:8000/api/v1/auth/login/<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-28-2"><a href="#__codelineno-28-2" id="__codelineno-28-2" name="__codelineno-28-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-28-3"><a href="#__codelineno-28-3" id="__codelineno-28-3" name="__codelineno-28-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{"username":"YOUR_USERNAME","password":"YOUR_PASSWORD"}'</span>
+<h3 id="3-create-the-settings-file">3. Create the settings file<a class="headerlink" href="#3-create-the-settings-file" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a href="#__codelineno-15-1" id="__codelineno-15-1" name="__codelineno-15-1"></a>cp<span class="w"> </span>installation/docker/env.template<span class="w"> </span>nrm_app/.env
+</span><span id="__span-15-2"><a href="#__codelineno-15-2" id="__codelineno-15-2" name="__codelineno-15-2"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>nrm_app/.env
 </span></code></pre></div>
-<p>Copy <code>access</code>.</p>
-<h3 id="generate-a-block-layer">Generate a block layer<a class="headerlink" href="#generate-a-block-layer" title="Permanent link">¶</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a href="#__codelineno-29-1" id="__codelineno-29-1" name="__codelineno-29-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>http://127.0.0.1:8000/api/v1/generate_block_layer/<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-29-2"><a href="#__codelineno-29-2" id="__codelineno-29-2" name="__codelineno-29-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-29-3"><a href="#__codelineno-29-3" id="__codelineno-29-3" name="__codelineno-29-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer ACCESS_TOKEN"</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-29-4"><a href="#__codelineno-29-4" id="__codelineno-29-4" name="__codelineno-29-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{</span>
-</span><span id="__span-29-5"><a href="#__codelineno-29-5" id="__codelineno-29-5" name="__codelineno-29-5"></a><span class="s1">    "state": "Rajasthan",</span>
-</span><span id="__span-29-6"><a href="#__codelineno-29-6" id="__codelineno-29-6" name="__codelineno-29-6"></a><span class="s1">    "district": "Bhilwara",</span>
-</span><span id="__span-29-7"><a href="#__codelineno-29-7" id="__codelineno-29-7" name="__codelineno-29-7"></a><span class="s1">    "block": "Mandalgarh",</span>
-</span><span id="__span-29-8"><a href="#__codelineno-29-8" id="__codelineno-29-8" name="__codelineno-29-8"></a><span class="s1">    "gee_account_id": 1,</span>
-</span><span id="__span-29-9"><a href="#__codelineno-29-9" id="__codelineno-29-9" name="__codelineno-29-9"></a><span class="s1">    "layer_generation_mode": "async"</span>
-</span><span id="__span-29-10"><a href="#__codelineno-29-10" id="__codelineno-29-10" name="__codelineno-29-10"></a><span class="s1">  }'</span>
+<p><code>nrm_app/.env</code> holds every setting and password. Docker Compose and Django both read it.</p>
+<h3 id="4-edit-nrm_appenv">4. Edit <code>nrm_app/.env</code><a class="headerlink" href="#4-edit-nrm_appenv" title="Permanent link">¶</a></h3>
+<p>Set the admin account you will log in with:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a href="#__codelineno-16-1" id="__codelineno-16-1" name="__codelineno-16-1"></a>DJANGO_SUPERUSER_USERNAME=admin
+</span><span id="__span-16-2"><a href="#__codelineno-16-2" id="__codelineno-16-2" name="__codelineno-16-2"></a>DJANGO_SUPERUSER_EMAIL=you@example.com
+</span><span id="__span-16-3"><a href="#__codelineno-16-3" id="__codelineno-16-3" name="__codelineno-16-3"></a>DJANGO_SUPERUSER_PASSWORD='choose-a-password'
+</span></code></pre></div>
+<p>Way 1 (Airflow): set <code>LAYER_GENERATION_SYNC_MODE=True</code>. Way 2: leave it <code>False</code>.</p>
+<p>On a machine with an NVIDIA GPU, uncomment this line (see <a href="#gpu-and-long-jobs">GPU and long jobs</a>):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a href="#__codelineno-17-1" id="__codelineno-17-1" name="__codelineno-17-1"></a>COMPOSE_PROFILES=heavy
+</span></code></pre></div>
+<p>On a server, set an absolute data root before the first start, for example <code>CORESTACK_HOST_DATA_DIR=/srv/core-stack-data</code>. Replace <code>DB_PASSWORD</code> and <code>GEOSERVER_PASSWORD</code> before any shared host. Leave everything else as it is for a first local run.</p>
+<h3 id="5-optional-download-the-admin-boundaries-yourself">5. Optional: download the admin boundaries yourself<a class="headerlink" href="#5-optional-download-the-admin-boundaries-yourself" title="Permanent link">¶</a></h3>
+<p>The first start downloads the admin-boundary archive (about 600 MB) from Google Drive. To use a browser download instead, which is often faster, download it from <a href="https://drive.google.com/file/d/1VqIhB6HrKFDkDnlk1vedcEHhh5fk4f1d/view">here</a> and save it as <code>data/dataset.7z</code> in the repository.</p>
+<h3 id="6-build-and-start">6. Build and start<a class="headerlink" href="#6-build-and-start" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a href="#__codelineno-18-1" id="__codelineno-18-1" name="__codelineno-18-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
+</span></code></pre></div>
+<p>The first run takes 5 to 60 minutes, depending on your connection. The command waits while the database is set up and the data is downloaded. If it is interrupted, run the same command again.</p>
+<p>One-shot jobs run before Gunicorn:</p>
+<ol>
+<li><code>app-init</code> completes <code>nrm_app/.env</code> and normalizes database, GeoServer, Celery, and runtime values.</li>
+<li><code>database-init</code> creates installation-local migrations, applies them with <code>--fake-initial</code>, collects static files, and loads seed data once.</li>
+<li><code>geoserver-init</code> reconciles workspaces and bundled styles.</li>
+<li><code>data-download</code> downloads only requested or missing source layers.</li>
+<li><code>gee-config</code> discovers optional mounted GEE JSON.</li>
+<li><code>tehsil-watershed-setup</code> downloads active tehsil watershed layers from the GeoServer <code>mws</code> WFS workspace.</li>
+<li>Gunicorn and the queue-specific Celery workers start.</li>
+</ol>
+<h3 id="6-check-that-it-works">7. Check that it works<a class="headerlink" href="#6-check-that-it-works" title="Permanent link">¶</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a href="#__codelineno-19-1" id="__codelineno-19-1" name="__codelineno-19-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>ps<span class="w"> </span>-a
+</span></code></pre></div>
+<ul>
+<li><code>app-init</code>, <code>database-init</code>, <code>geoserver-init</code>, <code>data-download</code>, <code>gee-config</code>, and <code>tehsil-watershed-setup</code> show <code>Exited (0)</code>.</li>
+<li><code>backend</code>, <code>postgres</code>, <code>redis</code>, and <code>geoserver</code> show <code>Up (healthy)</code>.</li>
+<li>The <code>celery-*</code> workers show <code>Up</code>. <code>celery-heavy</code> is there only with <code>COMPOSE_PROFILES=heavy</code>.</li>
+</ul>
+<p>If a job shows a non-zero exit code, read its log: <code>docker compose --env-file nrm_app/.env logs &lt;service&gt;</code>.</p>
+<p>Log in to the API. This reads the username and password from <code>nrm_app/.env</code> and keeps the token in <code>$TOKEN</code> for <a href="#9-run-the-admin-boundary-local-compute-api">Test the APIs</a>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a href="#__codelineno-20-1" id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">no_proxy</span><span class="o">=</span>localhost,127.0.0.1<span class="w"> </span><span class="nv">NO_PROXY</span><span class="o">=</span>localhost,127.0.0.1
+</span><span id="__span-20-2"><a href="#__codelineno-20-2" id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="nv">TOKEN</span><span class="o">=</span><span class="k">$(</span><span class="nb">set</span><span class="w"> </span>-a<span class="p">;</span><span class="w"> </span>.<span class="w"> </span>nrm_app/.env<span class="p">;</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span>+a<span class="p">;</span><span class="w"> </span>python3<span class="w"> </span>-c<span class="w"> </span><span class="s1">'</span>
+</span><span id="__span-20-3"><a href="#__codelineno-20-3" id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="s1">import json, os, urllib.request</span>
+</span><span id="__span-20-4"><a href="#__codelineno-20-4" id="__codelineno-20-4" name="__codelineno-20-4"></a><span class="s1">req = urllib.request.Request("http://localhost:8000/api/v1/auth/login/",</span>
+</span><span id="__span-20-5"><a href="#__codelineno-20-5" id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="s1">    data=json.dumps({"username": os.environ["DJANGO_SUPERUSER_USERNAME"],</span>
+</span><span id="__span-20-6"><a href="#__codelineno-20-6" id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="s1">                     "password": os.environ["DJANGO_SUPERUSER_PASSWORD"]}).encode(),</span>
+</span><span id="__span-20-7"><a href="#__codelineno-20-7" id="__codelineno-20-7" name="__codelineno-20-7"></a><span class="s1">    headers={"Content-Type": "application/json"})</span>
+</span><span id="__span-20-8"><a href="#__codelineno-20-8" id="__codelineno-20-8" name="__codelineno-20-8"></a><span class="s1">print(json.load(urllib.request.urlopen(req))["access"])'</span><span class="k">)</span>
+</span><span id="__span-20-9"><a href="#__codelineno-20-9" id="__codelineno-20-9" name="__codelineno-20-9"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">TOKEN</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">20</span><span class="si">}</span><span class="s2">"</span>
+</span></code></pre></div>
+<p>It prints the start of a token (<code>eyJhbGci...</code>). You can also log in to Django admin at http://localhost:8000/admin/.</p>
+<p>On way 1, continue with <a href="#corestack-auth-token">Point Airflow at the API</a>.</p>
+<h2 id="what-to-set-up-next">What to set up next<a class="headerlink" href="#what-to-set-up-next" title="Permanent link">¶</a></h2>
+<p>The stack now runs. Set up only what you need:</p>
+<table>
+<thead>
+<tr>
+<th>To</th>
+<th>Set up</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Compute layers locally (LULC, hydrology, runoff)</td>
+<td><a href="#data-for-local-compute">Data for local compute</a></td>
+</tr>
+<tr>
+<td>Run Google Earth Engine jobs</td>
+<td><a href="#gee-and-gcs">Google Earth Engine</a></td>
+</tr>
+<tr>
+<td>Download ET (evapotranspiration) data</td>
+<td><a href="#nasa-earthdata">NASA Earthdata</a></td>
+</tr>
+<tr>
+<td>Run the GPU and multi-hour jobs</td>
+<td><a href="#gpu-and-long-jobs">GPU and long jobs</a></td>
+</tr>
+<tr>
+<td>Work behind a proxy</td>
+<td><a href="#behind-a-proxy">Behind a proxy</a></td>
+</tr>
+</tbody>
+</table>
+<p>Other settings are listed in <a href="#settings">Settings</a>.</p>
+<h2 id="data-for-local-compute">Data for local compute<a class="headerlink" href="#data-for-local-compute" title="Permanent link">¶</a></h2>
+<p>Local computation (<code>"compute": "local"</code> in a request) reads its inputs from <code>data/base_layers/</code>. Download what the APIs you use need and place it as shown.</p>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Place at <code>data/base_layers/</code></th>
+<th>Needed by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Terrain (569 MB)</td>
+<td><code>terrain_raster_fabdam_pan_india.tif</code></td>
+<td>runoff</td>
+</tr>
+<tr>
+<td>Soil (6 MB)</td>
+<td><code>soil/hysogs_india_250m_4326.tif</code></td>
+<td>runoff</td>
+</tr>
+<tr>
+<td>LULC, one file per year (63 GB)</td>
+<td><code>lulc/lulc_v3_&lt;year&gt;_&lt;year+1&gt;.tif</code></td>
+<td>runoff, LULC</td>
+</tr>
+<tr>
+<td>India boundary (8 MB)</td>
+<td><code>PanIndia_Boundaries/india_state_outer_no_islands.geojson</code></td>
+<td>pan-India runoff</td>
+</tr>
+<tr>
+<td>Aquifer (102 MB)</td>
+<td><code>aquifer/aquifer.geojson</code></td>
+<td>pan-India hydrology</td>
+</tr>
+<tr>
+<td>Microwatersheds (5.4 GB)</td>
+<td><code>static_layers/mws/Microwatershed_v2_with_details.geojson</code></td>
+<td>MWS layers</td>
+</tr>
+<tr>
+<td>SOI tehsils (316 MB)</td>
+<td><code>admin_boundary/soi_tehsil.geojson</code></td>
+<td>tehsil watersheds</td>
+</tr>
+<tr>
+<td>Tehsil watersheds</td>
+<td><code>tehsil_watersheds/&lt;state&gt;/&lt;district&gt;/&lt;tehsil&gt;.gpkg</code></td>
+<td>every tehsil-level request</td>
+</tr>
+<tr>
+<td>Runoff (164 GB)</td>
+<td><code>hydrology/runoff/</code></td>
+<td>pan-India hydrology</td>
+</tr>
+<tr>
+<td>ET (114 GB)</td>
+<td><code>hydrology/et/</code></td>
+<td>pan-India hydrology</td>
+</tr>
+<tr>
+<td>Pan-India annual hydrology (20 GB)</td>
+<td><code>hydrology/annual/</code></td>
+<td>tehsil hydrology</td>
+</tr>
+</tbody>
+</table>
+<p>Files can be added while the stack runs; no restart is needed.</p>
+<p>Runoff, ET, and pan-India annual hydrology can also be generated with the APIs in <a href="#9-run-the-admin-boundary-local-compute-api">Test the APIs</a>. That takes many hours. Tehsil hydrology needs the pan-India annual layer for every year it covers; the API tells you which years are missing.</p>
+<p>With S3 credentials for the CoRE Stack datasets bucket, terrain, LULC, aquifer, and microwatersheds can be downloaded automatically: set <code>S3_ACCESS_KEY</code>, <code>S3_SECRET_KEY</code>, <code>S3_REGION</code>, <code>S3_BUCKET</code>, and <code>SKIP_BASE_LAYER_DOWNLOAD=0</code>, then run:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a href="#__codelineno-21-1" id="__codelineno-21-1" name="__codelineno-21-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>data-download
+</span></code></pre></div>
+<p>Large-download switches (set in <code>nrm_app/.env</code>, or on one invocation). <code>1</code> means skip:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Effect when set to <code>1</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SKIP_ADMIN_BOUNDARY_DOWNLOAD</code></td>
+<td>Skip the admin-boundary archive</td>
+</tr>
+<tr>
+<td><code>SKIP_BASE_LAYER_DOWNLOAD</code></td>
+<td>Skip S3 base-layer download (this is already the default)</td>
+</tr>
+<tr>
+<td><code>SKIP_TEHSIL_WATERSHEDS</code></td>
+<td>Do not fetch active tehsil watershed GPKGs from GeoServer</td>
+</tr>
+</tbody>
+</table>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a href="#__codelineno-22-1" id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="nv">SKIP_ADMIN_BOUNDARY_DOWNLOAD</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-2"><a href="#__codelineno-22-2" id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="nv">SKIP_TEHSIL_WATERSHEDS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-22-3"><a href="#__codelineno-22-3" id="__codelineno-22-3" name="__codelineno-22-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
+</span></code></pre></div>
+<p>Tehsil watersheds land at <code>&lt;CORESTACK_HOST_DATA_DIR&gt;/data/base_layers/tehsil_watersheds/&lt;state&gt;/&lt;district&gt;/&lt;tehsil&gt;.gpkg</code>. Retry a failed fetch with <code>docker compose --env-file nrm_app/.env run --rm tehsil-watershed-setup</code>.</p>
+<h2 id="gee-and-gcs">Google Earth Engine<a class="headerlink" href="#gee-and-gcs" title="Permanent link">¶</a></h2>
+<p>The stack starts without Earth Engine. Local compute does not need it. Earth Engine jobs need a Google Cloud service account with Earth Engine access and its JSON key.</p>
+<ol>
+<li>Open http://localhost:8000/admin/gee_computing/geeaccount/add/ and log in.</li>
+<li>Fill in a name, the <code>client_email</code> from the JSON as the service account email, and upload the JSON as the credentials file. Save.</li>
+<li>Open the account again, set <strong>Helper account</strong> to the same account, and save.</li>
+<li>The account id is the number in the page address (<code>.../geeaccount/1/change/</code>). Put it in <code>nrm_app/.env</code>:</li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a href="#__codelineno-23-1" id="__codelineno-23-1" name="__codelineno-23-1"></a>GEE_DEFAULT_ACCOUNT_ID=1
+</span><span id="__span-23-2"><a href="#__codelineno-23-2" id="__codelineno-23-2" name="__codelineno-23-2"></a>GEE_HELPER_ACCOUNT_ID=1
+</span></code></pre></div>
+<ol>
+<li>Apply it:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a href="#__codelineno-24-1" id="__codelineno-24-1" name="__codelineno-24-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate
+</span></code></pre></div>
+<p>The key is stored encrypted in the database and the uploaded file is deleted, so keep your own copy. The encryption key is <code>FERNET_KEY</code> in <code>nrm_app/.env</code>. If it changes, upload the JSON again.</p>
+<p>Pass that numeric id as <code>gee_account_id</code> on computing requests. Background: <a href="../integrations/google-earth-engine/">Google Earth Engine</a>.</p>
+<h3 id="3-optional-google-cloud-storage">Optional Google Cloud Storage<a class="headerlink" href="#3-optional-google-cloud-storage" title="Permanent link">¶</a></h3>
+<p>GEE-backed raster publication also needs a bucket. Create it in <strong><code>us-central1</code></strong>, grant the same service account <code>roles/storage.objectViewer</code>, <code>roles/storage.legacyBucketReader</code>, and <code>roles/storage.objectAdmin</code>, then set <code>GCS_BUCKET_NAME</code> (and <code>GEE_STORAGE_PROJECT</code> if the pipeline reads it) in <code>nrm_app/.env</code> and recreate the stack as above. Details: <a href="../integrations/gcs/">Google Cloud Storage</a>.</p>
+<p>Use <code>SKIP_GEE_CONFIG=1</code> to disable the <code>gee-config</code> init job.</p>
+<h2 id="nasa-earthdata">NASA Earthdata<a class="headerlink" href="#nasa-earthdata" title="Permanent link">¶</a></h2>
+<p>The ET download (<code>/api/v1/et_download/</code>) fetches FLDAS data from NASA GES DISC.</p>
+<ol>
+<li>Create an account at <a href="https://urs.earthdata.nasa.gov">urs.earthdata.nasa.gov</a>.</li>
+<li>In your profile, under <strong>Applications → Authorized Apps</strong>, approve <strong>NASA GESDISC DATA ARCHIVE</strong>.</li>
+<li>Put the login in <code>nrm_app/.env</code>. Keep the single quotes if the password contains <code>$</code>:</li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a href="#__codelineno-25-1" id="__codelineno-25-1" name="__codelineno-25-1"></a>USERNAME_GESDISC=your-username
+</span><span id="__span-25-2"><a href="#__codelineno-25-2" id="__codelineno-25-2" name="__codelineno-25-2"></a>PASSWORD_GESDISC='your-password'
+</span></code></pre></div>
+<ol>
+<li>Apply it:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a href="#__codelineno-26-1" id="__codelineno-26-1" name="__codelineno-26-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate
+</span></code></pre></div>
+<p>A wrong password or an unapproved application makes the task fail with an HTML page from GES DISC in the <code>celery-heavy</code> log.</p>
+<h2 id="gpu-and-long-jobs">GPU and long jobs<a class="headerlink" href="#gpu-and-long-jobs" title="Permanent link">¶</a></h2>
+<p>Four endpoints start jobs that run for hours:</p>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Uses the GPU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/v1/runoff_gpu/</code></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>/api/v1/et_download/</code></td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>/api/v1/pan-india/hydrology_annual/</code></td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>/api/v1/pan-india/hydrology_fortnightly/</code></td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>They run on the <code>celery-heavy</code> worker, one at a time, so they never block the other layers. <code>COMPOSE_PROFILES=heavy</code> in <code>nrm_app/.env</code> creates that worker and gives it the GPU. Without it, these four endpoints answer <code>503</code>.</p>
+<p>To run the three CPU jobs on a machine without a GPU, set both:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a href="#__codelineno-27-1" id="__codelineno-27-1" name="__codelineno-27-1"></a>COMPOSE_PROFILES=heavy
+</span><span id="__span-27-2"><a href="#__codelineno-27-2" id="__codelineno-27-2" name="__codelineno-27-2"></a>GPU_AVAILABLE=False
+</span></code></pre></div>
+<p>After changing the profile:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a href="#__codelineno-28-1" id="__codelineno-28-1" name="__codelineno-28-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--remove-orphans
+</span></code></pre></div>
+<p>Check that the worker sees the GPU:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a href="#__codelineno-29-1" id="__codelineno-29-1" name="__codelineno-29-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>celery-heavy<span class="w"> </span>nvidia-smi
+</span></code></pre></div>
+<h2 id="behind-a-proxy">Behind a proxy<a class="headerlink" href="#behind-a-proxy" title="Permanent link">¶</a></h2>
+<p>Image pulls are done by the Docker daemon, which needs its own proxy setting: see <a href="https://docs.docker.com/engine/daemon/proxy/">Docker daemon proxy</a>. <code>docker info | grep -i proxy</code> shows the current one.</p>
+<p>Builds and containers use the proxy from your shell. If <code>http_proxy</code> and <code>https_proxy</code> are exported, nothing else is needed. Otherwise uncomment and set these in <code>nrm_app/.env</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a href="#__codelineno-30-1" id="__codelineno-30-1" name="__codelineno-30-1"></a>HTTP_PROXY=http://proxy.example.org:3128
+</span><span id="__span-30-2"><a href="#__codelineno-30-2" id="__codelineno-30-2" name="__codelineno-30-2"></a>HTTPS_PROXY=http://proxy.example.org:3128
+</span></code></pre></div>
+<p>Service names (<code>postgres</code>, <code>redis</code>, <code>geoserver</code>, <code>backend</code>) stay on <code>NO_PROXY</code>. For your own <code>curl</code> calls to the stack, keep local addresses off the proxy:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a href="#__codelineno-31-1" id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">no_proxy</span><span class="o">=</span>localhost,127.0.0.1<span class="w"> </span><span class="nv">NO_PROXY</span><span class="o">=</span>localhost,127.0.0.1
+</span></code></pre></div>
+<h2 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">¶</a></h2>
+<p>All in <code>nrm_app/.env</code>. After a change, run <code>docker compose --env-file nrm_app/.env up -d --force-recreate</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LAYER_GENERATION_SYNC_MODE</code></td>
+<td><code>False</code></td>
+<td><code>True</code> on <a href="#part-1-with-airflow-sync">way 1</a> so Airflow algorithm calls wait for a finished STAC body.</td>
+</tr>
+<tr>
+<td><code>CORESTACK_HOST_DATA_DIR</code></td>
+<td><code>.</code></td>
+<td>Where <code>data/</code>, <code>gee_confs/</code>, and <code>backups/</code> live on the host. Set before the first start.</td>
+</tr>
+<tr>
+<td><code>BACKEND_PORT</code>, <code>GEOSERVER_PORT</code>, <code>POSTGRES_PORT</code></td>
+<td><code>8000</code>, <code>8080</code>, <code>5432</code></td>
+<td>Host ports, bound to <code>127.0.0.1</code> only.</td>
+</tr>
+<tr>
+<td><code>DB_PASSWORD</code>, <code>GEOSERVER_PASSWORD</code></td>
+<td>placeholders</td>
+<td>Change before the first start on any shared machine.</td>
+</tr>
+<tr>
+<td><code>CELERY_NRM_CONCURRENCY</code></td>
+<td><code>3</code></td>
+<td>Layer jobs that run in parallel.</td>
+</tr>
+<tr>
+<td><code>SKIP_ADMIN_BOUNDARY_DOWNLOAD</code></td>
+<td><code>0</code></td>
+<td><code>1</code> skips the admin-boundary download.</td>
+</tr>
+<tr>
+<td><code>SKIP_BASE_LAYER_DOWNLOAD</code></td>
+<td><code>1</code></td>
+<td><code>0</code> downloads base layers from S3 (needs S3 credentials).</td>
+</tr>
+<tr>
+<td><code>SKIP_TEHSIL_WATERSHEDS</code></td>
+<td><code>0</code></td>
+<td><code>1</code> skips fetching tehsil watersheds from GeoServer.</td>
+</tr>
+<tr>
+<td><code>CELERY_TASK_ALWAYS_EAGER</code></td>
+<td><code>False</code></td>
+<td>Keep <code>False</code>. <code>True</code> runs every task inside the web server and bypasses the workers.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-run-the-admin-boundary-local-compute-api">Test the APIs<a class="headerlink" href="#9-run-the-admin-boundary-local-compute-api" title="Permanent link">¶</a></h2>
+<p>Log in first (<a href="#6-check-that-it-works">check that it works</a>). Base URL: <code>http://127.0.0.1:8000</code>. Computing APIs use the JWT in <code>$TOKEN</code>.</p>
+<p>On <a href="#part-2-without-airflow-async">way 2</a> each request answers at once and queues a task. Follow it in the worker log, for example <code>docker compose --env-file nrm_app/.env logs -f celery-nrm</code>. On <a href="#part-1-with-airflow-sync">way 1</a> the same call waits until the layer is finished.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a href="#__codelineno-32-1" id="__codelineno-32-1" name="__codelineno-32-1"></a>api<span class="o">()</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">"http://localhost:8000/api/v1/</span><span class="nv">$1</span><span class="s2">/"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-32-2"><a href="#__codelineno-32-2" id="__codelineno-32-2" name="__codelineno-32-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span><span class="w"> </span>-H<span class="w"> </span><span class="s1">'Content-Type: application/json'</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">"</span><span class="nv">$2</span><span class="s2">"</span><span class="p">;</span><span class="w"> </span>echo<span class="p">;</span><span class="w"> </span><span class="o">}</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Request</th>
+<th>Worker</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LULC</td>
+<td><code>api lulc_vector '{"compute":"local","state":"karnataka","district":"raichur","block":"devadurga","start_year":2023,"end_year":2023}'</code></td>
+<td><code>celery-nrm</code></td>
+<td><code>data/lulc/lulc_vector_local/...</code>, GeoServer workspace <code>lulc_vector</code></td>
+</tr>
+<tr>
+<td>Tehsil hydrology</td>
+<td><code>api hydrology_annual '{"compute":"local","state":"karnataka","district":"raichur","block":"devadurga","start_year":2017,"end_year":2024}'</code></td>
+<td><code>celery-nrm</code></td>
+<td><code>data/hydrology/hydrology_local/...</code>, GeoServer workspace <code>mws_layers</code></td>
+</tr>
+<tr>
+<td>ET download</td>
+<td><code>api et_download '{"compute":"local","pan_india":true,"start_date":"2023-07-01","end_date":"2023-07-03"}'</code></td>
+<td><code>celery-heavy</code></td>
+<td><code>data/base_layers/hydrology/et/</code></td>
+</tr>
+<tr>
+<td>Pan-India annual</td>
+<td><code>api pan-india/hydrology_annual '{"compute":"local","start_year":2017,"end_year":2018}'</code></td>
+<td><code>celery-heavy</code></td>
+<td><code>data/base_layers/hydrology/annual/</code></td>
+</tr>
+<tr>
+<td>Pan-India fortnightly</td>
+<td><code>api pan-india/hydrology_fortnightly '{"compute":"local","start_year":2017,"end_year":2018}'</code></td>
+<td><code>celery-heavy</code></td>
+<td><code>data/base_layers/hydrology/fortnightly/</code></td>
+</tr>
+<tr>
+<td>Runoff (hours)</td>
+<td><code>api runoff_gpu '{"compute":"local","pan_india":true,"start_year":2023,"end_year":2024}'</code></td>
+<td><code>celery-heavy</code></td>
+<td><code>data/base_layers/hydrology/runoff/</code></td>
+</tr>
+</tbody>
+</table>
+<p>Tehsil hydrology needs <code>start_year</code> 2017. Pan-India requests take one year per call: <code>end_year</code> is <code>start_year + 1</code>.</p>
+<p>Admin-boundary generation (used by the Airflow static-layers DAG) is <code>POST /api/v1/generate_block_layer/</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a href="#__codelineno-33-1" id="__codelineno-33-1" name="__codelineno-33-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>http://127.0.0.1:8000/api/v1/generate_block_layer/<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-33-2"><a href="#__codelineno-33-2" id="__codelineno-33-2" name="__codelineno-33-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-33-3"><a href="#__codelineno-33-3" id="__codelineno-33-3" name="__codelineno-33-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-33-4"><a href="#__codelineno-33-4" id="__codelineno-33-4" name="__codelineno-33-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{</span>
+</span><span id="__span-33-5"><a href="#__codelineno-33-5" id="__codelineno-33-5" name="__codelineno-33-5"></a><span class="s1">    "state": "Rajasthan",</span>
+</span><span id="__span-33-6"><a href="#__codelineno-33-6" id="__codelineno-33-6" name="__codelineno-33-6"></a><span class="s1">    "district": "Bhilwara",</span>
+</span><span id="__span-33-7"><a href="#__codelineno-33-7" id="__codelineno-33-7" name="__codelineno-33-7"></a><span class="s1">    "block": "Mandalgarh",</span>
+</span><span id="__span-33-8"><a href="#__codelineno-33-8" id="__codelineno-33-8" name="__codelineno-33-8"></a><span class="s1">    "gee_account_id": 1,</span>
+</span><span id="__span-33-9"><a href="#__codelineno-33-9" id="__codelineno-33-9" name="__codelineno-33-9"></a><span class="s1">    "layer_generation_mode": "async"</span>
+</span><span id="__span-33-10"><a href="#__codelineno-33-10" id="__codelineno-33-10" name="__codelineno-33-10"></a><span class="s1">  }'</span>
 </span></code></pre></div>
 <table>
 <thead>
@@ -2223,9 +2596,6 @@
 </tr>
 </tbody>
 </table>
-<p>Watch workers in async mode:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a href="#__codelineno-30-1" id="__codelineno-30-1" name="__codelineno-30-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>backend<span class="w"> </span>celery-nrm<span class="w"> </span>celery-layer-bulk
-</span></code></pre></div>
 <p>More routes: <a href="../../pipelines/computing-endpoints/">Computing API Endpoints</a>. Auth errors: <a href="../../reference/api-errors/">API Errors</a>.</p>
 <h3 id="postman">Postman<a class="headerlink" href="#postman" title="Permanent link">¶</a></h3>
 <table>
@@ -2246,90 +2616,123 @@
 </tr>
 </tbody>
 </table>
-<h2 id="day-to-day-operations">Day-to-day operations<a class="headerlink" href="#day-to-day-operations" title="Permanent link">¶</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a href="#__codelineno-31-1" id="__codelineno-31-1" name="__codelineno-31-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>ps
-</span><span id="__span-31-2"><a href="#__codelineno-31-2" id="__codelineno-31-2" name="__codelineno-31-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>backend
-</span><span id="__span-31-3"><a href="#__codelineno-31-3" id="__codelineno-31-3" name="__codelineno-31-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>celery-nrm<span class="w"> </span>celery-layer-bulk<span class="w"> </span>celery-geoserver<span class="w"> </span>celery-general
-</span><span id="__span-31-4"><a href="#__codelineno-31-4" id="__codelineno-31-4" name="__codelineno-31-4"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>stop
-</span><span id="__span-31-5"><a href="#__codelineno-31-5" id="__codelineno-31-5" name="__codelineno-31-5"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>start
-</span><span id="__span-31-6"><a href="#__codelineno-31-6" id="__codelineno-31-6" name="__codelineno-31-6"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>down
+<h2 id="everyday-use">Everyday use<a class="headerlink" href="#everyday-use" title="Permanent link">¶</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a href="#__codelineno-34-1" id="__codelineno-34-1" name="__codelineno-34-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>ps
+</span><span id="__span-34-2"><a href="#__codelineno-34-2" id="__codelineno-34-2" name="__codelineno-34-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>backend
+</span><span id="__span-34-3"><a href="#__codelineno-34-3" id="__codelineno-34-3" name="__codelineno-34-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>stop
+</span><span id="__span-34-4"><a href="#__codelineno-34-4" id="__codelineno-34-4" name="__codelineno-34-4"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d
+</span></code></pre></div>
+<p>After <code>git pull</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a href="#__codelineno-35-1" id="__codelineno-35-1" name="__codelineno-35-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build<span class="w"> </span>--force-recreate
+</span></code></pre></div>
+<p>Commands that write files, such as <code>manage.py</code> commands, should run as your user so the files stay yours:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a href="#__codelineno-36-1" id="__codelineno-36-1" name="__codelineno-36-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--user<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>id<span class="w"> </span>-u<span class="k">)</span><span class="s2">:</span><span class="k">$(</span>id<span class="w"> </span>-g<span class="k">)</span><span class="s2">"</span><span class="w"> </span>backend<span class="w"> </span>python<span class="w"> </span>manage.py<span class="w"> </span>&lt;command&gt;
 </span></code></pre></div>
 <p>Celery Beat is opt-in:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a href="#__codelineno-32-1" id="__codelineno-32-1" name="__codelineno-32-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>--profile<span class="w"> </span>periodic<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>celery-beat
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a href="#__codelineno-37-1" id="__codelineno-37-1" name="__codelineno-37-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>--profile<span class="w"> </span>periodic<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>celery-beat
 </span></code></pre></div>
-<h2 id="code-and-dependency-updates">Code and dependency updates<a class="headerlink" href="#code-and-dependency-updates" title="Permanent link">¶</a></h2>
-<p>Source is host-mounted. A code-only update:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a href="#__codelineno-33-1" id="__codelineno-33-1" name="__codelineno-33-1"></a>git<span class="w"> </span>pull<span class="w"> </span>--ff-only
-</span><span id="__span-33-2"><a href="#__codelineno-33-2" id="__codelineno-33-2" name="__codelineno-33-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>database-init
-</span><span id="__span-33-3"><a href="#__codelineno-33-3" id="__codelineno-33-3" name="__codelineno-33-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate<span class="w"> </span>backend<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-33-4"><a href="#__codelineno-33-4" id="__codelineno-33-4" name="__codelineno-33-4"></a><span class="w">  </span>celery-nrm<span class="w"> </span>celery-layer-bulk<span class="w"> </span>celery-geoserver<span class="w"> </span>celery-general
+<p><code>docker compose --env-file nrm_app/.env down -v</code> deletes the database, GeoServer, and Redis data. <code>data/</code> on the host is kept.</p>
+<p>Back up the database:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a href="#__codelineno-38-1" id="__codelineno-38-1" name="__codelineno-38-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>--profile<span class="w"> </span>maintenance<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>database-backup
 </span></code></pre></div>
-<p>When <code>Dockerfile</code> or <code>installation/environment.yml</code> changes:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a href="#__codelineno-34-1" id="__codelineno-34-1" name="__codelineno-34-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>build<span class="w"> </span>--pull
-</span><span id="__span-34-2"><a href="#__codelineno-34-2" id="__codelineno-34-2" name="__codelineno-34-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate
+<p>The dump is written to <code>backups/postgres/</code>. GeoServer catalog (stop GeoServer first):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a href="#__codelineno-39-1" id="__codelineno-39-1" name="__codelineno-39-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>stop<span class="w"> </span>geoserver
+</span><span id="__span-39-2"><a href="#__codelineno-39-2" id="__codelineno-39-2" name="__codelineno-39-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>--profile<span class="w"> </span>maintenance<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>geoserver-backup
+</span><span id="__span-39-3"><a href="#__codelineno-39-3" id="__codelineno-39-3" name="__codelineno-39-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>start<span class="w"> </span>geoserver
 </span></code></pre></div>
-<p>Do not install packages in running containers. Pin <code>CORESTACK_IMAGE_TAG</code> or <code>CORESTACK_IMAGE</code> and the Git commit for production.</p>
-<h2 id="database-migrations-and-backups">Database, migrations, and backups<a class="headerlink" href="#database-migrations-and-backups" title="Permanent link">¶</a></h2>
-<p>PostgreSQL 16 is a separate container. Migrations stay Git-ignored (same as <code>installation/install.sh</code>). Only <code>database-init</code> changes schema.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a href="#__codelineno-35-1" id="__codelineno-35-1" name="__codelineno-35-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>--profile<span class="w"> </span>maintenance<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>database-backup
-</span><span id="__span-35-2"><a href="#__codelineno-35-2" id="__codelineno-35-2" name="__codelineno-35-2"></a>ls<span class="w"> </span>-lh<span class="w"> </span>/srv/core-stack-data/backups/postgres
-</span><span id="__span-35-3"><a href="#__codelineno-35-3" id="__codelineno-35-3" name="__codelineno-35-3"></a>tar<span class="w"> </span>-czf<span class="w"> </span>/srv/core-stack-data/backups/postgres/local-migrations.tgz<span class="w"> </span>*/migrations
-</span></code></pre></div>
-<p>GeoServer catalog (stop GeoServer first):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a href="#__codelineno-36-1" id="__codelineno-36-1" name="__codelineno-36-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>stop<span class="w"> </span>geoserver
-</span><span id="__span-36-2"><a href="#__codelineno-36-2" id="__codelineno-36-2" name="__codelineno-36-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>--profile<span class="w"> </span>maintenance<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>geoserver-backup
-</span><span id="__span-36-3"><a href="#__codelineno-36-3" id="__codelineno-36-3" name="__codelineno-36-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>start<span class="w"> </span>geoserver
-</span></code></pre></div>
-<p>Downloaded layers stay in <code>CORESTACK_HOST_DATA_DIR/data</code> on the host — back that directory up with the host, not as a Docker image.</p>
-<p>Restore procedure and <code>--fake-initial</code> rules: <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/installation/DOCKER.md#restore">installation/DOCKER.md</a>. Never use <code>down -v</code> as a restore.</p>
-<p>Set <code>RESET_LOCAL_MIGRATIONS=1</code> only for a fresh or verified-matching restored database.</p>
-<h2 id="behind-a-campus-or-corporate-proxy">Behind a campus or corporate proxy<a class="headerlink" href="#behind-a-campus-or-corporate-proxy" title="Permanent link">¶</a></h2>
-<p>Compose reads <code>HTTP_PROXY</code> / <code>HTTPS_PROXY</code> from the shell or <code>nrm_app/.env</code> and passes them as build args and container env. Service names (<code>postgres</code>, <code>redis</code>, <code>geoserver</code>, <code>backend</code>) are always on <code>NO_PROXY</code>.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a href="#__codelineno-37-1" id="__codelineno-37-1" name="__codelineno-37-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">HTTP_PROXY</span><span class="o">=</span>http://proxy.example.org:3128/
-</span><span id="__span-37-2"><a href="#__codelineno-37-2" id="__codelineno-37-2" name="__codelineno-37-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">HTTPS_PROXY</span><span class="o">=</span>http://proxy.example.org:3128/
-</span><span id="__span-37-3"><a href="#__codelineno-37-3" id="__codelineno-37-3" name="__codelineno-37-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d
-</span></code></pre></div>
-<p>Pulling base images is the <strong>daemon</strong> proxy. Check <code>docker info | grep -i proxy</code>.</p>
-<h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">¶</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a href="#__codelineno-38-1" id="__codelineno-38-1" name="__codelineno-38-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>config<span class="w"> </span>--quiet
-</span><span id="__span-38-2"><a href="#__codelineno-38-2" id="__codelineno-38-2" name="__codelineno-38-2"></a>bash<span class="w"> </span>-n<span class="w"> </span>installation/docker/*.sh
-</span><span id="__span-38-3"><a href="#__codelineno-38-3" id="__codelineno-38-3" name="__codelineno-38-3"></a>python3<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>discover<span class="w"> </span>-s<span class="w"> </span>installation/tests
-</span><span id="__span-38-4"><a href="#__codelineno-38-4" id="__codelineno-38-4" name="__codelineno-38-4"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>backend<span class="w"> </span>python<span class="w"> </span>manage.py<span class="w"> </span>check
-</span><span id="__span-38-5"><a href="#__codelineno-38-5" id="__codelineno-38-5" name="__codelineno-38-5"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>backend<span class="w"> </span>python<span class="w"> </span>manage.py<span class="w"> </span><span class="nb">test</span>
-</span></code></pre></div>
-<p>Production must run <code>DEBUG=False</code> and explicit hosts/origins.</p>
-<h2 id="production-checklist">Production checklist<a class="headerlink" href="#production-checklist" title="Permanent link">¶</a></h2>
-<ol>
-<li>Pin the Git commit and image tag; do not deploy moving <code>latest</code>.</li>
-<li>Replace PostgreSQL and GeoServer passwords in <code>nrm_app/.env</code> before creating the database volume.</li>
-<li>Set <code>DEBUG=False</code>, exact <code>ALLOWED_HOSTS</code>, and trusted HTTPS origins.</li>
-<li>Keep 8000, 8080, and 5432 on loopback; expose only the HTTPS reverse proxy.</li>
-<li>Back up PostgreSQL, local migration files, the GeoServer catalog, <code>CORESTACK_HOST_DATA_DIR/data</code>, and GEE secrets.</li>
-<li>Run tests and <code>check --deploy</code>; review the <code>database-init</code> plan on a restored clone.</li>
-<li>Run <code>database-init</code> once before recreating Gunicorn/Celery.</li>
-<li>Review Beat schedules before enabling the <code>periodic</code> profile.</li>
-<li>For <a href="#part-1-with-airflow-sync">Part 1</a>, set <code>LAYER_GENERATION_SYNC_MODE=True</code> and run Airflow on a port that is not GeoServer’s 8080 (8081). Leave <code>False</code> for <a href="#part-2-without-airflow-async">Part 2</a>.</li>
-<li>Monitor health, queue depth, disk, and backups. Test rollback before launch.</li>
-</ol>
-<h2 id="complete-reset">Complete reset<a class="headerlink" href="#complete-reset" title="Permanent link">¶</a></h2>
-<p>Destructive — deletes PostgreSQL, Redis, and GeoServer volumes. Files under <code>CORESTACK_HOST_DATA_DIR</code> stay:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a href="#__codelineno-39-1" id="__codelineno-39-1" name="__codelineno-39-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>down<span class="w"> </span>-v
-</span></code></pre></div>
+<p>Downloaded layers stay in <code>CORESTACK_HOST_DATA_DIR/data</code> on the host. Restore procedure and <code>--fake-initial</code> rules: <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/installation/DOCKER.md#restore">installation/DOCKER.md</a>. Set <code>RESET_LOCAL_MIGRATIONS=1</code> only for a fresh or verified-matching restored database.</p>
+<h2 id="running-on-a-server">Running on a server<a class="headerlink" href="#running-on-a-server" title="Permanent link">¶</a></h2>
+<ul>
+<li>Change <code>DB_PASSWORD</code>, <code>GEOSERVER_PASSWORD</code>, and the admin password before the first start.</li>
+<li>Set <code>DEBUG=False</code>, and <code>ALLOWED_HOSTS</code> to the server's host name.</li>
+<li>Keep ports bound to <code>127.0.0.1</code>; put an HTTPS reverse proxy in front.</li>
+<li>Set <code>CORESTACK_HOST_DATA_DIR</code> to a path on a disk with room for the data, for example <code>/srv/core-stack-data</code>.</li>
+<li>For <a href="#part-1-with-airflow-sync">way 1</a>, set <code>LAYER_GENERATION_SYNC_MODE=True</code> and run Airflow on <strong>8081</strong>. Leave <code>False</code> for <a href="#part-2-without-airflow-async">way 2</a>.</li>
+<li>Back up PostgreSQL, the GeoServer catalog, <code>CORESTACK_HOST_DATA_DIR/data</code>, and GEE secrets.</li>
+<li>Pin the Git commit and image tag. Review Beat schedules before enabling the <code>periodic</code> profile.</li>
+</ul>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">¶</a></h2>
-<p><strong>Port already in use</strong><br/>
-Stop whatever is on 8000, 8080, or 5432, or set <code>BACKEND_PORT</code> / <code>GEOSERVER_PORT</code> / <code>POSTGRES_PORT</code> in <code>nrm_app/.env</code>.</p>
-<p><strong>Backend keeps restarting</strong><br/>
-<code>docker compose --env-file nrm_app/.env logs backend</code>. First-run waits: GeoServer health, admin-boundary download, seed load.</p>
-<p><strong><code>manage.py</code> not found / empty <code>/app</code></strong><br/>
-Start Compose from a <a href="https://github.com/core-stack-org/core-stack-backend">core-stack-backend</a> clone (or set <code>BACKEND_CODE_DIR</code>). Recreate after changing the mount.</p>
-<p><strong><code>GEEAccount with id=N was not found</code></strong><br/>
-Add the JSON in Django admin and pass that row’s id as <code>gee_account_id</code>.</p>
-<p><strong><code>Failed: projects//assets/apps/mws/...</code></strong><br/>
-<code>GEE_STORAGE_PROJECT</code> is empty. Set it in <code>nrm_app/.env</code> and recreate the backend.</p>
-<p><strong>API returns <code>initiated</code> but nothing runs</strong><br/>
-You are in <strong>async</strong> mode. Confirm Celery workers are up (<code>docker compose --env-file nrm_app/.env ps</code>) and watch <code>celery-nrm</code> / <code>celery-layer-bulk</code>. Or set <code>"layer_generation_mode": "sync"</code> / <code>LAYER_GENERATION_SYNC_MODE=True</code>.</p>
-<p><strong>Airflow DAG skips STAC registration</strong><br/>
-The DAG needs a <strong>sync</strong> response with <code>asset_id</code> / <code>stac_items</code>. Use <code>LAYER_GENERATION_SYNC_MODE=True</code> or <code>"layer_generation_mode": "sync"</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Cause and fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>curl</code> to <code>localhost</code> returns <code>503</code></td>
+<td>Your proxy is answering. <code>export no_proxy=localhost,127.0.0.1 NO_PROXY=localhost,127.0.0.1</code>.</td>
+</tr>
+<tr>
+<td>Port already in use</td>
+<td>Stop whatever is on 8000, 8080, or 5432, or set <code>BACKEND_PORT</code> / <code>GEOSERVER_PORT</code> / <code>POSTGRES_PORT</code>. Airflow must use 8081 while GeoServer uses 8080.</td>
+</tr>
+<tr>
+<td><code>backend</code> never starts</td>
+<td>An init job failed. <code>ps -a</code> shows which; read its log.</td>
+</tr>
+<tr>
+<td>Build fails at <code>apt-get</code> or <code>pip</code></td>
+<td>No internet from the build. See <a href="#behind-a-proxy">Behind a proxy</a>.</td>
+</tr>
+<tr>
+<td><code>manage.py</code> not found / empty <code>/app</code></td>
+<td>Start Compose from a <a href="https://github.com/core-stack-org/core-stack-backend">core-stack-backend</a> clone (or set <code>BACKEND_CODE_DIR</code>). Recreate after changing the mount.</td>
+</tr>
+<tr>
+<td><code>Missing Pan-India hydrology annual base layer(s)</code></td>
+<td>Tehsil hydrology needs the pan-India annual layer for those years. Add it from <a href="#data-for-local-compute">Data</a> or generate it.</td>
+</tr>
+<tr>
+<td><code>JSONDecodeError</code> on a tehsil request</td>
+<td><code>data/base_layers/tehsil_watersheds/&lt;state&gt;/&lt;district&gt;/&lt;tehsil&gt;.gpkg</code> is missing.</td>
+</tr>
+<tr>
+<td>The four long-job endpoints return <code>503</code></td>
+<td><code>COMPOSE_PROFILES=heavy</code> is not set. See <a href="#gpu-and-long-jobs">GPU and long jobs</a>.</td>
+</tr>
+<tr>
+<td><code>Earth Engine client library not initialized</code> in logs</td>
+<td>Earth Engine is not set up. Harmless for local compute.</td>
+</tr>
+<tr>
+<td><code>GEEAccount with id=N was not found</code></td>
+<td>Add the JSON in Django admin and pass that row’s id as <code>gee_account_id</code>.</td>
+</tr>
+<tr>
+<td><code>401</code> from <code>geoserver.core-stack.org</code> in logs</td>
+<td>The STAC catalog step uses the public CoRE Stack GeoServer. The layer itself is saved and published locally.</td>
+</tr>
+<tr>
+<td>Admin page has no styling</td>
+<td>Static files are not served by the web server. The admin still works.</td>
+</tr>
+<tr>
+<td><code>Permission denied</code> on files in the repository</td>
+<td>Left by an older setup that ran as root. <code>docker compose --env-file nrm_app/.env up -d</code> gives them back to you.</td>
+</tr>
+<tr>
+<td>A second copy of the repository uses the first one's database</td>
+<td>All copies share the Compose project name <code>core-stack</code>. Run one installation per machine.</td>
+</tr>
+<tr>
+<td>API returns <code>initiated</code> but nothing runs</td>
+<td>You are on <a href="#part-2-without-airflow-async">way 2</a>. Confirm Celery workers are up and watch <code>celery-nrm</code> / <code>celery-layer-bulk</code>. Or set <code>"layer_generation_mode": "sync"</code>.</td>
+</tr>
+<tr>
+<td>Airflow DAG skips STAC registration</td>
+<td>The DAG needs a sync response with <code>asset_id</code> / <code>stac_items</code>. Set <code>LAYER_GENERATION_SYNC_MODE=True</code> or <code>"layer_generation_mode": "sync"</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>To stop a long job that is running on <code>celery-heavy</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a href="#__codelineno-40-1" id="__codelineno-40-1" name="__codelineno-40-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span><span class="nb">kill</span><span class="w"> </span>celery-heavy
+</span><span id="__span-40-2"><a href="#__codelineno-40-2" id="__codelineno-40-2" name="__codelineno-40-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>celery-nrm<span class="w"> </span>celery<span class="w"> </span>-A<span class="w"> </span>nrm_app<span class="w"> </span>purge<span class="w"> </span>-Q<span class="w"> </span>heavy<span class="w"> </span>-f
+</span><span id="__span-40-3"><a href="#__codelineno-40-3" id="__codelineno-40-3" name="__codelineno-40-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>redis<span class="w"> </span>redis-cli<span class="w"> </span>del<span class="w"> </span>unacked<span class="w"> </span>unacked_index
+</span><span id="__span-40-4"><a href="#__codelineno-40-4" id="__codelineno-40-4" name="__codelineno-40-4"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>celery-heavy
+</span></code></pre></div>
+<p>Without the <code>purge</code> and <code>redis-cli</code> steps the job starts again when the worker restarts. The <code>redis-cli</code> step also drops tasks started but not finished on other workers.</p>
 <p>More setup fixes: <a href="../setup-troubleshooting/">Setup Troubleshooting</a>.</p>
 </article>
 </div>

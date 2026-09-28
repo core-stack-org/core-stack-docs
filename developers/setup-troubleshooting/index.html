@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Fix common local installation, runtime, GEE, GCS, GeoServer, API, and Celery issues.">
+        <meta name="description" content="Fix common Docker installation, runtime, GEE, GCS, GeoServer, API, and Celery issues.">
       
       
       
@@ -935,7 +935,7 @@
   <span class="md-ellipsis">
     
   
-    Native (Linux)
+    Start here
   
 
     
@@ -963,7 +963,7 @@
   <span class="md-ellipsis">
     
   
-    Docker
+    Docker reference
   
 
     
@@ -1138,21 +1138,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rerun-the-smallest-step" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rerun The Smallest Step
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#install-problems" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Install Problems
+        Install problems
       
     </span>
   </a>
@@ -1160,10 +1149,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation-failures" class="md-nav__link">
+  <a href="#runtime" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation Failures
+        Runtime
       
     </span>
   </a>
@@ -1174,7 +1163,7 @@
   <a href="#gee-and-gcs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GEE And GCS
+        GEE and GCS
       
     </span>
   </a>
@@ -1193,43 +1182,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#django-runtime" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Django Runtime
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#celery-runtime" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Celery Runtime
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Docker
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#api-issues" class="md-nav__link">
     <span class="md-ellipsis">
       
-        API Issues
+        API issues
       
     </span>
   </a>
@@ -1240,7 +1196,7 @@
   <a href="#public-api-helper" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Public API Helper
+        Public API helper
       
     </span>
   </a>
@@ -1251,7 +1207,7 @@
   <a href="#when-to-stop-debugging-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When To Stop Debugging Setup
+        When to stop debugging setup
       
     </span>
   </a>
@@ -2589,21 +2545,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rerun-the-smallest-step" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Rerun The Smallest Step
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#install-problems" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Install Problems
+        Install problems
       
     </span>
   </a>
@@ -2611,10 +2556,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation-failures" class="md-nav__link">
+  <a href="#runtime" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validation Failures
+        Runtime
       
     </span>
   </a>
@@ -2625,7 +2570,7 @@
   <a href="#gee-and-gcs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        GEE And GCS
+        GEE and GCS
       
     </span>
   </a>
@@ -2644,43 +2589,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#django-runtime" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Django Runtime
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#celery-runtime" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Celery Runtime
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Docker
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#api-issues" class="md-nav__link">
     <span class="md-ellipsis">
       
-        API Issues
+        API issues
       
     </span>
   </a>
@@ -2691,7 +2603,7 @@
   <a href="#public-api-helper" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Public API Helper
+        Public API helper
       
     </span>
   </a>
@@ -2702,7 +2614,7 @@
   <a href="#when-to-stop-debugging-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        When To Stop Debugging Setup
+        When to stop debugging setup
       
     </span>
   </a>
@@ -2778,170 +2690,63 @@
 
 
 <h1 id="setup-troubleshooting">Setup Troubleshooting<a class="headerlink" href="#setup-troubleshooting" title="Permanent link">&para;</a></h1>
-<p>Use this page when the installer, initialization check, Django server, or Celery worker names a specific failure. Keep the installer page clean; put the messy fixes here.</p>
-<h2 id="rerun-the-smallest-step">Rerun The Smallest Step<a class="headerlink" href="#rerun-the-smallest-step" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># See available steps</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--list-steps
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Validation only</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>initialisation_check
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Rebuild nrm_app/.env</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>env_file
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># Add GEE credentials later</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span>--only<span class="w"> </span>gee_configuration,initialisation_check<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span>--gee-json<span class="w"> </span>/full/path/to/service-account.json
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1"># Add GeoServer values later</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span>--only<span class="w"> </span>initialisation_check<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_url</span><span class="o">=</span>https://host/geoserver<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_username</span><span class="o">=</span>admin<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span>--input<span class="w"> </span><span class="nv">geoserver_password</span><span class="o">=</span>your-password
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="c1"># Public API smoke test only</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span>--only<span class="w"> </span>public_api_check
-</span></code></pre></div>
-<p>Use <code>--only</code> when you know the failing step. Use <code>--from</code> only when you want a broader rerun.</p>
-<h2 id="install-problems">Install Problems<a class="headerlink" href="#install-problems" title="Permanent link">&para;</a></h2>
+<p>Use this page when a Docker install, the API, or a Celery worker names a specific failure. Install steps stay on <a href="../installer/">Install CoRE Stack</a>. Compose detail stays on <a href="../docker/">Run with Docker</a>.</p>
+<p>Run every Compose command from the <code>core-stack-backend</code> folder, with <code>--env-file nrm_app/.env</code>.</p>
+<h2 id="install-problems">Install problems<a class="headerlink" href="#install-problems" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
 <th>Symptom</th>
-<th>Likely cause</th>
 <th>Fix</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>conda: command not found</code></td>
-<td>shell has not loaded Miniconda yet</td>
-<td>open a new terminal or source your shell profile, then run <code>conda activate corestackenv</code></td>
+<td><code>docker: command not found</code></td>
+<td>Install Docker, then open a new terminal. See <a href="../installer/#1-install-docker">Install</a>.</td>
 </tr>
 <tr>
-<td>PostgreSQL connection errors</td>
-<td>service is down, user/db missing, or <code>.env</code> mismatch</td>
-<td>check <code>sudo systemctl status postgresql</code>, then rerun <code>--only env_file,initialisation_check</code> if env values drifted</td>
+<td><code>permission denied</code> on <code>docker</code></td>
+<td>On Linux, add your user to the <code>docker</code> group and open a new terminal. On macOS or Windows, start Docker Desktop.</td>
 </tr>
 <tr>
-<td>RabbitMQ or Celery cannot connect</td>
-<td>RabbitMQ is not running</td>
-<td>check <code>sudo systemctl status rabbitmq-server</code>; start it before the worker</td>
+<td>Port already in use</td>
+<td>Stop whatever is bound to 8000, 8080, or 5432, or set <code>BACKEND_PORT</code>, <code>GEOSERVER_PORT</code>, or <code>POSTGRES_PORT</code> in <code>nrm_app/.env</code></td>
 </tr>
 <tr>
 <td><code>nrm_app/.env</code> missing</td>
-<td>install stopped before env generation</td>
-<td>rerun <code>bash installation/install.sh --only env_file</code></td>
+<td>Copy it again: <code>cp installation/docker/env.template nrm_app/.env</code></td>
 </tr>
 <tr>
-<td>old repo-root <code>.env</code> confusion</td>
-<td>stale env file from earlier setup</td>
-<td>keep the real runtime env at <code>nrm_app/.env</code></td>
+<td>Backend keeps restarting</td>
+<td><code>docker compose --env-file nrm_app/.env logs backend</code>. The first start waits on GeoServer health, the admin-boundary download, and seed data</td>
 </tr>
 <tr>
-<td>Python dependency breakage</td>
-<td>conda env is stale</td>
-<td>rerun <code>bash installation/install.sh --only conda_env</code></td>
-</tr>
-<tr>
-<td>admin-boundary download failed</td>
-<td>interrupted download or bad extracted layout</td>
-<td>rerun <code>bash installation/install.sh --only admin_boundary_data,initialisation_check</code></td>
+<td>Admin-boundary download failed</td>
+<td>Run <code>docker compose --env-file nrm_app/.env up -d --build</code> again. The download resumes</td>
 </tr>
 </tbody>
 </table>
-<h2 id="validation-failures">Validation Failures<a class="headerlink" href="#validation-failures" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Check</th>
-<th>What it means</th>
-<th>What to do</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>jwt-auth</code></td>
-<td>no active Django user or token setup failed</td>
-<td>create or activate a user, then rerun <code>initialisation_check</code></td>
-</tr>
-<tr>
-<td><code>gee-probe</code></td>
-<td><code>GEE_DEFAULT_ACCOUNT_ID</code> is missing or points to a bad <code>GEEAccount</code></td>
-<td>import a service-account JSON with <code>--gee-json</code></td>
-</tr>
-<tr>
-<td><code>gcs-upload-probe</code></td>
-<td>service account cannot write to the configured GCS bucket</td>
-<td>grant the service account bucket access and rerun validation</td>
-</tr>
-<tr>
-<td><code>geoserver-probe</code></td>
-<td>GeoServer URL or credentials are missing or invalid</td>
-<td>set <code>GEOSERVER_URL</code>, <code>GEOSERVER_USERNAME</code>, and <code>GEOSERVER_PASSWORD</code></td>
-</tr>
-<tr>
-<td><code>admin-boundary-compute</code></td>
-<td>sample admin boundary data is missing or invalid</td>
-<td>rerun the admin-boundary data step</td>
-</tr>
-<tr>
-<td><code>first-computing-api</code></td>
-<td>the internal test could not trigger the sample API</td>
-<td>check Django settings, Celery eager validation output, and admin-boundary artifacts</td>
-</tr>
-</tbody>
-</table>
-<h2 id="gee-and-gcs">GEE And GCS<a class="headerlink" href="#gee-and-gcs" title="Permanent link">&para;</a></h2>
-<p>A real compute run usually needs both Earth Engine and GCS access:</p>
-<ul>
-<li><code>GEEAccount</code> stores encrypted service-account JSON in the database.</li>
-<li><code>GEE_DEFAULT_ACCOUNT_ID</code> points the backend to the default account.</li>
-<li>Some raster publication paths export through the configured GCS bucket before GeoServer sees the file.</li>
-</ul>
-<p>Common fixes:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Import or update the GEE account</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>bash<span class="w"> </span>installation/install.sh<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>--only<span class="w"> </span>gee_configuration,initialisation_check<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>--gee-json<span class="w"> </span>/full/path/to/service-account.json
+<p>A one-time job that shows an exit code other than <code>0</code> failed. Read its log:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>ps<span class="w"> </span>-a
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>logs<span class="w"> </span>&lt;service&gt;
 </span></code></pre></div>
-<p>If GEE works but GCS fails, check bucket permissions for the same service-account email. The integration notes are in <a href="../integrations/gcs/">Google Cloud Storage</a>.</p>
-<h2 id="geoserver">GeoServer<a class="headerlink" href="#geoserver" title="Permanent link">&para;</a></h2>
-<p>GeoServer failures normally show up during publication, layer listing, or generated layer URL checks.</p>
-<p>Check:</p>
-<ul>
-<li>the URL includes the GeoServer base, not a frontend URL</li>
-<li>username and password are correct</li>
-<li>the workspace exists or can be created</li>
-<li>the style name exists when the pipeline publishes a style</li>
-<li>the backend can reach GeoServer from the same machine</li>
-</ul>
-<p>For a local setup path, see <a href="../integrations/geoserver/">GeoServer</a>.</p>
-<h2 id="django-runtime">Django Runtime<a class="headerlink" href="#django-runtime" title="Permanent link">&para;</a></h2>
-<p>If the server will not start:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>python<span class="w"> </span>manage.py<span class="w"> </span>check
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>python<span class="w"> </span>manage.py<span class="w"> </span>migrate
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>python<span class="w"> </span>manage.py<span class="w"> </span>runserver<span class="w"> </span><span class="m">127</span>.0.0.1:8000
+<h2 id="runtime">Runtime<a class="headerlink" href="#runtime" title="Permanent link">&para;</a></h2>
+<p>If the API will not answer, confirm <code>backend</code> is <code>Up</code>, then read its log:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>ps
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>logs<span class="w"> </span>backend
 </span></code></pre></div>
-<p>Look first for missing env values, database errors, and import errors from optional packages.</p>
-<h2 id="celery-runtime">Celery Runtime<a class="headerlink" href="#celery-runtime" title="Permanent link">&para;</a></h2>
-<p>Start the worker from the backend repo root:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>celery<span class="w"> </span>-A<span class="w"> </span>nrm_app<span class="w"> </span>worker<span class="w"> </span>-l<span class="w"> </span>info<span class="w"> </span>-Q<span class="w"> </span>nrm
+<p>Look first for missing values in <code>nrm_app/.env</code> and for database errors.</p>
+<p>Celery workers start with the stack. If a computing API returns <code>initiated</code> and nothing else happens:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>celery-nrm
 </span></code></pre></div>
-<p>If tasks never start:</p>
-<ul>
-<li>confirm RabbitMQ is running</li>
-<li>confirm the worker uses queue <code>nrm</code></li>
-<li>keep the Django server and Celery worker in separate terminals</li>
-<li>watch both logs while triggering an API</li>
-</ul>
-<p>Docker Compose starts Celery workers. Layer APIs are <strong>async</strong> unless you set <code>LAYER_GENERATION_SYNC_MODE=True</code> or pass <code>"layer_generation_mode": "sync"</code>. See <a href="../docker/#two-methods-airflow--sync-or-no-airflow--async">Docker installation — two methods</a>.</p>
-<h2 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h2>
-<p>Use <a href="../docker/">Docker installation</a> for Compose commands. Common first-run issues:</p>
+<p><code>LAYER_GENERATION_SYNC_MODE=False</code> (the default) means the API queues the job and returns immediately. Set <code>LAYER_GENERATION_SYNC_MODE=True</code>, or pass <code>"layer_generation_mode": "sync"</code>, when the HTTP call must wait. See <a href="../docker/#two-methods-airflow--sync-or-no-airflow--async">Docker installation — two ways</a>.</p>
+<p>After you change <code>nrm_app/.env</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate
+</span></code></pre></div>
+<h2 id="gee-and-gcs">GEE and GCS<a class="headerlink" href="#gee-and-gcs" title="Permanent link">&para;</a></h2>
+<p>A real Earth Engine run needs a <code>GEEAccount</code> in the database and <code>GEE_DEFAULT_ACCOUNT_ID</code> in <code>nrm_app/.env</code>. Some raster publication paths also export through the configured GCS bucket before GeoServer sees the file.</p>
+<p>Upload the service-account JSON in Django admin at <code>/admin/gee_computing/geeaccount/add/</code>, set <code>GEE_DEFAULT_ACCOUNT_ID</code> to that row’s id, then recreate the stack. Steps: <a href="../docker/#gee-and-gcs">Google Earth Engine</a>.</p>
 <table>
 <thead>
 <tr>
@@ -2951,37 +2756,30 @@
 </thead>
 <tbody>
 <tr>
-<td>Port already in use</td>
-<td>Stop whatever is bound to 8000, 8080, or 5432, or set ports in <code>nrm_app/.env</code></td>
-</tr>
-<tr>
-<td>Backend keeps restarting</td>
-<td><code>docker compose --env-file nrm_app/.env logs backend</code>. First-run waits: GeoServer health, admin-boundary download, seed load</td>
-</tr>
-<tr>
 <td><code>GEEAccount with id=N was not found</code></td>
-<td>Add the JSON in Django admin (<code>/admin/gee_computing/geeaccount/add/</code>) and pass that row’s id as <code>gee_account_id</code></td>
+<td>Add the JSON in Django admin and pass that row’s id as <code>gee_account_id</code></td>
 </tr>
 <tr>
 <td><code>Failed: projects//assets/apps/mws/...</code></td>
 <td><code>GEE_STORAGE_PROJECT</code> is empty. Set it in <code>nrm_app/.env</code> with <code>GCS_BUCKET_NAME</code>, then recreate the backend</td>
 </tr>
 <tr>
-<td>API returns <code>initiated</code> but nothing computes</td>
-<td>Async mode. Check Celery workers, or use <code>"layer_generation_mode": "sync"</code> / <code>LAYER_GENERATION_SYNC_MODE=True</code></td>
-</tr>
-<tr>
-<td>Airflow DAG skips STAC</td>
-<td>Need a sync response. Set <code>LAYER_GENERATION_SYNC_MODE=True</code> or <code>"layer_generation_mode": "sync"</code></td>
-</tr>
-<tr>
-<td>GEE jobs fail after a successful start</td>
-<td>Mount JSON under <code>CORESTACK_HOST_DATA_DIR/gee_confs/</code>, add the account in Django admin, set <code>GCS_BUCKET_NAME</code> / <code>GEE_STORAGE_PROJECT</code>, recreate <code>gee-config</code> and <code>backend</code></td>
+<td>GEE works but GCS upload fails</td>
+<td>Grant the same service account access to the bucket. See <a href="../integrations/gcs/">Google Cloud Storage</a></td>
 </tr>
 </tbody>
 </table>
-<p>Wipe Postgres/GeoServer/Redis volumes (host data under <code>CORESTACK_HOST_DATA_DIR</code> stays): <code>docker compose --env-file nrm_app/.env down -v</code>.</p>
-<h2 id="api-issues">API Issues<a class="headerlink" href="#api-issues" title="Permanent link">&para;</a></h2>
+<h2 id="geoserver">GeoServer<a class="headerlink" href="#geoserver" title="Permanent link">&para;</a></h2>
+<p>Docker starts GeoServer at <a href="http://127.0.0.1:8080/geoserver">http://127.0.0.1:8080/geoserver</a>. Failures show up during publication, layer listing, or generated layer URL checks.</p>
+<p>Check:</p>
+<ul>
+<li><code>GEOSERVER_URL</code> is the GeoServer base, such as <code>http://geoserver:8080/geoserver</code> inside Compose, not a frontend URL</li>
+<li>username and password match <code>nrm_app/.env</code></li>
+<li>the workspace exists or can be created</li>
+<li>the style name exists when the pipeline publishes a style</li>
+<li><code>geoserver</code> is <code>Up</code> in <code>docker compose ps</code></li>
+</ul>
+<h2 id="api-issues">API issues<a class="headerlink" href="#api-issues" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -2992,24 +2790,29 @@
 <tbody>
 <tr>
 <td><code>401 Unauthorized</code> on public APIs</td>
-<td>send <code>X-API-Key</code> and verify the key is active</td>
+<td>Send <code>X-API-Key</code> and verify the key is active</td>
 </tr>
 <tr>
-<td>JWT/API-key confusion</td>
-<td>use public API keys for public-data APIs; use JWT only where the backend API requires it</td>
+<td>JWT and API-key confusion</td>
+<td>Use public API keys for public-data APIs. Use the JWT from <code>/api/v1/auth/login/</code> where the computing API requires it</td>
 </tr>
 <tr>
-<td>generated layer URL returns nothing</td>
-<td>check that the layer metadata row exists and <code>is_sync_to_geoserver=True</code></td>
+<td>Generated layer URL returns nothing</td>
+<td>Check that the layer metadata row exists and <code>is_sync_to_geoserver=True</code></td>
 </tr>
 <tr>
 <td>API returns fast but no layer appears</td>
-<td>inspect Celery logs and GEE task status</td>
+<td>Inspect <code>celery-nrm</code> logs and the Earth Engine task status</td>
+</tr>
+<tr>
+<td>Airflow DAG skips STAC</td>
+<td>The DAG needs a sync response. Set <code>LAYER_GENERATION_SYNC_MODE=True</code> or <code>"layer_generation_mode": "sync"</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="public-api-helper">Public API Helper<a class="headerlink" href="#public-api-helper" title="Permanent link">&para;</a></h2>
-<p>The backend ships a small helper for public API checks:</p>
+<p>More first-run cases: <a href="../docker/#troubleshooting">Docker troubleshooting</a>.</p>
+<h2 id="public-api-helper">Public API helper<a class="headerlink" href="#public-api-helper" title="Permanent link">&para;</a></h2>
+<p>The backend ships a small helper for public API checks. It reads credentials from command-line flags, environment variables, or an env file:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>python<span class="w"> </span>installation/public_api_client.py<span class="w"> </span>smoke-test
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>python<span class="w"> </span>installation/public_api_client.py<span class="w"> </span>download<span class="w"> </span><span class="se">\</span>
@@ -3017,9 +2820,11 @@
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span>--district<span class="w"> </span>cachar<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span>--tehsil<span class="w"> </span>lakhipur
 </span></code></pre></div>
-<p>It can read credentials from command-line flags, environment variables, or an env file. It does not require the full <code>corestackenv</code>.</p>
-<h2 id="when-to-stop-debugging-setup">When To Stop Debugging Setup<a class="headerlink" href="#when-to-stop-debugging-setup" title="Permanent link">&para;</a></h2>
-<p>If Django starts, Celery connects, <code>initialisation_check</code> passes or names only optional integrations, and one small compute API can be triggered, move on to <a href="../../pipelines/">Build Pipelines</a>. Do not keep rerunning the whole installer unless you are fixing installation itself.</p>
+<h2 id="when-to-stop-debugging-setup">When to stop debugging setup<a class="headerlink" href="#when-to-stop-debugging-setup" title="Permanent link">&para;</a></h2>
+<p>If <code>backend</code> and <code>celery-nrm</code> are <code>Up</code>, you can log in, and one small compute API returns <code>initiated</code> or <code>completed</code>, move on to <a href="../../pipelines/">Build Pipelines</a>.</p>
+<p>Wipe Postgres, GeoServer, and Redis volumes only when you mean to start over. Host files under <code>CORESTACK_HOST_DATA_DIR</code> stay:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>down<span class="w"> </span>-v
+</span></code></pre></div>
 
 
 

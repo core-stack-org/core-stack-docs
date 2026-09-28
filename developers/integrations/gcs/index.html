@@ -923,7 +923,7 @@
   <span class="md-ellipsis">
     
   
-    Native (Linux)
+    Start here
   
 
     
@@ -951,7 +951,7 @@
   <span class="md-ellipsis">
     
   
-    Docker
+    Docker reference
   
 
     
@@ -2715,17 +2715,14 @@ If bucket setup is wrong, multiple pipeline families fail in similar ways.</p>
 <h2 id="minimum-setup-checklist">Minimum Setup Checklist<a class="headerlink" href="#minimum-setup-checklist" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Create the bucket in <code>us-central1</code>.</li>
-<li>Set <code>GCS_BUCKET_NAME</code> (Compose <code>.env</code> for Docker, <code>nrm_app/.env</code> for native). Django falls back to <code>core_stack</code> if the env is empty.</li>
+<li>Set <code>GCS_BUCKET_NAME</code> in <code>nrm_app/.env</code>. Django falls back to <code>core_stack</code> if the env is empty.</li>
 <li>Grant the GEE service account:</li>
 <li><code>roles/storage.objectViewer</code></li>
 <li><code>roles/storage.legacyBucketReader</code></li>
 <li>write and cleanup permissions, typically <code>roles/storage.objectAdmin</code></li>
-<li>Rerun the strict initialization check:</li>
+<li>Recreate the stack so the backend reads the new bucket name:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/miniconda3/etc/profile.d/conda.sh&quot;</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>conda<span class="w"> </span>activate<span class="w"> </span>corestackenv
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nb">cd</span><span class="w"> </span>/path/to/core-stack-backend
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>python<span class="w"> </span>computing/misc/internal_api_initialisation_test.py<span class="w"> </span>--require-gee
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--force-recreate
 </span></code></pre></div>
 <p>The result to watch is:</p>
 <ul>
