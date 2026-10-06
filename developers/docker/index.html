@@ -740,6 +740,15 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#remove-an-earlier-installation">
+<span class="md-ellipsis">
+      
+        Remove an earlier installation
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#running-on-a-server">
 <span class="md-ellipsis">
       
@@ -1623,6 +1632,15 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#remove-an-earlier-installation">
+<span class="md-ellipsis">
+      
+        Remove an earlier installation
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#running-on-a-server">
 <span class="md-ellipsis">
       
@@ -2175,7 +2193,8 @@
 <p>For the GPU jobs you also need an NVIDIA driver and the <a href="https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html">NVIDIA Container Toolkit</a>. This must print your GPU:</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>nvidia/cuda:12.9.0-base-ubuntu22.04<span class="w"> </span>nvidia-smi
 </span></code></pre></div>
-<p>On Apple Silicon, Docker emulates linux/amd64. On a network that only reaches the internet through a proxy, read <a href="#behind-a-proxy">Behind a proxy</a> first.</p>
+<p>On a network that only reaches the internet through a proxy (for example a campus network), read <a href="#behind-a-proxy">Behind a proxy</a> first.</p>
+<p>If this machine already has CoRE Stack containers or images from an earlier installation, <a href="#remove-an-earlier-installation">remove them</a> first.</p>
 <h3 id="2-get-the-code">2. Get the code<a class="headerlink" href="#2-get-the-code" title="Permanent link">¶</a></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a href="#__codelineno-14-1" id="__codelineno-14-1" name="__codelineno-14-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/core-stack-org/core-stack-backend.git
 </span><span id="__span-14-2"><a href="#__codelineno-14-2" id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="nb">cd</span><span class="w"> </span>core-stack-backend
@@ -2268,70 +2287,70 @@
 </table>
 <p>Other settings are listed in <a href="#settings">Settings</a>.</p>
 <h2 id="data-for-local-compute">Data for local compute<a class="headerlink" href="#data-for-local-compute" title="Permanent link">¶</a></h2>
-<p>Local computation (<code>"compute": "local"</code> in a request) reads its inputs from <code>data/base_layers/</code>. Download what the APIs you use need and place it as shown.</p>
+<p>Local computation (<code>"compute": "local"</code> in a request) reads its inputs from <code>data/base_layers/</code>. All of it is in <a href="https://drive.google.com/drive/folders/1MpWl10qo8-x_GsTnD7Z1S0XLHwUQC37b">this Google Drive folder</a>, in the same layout as <code>data/base_layers/</code>. Download what you need and place it at the same path.</p>
 <table>
 <thead>
 <tr>
 <th>Data</th>
+<th>Download</th>
 <th>Place at <code>data/base_layers/</code></th>
-<th>Needed by</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Terrain (569 MB)</td>
+<td><a href="https://drive.google.com/file/d/1PJG5pWOZSU6fp9YvtexBO_2AxdNABjpl/view">Download</a></td>
 <td><code>terrain_raster_fabdam_pan_india.tif</code></td>
-<td>runoff</td>
 </tr>
 <tr>
 <td>Soil (6 MB)</td>
+<td><a href="https://drive.google.com/drive/folders/1DSjWNYBubQtcgQ1HdqDWgFI_crtJqK-E">Download</a></td>
 <td><code>soil/hysogs_india_250m_4326.tif</code></td>
-<td>runoff</td>
 </tr>
 <tr>
 <td>LULC, one file per year (63 GB)</td>
+<td><a href="https://drive.google.com/file/d/1VO0iyDnLevTFqV-sk_apFUtkC8cuYnYP/view">Download</a></td>
 <td><code>lulc/lulc_v3_&lt;year&gt;_&lt;year+1&gt;.tif</code></td>
-<td>runoff, LULC</td>
 </tr>
 <tr>
 <td>India boundary (8 MB)</td>
+<td><a href="https://drive.google.com/drive/folders/1DSjWNYBubQtcgQ1HdqDWgFI_crtJqK-E">Download</a></td>
 <td><code>PanIndia_Boundaries/india_state_outer_no_islands.geojson</code></td>
-<td>pan-India runoff</td>
 </tr>
 <tr>
 <td>Aquifer (102 MB)</td>
+<td><a href="https://drive.google.com/drive/folders/1DSjWNYBubQtcgQ1HdqDWgFI_crtJqK-E">Download</a></td>
 <td><code>aquifer/aquifer.geojson</code></td>
-<td>pan-India hydrology</td>
 </tr>
 <tr>
 <td>Microwatersheds (5.4 GB)</td>
+<td><a href="https://drive.google.com/drive/folders/1MpWl10qo8-x_GsTnD7Z1S0XLHwUQC37b">Download</a></td>
 <td><code>static_layers/mws/Microwatershed_v2_with_details.geojson</code></td>
-<td>MWS layers</td>
 </tr>
 <tr>
 <td>SOI tehsils (316 MB)</td>
+<td><a href="https://drive.google.com/drive/folders/1MpWl10qo8-x_GsTnD7Z1S0XLHwUQC37b">Download</a></td>
 <td><code>admin_boundary/soi_tehsil.geojson</code></td>
-<td>tehsil watersheds</td>
 </tr>
 <tr>
 <td>Tehsil watersheds</td>
+<td><a href="https://drive.google.com/drive/folders/1MpWl10qo8-x_GsTnD7Z1S0XLHwUQC37b">Download</a></td>
 <td><code>tehsil_watersheds/&lt;state&gt;/&lt;district&gt;/&lt;tehsil&gt;.gpkg</code></td>
-<td>every tehsil-level request</td>
 </tr>
 <tr>
 <td>Runoff (164 GB)</td>
+<td><a href="https://drive.google.com/file/d/1kUM0wUcpbx8XdM-ZbZOTQW770EGYAD22/view">Download</a></td>
 <td><code>hydrology/runoff/</code></td>
-<td>pan-India hydrology</td>
 </tr>
 <tr>
 <td>ET (114 GB)</td>
+<td><a href="https://drive.google.com/file/d/1kUM0wUcpbx8XdM-ZbZOTQW770EGYAD22/view">Download</a></td>
 <td><code>hydrology/et/</code></td>
-<td>pan-India hydrology</td>
 </tr>
 <tr>
 <td>Pan-India annual hydrology (20 GB)</td>
+<td><a href="https://drive.google.com/file/d/1kUM0wUcpbx8XdM-ZbZOTQW770EGYAD22/view">Download</a></td>
 <td><code>hydrology/annual/</code></td>
-<td>tehsil hydrology</td>
 </tr>
 </tbody>
 </table>
@@ -2640,7 +2659,22 @@
 </span><span id="__span-39-2"><a href="#__codelineno-39-2" id="__codelineno-39-2" name="__codelineno-39-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>--profile<span class="w"> </span>maintenance<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>geoserver-backup
 </span><span id="__span-39-3"><a href="#__codelineno-39-3" id="__codelineno-39-3" name="__codelineno-39-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>start<span class="w"> </span>geoserver
 </span></code></pre></div>
-<p>Downloaded layers stay in <code>CORESTACK_HOST_DATA_DIR/data</code> on the host. Restore procedure and <code>--fake-initial</code> rules: <a href="https://github.com/core-stack-org/core-stack-backend/blob/main/installation/DOCKER.md#restore">installation/DOCKER.md</a>. Set <code>RESET_LOCAL_MIGRATIONS=1</code> only for a fresh or verified-matching restored database.</p>
+<h2 id="remove-an-earlier-installation">Remove an earlier installation<a class="headerlink" href="#remove-an-earlier-installation" title="Permanent link">¶</a></h2>
+<p>This deletes the containers, the database, GeoServer and Redis data, the images, and the build cache. <code>data/</code> on the host is kept.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a href="#__codelineno-40-1" id="__codelineno-40-1" name="__codelineno-40-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>-p<span class="w"> </span>core-stack<span class="w"> </span>down<span class="w"> </span>--volumes<span class="w"> </span>--remove-orphans
+</span><span id="__span-40-2"><a href="#__codelineno-40-2" id="__codelineno-40-2" name="__codelineno-40-2"></a>docker<span class="w"> </span>rmi<span class="w"> </span>corestack-backend-local:latest<span class="w"> </span>postgres:16-bookworm<span class="w"> </span>redis:7-alpine<span class="w"> </span>kartoza/geoserver:2.24.4<span class="w"> </span>alpine:3.20
+</span><span id="__span-40-3"><a href="#__codelineno-40-3" id="__codelineno-40-3" name="__codelineno-40-3"></a>docker<span class="w"> </span>builder<span class="w"> </span>prune<span class="w"> </span>-af
+</span></code></pre></div>
+<p><code>No such image</code> for one of the images is fine. Check that nothing is left. Each of the first three commands prints only its header, and the last prints nothing:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-41-1"><a href="#__codelineno-41-1" id="__codelineno-41-1" name="__codelineno-41-1"></a>docker<span class="w"> </span>ps<span class="w"> </span>-a<span class="w"> </span>--filter<span class="w"> </span><span class="nv">name</span><span class="o">=</span>core-stack
+</span><span id="__span-41-2"><a href="#__codelineno-41-2" id="__codelineno-41-2" name="__codelineno-41-2"></a>docker<span class="w"> </span>volume<span class="w"> </span>ls<span class="w"> </span>--filter<span class="w"> </span><span class="nv">name</span><span class="o">=</span>core-stack
+</span><span id="__span-41-3"><a href="#__codelineno-41-3" id="__codelineno-41-3" name="__codelineno-41-3"></a>docker<span class="w"> </span>network<span class="w"> </span>ls<span class="w"> </span>--filter<span class="w"> </span><span class="nv">name</span><span class="o">=</span>corestack
+</span><span id="__span-41-4"><a href="#__codelineno-41-4" id="__codelineno-41-4" name="__codelineno-41-4"></a>docker<span class="w"> </span>images<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">'corestack|postgres|redis|geoserver|alpine'</span>
+</span></code></pre></div>
+<p>To also delete the downloaded and computed data, remove <code>data/</code> in the repository, or under <code>CORESTACK_HOST_DATA_DIR</code> if you set it:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-42-1"><a href="#__codelineno-42-1" id="__codelineno-42-1" name="__codelineno-42-1"></a>rm<span class="w"> </span>-rf<span class="w"> </span>data
+</span></code></pre></div>
+<p>Use <code>sudo</code> if an older installation left files owned by root. The next start downloads the admin boundaries again. See <a href="#5-optional-download-the-admin-boundaries-yourself">step 5</a> to use your own copy.</p>
 <h2 id="running-on-a-server">Running on a server<a class="headerlink" href="#running-on-a-server" title="Permanent link">¶</a></h2>
 <ul>
 <li>Change <code>DB_PASSWORD</code>, <code>GEOSERVER_PASSWORD</code>, and the admin password before the first start.</li>
@@ -2727,10 +2761,10 @@
 </tbody>
 </table>
 <p>To stop a long job that is running on <code>celery-heavy</code>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a href="#__codelineno-40-1" id="__codelineno-40-1" name="__codelineno-40-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span><span class="nb">kill</span><span class="w"> </span>celery-heavy
-</span><span id="__span-40-2"><a href="#__codelineno-40-2" id="__codelineno-40-2" name="__codelineno-40-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>celery-nrm<span class="w"> </span>celery<span class="w"> </span>-A<span class="w"> </span>nrm_app<span class="w"> </span>purge<span class="w"> </span>-Q<span class="w"> </span>heavy<span class="w"> </span>-f
-</span><span id="__span-40-3"><a href="#__codelineno-40-3" id="__codelineno-40-3" name="__codelineno-40-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>redis<span class="w"> </span>redis-cli<span class="w"> </span>del<span class="w"> </span>unacked<span class="w"> </span>unacked_index
-</span><span id="__span-40-4"><a href="#__codelineno-40-4" id="__codelineno-40-4" name="__codelineno-40-4"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>celery-heavy
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-43-1"><a href="#__codelineno-43-1" id="__codelineno-43-1" name="__codelineno-43-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span><span class="nb">kill</span><span class="w"> </span>celery-heavy
+</span><span id="__span-43-2"><a href="#__codelineno-43-2" id="__codelineno-43-2" name="__codelineno-43-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>celery-nrm<span class="w"> </span>celery<span class="w"> </span>-A<span class="w"> </span>nrm_app<span class="w"> </span>purge<span class="w"> </span>-Q<span class="w"> </span>heavy<span class="w"> </span>-f
+</span><span id="__span-43-3"><a href="#__codelineno-43-3" id="__codelineno-43-3" name="__codelineno-43-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>redis<span class="w"> </span>redis-cli<span class="w"> </span>del<span class="w"> </span>unacked<span class="w"> </span>unacked_index
+</span><span id="__span-43-4"><a href="#__codelineno-43-4" id="__codelineno-43-4" name="__codelineno-43-4"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>celery-heavy
 </span></code></pre></div>
 <p>Without the <code>purge</code> and <code>redis-cli</code> steps the job starts again when the worker restarts. The <code>redis-cli</code> step also drops tasks started but not finished on other workers.</p>
 <p>More setup fixes: <a href="../setup-troubleshooting/">Setup Troubleshooting</a>.</p>

@@ -1068,10 +1068,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-start-it" class="md-nav__link">
+  <a href="#4-optional-download-the-admin-boundaries-yourself" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Start it
+        4. Optional: download the admin boundaries yourself
       
     </span>
   </a>
@@ -1079,10 +1079,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-check-that-it-started" class="md-nav__link">
+  <a href="#5-start-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Check that it started
+        5. Start it
       
     </span>
   </a>
@@ -1090,10 +1090,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-open-it-in-a-browser" class="md-nav__link">
+  <a href="#6-check-that-it-started" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Open it in a browser
+        6. Check that it started
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-open-it-in-a-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Open it in a browser
       
     </span>
   </a>
@@ -1199,6 +1210,17 @@
     <span class="md-ellipsis">
       
         Commands you will reuse
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remove-an-earlier-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove an earlier installation
       
     </span>
   </a>
@@ -2773,10 +2795,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4-start-it" class="md-nav__link">
+  <a href="#4-optional-download-the-admin-boundaries-yourself" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. Start it
+        4. Optional: download the admin boundaries yourself
       
     </span>
   </a>
@@ -2784,10 +2806,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-check-that-it-started" class="md-nav__link">
+  <a href="#5-start-it" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Check that it started
+        5. Start it
       
     </span>
   </a>
@@ -2795,10 +2817,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-open-it-in-a-browser" class="md-nav__link">
+  <a href="#6-check-that-it-started" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Open it in a browser
+        6. Check that it started
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-open-it-in-a-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Open it in a browser
       
     </span>
   </a>
@@ -2904,6 +2937,17 @@
     <span class="md-ellipsis">
       
         Commands you will reuse
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remove-an-earlier-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remove an earlier installation
       
     </span>
   </a>
@@ -3073,7 +3117,7 @@
 </tr>
 <tr>
 <td><strong>Container</strong></td>
-<td>A packaged copy of a program, started by Docker. You do not install PostgreSQL, RabbitMQ, or GeoServer yourself.</td>
+<td>A packaged copy of a program, started by Docker. You do not install PostgreSQL, Redis, or GeoServer yourself.</td>
 </tr>
 <tr>
 <td><strong>API</strong></td>
@@ -3120,25 +3164,30 @@
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>docker<span class="w"> </span>ps
 </span></code></pre></div>
 <p><code>docker ps</code> with an empty table is success. It means Docker is running and you have no containers yet.</p>
+<p>These ports must be free: <strong>8000</strong> (API), <strong>8080</strong> (GeoServer), and <strong>5432</strong> (PostgreSQL). On Linux:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ss<span class="w"> </span>-ltn<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;:(8000|8080|5432) &#39;</span>
+</span></code></pre></div>
+<p>No output means they are free. On macOS, if a later start says a port is already allocated, stop the other program or change <code>BACKEND_PORT</code>, <code>GEOSERVER_PORT</code>, or <code>POSTGRES_PORT</code> in <code>nrm_app/.env</code>.</p>
+<p>If this machine already has CoRE Stack containers or images from an earlier installation, <a href="#remove-an-earlier-installation">remove them</a> before you continue.</p>
 <h3 id="2-download-the-code">2. Download the code<a class="headerlink" href="#2-download-the-code" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/core-stack-org/core-stack-backend.git
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">cd</span><span class="w"> </span>core-stack-backend
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/core-stack-org/core-stack-backend.git
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">cd</span><span class="w"> </span>core-stack-backend
 </span></code></pre></div>
 <p><code>git clone</code> creates a folder named <code>core-stack-backend</code>. <code>cd</code> moves into it. Every later command in this section assumes you are inside that folder. Check with:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">pwd</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">pwd</span>
 </span></code></pre></div>
 <p>The path should end in <code>core-stack-backend</code>.</p>
 <h3 id="3-create-the-settings-file">3. Create the settings file<a class="headerlink" href="#3-create-the-settings-file" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>cp<span class="w"> </span>installation/docker/env.template<span class="w"> </span>nrm_app/.env
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>cp<span class="w"> </span>installation/docker/env.template<span class="w"> </span>nrm_app/.env
 </span></code></pre></div>
 <p>This copies a template of settings into <code>nrm_app/.env</code>. On macOS or Linux, lock the file so other users on the machine cannot read the passwords:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>nrm_app/.env
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>nrm_app/.env
 </span></code></pre></div>
 <p>On Windows PowerShell, <code>chmod</code> does not exist. Skip that line, or run it in Git Bash.</p>
 <p>Open <code>nrm_app/.env</code> in any text editor. Find these three lines and replace the placeholders with a username, email, and password you will remember:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>DJANGO_SUPERUSER_USERNAME=admin
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>DJANGO_SUPERUSER_EMAIL=you@example.com
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>DJANGO_SUPERUSER_PASSWORD=&#39;choose-a-password&#39;
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>DJANGO_SUPERUSER_USERNAME=admin
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>DJANGO_SUPERUSER_EMAIL=you@example.com
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>DJANGO_SUPERUSER_PASSWORD=&#39;choose-a-password&#39;
 </span></code></pre></div>
 <p>Keep the single quotes around the password if it contains <code>$</code> or spaces.</p>
 <p>Leave <code>LAYER_GENERATION_SYNC_MODE=False</code>. That means compute jobs run in the background. You do not need Airflow for this.</p>
@@ -3147,9 +3196,12 @@
 <p class="admonition-title">Warning</p>
 <p>Change <code>DB_PASSWORD</code> and <code>GEOSERVER_PASSWORD</code> in the same file before you install on a shared or public server. For a try-out on your own laptop, the template values are enough.</p>
 </div>
-<h3 id="4-start-it">4. Start it<a class="headerlink" href="#4-start-it" title="Permanent link">&para;</a></h3>
+<p>Leave everything else as it is for a first install. A GPU, Earth Engine, and Airflow are optional and come later.</p>
+<h3 id="4-optional-download-the-admin-boundaries-yourself">4. Optional: download the admin boundaries yourself<a class="headerlink" href="#4-optional-download-the-admin-boundaries-yourself" title="Permanent link">&para;</a></h3>
+<p>The first start downloads the admin-boundary archive (about 600 MB) from Google Drive. To use a browser download instead, which is often faster, download it from <a href="https://drive.google.com/file/d/1VqIhB6HrKFDkDnlk1vedcEHhh5fk4f1d/view">here</a> and save it as <code>data/dataset.7z</code> in the repository. Skip this step to let the first start download it.</p>
+<h3 id="5-start-it">5. Start it<a class="headerlink" href="#5-start-it" title="Permanent link">&para;</a></h3>
 <p>From the <code>core-stack-backend</code> folder:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
 </span></code></pre></div>
 <p>What this does:</p>
 <ul>
@@ -3158,8 +3210,8 @@
 <li><code>-d</code> runs it in the background so you get your terminal back.</li>
 <li>The first run downloads images and an admin-boundary archive (about 600 MB). It often takes <strong>5 to 60 minutes</strong>. If it stops halfway, run the same command again.</li>
 </ul>
-<h3 id="5-check-that-it-started">5. Check that it started<a class="headerlink" href="#5-check-that-it-started" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>ps<span class="w"> </span>-a
+<h3 id="6-check-that-it-started">6. Check that it started<a class="headerlink" href="#6-check-that-it-started" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>ps<span class="w"> </span>-a
 </span></code></pre></div>
 <p>You want:</p>
 <ul>
@@ -3167,10 +3219,10 @@
 <li>These to show <strong>Up</strong> or <strong>Up (healthy)</strong>: <code>backend</code>, <code>postgres</code>, <code>redis</code>, <code>geoserver</code>, and the <code>celery-*</code> workers.</li>
 </ul>
 <p>If a row shows a different exit code, read its log (replace the name with the failing service):</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>logs<span class="w"> </span>backend
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>logs<span class="w"> </span>backend
 </span></code></pre></div>
 <p>Then see <a href="#if-something-fails">If something fails</a>.</p>
-<h3 id="6-open-it-in-a-browser">6. Open it in a browser<a class="headerlink" href="#6-open-it-in-a-browser" title="Permanent link">&para;</a></h3>
+<h3 id="7-open-it-in-a-browser">7. Open it in a browser<a class="headerlink" href="#7-open-it-in-a-browser" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -3208,9 +3260,9 @@
 <p>Use the username and password you set in <code>nrm_app/.env</code> (<code>DJANGO_SUPERUSER_USERNAME</code> and <code>DJANGO_SUPERUSER_PASSWORD</code>).</p>
 <h3 id="1-log-in">1. Log in<a class="headerlink" href="#1-log-in" title="Permanent link">&para;</a></h3>
 <p>Replace the username and password, then run:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://127.0.0.1:8000/api/v1/auth/login/<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;username&quot;:&quot;admin&quot;,&quot;password&quot;:&quot;choose-a-password&quot;}&#39;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://127.0.0.1:8000/api/v1/auth/login/<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;username&quot;:&quot;admin&quot;,&quot;password&quot;:&quot;choose-a-password&quot;}&#39;</span>
 </span></code></pre></div>
 <p><code>curl</code> is a command that sends a web request. <code>-X POST</code> sends data. The JSON body is the username and password.</p>
 <p>A successful reply is one JSON object with three fields:</p>
@@ -3219,24 +3271,24 @@
 <li><code>refresh</code> — used later to get a new <code>access</code> token.</li>
 <li><code>user</code> — your account.</li>
 </ul>
-<p>If you see <code>Connection refused</code>, the API is not running. Recheck step 5.</p>
+<p>If you see <code>Connection refused</code>, the API is not running. Recheck <a href="#6-check-that-it-started">step 6</a>.</p>
 <h3 id="2-call-a-computing-api">2. Call a computing API<a class="headerlink" href="#2-call-a-computing-api" title="Permanent link">&para;</a></h3>
 <p>Replace <code>&lt;access-token&gt;</code> with the <code>access</code> value. Do not include the quote marks from the JSON.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://127.0.0.1:8000/api/v1/lulc_for_tehsil/<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;access-token&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="s1">    &quot;state&quot;: &quot;karnataka&quot;,</span>
-</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="s1">    &quot;district&quot;: &quot;raichur&quot;,</span>
-</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="s1">    &quot;block&quot;: &quot;devadurga&quot;,</span>
-</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="s1">    &quot;start_year&quot;: 2022,</span>
-</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="s1">    &quot;end_year&quot;: 2023,</span>
-</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="s1">    &quot;gee_account_id&quot;: 1</span>
-</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="s1">  }&#39;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://127.0.0.1:8000/api/v1/lulc_for_tehsil/<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;access-token&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="s1">    &quot;state&quot;: &quot;karnataka&quot;,</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="s1">    &quot;district&quot;: &quot;raichur&quot;,</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="s1">    &quot;block&quot;: &quot;devadurga&quot;,</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="s1">    &quot;start_year&quot;: 2022,</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="s1">    &quot;end_year&quot;: 2023,</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="s1">    &quot;gee_account_id&quot;: 1</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="s1">  }&#39;</span>
 </span></code></pre></div>
 <p><code>Authorization: Bearer ...</code> is how you show the token.</p>
 <p>With the default settings, the reply is a short message that the job was <code>initiated</code>. The worker runs it in the background. Watch progress with:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>celery-nrm
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>celery-nrm
 </span></code></pre></div>
 <p><code>gee_account_id</code> is the Earth Engine account stored in the database. A first install often has <strong>no</strong> Earth Engine account yet. Local-only jobs can run without it. Jobs that call Google Earth Engine need the optional setup below. If the API says the account was not found, that is expected until you add one.</p>
 <p>More example calls: <a href="../../pipelines/computing-endpoints/">Computing API Endpoints</a>. Login errors: <a href="../../reference/api-errors/">API Errors</a>.</p>
@@ -3271,6 +3323,10 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="../docker/#data-for-local-compute">Local compute data</a></td>
+<td>You compute LULC, hydrology, or runoff on this machine. The files are on Google Drive.</td>
+</tr>
 <tr>
 <td><a href="../integrations/google-earth-engine/">Google Earth Engine</a></td>
 <td>A job must run on Google’s servers, or the API asks for <code>gee_account_id</code> and you have no account.</td>
@@ -3320,7 +3376,11 @@
 </tr>
 <tr>
 <td>Browser cannot open the API</td>
-<td>The stack is still on its first start, or <code>backend</code> is not <code>Up</code>. Run the <code>ps -a</code> command in step 5.</td>
+<td>The stack is still on its first start, or <code>backend</code> is not <code>Up</code>. Run the <code>ps -a</code> command in <a href="#6-check-that-it-started">step 6</a>.</td>
+</tr>
+<tr>
+<td><code>curl</code> to <code>localhost</code> returns <code>503</code></td>
+<td>Your proxy is answering. Run <code>export no_proxy=localhost,127.0.0.1 NO_PROXY=localhost,127.0.0.1</code>.</td>
 </tr>
 <tr>
 <td>Login returns an error about credentials</td>
@@ -3335,16 +3395,36 @@
 <p>Longer tables: <a href="../setup-troubleshooting/">Setup troubleshooting</a> and <a href="../docker/#troubleshooting">Docker troubleshooting</a>.</p>
 <h2 id="commands-you-will-reuse">Commands you will reuse<a class="headerlink" href="#commands-you-will-reuse" title="Permanent link">&para;</a></h2>
 <p>Run these from <code>core-stack-backend</code>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>ps
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>backend
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>stop
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>ps
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>backend
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>stop
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d
 </span></code></pre></div>
 <p><code>stop</code> pauses the stack and keeps your database. <code>up -d</code> starts it again.</p>
+<p>After <code>git pull</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>nrm_app/.env<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build<span class="w"> </span>--force-recreate
+</span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p><code>docker compose --env-file nrm_app/.env down -v</code> deletes the database, GeoServer catalog, and Redis data. Files in the <code>data/</code> folder on your computer stay.</p>
 </div>
+<h2 id="remove-an-earlier-installation">Remove an earlier installation<a class="headerlink" href="#remove-an-earlier-installation" title="Permanent link">&para;</a></h2>
+<p>Do this before a fresh install when this machine already has CoRE Stack containers or images. It deletes the containers, the database, GeoServer and Redis data, the images, and the build cache. <code>data/</code> on your computer is kept.</p>
+<p>From the <code>core-stack-backend</code> folder:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>-p<span class="w"> </span>core-stack<span class="w"> </span>down<span class="w"> </span>--volumes<span class="w"> </span>--remove-orphans
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>docker<span class="w"> </span>rmi<span class="w"> </span>corestack-backend-local:latest<span class="w"> </span>postgres:16-bookworm<span class="w"> </span>redis:7-alpine<span class="w"> </span>kartoza/geoserver:2.24.4<span class="w"> </span>alpine:3.20
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>docker<span class="w"> </span>builder<span class="w"> </span>prune<span class="w"> </span>-af
+</span></code></pre></div>
+<p><code>No such image</code> for one of the images is fine. Check that nothing is left. Each of the first three commands prints only its header, and the last prints nothing:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>docker<span class="w"> </span>ps<span class="w"> </span>-a<span class="w"> </span>--filter<span class="w"> </span><span class="nv">name</span><span class="o">=</span>core-stack
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>docker<span class="w"> </span>volume<span class="w"> </span>ls<span class="w"> </span>--filter<span class="w"> </span><span class="nv">name</span><span class="o">=</span>core-stack
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>docker<span class="w"> </span>network<span class="w"> </span>ls<span class="w"> </span>--filter<span class="w"> </span><span class="nv">name</span><span class="o">=</span>corestack
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>docker<span class="w"> </span>images<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;corestack|postgres|redis|geoserver|alpine&#39;</span>
+</span></code></pre></div>
+<p>To also delete the downloaded and computed data, remove <code>data/</code> in the repository, or under <code>CORESTACK_HOST_DATA_DIR</code> if you set it:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>rm<span class="w"> </span>-rf<span class="w"> </span>data
+</span></code></pre></div>
+<p>Use <code>sudo</code> if an older installation left files owned by root. The next start downloads the admin boundaries again. See <a href="#4-optional-download-the-admin-boundaries-yourself">step 4</a> to use your own copy.</p>
 <h2 id="what-to-read-next">What to read next<a class="headerlink" href="#what-to-read-next" title="Permanent link">&para;</a></h2>
 <ol>
 <li><a href="../backend-code-map/">Backend code map</a> — where the Python lives.</li>
