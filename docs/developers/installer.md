@@ -34,7 +34,7 @@ A normal install starts these pieces for you:
 | **Clone** | Download a copy of the code from GitHub onto your computer. |
 | **Repository** | That copy of the code. The folder is named `core-stack-backend`. |
 | **`.env` file** | A text file of settings and passwords. The backend reads `nrm_app/.env`. Do not commit it or share it. |
-| **Container** | A packaged copy of a program, started by Docker. You do not install PostgreSQL, RabbitMQ, or GeoServer yourself. |
+| **Container** | A packaged copy of a program, started by Docker. You do not install PostgreSQL, Redis, or GeoServer yourself. |
 | **API** | A URL your tools call, instead of clicking a website. Example: `POST /api/v1/auth/login/`. |
 | **Token** | A long password the API gives you after login. You send it on later calls. It is also called a JWT. |
 
@@ -88,6 +88,16 @@ docker ps
 
 `docker ps` with an empty table is success. It means Docker is running and you have no containers yet.
 
+These ports must be free: **8000** (API), **8080** (GeoServer), and **5432** (PostgreSQL). On Linux:
+
+```bash
+ss -ltn | grep -E ':(8000|8080|5432) '
+```
+
+No output means they are free. On macOS, if a later start says a port is already allocated, stop the other program or change `BACKEND_PORT`, `GEOSERVER_PORT`, or `POSTGRES_PORT` in `nrm_app/.env`.
+
+If this machine already has CoRE Stack containers or images from an earlier installation, [remove them](#remove-an-earlier-installation) before you continue.
+
 ### 2. Download the code
 
 ```bash
@@ -134,7 +144,13 @@ Save the file.
 !!! warning
     Change `DB_PASSWORD` and `GEOSERVER_PASSWORD` in the same file before you install on a shared or public server. For a try-out on your own laptop, the template values are enough.
 
-### 4. Start it
+Leave everything else as it is for a first install. A GPU, Earth Engine, and Airflow are optional and come later.
+
+### 4. Optional: download the admin boundaries yourself
+
+The first start downloads the admin-boundary archive (about 600 MB) from Google Drive. To use a browser download instead, which is often faster, download it from [here](https://drive.google.com/file/d/1VqIhB6HrKFDkDnlk1vedcEHhh5fk4f1d/view) and save it as `data/dataset.7z` in the repository. Skip this step to let the first start download it.
+
+### 5. Start it
 
 From the `core-stack-backend` folder:
 
@@ -149,7 +165,7 @@ What this does:
 - `-d` runs it in the background so you get your terminal back.
 - The first run downloads images and an admin-boundary archive (about 600 MB). It often takes **5 to 60 minutes**. If it stops halfway, run the same command again.
 
-### 5. Check that it started
+### 6. Check that it started
 
 ```bash
 docker compose --env-file nrm_app/.env ps -a
@@ -168,7 +184,7 @@ docker compose --env-file nrm_app/.env logs backend
 
 Then see [If something fails](#if-something-fails).
 
-### 6. Open it in a browser
+### 7. Open it in a browser
 
 | What | Address | Login |
 | --- | --- | --- |
@@ -207,7 +223,7 @@ A successful reply is one JSON object with three fields:
 - `refresh` — used later to get a new `access` token.
 - `user` — your account.
 
-If you see `Connection refused`, the API is not running. Recheck step 5.
+If you see `Connection refused`, the API is not running. Recheck [step 6](#6-check-that-it-started).
 
 ### 2. Call a computing API
 
@@ -256,6 +272,7 @@ Import the collection and one environment. Then run, in order: **Auth — Login*
 
 | Skip for now | Add it when |
 | --- | --- |
+| [Local compute data](docker.md#data-for-local-compute) | You compute LULC, hydrology, or runoff on this machine. The files are on Google Drive. |
 | [Google Earth Engine](integrations/google-earth-engine.md) | A job must run on Google’s servers, or the API asks for `gee_account_id` and you have no account. |
 | [Google Cloud Storage](integrations/gcs.md) | You publish rasters that Earth Engine exports to a bucket. |
 | [Airflow](docker.md#part-1-with-airflow-sync) | You want a scheduled graph of many layers, instead of one API call at a time. |
@@ -278,7 +295,8 @@ Details: [Google Earth Engine on Docker](docker.md#gee-and-gcs).
 | `docker: command not found` | Docker is not installed, or the terminal was opened before install. Install Docker, then open a new terminal. |
 | `permission denied` on `docker` | On Linux, add your user to the `docker` group and open a new terminal. On macOS/Windows, start Docker Desktop. |
 | `port is already allocated` | Something else is using port 8000, 8080, or 5432. Stop that program, or change `BACKEND_PORT`, `GEOSERVER_PORT`, or `POSTGRES_PORT` in `nrm_app/.env` and start again. |
-| Browser cannot open the API | The stack is still on its first start, or `backend` is not `Up`. Run the `ps -a` command in step 5. |
+| Browser cannot open the API | The stack is still on its first start, or `backend` is not `Up`. Run the `ps -a` command in [step 6](#6-check-that-it-started). |
+| `curl` to `localhost` returns `503` | Your proxy is answering. Run `export no_proxy=localhost,127.0.0.1 NO_PROXY=localhost,127.0.0.1`. |
 | Login returns an error about credentials | Use the username and password from `nrm_app/.env`. |
 | API says `initiated` and then nothing happens | The worker is not running. Check that `celery-nrm` is `Up`. |
 
@@ -297,8 +315,43 @@ docker compose --env-file nrm_app/.env up -d
 
 `stop` pauses the stack and keeps your database. `up -d` starts it again.
 
+After `git pull`:
+
+```bash
+docker compose --env-file nrm_app/.env up -d --build --force-recreate
+```
+
 !!! warning
     `docker compose --env-file nrm_app/.env down -v` deletes the database, GeoServer catalog, and Redis data. Files in the `data/` folder on your computer stay.
+
+## Remove an earlier installation
+
+Do this before a fresh install when this machine already has CoRE Stack containers or images. It deletes the containers, the database, GeoServer and Redis data, the images, and the build cache. `data/` on your computer is kept.
+
+From the `core-stack-backend` folder:
+
+```bash
+docker compose -p core-stack down --volumes --remove-orphans
+docker rmi corestack-backend-local:latest postgres:16-bookworm redis:7-alpine kartoza/geoserver:2.24.4 alpine:3.20
+docker builder prune -af
+```
+
+`No such image` for one of the images is fine. Check that nothing is left. Each of the first three commands prints only its header, and the last prints nothing:
+
+```bash
+docker ps -a --filter name=core-stack
+docker volume ls --filter name=core-stack
+docker network ls --filter name=corestack
+docker images | grep -E 'corestack|postgres|redis|geoserver|alpine'
+```
+
+To also delete the downloaded and computed data, remove `data/` in the repository, or under `CORESTACK_HOST_DATA_DIR` if you set it:
+
+```bash
+rm -rf data
+```
+
+Use `sudo` if an older installation left files owned by root. The next start downloads the admin boundaries again. See [step 4](#4-optional-download-the-admin-boundaries-yourself) to use your own copy.
 
 ## What to read next
 

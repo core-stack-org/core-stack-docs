@@ -401,7 +401,9 @@ For the GPU jobs you also need an NVIDIA driver and the [NVIDIA Container Toolki
 docker run --rm --gpus all nvidia/cuda:12.9.0-base-ubuntu22.04 nvidia-smi
 ```
 
-On Apple Silicon, Docker emulates linux/amd64. On a network that only reaches the internet through a proxy, read [Behind a proxy](#behind-a-proxy) first.
+On a network that only reaches the internet through a proxy (for example a campus network), read [Behind a proxy](#behind-a-proxy) first.
+
+If this machine already has CoRE Stack containers or images from an earlier installation, [remove them](#remove-an-earlier-installation) first.
 
 ### 2. Get the code
 
@@ -507,21 +509,21 @@ Other settings are listed in [Settings](#settings).
 
 ## Data for local compute { #data-for-local-compute }
 
-Local computation (`"compute": "local"` in a request) reads its inputs from `data/base_layers/`. Download what the APIs you use need and place it as shown.
+Local computation (`"compute": "local"` in a request) reads its inputs from `data/base_layers/`. All of it is in [this Google Drive folder](https://drive.google.com/drive/folders/1MpWl10qo8-x_GsTnD7Z1S0XLHwUQC37b), in the same layout as `data/base_layers/`. Download what you need and place it at the same path.
 
-| Data | Place at `data/base_layers/` | Needed by |
+| Data | Download | Place at `data/base_layers/` |
 | --- | --- | --- |
-| Terrain (569 MB) | `terrain_raster_fabdam_pan_india.tif` | runoff |
-| Soil (6 MB) | `soil/hysogs_india_250m_4326.tif` | runoff |
-| LULC, one file per year (63 GB) | `lulc/lulc_v3_<year>_<year+1>.tif` | runoff, LULC |
-| India boundary (8 MB) | `PanIndia_Boundaries/india_state_outer_no_islands.geojson` | pan-India runoff |
-| Aquifer (102 MB) | `aquifer/aquifer.geojson` | pan-India hydrology |
-| Microwatersheds (5.4 GB) | `static_layers/mws/Microwatershed_v2_with_details.geojson` | MWS layers |
-| SOI tehsils (316 MB) | `admin_boundary/soi_tehsil.geojson` | tehsil watersheds |
-| Tehsil watersheds | `tehsil_watersheds/<state>/<district>/<tehsil>.gpkg` | every tehsil-level request |
-| Runoff (164 GB) | `hydrology/runoff/` | pan-India hydrology |
-| ET (114 GB) | `hydrology/et/` | pan-India hydrology |
-| Pan-India annual hydrology (20 GB) | `hydrology/annual/` | tehsil hydrology |
+| Terrain (569 MB) | [Download](https://drive.google.com/file/d/1PJG5pWOZSU6fp9YvtexBO_2AxdNABjpl/view) | `terrain_raster_fabdam_pan_india.tif` |
+| Soil (6 MB) | [Download](https://drive.google.com/drive/folders/1DSjWNYBubQtcgQ1HdqDWgFI_crtJqK-E) | `soil/hysogs_india_250m_4326.tif` |
+| LULC, one file per year (63 GB) | [Download](https://drive.google.com/file/d/1VO0iyDnLevTFqV-sk_apFUtkC8cuYnYP/view) | `lulc/lulc_v3_<year>_<year+1>.tif` |
+| India boundary (8 MB) | [Download](https://drive.google.com/drive/folders/1DSjWNYBubQtcgQ1HdqDWgFI_crtJqK-E) | `PanIndia_Boundaries/india_state_outer_no_islands.geojson` |
+| Aquifer (102 MB) | [Download](https://drive.google.com/drive/folders/1DSjWNYBubQtcgQ1HdqDWgFI_crtJqK-E) | `aquifer/aquifer.geojson` |
+| Microwatersheds (5.4 GB) | [Download](https://drive.google.com/drive/folders/1MpWl10qo8-x_GsTnD7Z1S0XLHwUQC37b) | `static_layers/mws/Microwatershed_v2_with_details.geojson` |
+| SOI tehsils (316 MB) | [Download](https://drive.google.com/drive/folders/1MpWl10qo8-x_GsTnD7Z1S0XLHwUQC37b) | `admin_boundary/soi_tehsil.geojson` |
+| Tehsil watersheds | [Download](https://drive.google.com/drive/folders/1MpWl10qo8-x_GsTnD7Z1S0XLHwUQC37b) | `tehsil_watersheds/<state>/<district>/<tehsil>.gpkg` |
+| Runoff (164 GB) | [Download](https://drive.google.com/file/d/1kUM0wUcpbx8XdM-ZbZOTQW770EGYAD22/view) | `hydrology/runoff/` |
+| ET (114 GB) | [Download](https://drive.google.com/file/d/1kUM0wUcpbx8XdM-ZbZOTQW770EGYAD22/view) | `hydrology/et/` |
+| Pan-India annual hydrology (20 GB) | [Download](https://drive.google.com/file/d/1kUM0wUcpbx8XdM-ZbZOTQW770EGYAD22/view) | `hydrology/annual/` |
 
 Files can be added while the stack runs; no restart is needed.
 
@@ -759,7 +761,32 @@ docker compose --env-file nrm_app/.env --profile maintenance run --rm geoserver-
 docker compose --env-file nrm_app/.env start geoserver
 ```
 
-Downloaded layers stay in `CORESTACK_HOST_DATA_DIR/data` on the host. Restore procedure and `--fake-initial` rules: [installation/DOCKER.md](https://github.com/core-stack-org/core-stack-backend/blob/main/installation/DOCKER.md#restore). Set `RESET_LOCAL_MIGRATIONS=1` only for a fresh or verified-matching restored database.
+## Remove an earlier installation { #remove-an-earlier-installation }
+
+This deletes the containers, the database, GeoServer and Redis data, the images, and the build cache. `data/` on the host is kept.
+
+```bash
+docker compose -p core-stack down --volumes --remove-orphans
+docker rmi corestack-backend-local:latest postgres:16-bookworm redis:7-alpine kartoza/geoserver:2.24.4 alpine:3.20
+docker builder prune -af
+```
+
+`No such image` for one of the images is fine. Check that nothing is left. Each of the first three commands prints only its header, and the last prints nothing:
+
+```bash
+docker ps -a --filter name=core-stack
+docker volume ls --filter name=core-stack
+docker network ls --filter name=corestack
+docker images | grep -E 'corestack|postgres|redis|geoserver|alpine'
+```
+
+To also delete the downloaded and computed data, remove `data/` in the repository, or under `CORESTACK_HOST_DATA_DIR` if you set it:
+
+```bash
+rm -rf data
+```
+
+Use `sudo` if an older installation left files owned by root. The next start downloads the admin boundaries again. See [step 5](#5-optional-download-the-admin-boundaries-yourself) to use your own copy.
 
 ## Running on a server
 
