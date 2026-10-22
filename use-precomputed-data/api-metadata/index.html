@@ -180,7 +180,9 @@
                             data_dictionary.json...</p>
                         <div id="layer-catalog"></div>
 
-                        <p>Source dictionary: <a href="data_dictionary.json" target="_blank">Download
+                        <p>Source dictionary: <a
+                                href="https://raw.githubusercontent.com/core-stack-org/core-stack-backend/dev/public_api/data_dictionary.json"
+                                target="_blank">Download
                                 data_dictionary.json</a>.</p>
                     </article>
                 </div>
@@ -210,7 +212,7 @@
                 "'": "&#39;"
             })[character]);
 
-            fetch("data_dictionary.json", { cache: "no-store" })
+            fetch("https://raw.githubusercontent.com/core-stack-org/core-stack-backend/dev/public_api/data_dictionary.json", { cache: "no-store" })
                 .then((response) => {
                     if (!response.ok) throw new Error(`Request failed: ${response.status}`);
                     return response.json();
