@@ -226,6 +226,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://docs.core-stack.org/use-precomputed-data/api-metadata/</loc>
+         <lastmod>2026-10-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://docs.core-stack.org/use-precomputed-data/stac-specs/</loc>
          <lastmod>2026-10-06</lastmod>
          <changefreq>daily</changefreq>
