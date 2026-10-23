@@ -171,19 +171,30 @@
                 <div class="md-content" data-md-component="content">
                     <article class="md-content__inner md-typeset">
                         <h1 id="api-metadata">API Metadata</h1>
-                        <p>This page describes the geospatial layers and their attributes returned by the
-                            get_tehsil_data API for a selected state, district, and tehsil. For each layer, it lists the
-                            available fields, such as area, classification, and other layer-specific details, along with
-                            a description of what each field means. This helps you understand what data the API returns.
-                        </p>
-                        <p id="metadata-status" role="status">Loading layer and parameter definitions from
-                            data_dictionary.json...</p>
-                        <div id="layer-catalog"></div>
+                        <p>This page documents the fields returned by CoRE Stack public APIs. Expand an API or layer to
+                            view its variables, data types, units, and descriptions. The definitions are loaded from
+                            JSON
+                            dictionaries maintained in the backend repository.</p>
 
-                        <p>Source dictionary: <a
-                                href="https://raw.githubusercontent.com/core-stack-org/core-stack-backend/main/public_api/data_dictionary.json"
-                                target="_blank">Download
-                                data_dictionary.json</a>.</p>
+                        <h2>Dataset APIs</h2>
+                        <p>These APIs provide precomputed geospatial datasets and tehsil-level data.</p>
+                        <div id="dataset-api-catalog"></div>
+
+                        <h2>Waterbody APIs</h2>
+                        <p>These APIs provide waterbody details and annual indicators.</p>
+                        <div id="waterbody-api-catalog"></div>
+
+                        <p id="metadata-status" role="status" aria-live="polite">Loading API metadata and variable
+                            definitions...</p>
+
+                        <p>Source dictionaries:
+                            <a href="https://raw.githubusercontent.com/core-stack-org/core-stack-backend/main/public_api/get_tehsil_data.json"
+                                target="_blank" rel="noopener">Tehsil data dictionary</a>,
+                            <a href="https://raw.githubusercontent.com/core-stack-org/core-stack-backend/main/public_api/all_public_api.json"
+                                target="_blank" rel="noopener">Dataset API dictionary</a>, and
+                            <a href="https://raw.githubusercontent.com/core-stack-org/core-stack-backend/main/public_api/waterbody_apis.json"
+                                target="_blank" rel="noopener">Waterbody API dictionary</a>.
+                        </p>
                     </article>
                 </div>
             </div>
@@ -202,8 +213,18 @@
     </div>
     <script>
         (() => {
-            const catalog = document.getElementById("layer-catalog");
+            const datasetCatalog = document.getElementById("dataset-api-catalog");
+            const waterbodyCatalog = document.getElementById("waterbody-api-catalog");
             const status = document.getElementById("metadata-status");
+
+            // These URLs point to the JSON files in the backend repository.
+            // If the dictionaries are moved or renamed, update the URLs here and above.
+            const dictionaryUrls = {
+                tehsil: "https://raw.githubusercontent.com/core-stack-org/core-stack-backend/main/public_api/get_tehsil_data.json",
+                apis: "https://raw.githubusercontent.com/core-stack-org/core-stack-backend/main/public_api/all_public_api.json",
+                waterbodies: "https://raw.githubusercontent.com/core-stack-org/core-stack-backend/main/public_api/waterbody_apis.json"
+            };
+
             const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (character) => ({
                 "&": "&amp;",
                 "<": "&lt;",
@@ -212,49 +233,92 @@
                 "'": "&#39;"
             })[character]);
 
-            fetch("https://raw.githubusercontent.com/core-stack-org/core-stack-backend/main/public_api/data_dictionary.json", { cache: "no-store" })
-                .then((response) => {
-                    if (!response.ok) throw new Error(`Request failed: ${response.status}`);
-                    return response.json();
-                })
-                .then((layers) => {
-                    const openLayers = new Set(
-                        [...catalog.querySelectorAll("details[open]")].map((item) => item.id)
-                    );
-                    const sections = Object.entries(layers).map(([name, layer]) => {
-                        const id = `layer-${name.replace(/[^a-zA-Z0-9_-]/g, "-")}`;
-                        const variables = layer.variables ?? {};
-                        const rows = Object.entries(variables).map(([parameter, metadata]) => `
-                            <tr>
-                                <td><code>${escapeHtml(parameter)}</code></td>
-                                <td>${escapeHtml(metadata.type)}</td>
-                                <td>${escapeHtml(metadata.unit)}</td>
-                                <td>${escapeHtml(metadata.description)}</td>
-                            </tr>`).join("");
-                        const table = rows
-                            ? `<div class="md-typeset__scrollwrap"><div class="md-typeset__table">
-                                <table>
-                                    <thead><tr><th>Parameter</th><th>Type</th><th>Unit</th><th>Description</th></tr></thead>
-                                    <tbody>${rows}</tbody>
-                                </table>
-                            </div></div>`
-                            : "<p>No parameters are listed for this layer.</p>";
+            const flattenVariables = (variables, prefix = "") => {
+                const rows = [];
+                Object.entries(variables ?? {}).forEach(([name, metadata]) => {
+                    const path = prefix ? `${prefix}.${name}` : name;
+                    if (metadata && metadata.variables && typeof metadata.variables === "object") {
+                        rows.push(...flattenVariables(metadata.variables, path));
+                    } else {
+                        rows.push({ name: path, ...(metadata ?? {}) });
+                    }
+                });
+                return rows;
+            };
 
-                        return `<details class="note layer-disclosure" id="${escapeHtml(id)}"${openLayers.has(id) ? " open" : ""}>
-                            <summary>${escapeHtml(name)}</summary>
-                            <p>${escapeHtml(layer.description)}</p>
-                            ${table}
-                        </details>`;
-                    }).join("");
+            const renderTable = (variables) => {
+                const rows = flattenVariables(variables).map((item) => `
+                    <tr>
+                        <td><code>${escapeHtml(item.name)}</code></td>
+                        <td>${escapeHtml(item.type)}</td>
+                        <td>${escapeHtml(item.unit)}</td>
+                        <td>${escapeHtml(item.description)}</td>
+                    </tr>`).join("");
 
-                    catalog.innerHTML = sections;
-                    status.remove();
+                return rows
+                    ? `<div class="md-typeset__scrollwrap"><div class="md-typeset__table">
+                        <table>
+                            <thead><tr><th>Variable</th><th>Type</th><th>Unit</th><th>Description</th></tr></thead>
+                            <tbody>${rows}</tbody>
+                        </table>
+                    </div></div>`
+                    : "<p>No variables are listed for this entry.</p>";
+            };
+
+            const renderDisclosure = (id, title, description, content, className = "api-disclosure") => `
+                <details class="note ${className}" id="${escapeHtml(id)}">
+                    <summary>${escapeHtml(title)}</summary>
+                    ${description ? `<p>${escapeHtml(description)}</p>` : ""}
+                    ${content}
+                </details>`;
+
+            const renderApis = (dictionary, prefix = "api") => Object.entries(dictionary ?? {})
+                .map(([key, api]) => renderDisclosure(
+                    `${prefix}-${key.replace(/[^a-zA-Z0-9_-]/g, "-")}`,
+                    api.name || key,
+                    api.description,
+                    renderTable(api.variables)
+                ))
+                .join("");
+
+            const renderTehsilData = (layers) => {
+                const layerSections = Object.entries(layers ?? {}).map(([key, layer]) => {
+                    const label = layer.name || key;
+                    const id = `layer-${key.replace(/[^a-zA-Z0-9_-]/g, "-")}`;
+                    return renderDisclosure(id, label, layer.description, renderTable(layer.variables), "layer-disclosure");
+                }).join("");
+
+                return renderDisclosure(
+                    "tehsil-data-dictionary",
+                    "Tehsil Data Dictionary",
+                    "Layer-wise fields returned by the tehsil data API. Expand a layer to view its variables.",
+                    layerSections || "<p>No layers are listed in this dictionary.</p>"
+                );
+            };
+
+            const fetchJson = async (url, label) => {
+                const response = await fetch(url, { cache: "no-store" });
+                if (!response.ok) throw new Error(`${label} request failed (${response.status}): ${url}`);
+                return response.json();
+            };
+
+            Promise.all([
+                fetchJson(dictionaryUrls.tehsil, "Tehsil dictionary"),
+                fetchJson(dictionaryUrls.apis, "Dataset API dictionary"),
+                fetchJson(dictionaryUrls.waterbodies, "Waterbody API dictionary")
+            ])
+                .then(([tehsilDictionary, apiDictionary, waterbodyDictionary]) => {
+                    datasetCatalog.innerHTML = [
+                        renderTehsilData(tehsilDictionary),
+                        renderApis(apiDictionary, "dataset-api")
+                    ].join("");
+                    waterbodyCatalog.innerHTML = renderApis(waterbodyDictionary, "waterbody-api");
+                    status.textContent = "API metadata loaded successfully.";
+                    status.hidden = true;
                 })
                 .catch((error) => {
-                    status.textContent = location.protocol === "file:"
-                        ? "Chrome blocks loading data_dictionary.json from a file URL. Open this documentation through a local web server to view the tables."
-                        : "Unable to load data_dictionary.json. Check that the JSON file is in the API Metadata folder and the page is served over HTTP or HTTPS.";
-                    console.error("Unable to load API metadata from data_dictionary.json.", error);
+                    status.textContent = "Unable to load API metadata. Check the browser console and confirm that the three JSON files exist in the backend repository's public_api folder and are accessible from raw.githubusercontent.com.";
+                    console.error("Unable to load API metadata dictionaries.", error);
                 });
         })();
     </script>
