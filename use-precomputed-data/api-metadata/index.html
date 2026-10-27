@@ -213,6 +213,9 @@
             </div>
         </footer>
     <script>
+        if (performance.getEntriesByType("navigation")[0]?.type !== "reload") {
+            window.location.reload();
+        }
         (() => {
             const datasetCatalog = document.getElementById("dataset-api-catalog");
             const waterbodyCatalog = document.getElementById("waterbody-api-catalog");
