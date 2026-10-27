@@ -24,6 +24,18 @@
     </style>
     <link rel="stylesheet" href="../../stylesheets/extra.css">
     <script>__md_scope = new URL("../..", location), __md_hash = e => [...e].reduce(((e, _) => (e << 5) - e + _.charCodeAt(0)), 0), __md_get = (e, _ = localStorage, t = __md_scope) => JSON.parse(_.getItem(t.pathname + "." + e)), __md_set = (e, _, t = localStorage, a = __md_scope) => { try { t.setItem(a.pathname + "." + e, JSON.stringify(_)) } catch (e) { } }</script>
+    <script>
+        if (window.location.hash !== "#force-reload") {
+            window.location.hash = "force-reload";
+            window.location.reload();
+        } else {
+            history.replaceState(
+                null,
+                "",
+                window.location.pathname + window.location.search
+            );
+        }
+    </script>
 </head>
 
 <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
@@ -213,9 +225,6 @@
             </div>
         </footer>
     <script>
-        if (performance.getEntriesByType("navigation")[0]?.type !== "reload") {
-            window.location.reload();
-        }
         (() => {
             const datasetCatalog = document.getElementById("dataset-api-catalog");
             const waterbodyCatalog = document.getElementById("waterbody-api-catalog");
