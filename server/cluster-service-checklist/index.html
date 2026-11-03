@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="Acceptance checklist — code/models/data mounts, Airflow vs local, GHCR or Docker Hub, Google SSO, log levels, central Postgres, output retention, front page, and demo video." name="description"/>
+<meta content="Acceptance checklist — mounts, Airflow, registry, Google SSO, logging, Postgres, outputs, front page, shared network, proxy / NO_PROXY, and Nginx path." name="description"/>
 <link href="https://docs.core-stack.org/server/cluster-service-checklist/" rel="canonical"/>
 <link href="../cluster-docker-services/" rel="prev"/>
-<link href="../../infra/tower-services/deployed-architecture/" rel="next"/>
+<link href="../../infra/tower-services/deploy-and-troubleshoot/" rel="next"/>
 <link href="../../assets/logo.png" rel="icon"/>
 <meta content="mkdocs-1.6.0, mkdocs-material-9.7.6" name="generator"/>
 <title>Cluster Service Checklist - CoRE Stack Documentation</title>
@@ -341,6 +341,18 @@
     
   
     Get and Explore Public APIs
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../use-precomputed-data/api-metadata/">
+<span class="md-ellipsis">
+    
+  
+    API Metadata
   
 
     
@@ -988,6 +1000,24 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#12-shared-network-proxy-and-no_proxy">
+<span class="md-ellipsis">
+      
+        12. Shared network, proxy, and NO_PROXY
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#13-nginx-path-health-check-and-deploy-notes">
+<span class="md-ellipsis">
+      
+        13. Nginx path, health check, and deploy notes
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#sign-off">
 <span class="md-ellipsis">
       
@@ -998,6 +1028,18 @@
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../infra/tower-services/deploy-and-troubleshoot/">
+<span class="md-ellipsis">
+    
+  
+    Deploy, update, and troubleshoot
+  
+
+    
+  </span>
+</a>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../infra/tower-services/deployed-architecture/">
@@ -1258,6 +1300,24 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#12-shared-network-proxy-and-no_proxy">
+<span class="md-ellipsis">
+      
+        12. Shared network, proxy, and NO_PROXY
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#13-nginx-path-health-check-and-deploy-notes">
+<span class="md-ellipsis">
+      
+        13. Nginx path, health check, and deploy notes
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#sign-off">
 <span class="md-ellipsis">
       
@@ -1302,7 +1362,7 @@
 <p>Acceptance checklist for every project that ships as a Docker service on the CoRE Stack cluster. Complete this page <strong>before</strong> asking for a cluster deploy.</p>
 <p>If this is your first time, start with <a href="../../infra/tower-services/">Tower Services</a> (what the cluster is and how a job becomes a file). Come back to this list when you are packaging <strong>your</strong> app for deploy.</p>
 <p>Part of <a href="../../infra/tower-services/">Infra → Tower Services</a>. That page has the <strong>job-flow diagram</strong> and <strong>shared terminology</strong>.</p>
-<p>This page is the <strong>acceptance list</strong> only. Procedures live in <a href="../cluster-docker-services/">Cluster Docker Services</a>. Use the same names: <strong><code>code/</code></strong>, <strong><code>models/</code></strong>, <strong><code>data/</code></strong>, <strong><code>AIRFLOW_API_BASE</code></strong>, <strong>GHCR or Docker Hub</strong>, <strong>central Postgres</strong>, <strong><code>outputs.yaml</code></strong>.</p>
+<p>This page is the <strong>acceptance list</strong> only. Packaging procedures: <a href="../cluster-docker-services/">Cluster Docker Services</a>. Deploy / update / tower fixes: <a href="../../infra/tower-services/deploy-and-troubleshoot/">Deploy, update, and troubleshoot</a>. Use the same names: <strong><code>code/</code></strong>, <strong><code>models/</code></strong>, <strong><code>data/</code></strong>, <strong><code>AIRFLOW_API_BASE</code></strong>, <strong>GHCR or Docker Hub</strong>, <strong>central Postgres</strong>, <strong><code>outputs.yaml</code></strong>, <strong><code>corestack-network</code></strong>, <strong><code>NO_PROXY</code></strong>.</p>
 <hr/>
 <h2 id="how-to-use-this-page">How to use this page<a class="headerlink" href="#how-to-use-this-page" title="Permanent link">¶</a></h2>
 <p>Copy the boxes into the service GitHub issue or README. Tick an item only when the <strong>Acceptance</strong> line is true.</p>
@@ -1368,6 +1428,7 @@
 <li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <code>.env.example</code> lists <code>AIRFLOW_API_BASE</code> with a comment: leave empty for local compute.</li>
 <li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Backend reads that variable at runtime; empty means local, no Airflow client calls.</li>
 <li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> When set: same-origin proxy so the browser never talks to Airflow; <code>AIRFLOW_DAG_ID</code> and worker callback URL (<code>CORESTACK_API_BASE</code> or equivalent) are also documented.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> On the IITD tower, Airflow API base is the working internal URL (today: <code>http://corestac-stacd-airflow:8080/act4dws5/airflow</code>) and <code>corestac-stacd-airflow</code> is on <code>NO_PROXY</code> — <a href="../../infra/tower-services/deploy-and-troubleshoot/#airflow">ops §6</a>.</li>
 <li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Local path does not require an Airflow host.</li>
 </ul>
 <p><strong>Acceptance:</strong> The same image runs local jobs on a laptop (URL unset) and Airflow jobs on the cluster (URL set) by changing <code>.env</code> only.</p>
@@ -1384,6 +1445,7 @@
 <hr/>
 <h2 id="4-google-sso-is-implemented">4. Google SSO is implemented<a class="headerlink" href="#4-google-sso-is-implemented" title="Permanent link">¶</a></h2>
 <p>Users sign in with <strong>Google Single Sign-On</strong>. Protected APIs and compute triggers require a valid Google session/token.</p>
+<p>End-to-end how-to (Google Cloud project → consent screen → Web client → env → frontend button → backend verify → laptop vs cluster URLs): <a href="../cluster-docker-services/#12-google-sign-in-setup">runbook §12</a>.</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Google SSO (OAuth / Google Identity) is implemented on the frontend and validated on the backend.</li>
 <li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Client id/secret (and redirect URIs) come from <strong>env</strong>, not source.</li>
@@ -1423,7 +1485,7 @@
 </table>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Logging is enabled in the process that runs in the container (file and/or stdout).</li>
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Compose mounts <code>./data/logs/&lt;application_name&gt;</code> into the container log path.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Compose mounts <code>./data/logs/&lt;application_name&gt;</code> into the container log path.</li>
 <li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Log files land under that directory (not only inside the ephemeral container FS).</li>
 <li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <code>.env.example</code> lists <code>LOG_LEVEL=info</code> with allowed values <code>debug</code> | <code>info</code> | <code>error</code>.</li>
 <li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> No tokens, passwords, or Google client secrets in any level.</li>
@@ -1480,11 +1542,13 @@
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Cluster deploys use Postgres only (no SQLite as the production store).</li>
 <li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <code>.env.example</code> has a connection string, for example:
-  <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nv">DATABASE_URL</span><span class="o">=</span>postgresql://USER:PASSWORD@POSTGRES_HOST:5432/DBNAME
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nv">DATABASE_URL</span><span class="o">=</span>postgresql://USER:PASSWORD@corestackpostgres:5432/DBNAME
 </span></code></pre></div>
   Split vars (<code>PGHOST</code>, <code>PGPORT</code>, <code>PGUSER</code>, <code>PGPASSWORD</code>, <code>PGDATABASE</code>) are fine if the app prefers them — document one style.</li>
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> The host in that string is the <strong>central Postgres</strong> on the server (Docker network DNS or host IP), not <code>postgres</code> from a sidecar Compose file unless that sidecar <strong>is</strong> the shared instance.</li>
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> No database files under the image; schema migrations run against the shared server.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> The host is <strong><code>corestackpostgres</code></strong> (central instance on <code>corestack-network</code>), not a private Compose Postgres/SQLite sidecar.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Passwords with <code>@</code>, <code>#</code>, <code>:</code>, <code>/</code> are <strong>URL-encoded</strong> in the connection string — <a href="../../infra/tower-services/deploy-and-troubleshoot/#7-postgres-corestackpostgres">ops §7</a>.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <code>corestackpostgres</code> is listed in <code>NO_PROXY</code> / <code>no_proxy</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> No database files under the image; schema migrations (<code>alembic upgrade head</code>, etc.) run against the shared server and are documented in the README.</li>
 <li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> README states database name, who owns the role, and how to request access.</li>
 </ul>
 <p>If the service has <strong>no</strong> database, tick N/A in the sign-off table and skip this item.</p>
@@ -1553,6 +1617,28 @@
 <li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> README links the front-page URL and the video.</li>
 </ul>
 <p><strong>Acceptance:</strong> A new visitor opens the service URL, understands the project from the front page and the video, then can follow the same steps in the UI. The demo video has been reviewed and approved.</p>
+<hr/>
+<h2 id="12-shared-network-proxy-and-no_proxy">12. Shared network, proxy, and <code>NO_PROXY</code><a class="headerlink" href="#12-shared-network-proxy-and-no_proxy" title="Permanent link">¶</a></h2>
+<p>On the IITD tower, containers reach the internet only through Squid. Docker hostnames must <strong>not</strong> go through Squid. Full write-up: <a href="../../infra/tower-services/deploy-and-troubleshoot/">Deploy, update, and troubleshoot</a>.</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Compose attaches the service to the external network <strong><code>corestack-network</code></strong>.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <code>.env.example</code> documents <code>HTTP_PROXY</code> / <code>HTTPS_PROXY</code> / <code>http_proxy</code> / <code>https_proxy</code> and <strong>both</strong> <code>NO_PROXY</code> and <code>no_proxy</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> <code>NO_PROXY</code> includes every internal hostname this app calls (at least <code>corestackpostgres</code>, <code>corestac-stacd-airflow</code>, and this app’s own name if others call it). <strong>New peers → update <code>NO_PROXY</code> in every related container</strong>, then recreate.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> README says: after any env change use <code>docker-compose … up -d --force-recreate</code> (restart alone does not reload <code>.env</code>).</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Dockerfile build args use <code>ARG</code> for proxy (not baked-in <code>ENV</code>) when the image is built on campus.</li>
+</ul>
+<p><strong>Acceptance:</strong> From inside the container, <code>curl --noproxy '*' http://corestac-stacd-airflow:8080/…</code> (or your peer) works, and a mistaken proxied call no longer returns <code>Server: squid</code> / <code>ERR_DNS_FAIL</code>.</p>
+<hr/>
+<h2 id="13-nginx-path-health-check-and-deploy-notes">13. Nginx path, health check, and deploy notes<a class="headerlink" href="#13-nginx-path-health-check-and-deploy-notes" title="Permanent link">¶</a></h2>
+<p>Someone must be able to put your app behind the shared Nginx without guessing.</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> README states the requested public path(s), for example <code>/my-app/</code> and <code>/my-app/api/</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> App exposes a health/live endpoint (<code>/health</code>, <code>/livez</code>, or equivalent) that returns 200 without Google Sign-In.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> App listens on <code>0.0.0.0</code> and documents trust for <code>X-Forwarded-*</code> (<code>--proxy-headers</code> / <code>--forwarded-allow-ips</code>, or framework equivalent).</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Frontend asset base path works under the Nginx subpath (no bare <code>/static/...</code> 404s) — <a href="../../infra/tower-services/deploy-and-troubleshoot/#nginx">ops §5</a>.</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Deploy and update steps match <a href="../../infra/tower-services/deploy-and-troubleshoot/#deploy-a-new-service">Deploy a new service</a> and <a href="../../infra/tower-services/deploy-and-troubleshoot/#update-a-service">Update a service</a> (or the README links there).</li>
+</ul>
+<p><strong>Acceptance:</strong> Maintainer can add an Nginx <code>location</code>, open the health URL through the public path, and follow the README to recreate after a new image tag.</p>
 <hr/>
 <h2 id="sign-off">Sign-off<a class="headerlink" href="#sign-off" title="Permanent link">¶</a></h2>
 <table>
@@ -1631,6 +1717,18 @@
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td>12</td>
+<td><code>corestack-network</code> + proxy / <code>NO_PROXY</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>13</td>
+<td>Nginx path, health check, deploy/update notes</td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <p>Service: _______________ Date: _______________ Reviewer: _______________</p>
@@ -1676,5 +1774,6 @@
 <div class="md-progress" data-md-component="progress" role="progressbar"></div>
 <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.indexes", "navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.instant.preview", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
 <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+<script src="../../javascripts/api-metadata.js"></script>
 </body>
 </html>

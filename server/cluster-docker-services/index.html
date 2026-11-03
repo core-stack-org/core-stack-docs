@@ -1,243 +1,125 @@
 
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-        <meta name="description" content="Short how-to for packaging a Tower Services app — mounts, Airflow switch, STACD YAML, STAC output, front page.">
-      
-      
-      
-        <link rel="canonical" href="https://docs.core-stack.org/server/cluster-docker-services/">
-      
-      
-        <link rel="prev" href="../../infra/tower-services/">
-      
-      
-        <link rel="next" href="../cluster-service-checklist/">
-      
-      
-        
-      
-      
-      <link rel="icon" href="../../assets/logo.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.7.6">
-    
-    
-      
-        <title>Cluster Docker Services - CoRE Stack Documentation</title>
-      
-    
-    
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
-      
-        
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
-      
-      
+<!DOCTYPE html>
 
-
-    
-    
-      
-    
-    
-      
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-      
-    
-    
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
-    
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-    
-      
-
-    
-    
-  </head>
-  
-  
-    
-    
-      
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
-  
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#cluster-docker-services" class="md-skip">
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Short how-to for packaging a Tower Services app — mounts, Airflow switch, STACD YAML, STAC output, front page, Google Sign-In." name="description"/>
+<link href="https://docs.core-stack.org/server/cluster-docker-services/" rel="canonical"/>
+<link href="../../infra/tower-services/" rel="prev"/>
+<link href="../cluster-service-checklist/" rel="next"/>
+<link href="../../assets/logo.png" rel="icon"/>
+<meta content="mkdocs-1.6.0, mkdocs-material-9.7.6" name="generator"/>
+<title>Cluster Docker Services - CoRE Stack Documentation</title>
+<link href="../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../stylesheets/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#cluster-docker-services">
           Skip to content
         </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-    
-      
-
-  
-
+</div>
+<div data-md-component="announce">
+</div>
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="CoRE Stack Documentation" class="md-header__button md-logo" aria-label="CoRE Stack Documentation" data-md-component="logo">
-      
-  <img src="../../assets/logo.png" alt="logo">
-
-    </a>
-    <label class="md-header__button md-icon" for="__drawer">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
-    </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="CoRE Stack Documentation" class="md-header__button md-logo" data-md-component="logo" href="../.." title="CoRE Stack Documentation">
+<img alt="logo" src="../../assets/logo.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
             CoRE Stack Documentation
           </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
             
               Cluster Docker Services
             
           </span>
-        </div>
-      </div>
-    </div>
-    
-      
-        <form class="md-header__option" data-md-component="palette">
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
-    
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
-      </label>
-    
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
-    
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
-      </label>
-    
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
-    
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
-      </label>
-    
-  
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"></path></svg>
+</label>
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="amber" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="teal" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="amber" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="teal" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+</label>
 </form>
-      
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
-    
-    
-    
-      
-      
-        <label class="md-header__button md-icon" for="__search">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        </label>
-        <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
-        
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Search">
-        
-          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
-          </a>
-        
-        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-        </button>
-      </nav>
-      
-        <div class="md-search__suggest" data-md-component="search-suggest"></div>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<a aria-label="Share" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="Share">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+</a>
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+<ol class="md-search-result__list" role="presentation"></ol>
 </div>
-      
-    
-    
-      <div class="md-header__source">
-        <a href="https://github.com/core-stack-org/core-stack-backend" title="Go to repository" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
-  </div>
-  <div class="md-source__repository">
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/core-stack-org/core-stack-backend" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+</div>
+<div class="md-source__repository">
     core-stack-org/core-stack-backend
   </div>
 </a>
-      </div>
-    
-  </nav>
-  
-    
-      
-<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
-  <div class="md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+</div>
+</nav>
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
         
   
   
@@ -246,19 +128,9 @@
   Home
 
       </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../concepts/watershed-data-structure/" class="md-tabs__link">
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../concepts/watershed-data-structure/">
           
   
   
@@ -267,20 +139,9 @@
   Understand CoRE Stack Data Structure
 
         </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../use-precomputed-data/" class="md-tabs__link">
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../use-precomputed-data/">
           
   
   
@@ -289,20 +150,9 @@
   Use PreComputed Geospatial Data
 
         </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../developers/" class="md-tabs__link">
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../developers/">
           
   
   
@@ -311,20 +161,9 @@
   Develop CoRE Stack
 
         </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../community/" class="md-tabs__link">
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../community/">
           
   
   
@@ -333,20 +172,9 @@
   Community
 
         </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../reference/" class="md-tabs__link">
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../reference/">
           
   
   
@@ -355,22 +183,9 @@
   References / Learn
 
         </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-    
-  
-  
-    
-    
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../infra/" class="md-tabs__link">
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../../infra/">
           
   
   
@@ -379,20 +194,9 @@
   Infra
 
         </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../blog/" class="md-tabs__link">
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../blog/">
           
   
   
@@ -401,73 +205,38 @@
   Blog
 
         </a>
-      </li>
-    
-  
-
-      
-    </ul>
-  </div>
+</li>
+</ul>
+</div>
 </nav>
-    
-  
 </header>
-    
-    <div class="md-container" data-md-component="container">
-      
-      
-        
-      
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
-            
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-
-  
-
-
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="CoRE Stack Documentation" class="md-nav__button md-logo" aria-label="CoRE Stack Documentation" data-md-component="logo">
-      
-  <img src="../../assets/logo.png" alt="logo">
-
-    </a>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="CoRE Stack Documentation" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="CoRE Stack Documentation">
+<img alt="logo" src="../../assets/logo.png"/>
+</a>
     CoRE Stack Documentation
   </label>
-  
-    <div class="md-nav__source">
-      <a href="https://github.com/core-stack-org/core-stack-backend" title="Go to repository" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
-  </div>
-  <div class="md-source__repository">
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/core-stack-org/core-stack-backend" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+</div>
+<div class="md-source__repository">
     core-stack-org/core-stack-backend
   </div>
 </a>
-    </div>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+<span class="md-ellipsis">
     
   
     Home
@@ -475,50 +244,12 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+<span class="md-ellipsis">
     
   
     Understand CoRE Stack Data Structure
@@ -526,35 +257,21 @@
 
     
   </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2">
-            <span class="md-nav__icon md-icon"></span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
             
   
     Understand CoRE Stack Data Structure
   
 
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../concepts/watershed-data-structure/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../concepts/watershed-data-structure/">
+<span class="md-ellipsis">
     
   
     CoRE Stack Data Structure
@@ -562,27 +279,11 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../concepts/how-pipelines-work-algorithmically/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../concepts/how-pipelines-work-algorithmically/">
+<span class="md-ellipsis">
     
   
     How Our Pipelines Work Algorithmically
@@ -590,65 +291,16 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../use-precomputed-data/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../use-precomputed-data/">
+<span class="md-ellipsis">
     
   
     Use PreComputed Geospatial Data
@@ -656,43 +308,24 @@
 
     
   </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
+</a>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
             
   
     Use PreComputed Geospatial Data
   
 
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../use-precomputed-data/how-current-data-was-computed/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../use-precomputed-data/how-current-data-was-computed/">
+<span class="md-ellipsis">
     
   
     How Current Data Was Computed
@@ -700,27 +333,11 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../use-precomputed-data/public-apis/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../use-precomputed-data/public-apis/">
+<span class="md-ellipsis">
     
   
     Get and Explore Public APIs
@@ -728,27 +345,23 @@
 
     
   </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../use-precomputed-data/api-metadata/">
+<span class="md-ellipsis">
+    
   
+    API Metadata
   
 
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../use-precomputed-data/stac-specs/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../use-precomputed-data/stac-specs/">
+<span class="md-ellipsis">
     
   
     STAC Specs
@@ -756,73 +369,16 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../developers/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../developers/">
+<span class="md-ellipsis">
     
   
     Develop CoRE Stack
@@ -830,67 +386,25 @@
 
     
   </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
+</a>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
             
   
     Develop CoRE Stack
   
 
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_4_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+<span class="md-ellipsis">
     
   
     Installation
@@ -898,35 +412,21 @@
 
     
   </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_2">
-            <span class="md-nav__icon md-icon"></span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_2">
+<span class="md-nav__icon md-icon"></span>
             
   
     Installation
   
 
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../developers/installer/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../developers/installer/">
+<span class="md-ellipsis">
     
   
     Start here
@@ -934,27 +434,11 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../developers/docker/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../developers/docker/">
+<span class="md-ellipsis">
     
   
     Docker reference
@@ -962,35 +446,14 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../developers/backend-code-map/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../developers/backend-code-map/">
+<span class="md-ellipsis">
     
   
     Backend Code Map
@@ -998,27 +461,11 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../pipelines/">
+<span class="md-ellipsis">
     
   
     Develop New Pipelines
@@ -1026,27 +473,11 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pipelines/computing-endpoints/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../pipelines/computing-endpoints/">
+<span class="md-ellipsis">
     
   
     Computing API Endpoints
@@ -1054,27 +485,11 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../developers/setup-troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../developers/setup-troubleshooting/">
+<span class="md-ellipsis">
     
   
     Setup Troubleshooting
@@ -1082,27 +497,11 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../developers/stack-platforms/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../developers/stack-platforms/">
+<span class="md-ellipsis">
     
   
     Explore CoRE Stack
@@ -1110,27 +509,11 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../developers/coding-standards-and-guidelines/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../developers/coding-standards-and-guidelines/">
+<span class="md-ellipsis">
     
   
     Coding Standards and Guidelines
@@ -1138,67 +521,16 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../community/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../community/">
+<span class="md-ellipsis">
     
   
     Community
@@ -1206,43 +538,24 @@
 
     
   </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
+</a>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
             
   
     Community
   
 
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../community/how-core-stack-is-used/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../community/how-core-stack-is-used/">
+<span class="md-ellipsis">
     
   
     How CoRE Stack Is Used
@@ -1250,58 +563,13 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../community/innovation-challenges/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_5_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../community/innovation-challenges/">
+<span class="md-ellipsis">
     
   
     Innovation Challenges
@@ -1309,43 +577,24 @@
 
     
   </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_3">
-            <span class="md-nav__icon md-icon"></span>
+</a>
+<label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_5_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_5_3">
+<span class="md-nav__icon md-icon"></span>
             
   
     Innovation Challenges
   
 
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../community/innovation-challenges/core-stack-innovation-challenge/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../community/innovation-challenges/core-stack-innovation-challenge/">
+<span class="md-ellipsis">
     
   
     CoRE Stack Innovation Challenge
@@ -1353,27 +602,11 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../community/innovation-challenges/tessera-student-innovation-call/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../community/innovation-challenges/tessera-student-innovation-call/">
+<span class="md-ellipsis">
     
   
     TESSERA Student Innovation Call
@@ -1381,27 +614,11 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../community/contributions/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../community/contributions/">
+<span class="md-ellipsis">
     
   
     Contributions
@@ -1409,35 +626,14 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../community/contributing/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../community/contributing/">
+<span class="md-ellipsis">
     
   
     Contributing
@@ -1445,27 +641,11 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../community/code-of-conduct/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../community/code-of-conduct/">
+<span class="md-ellipsis">
     
   
     Code of Conduct
@@ -1473,75 +653,16 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../reference/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../reference/">
+<span class="md-ellipsis">
     
   
     References / Learn
@@ -1549,43 +670,24 @@
 
     
   </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
+</a>
+<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
             
   
     References / Learn
   
 
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../reference/scientific-papers-and-research-repositories/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../reference/scientific-papers-and-research-repositories/">
+<span class="md-ellipsis">
     
   
     Scientific Papers and Research Repositories
@@ -1593,27 +695,11 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../reference/glossary/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../reference/glossary/">
+<span class="md-ellipsis">
     
   
     Glossary
@@ -1621,27 +707,11 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../reference/abbreviations/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../reference/abbreviations/">
+<span class="md-ellipsis">
     
   
     Abbreviations
@@ -1649,27 +719,11 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../reference/standardised-field-constant-variable-names/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../reference/standardised-field-constant-variable-names/">
+<span class="md-ellipsis">
     
   
     Standardised Field / Constant / Variable Names
@@ -1677,27 +731,11 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../reference/geospatial-learning-resources/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../reference/geospatial-learning-resources/">
+<span class="md-ellipsis">
     
   
     Geospatial Learning Resources
@@ -1705,27 +743,11 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../reference/wonderful-github-repos/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../reference/wonderful-github-repos/">
+<span class="md-ellipsis">
     
   
     Wonderful GitHub Repos!
@@ -1733,27 +755,11 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../reference/api-errors/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../reference/api-errors/">
+<span class="md-ellipsis">
     
   
     API Errors
@@ -1761,27 +767,11 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../reference/license/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../reference/license/">
+<span class="md-ellipsis">
     
   
     License
@@ -1789,66 +779,16 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-        
-        
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../infra/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_7" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../infra/">
+<span class="md-ellipsis">
     
   
     Infra
@@ -1856,43 +796,24 @@
 
     
   </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_7">
-            <span class="md-nav__icon md-icon"></span>
+</a>
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
             
   
     Infra
   
 
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../">
+<span class="md-ellipsis">
     
   
     AWS Server
@@ -1900,61 +821,13 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-          
-          
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_3" checked>
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../infra/tower-services/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_7_3" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../infra/tower-services/">
+<span class="md-ellipsis">
     
   
     Tower Services
@@ -1962,52 +835,25 @@
 
     
   </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_7_3" id="__nav_7_3_label" tabindex="">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_7_3">
-            <span class="md-nav__icon md-icon"></span>
+</a>
+<label class="md-nav__link" for="__nav_7_3" id="__nav_7_3_label" tabindex="">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_7_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_7_3">
+<span class="md-nav__icon md-icon"></span>
             
   
     Tower Services
   
 
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
     
   
     Cluster Docker Services
@@ -2015,17 +861,10 @@
 
     
   </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
     
   
     Cluster Docker Services
@@ -2033,159 +872,239 @@
 
     
   </span>
-  
-  
-
-      </a>
-      
-        
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
+</a>
+<nav aria-label="On this page" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
       On this page
     </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-no-hardcoded-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-no-hardcoded-configuration">
+<span class="md-ellipsis">
       
         1. Config from env
       
     </span>
-  </a>
-  
+</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#2-code-models-and-data-live-on-the-host-mount-do-not-copy" class="md-nav__link">
-    <span class="md-ellipsis">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-code-models-and-data-live-on-the-host-mount-do-not-copy">
+<span class="md-ellipsis">
       
         2. Mount code, models, and data
       
     </span>
-  </a>
-  
+</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#3-readme-and-version" class="md-nav__link">
-    <span class="md-ellipsis">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-readme-and-version">
+<span class="md-ellipsis">
       
         3. README and VERSION
       
     </span>
-  </a>
-  
+</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#5-ghcr-or-docker-hub--build-push-and-keep-updated" class="md-nav__link">
-    <span class="md-ellipsis">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-ghcr-or-docker-hub--build-push-and-keep-updated">
+<span class="md-ellipsis">
       
         5. Push a deps-only image
       
     </span>
-  </a>
-  
+</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#7-writing-dags--stacd-yaml-workflow" class="md-nav__link">
-    <span class="md-ellipsis">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#7-writing-dags--stacd-yaml-workflow">
+<span class="md-ellipsis">
       
         7. Describe the job in STACD YAML
       
     </span>
-  </a>
-  
+</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#8-compute-and-processing--always-via-airflow" class="md-nav__link">
-    <span class="md-ellipsis">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#8-compute-and-processing--always-via-airflow">
+<span class="md-ellipsis">
       
         8. Start the job from your app
       
     </span>
-  </a>
-  
+</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#9-always-return-output-in-stac-format" class="md-nav__link">
-    <span class="md-ellipsis">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#9-always-return-output-in-stac-format">
+<span class="md-ellipsis">
       
         9. Return a STAC Item
       
     </span>
-  </a>
-  
+</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#11-front-page-and-demo-video" class="md-nav__link">
-    <span class="md-ellipsis">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11-front-page-and-demo-video">
+<span class="md-ellipsis">
       
         11. Front page and demo video
       
     </span>
-  </a>
-  
+</a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#12-google-sign-in-setup">
+<span class="md-ellipsis">
       
-        <li class="md-nav__item">
-  <a href="#worked-example-custom-lulc" class="md-nav__link">
-    <span class="md-ellipsis">
+        12. Google Sign-In setup
+      
+    </span>
+</a>
+<nav aria-label="12. Google Sign-In setup" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-you-are-building">
+<span class="md-ellipsis">
+      
+        What you are building
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#words-used-below">
+<span class="md-ellipsis">
+      
+        Words used below
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-1-create-a-google-cloud-project">
+<span class="md-ellipsis">
+      
+        Step 1 — Create a Google Cloud project
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-2-configure-the-oauth-consent-screen">
+<span class="md-ellipsis">
+      
+        Step 2 — Configure the OAuth consent screen
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-3-create-an-oauth-web-client">
+<span class="md-ellipsis">
+      
+        Step 3 — Create an OAuth Web client
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-4-put-credentials-in-env-never-in-source">
+<span class="md-ellipsis">
+      
+        Step 4 — Put credentials in env (never in source)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-5-add-sign-in-to-the-frontend">
+<span class="md-ellipsis">
+      
+        Step 5 — Add Sign-In to the frontend
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-6-validate-on-the-backend">
+<span class="md-ellipsis">
+      
+        Step 6 — Validate on the backend
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-7-protect-the-right-routes">
+<span class="md-ellipsis">
+      
+        Step 7 — Protect the right routes
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-8-local-laptop-vs-cluster-urls">
+<span class="md-ellipsis">
+      
+        Step 8 — Local laptop vs cluster URLs
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-9-check-that-it-works">
+<span class="md-ellipsis">
+      
+        Step 9 — Check that it works
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#if-something-fails">
+<span class="md-ellipsis">
+      
+        If something fails
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#done-when">
+<span class="md-ellipsis">
+      
+        Done when
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#worked-example-custom-lulc">
+<span class="md-ellipsis">
       
         Copy-this: Custom LULC
       
     </span>
-  </a>
-  
+</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#cluster-notes-iit-delhi-proxy" class="md-nav__link">
-    <span class="md-ellipsis">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cluster-notes-iit-delhi-proxy">
+<span class="md-ellipsis">
       
         IIT Delhi proxy
       
     </span>
-  </a>
-  
+</a>
 </li>
-      
-    </ul>
-  
+</ul>
 </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../cluster-service-checklist/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../cluster-service-checklist/">
+<span class="md-ellipsis">
     
   
     Cluster Service Checklist
@@ -2193,27 +1112,23 @@
 
     
   </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../infra/tower-services/deploy-and-troubleshoot/">
+<span class="md-ellipsis">
+    
   
+    Deploy, update, and troubleshoot
   
 
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../infra/tower-services/deployed-architecture/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../infra/tower-services/deployed-architecture/">
+<span class="md-ellipsis">
     
   
     Deployed Architecture
@@ -2221,71 +1136,19 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../blog/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../blog/">
+<span class="md-ellipsis">
     
   
     Blog
@@ -2293,65 +1156,25 @@
 
     
   </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8">
-            <span class="md-nav__icon md-icon"></span>
+</a>
+<label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="false" aria-labelledby="__nav_8_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_8">
+<span class="md-nav__icon md-icon"></span>
             
   
     Blog
   
 
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+<span class="md-ellipsis">
     
   
     Archive
@@ -2359,37 +1182,21 @@
 
     
   </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8_2">
-            <span class="md-nav__icon md-icon"></span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_8_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_8_2">
+<span class="md-nav__icon md-icon"></span>
             
   
     Archive
   
 
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-    
-  
-  
-    <li class="md-nav__item">
-      <a href="../../blog/archive/2026/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../blog/archive/2026/">
+<span class="md-ellipsis">
     
   
     2026
@@ -2397,59 +1204,15 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_8_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+<span class="md-ellipsis">
     
   
     Categories
@@ -2457,37 +1220,21 @@
 
     
   </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8_3">
-            <span class="md-nav__icon md-icon"></span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_8_3_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_8_3">
+<span class="md-nav__icon md-icon"></span>
             
   
     Categories
   
 
           </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-    
-  
-  
-    <li class="md-nav__item">
-      <a href="../../blog/category/community/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../blog/category/community/">
+<span class="md-ellipsis">
     
   
     community
@@ -2495,29 +1242,11 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-    
-  
-  
-    <li class="md-nav__item">
-      <a href="../../blog/category/research/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../blog/category/research/">
+<span class="md-ellipsis">
     
   
     research
@@ -2525,262 +1254,288 @@
 
     
   </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-  </ul>
+</a>
+</li>
+</ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-  
-
-<nav class="md-nav md-nav--secondary" aria-label="On this page">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="On this page" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
       On this page
     </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-no-hardcoded-configuration" class="md-nav__link">
-    <span class="md-ellipsis">
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-no-hardcoded-configuration">
+<span class="md-ellipsis">
       
         1. Config from env
       
     </span>
-  </a>
-  
+</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#2-code-models-and-data-live-on-the-host-mount-do-not-copy" class="md-nav__link">
-    <span class="md-ellipsis">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-code-models-and-data-live-on-the-host-mount-do-not-copy">
+<span class="md-ellipsis">
       
         2. Mount code, models, and data
       
     </span>
-  </a>
-  
+</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#3-readme-and-version" class="md-nav__link">
-    <span class="md-ellipsis">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-readme-and-version">
+<span class="md-ellipsis">
       
         3. README and VERSION
       
     </span>
-  </a>
-  
+</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#5-ghcr-or-docker-hub--build-push-and-keep-updated" class="md-nav__link">
-    <span class="md-ellipsis">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-ghcr-or-docker-hub--build-push-and-keep-updated">
+<span class="md-ellipsis">
       
         5. Push a deps-only image
       
     </span>
-  </a>
-  
+</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#7-writing-dags--stacd-yaml-workflow" class="md-nav__link">
-    <span class="md-ellipsis">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#7-writing-dags--stacd-yaml-workflow">
+<span class="md-ellipsis">
       
         7. Describe the job in STACD YAML
       
     </span>
-  </a>
-  
+</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#8-compute-and-processing--always-via-airflow" class="md-nav__link">
-    <span class="md-ellipsis">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#8-compute-and-processing--always-via-airflow">
+<span class="md-ellipsis">
       
         8. Start the job from your app
       
     </span>
-  </a>
-  
+</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#9-always-return-output-in-stac-format" class="md-nav__link">
-    <span class="md-ellipsis">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#9-always-return-output-in-stac-format">
+<span class="md-ellipsis">
       
         9. Return a STAC Item
       
     </span>
-  </a>
-  
+</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#11-front-page-and-demo-video" class="md-nav__link">
-    <span class="md-ellipsis">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11-front-page-and-demo-video">
+<span class="md-ellipsis">
       
         11. Front page and demo video
       
     </span>
-  </a>
-  
+</a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#12-google-sign-in-setup">
+<span class="md-ellipsis">
       
-        <li class="md-nav__item">
-  <a href="#worked-example-custom-lulc" class="md-nav__link">
-    <span class="md-ellipsis">
+        12. Google Sign-In setup
+      
+    </span>
+</a>
+<nav aria-label="12. Google Sign-In setup" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-you-are-building">
+<span class="md-ellipsis">
+      
+        What you are building
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#words-used-below">
+<span class="md-ellipsis">
+      
+        Words used below
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-1-create-a-google-cloud-project">
+<span class="md-ellipsis">
+      
+        Step 1 — Create a Google Cloud project
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-2-configure-the-oauth-consent-screen">
+<span class="md-ellipsis">
+      
+        Step 2 — Configure the OAuth consent screen
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-3-create-an-oauth-web-client">
+<span class="md-ellipsis">
+      
+        Step 3 — Create an OAuth Web client
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-4-put-credentials-in-env-never-in-source">
+<span class="md-ellipsis">
+      
+        Step 4 — Put credentials in env (never in source)
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-5-add-sign-in-to-the-frontend">
+<span class="md-ellipsis">
+      
+        Step 5 — Add Sign-In to the frontend
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-6-validate-on-the-backend">
+<span class="md-ellipsis">
+      
+        Step 6 — Validate on the backend
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-7-protect-the-right-routes">
+<span class="md-ellipsis">
+      
+        Step 7 — Protect the right routes
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-8-local-laptop-vs-cluster-urls">
+<span class="md-ellipsis">
+      
+        Step 8 — Local laptop vs cluster URLs
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#step-9-check-that-it-works">
+<span class="md-ellipsis">
+      
+        Step 9 — Check that it works
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#if-something-fails">
+<span class="md-ellipsis">
+      
+        If something fails
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#done-when">
+<span class="md-ellipsis">
+      
+        Done when
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#worked-example-custom-lulc">
+<span class="md-ellipsis">
       
         Copy-this: Custom LULC
       
     </span>
-  </a>
-  
+</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#cluster-notes-iit-delhi-proxy" class="md-nav__link">
-    <span class="md-ellipsis">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cluster-notes-iit-delhi-proxy">
+<span class="md-ellipsis">
       
         IIT Delhi proxy
       
     </span>
-  </a>
-  
+</a>
 </li>
-      
-    </ul>
-  
+</ul>
 </nav>
-                  </div>
-                </div>
-              </div>
-            
-          
-          
-            <div class="md-content" data-md-component="content">
-              
-                
-
-
-
-  
-
-
-  <nav class="md-path" aria-label="Navigation" >
-    <ol class="md-path__list">
-      
-        
-  
-  
-    <li class="md-path__item">
-      <a href="../.." class="md-path__link">
-        
-  <span class="md-ellipsis">
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<nav aria-label="Navigation" class="md-path">
+<ol class="md-path__list">
+<li class="md-path__item">
+<a class="md-path__link" href="../..">
+<span class="md-ellipsis">
     Home
   </span>
-
-      </a>
-    </li>
-  
-
-      
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="../../infra/" class="md-path__link">
-          
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-path__item">
+<a class="md-path__link" href="../../infra/">
+<span class="md-ellipsis">
     Infra
   </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-    
-    
-      <li class="md-path__item">
-        <a href="../../infra/tower-services/" class="md-path__link">
-          
-  <span class="md-ellipsis">
+</a>
+</li>
+<li class="md-path__item">
+<a class="md-path__link" href="../../infra/tower-services/">
+<span class="md-ellipsis">
     Tower Services
   </span>
-
-        </a>
-      </li>
-    
-  
-
-      
-    </ol>
-  </nav>
-
-              
-              <article class="md-content__inner md-typeset">
-                
-                  
-
-
-  
-  
-
-
-<h1 id="cluster-docker-services">Cluster Docker Services<a class="headerlink" href="#cluster-docker-services" title="Permanent link">&para;</a></h1>
+</a>
+</li>
+</ol>
+</nav>
+<article class="md-content__inner md-typeset">
+<h1 id="cluster-docker-services">Cluster Docker Services<a class="headerlink" href="#cluster-docker-services" title="Permanent link">¶</a></h1>
 <p>Short <strong>how-to</strong> for putting <strong>your</strong> app on the Tower Services cluster. Anyone who wants to share a service can follow this — the live Drone / CEM / DIY LULC apps are examples, not the whole cluster. Start with <a href="../../infra/tower-services/">Tower Services</a> if you do not know the setup or <a href="../../infra/tower-services/#why-airflow">why Airflow is here</a>. Tick boxes on the <a href="../cluster-service-checklist/">Cluster Service Checklist</a> — this page does not repeat that list.</p>
-<p><strong>In one pass:</strong> env in <code>.env</code> (never in the image) → three host mounts → deps-only image on GHCR or Docker Hub → Airflow if <code>AIRFLOW_API_BASE</code> is set → return a STAC Item → front page + one demo video.</p>
-<h2 id="1-no-hardcoded-configuration">1. Config from env<a class="headerlink" href="#1-no-hardcoded-configuration" title="Permanent link">&para;</a></h2>
+<p><strong>In one pass:</strong> env in <code>.env</code> (never in the image) → three host mounts → deps-only image on GHCR or Docker Hub → Airflow if <code>AIRFLOW_API_BASE</code> is set → return a STAC Item → front page + one demo video → <a href="#12-google-sign-in-setup">Google Sign-In</a>.</p>
+<h2 id="1-no-hardcoded-configuration">1. Config from env<a class="headerlink" href="#1-no-hardcoded-configuration" title="Permanent link">¶</a></h2>
 <p>Hostnames, passwords, Airflow URLs, and paths come from the environment. Ship <code>.env.example</code> with a comment on every variable. Do not commit a real <code>.env</code> or put secrets in the <code>Dockerfile</code>.</p>
 <p>Empty <strong><code>AIRFLOW_API_BASE</code></strong> turns Airflow <strong>off</strong> (job runs in this container). Do not add <code>COMPUTE_MODE</code> or <code>AIRFLOW_BASE_API_URL</code>.</p>
 <p>Credential <strong>files</strong> (GEE JSON) need both an env var <strong>and</strong> a path that exists in the container (usually because <code>code/</code> is mounted). Add a one-command auth check in the repo.</p>
-<h2 id="2-code-models-and-data-live-on-the-host-mount-do-not-copy">2. Mount code, models, and data<a class="headerlink" href="#2-code-models-and-data-live-on-the-host-mount-do-not-copy" title="Permanent link">&para;</a></h2>
+<h2 id="2-code-models-and-data-live-on-the-host-mount-do-not-copy">2. Mount code, models, and data<a class="headerlink" href="#2-code-models-and-data-live-on-the-host-mount-do-not-copy" title="Permanent link">¶</a></h2>
 <p>The image is <strong>deps-only</strong> (OS/Python packages + start command). The host keeps three folders:</p>
 <table>
 <thead>
@@ -2809,23 +1564,23 @@
 </tbody>
 </table>
 <p>Rebuild the image only when requirements change. A laptop can mount <code>.</code> at <code>/app</code>; <strong>cluster deploy</strong> uses the three mounts.</p>
-<h2 id="3-readme-and-version">3. README and VERSION<a class="headerlink" href="#3-readme-and-version" title="Permanent link">&para;</a></h2>
+<h2 id="3-readme-and-version">3. README and VERSION<a class="headerlink" href="#3-readme-and-version" title="Permanent link">¶</a></h2>
 <p>The repo README must be enough to install: purpose, Docker, clone layout, <code>.env</code>, <code>docker pull</code> with a <strong>pinned tag</strong>, run command, health check, upgrade, proxy notes.</p>
 <p>Keep a root <strong><code>VERSION</code></strong> (or changelog). Tag images with the same number (<code>:1.2.0</code>), not only <code>:latest</code>.</p>
-<h2 id="5-ghcr-or-docker-hub--build-push-and-keep-updated">5. Push a deps-only image<a class="headerlink" href="#5-ghcr-or-docker-hub--build-push-and-keep-updated" title="Permanent link">&para;</a></h2>
+<h2 id="5-ghcr-or-docker-hub--build-push-and-keep-updated">5. Push a deps-only image<a class="headerlink" href="#5-ghcr-or-docker-hub--build-push-and-keep-updated" title="Permanent link">¶</a></h2>
 <p>Push to <strong>GHCR</strong> or <strong>Docker Hub</strong>. The Dockerfile copies <strong>requirements only</strong>, not application source:</p>
-<div class="language-dockerfile highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">COPY</span><span class="w"> </span>deploy/requirements-docker.txt<span class="w"> </span>/tmp/requirements.txt
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>/tmp/requirements.txt
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">EXPOSE</span><span class="w"> </span><span class="s">8000</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;uvicorn&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;backend:app&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--app-dir&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;src&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--host&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--port&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;8000&quot;</span><span class="p">]</span>
+<div class="language-dockerfile highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">FROM</span><span class="w"> </span><span class="s">python:3.11-slim</span>
+</span><span id="__span-0-2"><a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+</span><span id="__span-0-3"><a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="k">COPY</span><span class="w"> </span>deploy/requirements-docker.txt<span class="w"> </span>/tmp/requirements.txt
+</span><span id="__span-0-4"><a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>/tmp/requirements.txt
+</span><span id="__span-0-5"><a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="k">EXPOSE</span><span class="w"> </span><span class="s">8000</span>
+</span><span id="__span-0-6"><a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"uvicorn"</span><span class="p">,</span><span class="w"> </span><span class="s2">"backend:app"</span><span class="p">,</span><span class="w"> </span><span class="s2">"--app-dir"</span><span class="p">,</span><span class="w"> </span><span class="s2">"src"</span><span class="p">,</span><span class="w"> </span><span class="s2">"--host"</span><span class="p">,</span><span class="w"> </span><span class="s2">"0.0.0.0"</span><span class="p">,</span><span class="w"> </span><span class="s2">"--port"</span><span class="p">,</span><span class="w"> </span><span class="s2">"8000"</span><span class="p">]</span>
 </span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>&lt;registry&gt;/&lt;name&gt;:1.0.0<span class="w"> </span>.
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker<span class="w"> </span>push<span class="w"> </span>&lt;registry&gt;/&lt;name&gt;:1.0.0
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>&lt;registry&gt;/&lt;name&gt;:1.0.0<span class="w"> </span>.
+</span><span id="__span-1-2"><a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>docker<span class="w"> </span>push<span class="w"> </span>&lt;registry&gt;/&lt;name&gt;:1.0.0
 </span></code></pre></div>
 <p>Also: <code>/health</code>, <code>LOG_LEVEL</code> (<code>debug</code> | <code>info</code> | <code>error</code>), <code>--restart unless-stopped</code>, listen on <code>0.0.0.0</code>, document CPU/RAM/GPU. Avoid host ports that clash with GeoServer (8080) and the backend (8000).</p>
-<h2 id="7-writing-dags--stacd-yaml-workflow">7. Describe the job in STACD YAML<a class="headerlink" href="#7-writing-dags--stacd-yaml-workflow" title="Permanent link">&para;</a></h2>
+<h2 id="7-writing-dags--stacd-yaml-workflow">7. Describe the job in STACD YAML<a class="headerlink" href="#7-writing-dags--stacd-yaml-workflow" title="Permanent link">¶</a></h2>
 <p>Do not hand-write Airflow Python. Upload <strong>three</strong> YAMLs in Airflow: <strong>STACD → Initialize Workflow</strong>. Full YAML guide: <a href="https://github.com/SaharshLaud/STACD_framework/blob/dev/README.md#11-writing-your-own-yaml-workflow">STACD §11</a>.</p>
 <table>
 <thead>
@@ -2850,7 +1605,7 @@
 </tbody>
 </table>
 <p><code>url:</code> / the worker must reach <strong>this</strong> app from Airflow (<code>CORESTACK_API_BASE</code> — not <code>localhost</code> unless they share a network). Pin the Docker <code>image</code> tag. Docker-mode tasks print a STAC Item between <code>===RESULT_JSON_START===</code> / <code>===RESULT_JSON_END===</code>. Record the new <strong><code>dag_id</code></strong> as <code>AIRFLOW_DAG_ID</code>. Update later with STACD plugin pages, not by editing generated <code>.py</code>.</p>
-<h2 id="8-compute-and-processing--always-via-airflow">8. Start the job from your app<a class="headerlink" href="#8-compute-and-processing--always-via-airflow" title="Permanent link">&para;</a></h2>
+<h2 id="8-compute-and-processing--always-via-airflow">8. Start the job from your app<a class="headerlink" href="#8-compute-and-processing--always-via-airflow" title="Permanent link">¶</a></h2>
 <table>
 <thead>
 <tr>
@@ -2870,24 +1625,365 @@
 </tbody>
 </table>
 <p>Why the cluster prefers “set”: <a href="../../infra/tower-services/#why-airflow">Tower Services — Why we use Airflow</a>.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># start</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>curl<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$AIRFLOW_USERNAME</span><span class="s2">:</span><span class="nv">$AIRFLOW_PASSWORD</span><span class="s2">&quot;</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$AIRFLOW_API_BASE</span><span class="s2">/dags/</span><span class="nv">$AIRFLOW_DAG_ID</span><span class="s2">/dagRuns&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;conf&quot;: {&quot;param1&quot;: &quot;value1&quot;}}&#39;</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># poll until success or failed</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>curl<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$AIRFLOW_USERNAME</span><span class="s2">:</span><span class="nv">$AIRFLOW_PASSWORD</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="s2">&quot;</span><span class="nv">$AIRFLOW_API_BASE</span><span class="s2">/dags/</span><span class="nv">$AIRFLOW_DAG_ID</span><span class="s2">/dagRuns/</span><span class="nv">$DAG_RUN_ID</span><span class="s2">&quot;</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1"># start</span>
+</span><span id="__span-2-2"><a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>curl<span class="w"> </span>-u<span class="w"> </span><span class="s2">"</span><span class="nv">$AIRFLOW_USERNAME</span><span class="s2">:</span><span class="nv">$AIRFLOW_PASSWORD</span><span class="s2">"</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-3"><a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">  </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">"</span><span class="nv">$AIRFLOW_API_BASE</span><span class="s2">/dags/</span><span class="nv">$AIRFLOW_DAG_ID</span><span class="s2">/dagRuns"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-4"><a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{"conf": {"param1": "value1"}}'</span>
+</span><span id="__span-2-5"><a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="c1"># poll until success or failed</span>
+</span><span id="__span-2-6"><a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a>curl<span class="w"> </span>-u<span class="w"> </span><span class="s2">"</span><span class="nv">$AIRFLOW_USERNAME</span><span class="s2">:</span><span class="nv">$AIRFLOW_PASSWORD</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-7"><a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">  </span><span class="s2">"</span><span class="nv">$AIRFLOW_API_BASE</span><span class="s2">/dags/</span><span class="nv">$AIRFLOW_DAG_ID</span><span class="s2">/dagRuns/</span><span class="nv">$DAG_RUN_ID</span><span class="s2">"</span>
 </span></code></pre></div>
 <p>Env to document: <code>AIRFLOW_API_BASE</code>, <code>AIRFLOW_DAG_ID</code>, <code>AIRFLOW_USERNAME</code> / <code>AIRFLOW_PASSWORD</code> (or <code>AIRFLOW_TOKEN</code>), <code>CORESTACK_API_BASE</code>.</p>
 <p>UI → <strong>your</strong> <code>/api/dag/run</code> and <code>/api/dag/status</code>. Never call Airflow from JavaScript (no CORS; credentials stay off the page). Enable Airflow Basic Auth if REST returns 401. Unpause the DAG before the first trigger.</p>
 <p>Details: <a href="https://github.com/SaharshLaud/STACD_framework/blob/dev/README.md#9-triggering-and-monitoring-airflow-dags-via-the-rest-api">STACD §9</a>.</p>
-<h2 id="9-always-return-output-in-stac-format">9. Return a STAC Item<a class="headerlink" href="#9-always-return-output-in-stac-format" title="Permanent link">&para;</a></h2>
+<h2 id="9-always-return-output-in-stac-format">9. Return a STAC Item<a class="headerlink" href="#9-always-return-output-in-stac-format" title="Permanent link">¶</a></h2>
 <p>The deliverable is a <strong>STAC 1.x Feature</strong>, not a bare file path or GeoServer layer name. Shape and field names: <a href="../../use-precomputed-data/stac-specs/">STAC Specs</a> and <a href="https://stac.core-stack.org/">stac.core-stack.org</a>.</p>
 <p>Must have: <code>type</code> (<code>Feature</code>), <code>stac_version</code>, <code>id</code>, <code>geometry</code>, <code>bbox</code>, <code>collection</code>, <code>properties</code> (<code>title</code>, <code>description</code>, <code>datetime</code>, <code>start_datetime</code>, <code>end_datetime</code>, <code>keywords</code>), <code>links</code> (<code>root</code>, <code>collection</code>, <code>parent</code>), <code>assets.data</code> with a fetchable <code>href</code>. Vectors also need the <a href="https://stac-extensions.github.io/table/v1.2.0/schema.json">table extension</a> and <code>table:columns</code> for <strong>every</strong> attribute. Add <code>style</code> and <code>thumbnail</code> assets when you can.</p>
 <p>API-mode services may wrap the Item as <code>{ "status", "asset_id", "stac_items": [ … ] }</code> if STACD expects that envelope.</p>
-<h2 id="11-front-page-and-demo-video">11. Front page and demo video<a class="headerlink" href="#11-front-page-and-demo-video" title="Permanent link">&para;</a></h2>
+<h2 id="11-front-page-and-demo-video">11. Front page and demo video<a class="headerlink" href="#11-front-page-and-demo-video" title="Permanent link">¶</a></h2>
 <p>The service URL (for example <code>/drone</code>) opens a <strong>landing page</strong> like <a href="https://www.cse.iitd.ernet.in/act4dws5/drone/">Drone</a>: what the project is, then login, then the working UI. On that same page: <strong>one</strong> short video that is both a project intro and a create → run → FileBrowser tutorial. The video is <strong>reviewed and approved</strong>. Same acceptance as <a href="../cluster-service-checklist/#11-front-page-and-demo-video">checklist §11</a>.</p>
-<h2 id="worked-example-custom-lulc">Copy-this: Custom LULC<a class="headerlink" href="#worked-example-custom-lulc" title="Permanent link">&para;</a></h2>
+<h2 id="12-google-sign-in-setup">12. Google Sign-In setup<a class="headerlink" href="#12-google-sign-in-setup" title="Permanent link">¶</a></h2>
+<p>Tower Services apps use <strong>Google Sign-In</strong> so people open your page, click <strong>Sign in with Google</strong>, and only then can start a job or change data. This is the same rule as <a href="../cluster-service-checklist/#4-google-sso-is-implemented">checklist §4</a>.</p>
+<p>You do <strong>not</strong> need a paid Google Cloud account. A normal Gmail (or Google Workspace) account is enough. You do <strong>not</strong> need billing for Sign-In alone — do not start a free trial unless you also need other Cloud products.</p>
+<p>This section is for a student, researcher, or individual putting a <strong>new</strong> service on the cluster. Work through it once on your laptop, then add the cluster URL before you ask for a deploy.</p>
+<h3 id="what-you-are-building">What you are building<a class="headerlink" href="#what-you-are-building" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>Who does it</th>
+<th>Plain meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Google Cloud project</strong></td>
+<td>You, in a browser</td>
+<td>A folder in Google that owns your Sign-In credentials</td>
+</tr>
+<tr>
+<td><strong>OAuth consent screen</strong></td>
+<td>You</td>
+<td>The page Google shows: “App X wants your email”</td>
+</tr>
+<tr>
+<td><strong>Web client ID</strong></td>
+<td>You</td>
+<td>A public string your frontend uses to open the Google button</td>
+</tr>
+<tr>
+<td><strong>Client secret</strong></td>
+<td>You (server only)</td>
+<td>A private string. Put it in <code>.env</code>, never in git or browser JavaScript</td>
+</tr>
+<tr>
+<td><strong>Sign-In button</strong></td>
+<td>Your frontend</td>
+<td>Calls Google, gets an <strong>ID token</strong> (a short-lived signed string)</td>
+</tr>
+<tr>
+<td><strong>Token check</strong></td>
+<td>Your backend</td>
+<td>Verifies the token with Google before run / upload / delete APIs</td>
+</tr>
+</tbody>
+</table>
+<p>Google Earth Engine service-account JSON is a <strong>different</strong> credential. Do not mix it with Sign-In. GEE keys stay under mounts / env as in <a href="#1-no-hardcoded-configuration">§1</a>.</p>
+<pre class="mermaid"><code>sequenceDiagram
+  participant You as Person in the browser
+  participant UI as Your app UI
+  participant Google as Google Sign-In
+  participant API as Your app backend
+  You-&gt;&gt;UI: open landing page, click Sign in with Google
+  UI-&gt;&gt;Google: open Google account picker
+  Google--&gt;&gt;UI: ID token
+  UI-&gt;&gt;API: call a protected API with the token
+  API-&gt;&gt;Google: verify the token
+  Google--&gt;&gt;API: email and subject are valid
+  API--&gt;&gt;UI: allow the request (start job, save data, …)</code></pre>
+<h3 id="words-used-below">Words used below<a class="headerlink" href="#words-used-below" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Client ID</strong></td>
+<td>Looks like <code>1234567890-abc….apps.googleusercontent.com</code>. Safe to put in the frontend env.</td>
+</tr>
+<tr>
+<td><strong>Client secret</strong></td>
+<td>Only for server-side token exchange. Many Sign in with Google button flows need the <strong>Client ID</strong> on the server to verify tokens, and keep the secret out of the browser either way.</td>
+</tr>
+<tr>
+<td><strong>Authorized JavaScript origins</strong></td>
+<td>The website origins allowed to start Sign-In. Scheme + host (+ port). No path. Example: <code>http://localhost:8000</code>.</td>
+</tr>
+<tr>
+<td><strong>Authorized redirect URIs</strong></td>
+<td>Full callback URLs if your app uses a redirect after login. Scheme + host + path. Must match exactly.</td>
+</tr>
+<tr>
+<td><strong>ID token</strong></td>
+<td>JWT Google returns after a successful sign-in. Your backend verifies it; do not treat “I saw a token in the browser” as enough.</td>
+</tr>
+<tr>
+<td><strong>External</strong> user type</td>
+<td>Anyone with a Google account can try to sign in. Fine for campus demos and open research tools while you are testing.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="step-1-create-a-google-cloud-project">Step 1 — Create a Google Cloud project<a class="headerlink" href="#step-1-create-a-google-cloud-project" title="Permanent link">¶</a></h3>
+<ol>
+<li>Open <a href="https://console.cloud.google.com/">Google Cloud Console</a> and sign in with the Google account that will <strong>own</strong> the app credentials (your personal Gmail is fine for a student project).</li>
+<li>Open the project picker (top bar) → <strong>New project</strong>.</li>
+<li>Name it after your service, for example <code>tower-drone-trees</code> or <code>diy-lulc-signin</code>. Create it and select it.</li>
+</ol>
+<p>You do not need to link a billing account for Sign-In.</p>
+<h3 id="step-2-configure-the-oauth-consent-screen">Step 2 — Configure the OAuth consent screen<a class="headerlink" href="#step-2-configure-the-oauth-consent-screen" title="Permanent link">¶</a></h3>
+<ol>
+<li>Go to <strong>APIs &amp; Services</strong> → <strong>OAuth consent screen</strong> (or <a href="https://console.cloud.google.com/auth/overview">Google Auth Platform</a> if the console has moved the menu).</li>
+<li>Choose <strong>External</strong> (unless you only serve people inside a Google Workspace you administer).</li>
+<li>Fill the required fields:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>What to put</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App name</td>
+<td>The name people will see, for example <code>DIY LULC</code></td>
+</tr>
+<tr>
+<td>User support email</td>
+<td>Your email</td>
+</tr>
+<tr>
+<td>Developer contact email</td>
+<td>Your email</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Scopes: for Tower Services login you usually only need basic profile / email (the defaults for Sign in with Google). Do not request Drive, Gmail, or Cloud scopes unless the app truly needs them.</li>
+<li><strong>Test users</strong> (while the app is in <strong>Testing</strong>): add every Google account that must sign in during development — yourself, your advisor, teammates. Until you publish the app, only listed test users can complete Sign-In.</li>
+<li>Save. You can leave the app in <strong>Testing</strong> for local work and early demos. Publishing for production is a later Google review step; ask a cluster maintainer when your service is accepted.</li>
+</ol>
+<h3 id="step-3-create-an-oauth-web-client">Step 3 — Create an OAuth Web client<a class="headerlink" href="#step-3-create-an-oauth-web-client" title="Permanent link">¶</a></h3>
+<ol>
+<li>Go to <strong>APIs &amp; Services</strong> → <strong>Credentials</strong> → <strong>Create credentials</strong> → <strong>OAuth client ID</strong>.</li>
+<li>Application type: <strong>Web application</strong>.</li>
+<li>Name: for example <code>tower-service-web</code>.</li>
+<li>Under <strong>Authorized JavaScript origins</strong>, add every origin where the UI will run. No path, no trailing slash quirks — match what the browser shows in the address bar.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Where you run</th>
+<th>Example origin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Laptop</td>
+<td><code>http://localhost:8000</code> (use your real port)</td>
+</tr>
+<tr>
+<td>Also add</td>
+<td><code>http://localhost</code> if Google’s form asks for it</td>
+</tr>
+<tr>
+<td>Cluster (after you know the path)</td>
+<td><code>https://www.cse.iitd.ernet.in</code> — host only for origins; the <code>/act4dws5/your-app</code> path is <strong>not</strong> part of the origin</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Under <strong>Authorized redirect URIs</strong>, add a URI only if your code uses a <strong>redirect</strong> callback (server receives <code>?code=</code>). Example shapes:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Where</th>
+<th>Example redirect URI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Laptop</td>
+<td><code>http://localhost:8000/auth/google/callback</code></td>
+</tr>
+<tr>
+<td>Cluster</td>
+<td><code>https://www.cse.iitd.ernet.in/act4dws5/your-app/auth/google/callback</code></td>
+</tr>
+</tbody>
+</table>
+<p>If you use the <a href="https://developers.google.com/identity/gsi/web">Sign in with Google button</a> with a JavaScript callback (no full-page redirect), you still need the <strong>JavaScript origins</strong>; redirect URIs may be optional. Follow whatever your chosen library documents.</p>
+<ol>
+<li>
+<p>Click <strong>Create</strong>. Copy:</p>
+</li>
+<li>
+<p><strong>Client ID</strong> → <code>GOOGLE_CLIENT_ID</code> (or <code>VITE_GOOGLE_CLIENT_ID</code> / <code>REACT_APP_GOOGLE_CLIENT_ID</code> if the frontend build inlines it)</p>
+</li>
+<li><strong>Client secret</strong> → <code>GOOGLE_CLIENT_SECRET</code> in <strong>server</strong> env only</li>
+</ol>
+<p>Store both in a password manager or a local <code>.env</code> that is gitignored. Put <strong>placeholders</strong> in <code>.env.example</code> only.</p>
+<h3 id="step-4-put-credentials-in-env-never-in-source">Step 4 — Put credentials in env (never in source)<a class="headerlink" href="#step-4-put-credentials-in-env-never-in-source" title="Permanent link">¶</a></h3>
+<p>In <code>.env.example</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a># Google Sign-In (OAuth Web client). Never commit real values.
+</span><span id="__span-3-2"><a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>GOOGLE_CLIENT_ID=your-client-id.apps.googleusercontent.com
+</span><span id="__span-3-3"><a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>GOOGLE_CLIENT_SECRET=your-client-secret
+</span><span id="__span-3-4"><a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a># Frontend frameworks that bake env at build time often need a VITE_ / REACT_APP_ copy of the client ID only:
+</span><span id="__span-3-5"><a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a># VITE_GOOGLE_CLIENT_ID=your-client-id.apps.googleusercontent.com
+</span></code></pre></div>
+<p>Rules:</p>
+<ul>
+<li>Client ID may appear in the browser. Client secret must <strong>not</strong>.</li>
+<li>Do not hardcode either string in <code>src/</code>, Dockerfiles, or GitHub Actions logs.</li>
+<li>On the cluster, the maintainer injects real values into the host env / Compose file. Your image stays deps-only (<a href="#5-ghcr-or-docker-hub--build-push-and-keep-updated">§5</a>).</li>
+</ul>
+<h3 id="step-5-add-sign-in-to-the-frontend">Step 5 — Add Sign-In to the frontend<a class="headerlink" href="#step-5-add-sign-in-to-the-frontend" title="Permanent link">¶</a></h3>
+<p>On the landing page (after the project story, before the working tool — see <a href="#11-front-page-and-demo-video">§11</a>):</p>
+<ol>
+<li>Load Google’s script on pages that show the button:</li>
+</ol>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-4-1"><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">"https://accounts.google.com/gsi/client"</span> <span class="na">async</span> <span class="na">defer</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<ol>
+<li>Render the official <strong>Sign in with Google</strong> button with your <code>GOOGLE_CLIENT_ID</code>.</li>
+<li>When Google succeeds, your callback receives a <strong>credential</strong> (ID token). Send that token to <strong>your</strong> backend on every protected call, for example:</li>
+</ol>
+<div class="language-http highlight"><pre><span></span><code><span id="__span-5-1"><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="err">Authorization: Bearer &lt;id-token&gt;</span>
+</span></code></pre></div>
+<p>or a cookie your backend sets after it has verified the token once. Prefer verifying on the server; do not trust a bare email string the browser sends.</p>
+<p>Official overview: <a href="https://developers.google.com/identity/gsi/web">Sign in with Google for Web</a>.</p>
+<h3 id="step-6-validate-on-the-backend">Step 6 — Validate on the backend<a class="headerlink" href="#step-6-validate-on-the-backend" title="Permanent link">¶</a></h3>
+<p>Your backend must:</p>
+<ol>
+<li>Read the token from the header or session.</li>
+<li>Verify it with Google (signature, audience = your <strong>Client ID</strong>, expiry). Use a maintained library for your language (for example Google’s token-verify helpers, or <code>google-auth</code> in Python).</li>
+<li>Reject the request with <strong>401</strong> if verification fails or the token is missing.</li>
+<li>Only then allow: start compute, call Airflow, write under <code>data/</code>, delete outputs, change settings.</li>
+</ol>
+<p>Public GETs that only show the marketing landing page can stay open. <strong><code>POST</code> that starts a job must not.</strong></p>
+<p>Quick mental test: open the browser private window, skip Sign-In, call your “run” API with <code>curl</code> and no token → must fail.</p>
+<h3 id="step-7-protect-the-right-routes">Step 7 — Protect the right routes<a class="headerlink" href="#step-7-protect-the-right-routes" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Allow without Sign-In</th>
+<th>Require Sign-In</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Landing HTML, static assets, <code>/health</code></td>
+<td>Start job / DAG trigger</td>
+</tr>
+<tr>
+<td>Public docs links you choose to expose</td>
+<td>Upload input, delete run, admin-style settings</td>
+</tr>
+</tbody>
+</table>
+<p>Airflow credentials stay on the <strong>server</strong> (<a href="#8-compute-and-processing--always-via-airflow">§8</a>). The browser never gets <code>AIRFLOW_PASSWORD</code>. Sign-In proves <strong>who</strong> may ask <strong>your</strong> backend to trigger Airflow.</p>
+<h3 id="step-8-local-laptop-vs-cluster-urls">Step 8 — Local laptop vs cluster URLs<a class="headerlink" href="#step-8-local-laptop-vs-cluster-urls" title="Permanent link">¶</a></h3>
+<p>Do this in order:</p>
+<ol>
+<li>Get Sign-In working on <code>http://localhost:&lt;port&gt;</code> with that origin (and redirect, if any) listed in the Google client.</li>
+<li>When the cluster path is known (for example <code>/act4dws5/your-app</code>), <strong>edit the same OAuth client</strong> and add the production JavaScript origin and redirect URI. Do not create a second client unless you intentionally separate “dev” and “prod” projects.</li>
+<li>Wait a few minutes after saving Google Console changes if the browser still shows <code>redirect_uri_mismatch</code> or origin errors.</li>
+<li>Document both URLs in the service README so the next student on the repo knows what to add in Google Cloud.</li>
+</ol>
+<p>Same-origin proxy tip: the browser origin is the <strong>public</strong> host (for example <code>https://www.cse.iitd.ernet.in</code>), not the Docker service name. Put that public origin in Google’s form.</p>
+<h3 id="step-9-check-that-it-works">Step 9 — Check that it works<a class="headerlink" href="#step-9-check-that-it-works" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Pass looks like</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Consent screen</td>
+<td>You see your app name and can continue</td>
+</tr>
+<tr>
+<td>Button</td>
+<td>Google account picker opens from the landing page</td>
+</tr>
+<tr>
+<td>First API after login</td>
+<td>Backend accepts the token; job or “whoami” succeeds</td>
+</tr>
+<tr>
+<td>No token</td>
+<td>Compute / write API returns 401</td>
+</tr>
+<tr>
+<td><code>.env.example</code></td>
+<td>Lists the variable names; repo has no real secret</td>
+</tr>
+<tr>
+<td>Logs</td>
+<td>Auth success/fail at <code>info</code> without printing the token or client secret (<a href="../cluster-service-checklist/#5-logging-enabled-logs-mounted-from-datalogsapplication_name">checklist §5</a>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="if-something-fails">If something fails<a class="headerlink" href="#if-something-fails" title="Permanent link">¶</a></h3>
+<table>
+<thead>
+<tr>
+<th>What you see</th>
+<th>What to try</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>origin_mismatch</code> / blocked origin</td>
+<td>Add exact <code>http://localhost:&lt;port&gt;</code> or the cluster origin under <strong>Authorized JavaScript origins</strong>. No path.</td>
+</tr>
+<tr>
+<td><code>redirect_uri_mismatch</code></td>
+<td>Redirect URI in code and in Google Console must match character-for-character (http vs https, trailing slash, path).</td>
+</tr>
+<tr>
+<td>“Access blocked: app is in testing”</td>
+<td>Add the Google account under <strong>Test users</strong>, or publish the consent screen when you are ready.</td>
+</tr>
+<tr>
+<td>401 on every API after a “successful” button click</td>
+<td>Backend is not verifying the token, or it is checking the wrong Client ID (frontend and backend must use the same Web client).</td>
+</tr>
+<tr>
+<td>Works on laptop, fails on cluster</td>
+<td>Production origin / redirect not added yet; or frontend still points at a localhost Client ID from an old build. Rebuild/restart so env is picked up.</td>
+</tr>
+<tr>
+<td>Campus proxy oddities</td>
+<td>Sign-In talks to <code>accounts.google.com</code> from the <strong>browser</strong>. Proxy issues usually affect <code>docker pull</code>, not the Google button. See <a href="#cluster-notes-iit-delhi-proxy">IIT Delhi proxy</a> only if image pulls fail.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="done-when">Done when<a class="headerlink" href="#done-when" title="Permanent link">¶</a></h3>
+<ul>
+<li>Landing page shows Sign in with Google.</li>
+<li>Protected APIs reject unauthenticated calls.</li>
+<li>Secrets live only in env; <code>.env.example</code> documents the names.</li>
+<li>Local origins work; cluster origins are listed before go-live.</li>
+</ul>
+<p>Then tick <a href="../cluster-service-checklist/#4-google-sso-is-implemented">checklist §4</a>.</p>
+<h2 id="worked-example-custom-lulc">Copy-this: Custom LULC<a class="headerlink" href="#worked-example-custom-lulc" title="Permanent link">¶</a></h2>
 <p>Working pattern: <a href="https://github.com/salil-123/Project">salil-123/Project</a> and the <a href="https://github.com/SaharshLaud/STACD_framework/blob/dev/report/custom_lulc_deployment_and_airflow_pipeline.md">STACD LULC report</a>.</p>
 <table>
 <thead>
@@ -2920,111 +2016,51 @@
 </tbody>
 </table>
 <p>On a laptop you can mount <code>.</code> at <code>/app</code>. On the cluster use the three mounts in §2. Empty <code>AIRFLOW_API_BASE</code> turns the DAG path off. To add the same glue to another HTTP app: those six files + env, then <code>curl /api/health</code> → work endpoint → Airflow trigger.</p>
-<h2 id="cluster-notes-iit-delhi-proxy">IIT Delhi proxy<a class="headerlink" href="#cluster-notes-iit-delhi-proxy" title="Permanent link">&para;</a></h2>
+<h2 id="cluster-notes-iit-delhi-proxy">IIT Delhi proxy<a class="headerlink" href="#cluster-notes-iit-delhi-proxy" title="Permanent link">¶</a></h2>
 <p>If <code>docker pull</code> times out on campus, set the <strong>Docker daemon</strong> proxy. Do not put <code>registry-1.docker.io</code> or <code>auth.docker.io</code> in <code>NO_PROXY</code>. Same snippet: <a href="../../infra/tower-services/#docker-pull-behind-the-iit-delhi-proxy">Tower Services</a>.</p>
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-                
-              </article>
-            </div>
-          
-          
-  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
-
+<p><strong>Inside containers</strong>, set <code>HTTP_PROXY</code> / <code>HTTPS_PROXY</code> <strong>and</strong> list every Docker hostname you call in <strong>both</strong> <code>NO_PROXY</code> and <code>no_proxy</code>. Otherwise Squid returns <code>503</code> / <code>ERR_DNS_FAIL</code> for names like <code>corestac-stacd-airflow</code>. Full table, Compose template, Nginx path stripping, deploy and update steps: <a href="../../infra/tower-services/deploy-and-troubleshoot/">Deploy, update, and troubleshoot</a>.</p>
+</article>
+</div>
+<script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
-        </div>
-        
-          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
   Back to top
 </button>
-        
-      </main>
-      
-        <footer class="md-footer">
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-  
-    <div class="md-copyright__highlight">
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
       CoRE Stack — A commoning approach — Tech stacks for communities; 2026; Released under the GNU AGPL v3.0 — ensuring freedom, transparency, and recognition of collective contributions.
     </div>
-  
-  
 </div>
-      
-        
 <div class="md-social">
-  
-    
-    
-    
-    
-    <a href="https://github.com/core-stack-org" target="_blank" rel="noopener" title="Build CoRE Stack with us" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
-    </a>
-  
-    
-    
-    
-    
-    <a href="https://discord.gg/PSkZX4hvWx" target="_blank" rel="noopener" title="Join discussions on Discord" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1.1s-.6.4-.8.8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2C162.5 39 122.2 51.5 84.1 69c-.3.1-.6.4-.8.7C7.1 183.5-13.8 294.6-3.6 404.2c0 .3.1.5.2.8s.3.4.5.6c44.4 32.9 94 58 146.8 74.2.4.1.8.1 1.1 0s.7-.4.9-.7c11.3-15.4 21.4-31.8 30-48.8.1-.2.2-.5.2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6.2-.9.3-.5.6-.7c3.1-2.3 6.2-4.7 9.1-7.1.3-.2.6-.4.9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1.7-.2 1-.2s.7.2.9.4c2.9 2.4 6 4.9 9.1 7.2.2.2.4.4.6.7s.2.6.2.9-.1.6-.3.9-.4.5-.6.6c-14.7 8.6-30 15.9-45.9 21.8-.2.1-.5.2-.7.4s-.3.4-.4.7-.1.5-.1.8.1.5.2.8c8.8 17 18.8 33.3 30 48.8.2.3.6.6.9.7s.8.1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2.2-.2.4-.4.5-.6s.2-.5.2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2m195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2"/></svg>
-    </a>
-  
-    
-    
-    
-    
-    <a href="https://core-stack.org" target="_blank" rel="noopener" title="CoRE Stack website" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"/></svg>
-    </a>
-  
-    
-    
-    
-    
-    <a href="https://linkedin.com/company/core-stack" target="_blank" rel="noopener" title="Connect on LinkedIn" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
-    </a>
-  
+<a class="md-social__link" href="https://github.com/core-stack-org" rel="noopener" target="_blank" title="Build CoRE Stack with us">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+</a>
+<a class="md-social__link" href="https://discord.gg/PSkZX4hvWx" rel="noopener" target="_blank" title="Join discussions on Discord">
+<svg viewbox="0 0 576 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M492.5 69.8c-.2-.3-.4-.6-.8-.7-38.1-17.5-78.4-30-119.7-37.1-.4-.1-.8 0-1.1.1s-.6.4-.8.8c-5.5 9.9-10.5 20.2-14.9 30.6-44.6-6.8-89.9-6.8-134.4 0-4.5-10.5-9.5-20.7-15.1-30.6-.2-.3-.5-.6-.8-.8s-.7-.2-1.1-.2C162.5 39 122.2 51.5 84.1 69c-.3.1-.6.4-.8.7C7.1 183.5-13.8 294.6-3.6 404.2c0 .3.1.5.2.8s.3.4.5.6c44.4 32.9 94 58 146.8 74.2.4.1.8.1 1.1 0s.7-.4.9-.7c11.3-15.4 21.4-31.8 30-48.8.1-.2.2-.5.2-.8s0-.5-.1-.8-.2-.5-.4-.6-.4-.3-.7-.4c-15.8-6.1-31.2-13.4-45.9-21.9-.3-.2-.5-.4-.7-.6s-.3-.6-.3-.9 0-.6.2-.9.3-.5.6-.7c3.1-2.3 6.2-4.7 9.1-7.1.3-.2.6-.4.9-.4s.7 0 1 .1c96.2 43.9 200.4 43.9 295.5 0 .3-.1.7-.2 1-.2s.7.2.9.4c2.9 2.4 6 4.9 9.1 7.2.2.2.4.4.6.7s.2.6.2.9-.1.6-.3.9-.4.5-.6.6c-14.7 8.6-30 15.9-45.9 21.8-.2.1-.5.2-.7.4s-.3.4-.4.7-.1.5-.1.8.1.5.2.8c8.8 17 18.8 33.3 30 48.8.2.3.6.6.9.7s.8.1 1.1 0c52.9-16.2 102.6-41.3 147.1-74.2.2-.2.4-.4.5-.6s.2-.5.2-.8c12.3-126.8-20.5-236.9-86.9-334.5zm-302 267.7c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.4 59.2-52.8 59.2m195.4 0c-29 0-52.8-26.6-52.8-59.2s23.4-59.2 52.8-59.2c29.7 0 53.3 26.8 52.8 59.2 0 32.7-23.2 59.2-52.8 59.2"></path></svg>
+</a>
+<a class="md-social__link" href="https://core-stack.org" rel="noopener" target="_blank" title="CoRE Stack website">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"></path></svg>
+</a>
+<a class="md-social__link" href="https://linkedin.com/company/core-stack" rel="noopener" target="_blank" title="Connect on LinkedIn">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+</a>
 </div>
-      
-    </div>
-  </div>
+</div>
+</div>
 </footer>
-      
-    </div>
-    <div class="md-dialog" data-md-component="dialog">
-      <div class="md-dialog__inner md-typeset"></div>
-    </div>
-    
-      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
-    
-    
-    
-      
-      
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.indexes", "navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.instant.preview", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
-    
-    
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
-      
-    
-  </body>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<div class="md-progress" data-md-component="progress" role="progressbar"></div>
+<script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.indexes", "navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.instant.preview", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+<script src="../../javascripts/api-metadata.js"></script>
+</body>
 </html>

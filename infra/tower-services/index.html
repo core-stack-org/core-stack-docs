@@ -348,6 +348,18 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="../../use-precomputed-data/api-metadata/">
+<span class="md-ellipsis">
+    
+  
+    API Metadata
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="../../use-precomputed-data/stac-specs/">
 <span class="md-ellipsis">
     
@@ -863,6 +875,18 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="deploy-and-troubleshoot/">
+<span class="md-ellipsis">
+    
+  
+    Deploy, update, and troubleshoot
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="deployed-architecture/">
 <span class="md-ellipsis">
     
@@ -1081,10 +1105,10 @@
 <nav aria-label="Add your own service" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#checklist-mapped-to-the-runbook">
+<a class="md-nav__link" href="#checklist-mapped-to-the-docs">
 <span class="md-ellipsis">
       
-        Checklist mapped to the runbook
+        Checklist mapped to the docs
       
     </span>
 </a>
@@ -1166,7 +1190,15 @@
 </tr>
 <tr>
 <td><strong>Deploy your own app on the cluster</strong></td>
-<td>Read <a href="#why-airflow">Why we use Airflow</a> and <a href="#architecture">How a job runs</a>, then <a href="#adding-a-service">Add your own service</a>.</td>
+<td>Read <a href="#why-airflow">Why we use Airflow</a> and <a href="#architecture">How a job runs</a>, then <a href="#adding-a-service">Add your own service</a>. When the checklist is done: <a href="deploy-and-troubleshoot/#deploy-a-new-service">Deploy a new service</a>.</td>
+</tr>
+<tr>
+<td><strong>Update an app already on the tower</strong></td>
+<td><a href="deploy-and-troubleshoot/#update-a-service">Update a service</a> (code pull, new image tag, migrations).</td>
+</tr>
+<tr>
+<td><strong>Fix Squid 503 / Nginx 502 / Airflow path</strong></td>
+<td><a href="deploy-and-troubleshoot/">Deploy, update, and troubleshoot</a>.</td>
 </tr>
 </tbody>
 </table>
@@ -1290,7 +1322,7 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>Filled in</strong> (for example <code>http://airflow:8080/api/v1</code>)</td>
+<td><strong>Filled in</strong> (on this tower: <code>http://corestac-stacd-airflow:8080/act4dws5/airflow</code>)</td>
 <td>The app sends the job to the shared Airflow machine and waits.</td>
 </tr>
 <tr>
@@ -1397,7 +1429,15 @@
 </tr>
 <tr>
 <td><strong>Central Postgres</strong></td>
-<td>One shared database for the cluster. Connect with <strong><code>DATABASE_URL</code></strong>. Do not add a private Postgres/SQLite per app on the cluster.</td>
+<td>Shared DB host <strong><code>corestackpostgres</code></strong>. Connect with <strong><code>DATABASE_URL</code></strong>. Do not add a private Postgres/SQLite per app on the cluster.</td>
+</tr>
+<tr>
+<td><strong><code>corestack-network</code></strong></td>
+<td>Shared Docker network. Every service that talks to another must join it.</td>
+</tr>
+<tr>
+<td><strong><code>NO_PROXY</code> / <code>no_proxy</code></strong></td>
+<td>Internal Docker hostnames must bypass the IITD Squid proxy. Set <strong>both</strong> spellings.</td>
 </tr>
 <tr>
 <td><strong><code>outputs.yaml</code></strong></td>
@@ -1419,40 +1459,57 @@
 <li>On success it writes files under <strong><code>data/&lt;your-app&gt;/</code></strong> and returns a <strong>STAC Item</strong> (not only a file path).</li>
 <li>People download from <strong>FileBrowser</strong>.</li>
 </ol>
-<p>Short how-to (env, three mounts, STACD YAML, STAC, copy-this LULC): <a href="../../server/cluster-docker-services/">Cluster Docker Services</a>.</p>
-<p>Acceptance list to paste into a GitHub issue: <a href="../../server/cluster-service-checklist/">Cluster Service Checklist</a>. Tick a row only when the <strong>Acceptance</strong> line is true.</p>
-<p>The runbook is short. Read it top to bottom (§1 env → mounts → image → STACD → trigger → STAC → front page). Copy-this LULC is at the end.</p>
+<p><strong>Path to go-live</strong></p>
+<ol>
+<li>Package the app — <a href="../../server/cluster-docker-services/">Cluster Docker Services</a> (env → mounts → image → STACD → STAC → front page → Google Sign-In).</li>
+<li>Tick the acceptance list — <a href="../../server/cluster-service-checklist/">Cluster Service Checklist</a>.</li>
+<li>Deploy on the tower — <a href="deploy-and-troubleshoot/#deploy-a-new-service">Deploy a new service</a>. Later changes: <a href="deploy-and-troubleshoot/#update-a-service">Update a service</a>.</li>
+<li>When something breaks (Squid 503, Nginx 502, wrong Airflow path) — <a href="deploy-and-troubleshoot/">Troubleshoot</a>.</li>
+</ol>
 <p><a class="md-button md-button--primary" href="../../server/cluster-docker-services/">Open Cluster Docker Services</a>
-<a class="md-button" href="../../server/cluster-service-checklist/">Open Cluster Service Checklist</a></p>
+<a class="md-button" href="../../server/cluster-service-checklist/">Open checklist</a>
+<a class="md-button" href="deploy-and-troubleshoot/">Deploy / update / troubleshoot</a></p>
 <p>Keep install steps, image name, and a pinned tag in <strong>your</strong> repo <code>README</code> and <code>VERSION</code>. This page does not replace that.</p>
-<h3 id="checklist-mapped-to-the-runbook">Checklist mapped to the runbook<a class="headerlink" href="#checklist-mapped-to-the-runbook" title="Permanent link">¶</a></h3>
+<h3 id="checklist-mapped-to-the-docs">Checklist mapped to the docs<a class="headerlink" href="#checklist-mapped-to-the-docs" title="Permanent link">¶</a></h3>
 <table>
 <thead>
 <tr>
 <th>Checklist item</th>
-<th>Same idea as above</th>
+<th>Where to read</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1. Mounts</td>
-<td><strong><code>code/</code></strong>, <strong><code>models/</code></strong>, <strong><code>data/</code></strong> → <code>/app</code>, <code>/app/models</code>, <code>/app/data</code> — <a href="../../server/cluster-docker-services/#2-code-models-and-data-live-on-the-host-mount-do-not-copy">runbook §2</a></td>
+<td><strong><code>code/</code></strong>, <strong><code>models/</code></strong>, <strong><code>data/</code></strong> — <a href="../../server/cluster-docker-services/#2-code-models-and-data-live-on-the-host-mount-do-not-copy">runbook §2</a></td>
 </tr>
 <tr>
 <td>2. Airflow vs local</td>
-<td><strong><code>AIRFLOW_API_BASE</code></strong> set / empty — <a href="../../server/cluster-docker-services/#8-compute-and-processing--always-via-airflow">runbook §8</a></td>
+<td><strong><code>AIRFLOW_API_BASE</code></strong> — <a href="../../server/cluster-docker-services/#8-compute-and-processing--always-via-airflow">runbook §8</a></td>
 </tr>
 <tr>
 <td>3. Registry</td>
-<td><strong>GHCR or Docker Hub</strong>, deps-only image — <a href="../../server/cluster-docker-services/#5-ghcr-or-docker-hub--build-push-and-keep-updated">runbook §5</a></td>
+<td>Deps-only image — <a href="../../server/cluster-docker-services/#5-ghcr-or-docker-hub--build-push-and-keep-updated">runbook §5</a></td>
 </tr>
 <tr>
-<td>4–10</td>
-<td>Google SSO, <code>LOG_LEVEL</code>, one container, frontend API base, a diagram of <strong>your</strong> app, <strong>central Postgres</strong>, <strong><code>outputs.yaml</code></strong></td>
+<td>4. Google SSO</td>
+<td><a href="../../server/cluster-docker-services/#12-google-sign-in-setup">runbook §12</a></td>
+</tr>
+<tr>
+<td>5–10</td>
+<td>Logging, one container, API base, diagram, <strong><code>corestackpostgres</code></strong>, <strong><code>outputs.yaml</code></strong></td>
 </tr>
 <tr>
 <td>11. Front page + demo video</td>
-<td>Landing page like Drone; one video (manual + tutorial) on the front page; video reviewed and approved — <a href="../../server/cluster-docker-services/#11-front-page-and-demo-video">runbook §11</a></td>
+<td><a href="../../server/cluster-docker-services/#11-front-page-and-demo-video">runbook §11</a></td>
+</tr>
+<tr>
+<td>12. Network + proxy</td>
+<td><strong><code>corestack-network</code></strong>, <strong><code>NO_PROXY</code></strong> — <a href="deploy-and-troubleshoot/#proxy">ops</a></td>
+</tr>
+<tr>
+<td>13. Nginx + deploy notes</td>
+<td><a href="deploy-and-troubleshoot/#deploy-a-new-service">Deploy</a> / <a href="deploy-and-troubleshoot/#update-a-service">Update</a></td>
 </tr>
 </tbody>
 </table>
@@ -1480,19 +1537,27 @@
 <tbody>
 <tr>
 <td>Airflow + STACD</td>
-<td>Shared job runner — <a href="https://github.com/SaharshLaud/STACD_framework">STACD Framework</a> (<code>dev</code>)</td>
+<td>Shared job runner (<code>corestac-stacd-airflow</code>) — <a href="https://github.com/SaharshLaud/STACD_framework">STACD Framework</a> (<code>dev</code>)</td>
 </tr>
 <tr>
 <td>FileBrowser</td>
-<td>Download UI over <code>data/</code></td>
+<td>Download UI over <code>data/</code> (<code>core-stack-fileserver</code>, path <code>/file</code>)</td>
 </tr>
 <tr>
 <td>Nginx</td>
-<td>Public entry: <code>/drone</code>, <code>/diy-lulc</code>, <code>/bio-master</code>, <code>/file</code>, <code>/airflow</code></td>
+<td>Public entry: <code>/drone</code>, <code>/diy-lulc</code>, <code>/bio-master</code>, <code>/file</code>, <code>/airflow</code>, …</td>
+</tr>
+<tr>
+<td>Postgres</td>
+<td>Central DB <code>corestackpostgres</code> on <code>corestack-network</code></td>
+</tr>
+<tr>
+<td>GeoServer</td>
+<td>Map publish (<code>geoserver</code>) — add to <code>NO_PROXY</code> for Celery / backends</td>
 </tr>
 </tbody>
 </table>
-<p>Install commands stay in each service repository. The live path map is on <a href="deployed-architecture/">Deployed Architecture</a>.</p>
+<p>Install commands stay in each service repository. The live path map is on <a href="deployed-architecture/">Deployed Architecture</a>. Operator steps and past fixes: <a href="deploy-and-troubleshoot/">Deploy, update, and troubleshoot</a>.</p>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
@@ -1535,5 +1600,6 @@
 <div class="md-progress" data-md-component="progress" role="progressbar"></div>
 <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.path", "navigation.indexes", "navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.instant.preview", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
 <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+<script src="../../javascripts/api-metadata.js"></script>
 </body>
 </html>
