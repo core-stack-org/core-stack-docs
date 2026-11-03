@@ -1,6 +1,6 @@
 ---
 title: Cluster Service Checklist
-description: Acceptance checklist — code/models/data mounts, Airflow vs local, GHCR or Docker Hub, Google SSO, log levels, central Postgres, output retention, front page, and demo video.
+description: Acceptance checklist — mounts, Airflow, registry, Google SSO, logging, Postgres, outputs, front page, shared network, proxy / NO_PROXY, and Nginx path.
 ---
 
 # Cluster Service Checklist
@@ -11,7 +11,7 @@ If this is your first time, start with [Tower Services](../infra/tower-services/
 
 Part of [Infra → Tower Services](../infra/tower-services/index.md). That page has the **job-flow diagram** and **shared terminology**.
 
-This page is the **acceptance list** only. Procedures live in [Cluster Docker Services](cluster-docker-services.md). Use the same names: **`code/`**, **`models/`**, **`data/`**, **`AIRFLOW_API_BASE`**, **GHCR or Docker Hub**, **central Postgres**, **`outputs.yaml`**.
+This page is the **acceptance list** only. Packaging procedures: [Cluster Docker Services](cluster-docker-services.md). Deploy / update / tower fixes: [Deploy, update, and troubleshoot](../infra/tower-services/deploy-and-troubleshoot.md). Use the same names: **`code/`**, **`models/`**, **`data/`**, **`AIRFLOW_API_BASE`**, **GHCR or Docker Hub**, **central Postgres**, **`outputs.yaml`**, **`corestack-network`**, **`NO_PROXY`**.
 
 ---
 
@@ -53,6 +53,7 @@ Do **not** use a `COMPUTE_MODE` flag. **`AIRFLOW_API_BASE`** is the switch (same
 - [ ] `.env.example` lists `AIRFLOW_API_BASE` with a comment: leave empty for local compute.
 - [ ] Backend reads that variable at runtime; empty means local, no Airflow client calls.
 - [ ] When set: same-origin proxy so the browser never talks to Airflow; `AIRFLOW_DAG_ID` and worker callback URL (`CORESTACK_API_BASE` or equivalent) are also documented.
+- [ ] On the IITD tower, Airflow API base is the working internal URL (today: `http://corestac-stacd-airflow:8080/act4dws5/airflow`) and `corestac-stacd-airflow` is on `NO_PROXY` — [ops §6](../infra/tower-services/deploy-and-troubleshoot.md#airflow).
 - [ ] Local path does not require an Airflow host.
 
 **Acceptance:** The same image runs local jobs on a laptop (URL unset) and Airflow jobs on the cluster (URL set) by changing `.env` only.
@@ -75,6 +76,8 @@ The image must be in a registry others can pull. Use **GitHub Container Registry
 ## 4. Google SSO is implemented
 
 Users sign in with **Google Single Sign-On**. Protected APIs and compute triggers require a valid Google session/token.
+
+End-to-end how-to (Google Cloud project → consent screen → Web client → env → frontend button → backend verify → laptop vs cluster URLs): [runbook §12](cluster-docker-services.md#12-google-sign-in-setup).
 
 - [ ] Google SSO (OAuth / Google Identity) is implemented on the frontend and validated on the backend.
 - [ ] Client id/secret (and redirect URIs) come from **env**, not source.
@@ -182,11 +185,13 @@ Use **PostgreSQL** on the **central Postgres** instance on the cluster host. Per
 - [ ] Cluster deploys use Postgres only (no SQLite as the production store).
 - [ ] `.env.example` has a connection string, for example:
   ```bash
-  DATABASE_URL=postgresql://USER:PASSWORD@POSTGRES_HOST:5432/DBNAME
+  DATABASE_URL=postgresql://USER:PASSWORD@corestackpostgres:5432/DBNAME
   ```
   Split vars (`PGHOST`, `PGPORT`, `PGUSER`, `PGPASSWORD`, `PGDATABASE`) are fine if the app prefers them — document one style.
-- [ ] The host in that string is the **central Postgres** on the server (Docker network DNS or host IP), not `postgres` from a sidecar Compose file unless that sidecar **is** the shared instance.
-- [ ] No database files under the image; schema migrations run against the shared server.
+- [ ] The host is **`corestackpostgres`** (central instance on `corestack-network`), not a private Compose Postgres/SQLite sidecar.
+- [ ] Passwords with `@`, `#`, `:`, `/` are **URL-encoded** in the connection string — [ops §7](../infra/tower-services/deploy-and-troubleshoot.md#7-postgres-corestackpostgres).
+- [ ] `corestackpostgres` is listed in `NO_PROXY` / `no_proxy`.
+- [ ] No database files under the image; schema migrations (`alembic upgrade head`, etc.) run against the shared server and are documented in the README.
 - [ ] README states database name, who owns the role, and how to request access.
 
 If the service has **no** database, tick N/A in the sign-off table and skip this item.
@@ -256,6 +261,34 @@ How-to: [runbook §11](cluster-docker-services.md#11-front-page-and-demo-video).
 
 ---
 
+## 12. Shared network, proxy, and `NO_PROXY` { #12-shared-network-proxy-and-no_proxy }
+
+On the IITD tower, containers reach the internet only through Squid. Docker hostnames must **not** go through Squid. Full write-up: [Deploy, update, and troubleshoot](../infra/tower-services/deploy-and-troubleshoot.md).
+
+- [ ] Compose attaches the service to the external network **`corestack-network`**.
+- [ ] `.env.example` documents `HTTP_PROXY` / `HTTPS_PROXY` / `http_proxy` / `https_proxy` and **both** `NO_PROXY` and `no_proxy`.
+- [ ] `NO_PROXY` includes every internal hostname this app calls (at least `corestackpostgres`, `corestac-stacd-airflow`, and this app’s own name if others call it). **New peers → update `NO_PROXY` in every related container**, then recreate.
+- [ ] README says: after any env change use `docker-compose … up -d --force-recreate` (restart alone does not reload `.env`).
+- [ ] Dockerfile build args use `ARG` for proxy (not baked-in `ENV`) when the image is built on campus.
+
+**Acceptance:** From inside the container, `curl --noproxy '*' http://corestac-stacd-airflow:8080/…` (or your peer) works, and a mistaken proxied call no longer returns `Server: squid` / `ERR_DNS_FAIL`.
+
+---
+
+## 13. Nginx path, health check, and deploy notes { #13-nginx-path-health-check-and-deploy-notes }
+
+Someone must be able to put your app behind the shared Nginx without guessing.
+
+- [ ] README states the requested public path(s), for example `/my-app/` and `/my-app/api/`.
+- [ ] App exposes a health/live endpoint (`/health`, `/livez`, or equivalent) that returns 200 without Google Sign-In.
+- [ ] App listens on `0.0.0.0` and documents trust for `X-Forwarded-*` (`--proxy-headers` / `--forwarded-allow-ips`, or framework equivalent).
+- [ ] Frontend asset base path works under the Nginx subpath (no bare `/static/...` 404s) — [ops §5](../infra/tower-services/deploy-and-troubleshoot.md#nginx).
+- [ ] Deploy and update steps match [Deploy a new service](../infra/tower-services/deploy-and-troubleshoot.md#deploy-a-new-service) and [Update a service](../infra/tower-services/deploy-and-troubleshoot.md#update-a-service) (or the README links there).
+
+**Acceptance:** Maintainer can add an Nginx `location`, open the health URL through the public path, and follow the README to recreate after a new image tag.
+
+---
+
 ## Sign-off
 
 | # | Item | Owner | Done |
@@ -271,5 +304,7 @@ How-to: [runbook §11](cluster-docker-services.md#11-front-page-and-demo-video).
 | 9 | Postgres via connection string to central server (or N/A) | | |
 | 10 | `outputs.yaml` — public / private_persistent / delete | | |
 | 11 | Front page (drone-style), demo video on the front page, video reviewed and approved | | |
+| 12 | `corestack-network` + proxy / `NO_PROXY` | | |
+| 13 | Nginx path, health check, deploy/update notes | | |
 
 Service: _______________ Date: _______________ Reviewer: _______________

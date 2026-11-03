@@ -81,3 +81,16 @@ Your browser never calls Airflow. The path is: website → the app → Airflow. 
 | **FileBrowser** | `/file` | Shared file UI over `data/<app-name>/` | [filebrowser/filebrowser](https://github.com/filebrowser/filebrowser) |
 
 How to install each app is in **that repo’s README**. Cluster-wide rules (mounts, STAC, checklist) are in [Cluster Docker Services](../../server/cluster-docker-services.md) after you have read [Tower Services](index.md).
+
+To **add or update** a service on this host, or to fix proxy / Nginx / Airflow path issues: [Deploy, update, and troubleshoot](deploy-and-troubleshoot.md).
+
+### Shared host pieces (operators)
+
+| Piece | Docker name / note |
+| --- | --- |
+| Shared network | `corestack-network` |
+| Job runner | `corestac-stacd-airflow` — API base from peers: `http://corestac-stacd-airflow:8080/act4dws5/airflow` |
+| Central Postgres | `corestackpostgres:5432` |
+| GeoServer | `geoserver` (path `/geoserver`) |
+| FileBrowser | `core-stack-fileserver` (path `/file`) |
+| Compose CLI | `docker-compose` (v1, hyphen) |

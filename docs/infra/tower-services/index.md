@@ -19,7 +19,9 @@ Live URLs of what is running today: [Deployed Architecture](deployed-architectur
 | --- | --- |
 | **Try an app that is already deployed** | Open it from the table below. No install. |
 | **Download a finished result** | Open [FileBrowser](https://www.cse.iitd.ernet.in/act4dws5/file/). Each app writes into its own folder (`data/drone/`, `data/diy-lulc/`, …). |
-| **Deploy your own app on the cluster** | Read [Why we use Airflow](#why-airflow) and [How a job runs](#architecture), then [Add your own service](#adding-a-service). |
+| **Deploy your own app on the cluster** | Read [Why we use Airflow](#why-airflow) and [How a job runs](#architecture), then [Add your own service](#adding-a-service). When the checklist is done: [Deploy a new service](deploy-and-troubleshoot.md#deploy-a-new-service). |
+| **Update an app already on the tower** | [Update a service](deploy-and-troubleshoot.md#update-a-service) (code pull, new image tag, migrations). |
+| **Fix Squid 503 / Nginx 502 / Airflow path** | [Deploy, update, and troubleshoot](deploy-and-troubleshoot.md). |
 
 | App | What it does | Open |
 | --- | --- | --- |
@@ -102,7 +104,7 @@ One setting on the app decides this: **`AIRFLOW_API_BASE`**.
 
 | `AIRFLOW_API_BASE` | What it means for you |
 | --- | --- |
-| **Filled in** (for example `http://airflow:8080/api/v1`) | The app sends the job to the shared Airflow machine and waits. |
+| **Filled in** (on this tower: `http://corestac-stacd-airflow:8080/act4dws5/airflow`) | The app sends the job to the shared Airflow machine and waits. |
 | **Empty** | The app does the work **inside its own container**. No Airflow. |
 
 You do not invent a second switch such as `COMPUTE_MODE`. Empty vs set is the whole rule.
@@ -139,7 +141,9 @@ These are the names used on this host. Use the same words in a README or GitHub 
 | **Deps-only image** | Image has dependencies and a start command only — no source, models, or outputs. |
 | **GHCR or Docker Hub** | Where the image is pushed. Either registry is fine. |
 | **`LOG_LEVEL`** | `debug`, `info`, or `error`. Logs on disk: **`data/logs/<application_name>/`**. |
-| **Central Postgres** | One shared database for the cluster. Connect with **`DATABASE_URL`**. Do not add a private Postgres/SQLite per app on the cluster. |
+| **Central Postgres** | Shared DB host **`corestackpostgres`**. Connect with **`DATABASE_URL`**. Do not add a private Postgres/SQLite per app on the cluster. |
+| **`corestack-network`** | Shared Docker network. Every service that talks to another must join it. |
+| **`NO_PROXY` / `no_proxy`** | Internal Docker hostnames must bypass the IITD Squid proxy. Set **both** spellings. |
 | **`outputs.yaml`** | Lists each tree under `data/` and whether it is `public`, `private_persistent`, or `delete`. |
 | **Host data service** | Cluster process that reads `outputs.yaml` and publishes, keeps, or deletes those trees. |
 
@@ -155,26 +159,31 @@ If you want **your** app on this cluster, package it the same way as the apps al
 4. On success it writes files under **`data/<your-app>/`** and returns a **STAC Item** (not only a file path).
 5. People download from **FileBrowser**.
 
-Short how-to (env, three mounts, STACD YAML, STAC, copy-this LULC): [Cluster Docker Services](../../server/cluster-docker-services.md).
+**Path to go-live**
 
-Acceptance list to paste into a GitHub issue: [Cluster Service Checklist](../../server/cluster-service-checklist.md). Tick a row only when the **Acceptance** line is true.
-
-The runbook is short. Read it top to bottom (§1 env → mounts → image → STACD → trigger → STAC → front page). Copy-this LULC is at the end.
+1. Package the app — [Cluster Docker Services](../../server/cluster-docker-services.md) (env → mounts → image → STACD → STAC → front page → Google Sign-In).
+2. Tick the acceptance list — [Cluster Service Checklist](../../server/cluster-service-checklist.md).
+3. Deploy on the tower — [Deploy a new service](deploy-and-troubleshoot.md#deploy-a-new-service). Later changes: [Update a service](deploy-and-troubleshoot.md#update-a-service).
+4. When something breaks (Squid 503, Nginx 502, wrong Airflow path) — [Troubleshoot](deploy-and-troubleshoot.md).
 
 [Open Cluster Docker Services](../../server/cluster-docker-services.md){ .md-button .md-button--primary }
-[Open Cluster Service Checklist](../../server/cluster-service-checklist.md){ .md-button }
+[Open checklist](../../server/cluster-service-checklist.md){ .md-button }
+[Deploy / update / troubleshoot](deploy-and-troubleshoot.md){ .md-button }
 
 Keep install steps, image name, and a pinned tag in **your** repo `README` and `VERSION`. This page does not replace that.
 
-### Checklist mapped to the runbook
+### Checklist mapped to the docs
 
-| Checklist item | Same idea as above |
+| Checklist item | Where to read |
 | --- | --- |
-| 1. Mounts | **`code/`**, **`models/`**, **`data/`** → `/app`, `/app/models`, `/app/data` — [runbook §2](../../server/cluster-docker-services.md#2-code-models-and-data-live-on-the-host-mount-do-not-copy) |
-| 2. Airflow vs local | **`AIRFLOW_API_BASE`** set / empty — [runbook §8](../../server/cluster-docker-services.md#8-compute-and-processing--always-via-airflow) |
-| 3. Registry | **GHCR or Docker Hub**, deps-only image — [runbook §5](../../server/cluster-docker-services.md#5-ghcr-or-docker-hub--build-push-and-keep-updated) |
-| 4–10 | Google SSO, `LOG_LEVEL`, one container, frontend API base, a diagram of **your** app, **central Postgres**, **`outputs.yaml`** |
-| 11. Front page + demo video | Landing page like Drone; one video (manual + tutorial) on the front page; video reviewed and approved — [runbook §11](../../server/cluster-docker-services.md#11-front-page-and-demo-video) |
+| 1. Mounts | **`code/`**, **`models/`**, **`data/`** — [runbook §2](../../server/cluster-docker-services.md#2-code-models-and-data-live-on-the-host-mount-do-not-copy) |
+| 2. Airflow vs local | **`AIRFLOW_API_BASE`** — [runbook §8](../../server/cluster-docker-services.md#8-compute-and-processing--always-via-airflow) |
+| 3. Registry | Deps-only image — [runbook §5](../../server/cluster-docker-services.md#5-ghcr-or-docker-hub--build-push-and-keep-updated) |
+| 4. Google SSO | [runbook §12](../../server/cluster-docker-services.md#12-google-sign-in-setup) |
+| 5–10 | Logging, one container, API base, diagram, **`corestackpostgres`**, **`outputs.yaml`** |
+| 11. Front page + demo video | [runbook §11](../../server/cluster-docker-services.md#11-front-page-and-demo-video) |
+| 12. Network + proxy | **`corestack-network`**, **`NO_PROXY`** — [ops](deploy-and-troubleshoot.md#proxy) |
+| 13. Nginx + deploy notes | [Deploy](deploy-and-troubleshoot.md#deploy-a-new-service) / [Update](deploy-and-troubleshoot.md#update-a-service) |
 
 ## Docker pull on IIT Delhi campus { #docker-pull-behind-the-iit-delhi-proxy }
 
@@ -198,8 +207,10 @@ Replace the proxy host with the one for your IITD account category. Same steps: 
 
 | Piece | Role |
 | --- | --- |
-| Airflow + STACD | Shared job runner — [STACD Framework](https://github.com/SaharshLaud/STACD_framework) (`dev`) |
-| FileBrowser | Download UI over `data/` |
-| Nginx | Public entry: `/drone`, `/diy-lulc`, `/bio-master`, `/file`, `/airflow` |
+| Airflow + STACD | Shared job runner (`corestac-stacd-airflow`) — [STACD Framework](https://github.com/SaharshLaud/STACD_framework) (`dev`) |
+| FileBrowser | Download UI over `data/` (`core-stack-fileserver`, path `/file`) |
+| Nginx | Public entry: `/drone`, `/diy-lulc`, `/bio-master`, `/file`, `/airflow`, … |
+| Postgres | Central DB `corestackpostgres` on `corestack-network` |
+| GeoServer | Map publish (`geoserver`) — add to `NO_PROXY` for Celery / backends |
 
-Install commands stay in each service repository. The live path map is on [Deployed Architecture](deployed-architecture.md).
+Install commands stay in each service repository. The live path map is on [Deployed Architecture](deployed-architecture.md). Operator steps and past fixes: [Deploy, update, and troubleshoot](deploy-and-troubleshoot.md).

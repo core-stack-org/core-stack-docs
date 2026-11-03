@@ -20,6 +20,6 @@ Production topology, SSH access, Apache, Celery, GeoServer, STAC, credentials, O
 
 ## Tower Services
 
-A **shared cluster** for anyone who wants to deploy an app. **Drone**, **CEM**, and **DIY LULC** are already running; yours can be next. Start with [Tower Services](tower-services/index.md). Live URLs: [Deployed Architecture](tower-services/deployed-architecture.md).
+A **shared cluster** for anyone who wants to deploy an app. **Drone**, **CEM**, and **DIY LULC** are already running; yours can be next. Start with [Tower Services](tower-services/index.md). Live URLs: [Deployed Architecture](tower-services/deployed-architecture.md). Deploy or update on the tower, and fix proxy / Nginx issues: [Deploy, update, and troubleshoot](tower-services/deploy-and-troubleshoot.md).
 
 [Open Tower Services](tower-services/index.md){ .md-button }
