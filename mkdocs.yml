@@ -84,6 +84,9 @@ extra:
 extra_css:
   - stylesheets/extra.css
 
+extra_javascript:
+  - javascripts/api-metadata.js
+
 plugins:
   - search
   - blog
@@ -144,6 +147,7 @@ nav:
       - use-precomputed-data/index.md
       - How Current Data Was Computed: use-precomputed-data/how-current-data-was-computed.md
       - Get and Explore Public APIs: use-precomputed-data/public-apis.md
+      - API Metadata: use-precomputed-data/api-metadata.md
       - STAC Specs: use-precomputed-data/stac-specs.md
   - Develop CoRE Stack:
       - developers/index.md

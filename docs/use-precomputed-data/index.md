@@ -12,9 +12,10 @@ This section is for people who want to discover, inspect, download, and reuse Co
 
 1. Move to [Public APIs](public-apis.md) for API keys, Swagger, ReDoc, and the public API catalog.
 2. Try the [Water Balance Analysis](public-apis.md#water-balance-analysis) or [Cropping Intensity Analysis](public-apis.md#cropping-intensity-analysis) notebooks when you want a worked API example.
-3. Use [STAC Specs](stac-specs.md) when you need metadata, styles, and download structure.
-4. [CoRE Stack GEE App](https://ee-corestackdev.projects.earthengine.app/view/core-stack-gee-app): browse public layers directly in Earth Engine.
-5. [How Current Data Was Computed](how-current-data-was-computed.md): when you want to understand which pipeline family produced a dataset.
+3. Use [API Metadata](api-metadata.md) when you need the fields, types, units, and descriptions returned by the public APIs.
+4. Use [STAC Specs](stac-specs.md) when you need metadata, styles, and download structure.
+5. [CoRE Stack GEE App](https://ee-corestackdev.projects.earthengine.app/view/core-stack-gee-app): browse public layers directly in Earth Engine.
+6. [How Current Data Was Computed](how-current-data-was-computed.md): when you want to understand which pipeline family produced a dataset.
 
 ---
 

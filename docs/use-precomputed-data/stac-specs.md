@@ -80,6 +80,8 @@ These are complementary:
 - STAC gives you asset-centric metadata and downloads
 - public APIs give you task-centric and app-centric payloads
 
+For field-level response schemas and descriptions, see [API Metadata](api-metadata.md).
+
 Both connect back to the same computation and publication pipeline.
 
 ---
