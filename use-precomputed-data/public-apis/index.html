@@ -61,7 +61,20 @@
 
     
     
-  </head>
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Get and Explore Public APIs - CoRE Stack Documentation" />
+<meta property="og:description" content="Community Resource Planning Stack - open geospatial infrastructure for public data access, computation pipelines, and grounded planning." />
+<meta property="og:image" content="https://docs.core-stack.org/assets/images/social/use-precomputed-data/public-apis.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://docs.core-stack.org/use-precomputed-data/public-apis/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="Get and Explore Public APIs - CoRE Stack Documentation" />
+<meta property="twitter:description" content="Community Resource Planning Stack - open geospatial infrastructure for public data access, computation pipelines, and grounded planning." />
+<meta property="twitter:image" content="https://docs.core-stack.org/assets/images/social/use-precomputed-data/public-apis.png" />
+</head>
   
   
     
@@ -629,6 +642,8 @@
       
         
       
+        
+      
     
     
     
@@ -684,6 +699,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -783,10 +826,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-generate-an-api-key" class="md-nav__link">
+  <a href="#1-authentication" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Generate An API Key
+        1. Authentication
       
     </span>
   </a>
@@ -794,13 +837,41 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-inspect-the-public-data" class="md-nav__link">
+  <a href="#2-base-url-versions-v1-vs-v2-interactive-docs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Inspect The Public Data
+        2. Base URL, Versions (v1 vs v2) &amp; Interactive Docs
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="2. Base URL, Versions (v1 vs v2) &amp; Interactive Docs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-version-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Version Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-v2-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key v2 Enhancements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -812,6 +883,56 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="3. Public API Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#auth-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auth APIs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataset-apis-v1-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset APIs (v1 &amp; v2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waterbody-apis-v1-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Waterbody APIs (v1 &amp; v2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-behavior-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Behavior &amp; Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1395,8 +1516,6 @@
       
         
       
-        
-      
     
     
     
@@ -1487,34 +1606,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../community/know-your-landscape/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Know Your Landscape Guide
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
       
@@ -1543,7 +1634,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_4" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -1565,14 +1656,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2693,10 +2784,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-generate-an-api-key" class="md-nav__link">
+  <a href="#1-authentication" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Generate An API Key
+        1. Authentication
       
     </span>
   </a>
@@ -2704,13 +2795,41 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-inspect-the-public-data" class="md-nav__link">
+  <a href="#2-base-url-versions-v1-vs-v2-interactive-docs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Inspect The Public Data
+        2. Base URL, Versions (v1 vs v2) &amp; Interactive Docs
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="2. Base URL, Versions (v1 vs v2) &amp; Interactive Docs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-version-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Version Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-v2-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key v2 Enhancements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2722,6 +2841,56 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="3. Public API Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#auth-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Auth APIs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataset-apis-v1-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset APIs (v1 &amp; v2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waterbody-apis-v1-v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Waterbody APIs (v1 &amp; v2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#important-behavior-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important Behavior &amp; Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2899,92 +3068,245 @@
 
 
 <h1 id="public-apis">Public APIs<a class="headerlink" href="#public-apis" title="Permanent link">&para;</a></h1>
-<p>This page is a one-stop path if you simply want to access and use CoRE Stack public data:</p>
+<p>This page is a one-stop path if you want to authenticate, explore, and consume CoRE Stack's precomputed public geospatial data using the <strong>v1</strong> and <strong>v2</strong> REST APIs.</p>
 <hr />
-<h2 id="1-generate-an-api-key">1. Generate An API Key<a class="headerlink" href="#1-generate-an-api-key" title="Permanent link">&para;</a></h2>
-<p>For public dataset access:</p>
+<h2 id="1-authentication">1. Authentication<a class="headerlink" href="#1-authentication" title="Permanent link">&para;</a></h2>
+<p>Authenticate Dataset and Waterbody API requests by sending your API key in the <code>X-API-Key</code> header on every request:</p>
+<div class="language-http highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="err">X-API-Key: &lt;your-api-key&gt;</span>
+</span></code></pre></div>
+<p>You can create an API key either through the <strong>CoRE Stack Dashboard</strong> (including account registration) or programmatically via the <strong>Auth APIs</strong>.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Dashboard (Register &amp; Generate Key)</label><label for="__tabbed_1_2">API Authentication (JWT → API Key)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Use this flow if you are creating a new account or prefer managing keys in the browser:</p>
 <ol>
 <li><a class="md-button md-button--primary" href="https://dashboard.core-stack.org/">Register or sign in at dashboard.core-stack.org</a></li>
-<li>Generate an API key from the dashboard</li>
-<li>Send it as the <code>X-API-Key</code> header on <code>public_api</code> APIs</li>
+<li>Generate an API key from your dashboard account.</li>
+<li>Send that key as the <code>X-API-Key</code> header on every Dataset and Waterbody API request.</li>
 </ol>
+</div>
+<div class="tabbed-block">
+<p>If you already have a CoRE Stack account (<code>username</code> and <code>password</code>), you can generate or deactivate API keys programmatically using the Auth APIs documented on <a href="https://api-doc.core-stack.org/">api-doc.core-stack.org</a>:</p>
+<p><strong>Step 1 — Create a session (get a JWT <code>access</code> token)</strong></p>
+<p><code>POST https://geoserver.core-stack.org/api/v1/auth/login/</code></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;https://geoserver.core-stack.org/api/v1/auth/login/&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;username&quot;: &quot;&lt;your-username&gt;&quot;, &quot;password&quot;: &quot;&lt;your-password&gt;&quot;}&#39;</span>
+</span></code></pre></div>
+<p>Returns <code>access</code>, <code>refresh</code>, and <code>user</code>. Tokens expire; call this endpoint again for a new pair.</p>
+<p><strong>Step 2 — Create an API key</strong></p>
+<p><code>POST https://geoserver.core-stack.org/api/v1/generate_api_key/</code></p>
+<p>Send <code>Authorization: Bearer &lt;access&gt;</code> from Step 1. Pass an empty JSON body <code>{}</code> or optionally specify <code>name</code> and <code>expiry_days</code> (default <code>3000</code> days):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;https://geoserver.core-stack.org/api/v1/generate_api_key/&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;access-token&gt;&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;: &quot;Partner integration key&quot;, &quot;expiry_days&quot;: 3000}&#39;</span>
+</span></code></pre></div>
+<p>Returns <code>data.api_key</code>. Copy that value and pass it as <code>X-API-Key: &lt;your-api-key&gt;</code> on subsequent requests.</p>
+<div class="admonition note">
+<p class="admonition-title">Deactivating a key</p>
+<p>To revoke an existing key, call <code>POST /api/v1/generate_api_key/</code> with <code>Authorization: Bearer &lt;access&gt;</code> and body <code>{"action": "deactivate", "user_id": &lt;id&gt;, "api_key": "&lt;key&gt;"}</code>.</p>
+</div>
+</div>
+</div>
+</div>
 <hr />
-<h2 id="2-inspect-the-public-data">2. Inspect The Public Data<a class="headerlink" href="#2-inspect-the-public-data" title="Permanent link">&para;</a></h2>
-<p>Two direct tools are useful here:</p>
+<h2 id="2-base-url-versions-v1-vs-v2-interactive-docs">2. Base URL, Versions (v1 vs v2) &amp; Interactive Docs<a class="headerlink" href="#2-base-url-versions-v1-vs-v2-interactive-docs" title="Permanent link">&para;</a></h2>
+<p><strong>Base URL:</strong> <code>https://geoserver.core-stack.org</code></p>
+<p>Two interactive references are available:</p>
 <ul>
-<li><a href="https://api-doc.core-stack.org/">ReDoc</a>: better for reading grouped API paths and schema details carefully.</li>
-<li><a class="md-button md-button--primary" href="https://geoserver.core-stack.org/swagger/">Swagger</a>
-<strong>Quick API call Tryout!</strong></li>
+<li><a href="https://api-doc.core-stack.org/">ReDoc (api-doc.core-stack.org)</a>: best for reading grouped Auth, v1, and v2 API paths, parameters, and response schemas.</li>
+<li><a class="md-button md-button--primary" href="https://geoserver.core-stack.org/swagger/">Swagger</a> — quick in-browser API tryout.</li>
 </ul>
-<hr />
-<h2 id="3-public-api-endpoints">3. Public API Endpoints<a class="headerlink" href="#3-public-api-endpoints" title="Permanent link">&para;</a></h2>
-<p>This is the practical pattern for moving from discovery to analysis with the public data APIs.</p>
+<h3 id="api-version-comparison">API Version Comparison<a class="headerlink" href="#api-version-comparison" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>API path</th>
+<th>Version</th>
+<th>Prefix</th>
+<th>Response format</th>
+<th>Error format</th>
+<th>Recommended for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>v1</strong></td>
+<td><code>/api/v1/</code></td>
+<td>Raw JSON (top-level object or GeoJSON <code>FeatureCollection</code>)</td>
+<td><code>{"error": "..."}</code></td>
+<td>Existing integrations</td>
+</tr>
+<tr>
+<td><strong>v2</strong></td>
+<td><code>/api/v2/</code></td>
+<td>Standardized envelope <code>{status, error_message, data}</code> with units, hints, and legends</td>
+<td><code>{status, error_message, data}</code></td>
+<td><strong>New integrations</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="key-v2-enhancements">Key v2 Enhancements<a class="headerlink" href="#key-v2-enhancements" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Envelope &amp; metadata:</strong> Every v2 response wraps results in <code>{status, error_message, data}</code> and includes field hints, units (e.g., <code>fortnight_units</code>, <code>indicator_units</code>, <code>layer_field_units</code>), and code-to-label <code>indicator_legends</code>.</li>
+<li><strong>Filtered active locations:</strong> <code>GET /api/v2/get_active_locations/</code> accepts optional <code>state</code>, <code>district</code>, and <code>tehsil</code> (alias <code>block</code>) query filters.</li>
+<li><strong>Selective tehsil sheets:</strong> <code>GET /api/v2/get_tehsil_data/</code> accepts <code>data=all</code> (default) or comma-separated / repeated sheet names such as <code>data=croppingdrought_kharif,stream_order</code>.</li>
+<li><strong>Field filtering:</strong> <code>GET /api/v2/get_mws_data/</code> (<code>fields=et,precipitation</code>) and <code>GET /api/v2/get_mws_kyl_indicators/</code> (<code>fields=area,drought_category</code>) let you request only the metrics you need.</li>
+<li><strong>Aligned hydrology time series:</strong> <code>GET /api/v2/get_mws_data/</code> returns aligned ~15-day arrays in <code>data.fortnight</code> (<code>time</code>, <code>et</code>, <code>runoff</code>, <code>precipitation</code>) with <code>data.fortnight_units</code>, instead of the v1 <code>time_series</code> row list.</li>
+<li><strong>Single-feature geometry lookup:</strong> <code>GET /api/v2/get_mws_geometries/</code> accepts optional <code>mws_id</code>, and <code>GET /api/v2/get_village_geometries/</code> accepts optional <code>village_id</code>. Geometry <code>data</code> is a GeoJSON <code>FeatureCollection</code> you can open directly in QGIS.</li>
+</ul>
+<hr />
+<h2 id="3-public-api-endpoints">3. Public API Endpoints<a class="headerlink" href="#3-public-api-endpoints" title="Permanent link">&para;</a></h2>
+<h3 id="auth-apis">Auth APIs<a class="headerlink" href="#auth-apis" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method &amp; Path</th>
+<th>Summary</th>
+<th>Auth / Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST /api/v1/auth/login/</code></td>
+<td>Create a session and return JWT <code>access</code>, <code>refresh</code>, and <code>user</code></td>
+<td>Body: <code>username</code>, <code>password</code></td>
+</tr>
+<tr>
+<td><code>POST /api/v1/generate_api_key/</code></td>
+<td>Create (or deactivate) an <code>X-API-Key</code></td>
+<td>Header: <code>Authorization: Bearer &lt;access&gt;</code>; Body: <code>{}</code> or <code>name</code>, <code>expiry_days</code> (or <code>action="deactivate"</code>, <code>user_id</code>, <code>api_key</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dataset-apis-v1-v2">Dataset APIs (v1 &amp; v2)<a class="headerlink" href="#dataset-apis-v1-v2" title="Permanent link">&para;</a></h3>
+<p>All Dataset APIs require <code>X-API-Key: &lt;your-api-key&gt;</code>. Use <code>/api/v2/</code> for new integrations; <code>/api/v1/</code> remains available for existing clients.</p>
+<table>
+<thead>
+<tr>
+<th>v2 Path (Recommended)</th>
+<th>v1 Path (Legacy)</th>
 <th>What it does</th>
+<th>Key parameters &amp; v2 additions</th>
 <th>Source</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>GET /api/v1/get_admin_details_by_latlon/</code></td>
-<td>state, district, tehsil for a coordinate</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L43-L88">get_admin_details_by_lat_lon()</a></td>
-</tr>
-<tr>
-<td><code>GET /api/v1/get_mwsid_by_latlon/</code></td>
-<td>MWS identifier for a coordinate</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L91-L131">get_mws_by_lat_lon()</a></td>
-</tr>
-<tr>
-<td><code>GET /api/v1/get_tehsil_data/</code></td>
-<td>tehsil JSON derived from stats spreadsheets</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L186-L235">generate_tehsil_data()</a></td>
-</tr>
-<tr>
-<td><code>GET /api/v1/get_mws_data/</code></td>
-<td>MWS time-series data</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L134-L183">get_mws_data()</a></td>
-</tr>
-<tr>
-<td><code>GET /api/v1/get_mws_kyl_indicators/</code></td>
-<td>KYL indicator subset for one MWS</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L238-L296">get_mws_json_by_kyl_indicator()</a></td>
-</tr>
-<tr>
-<td><code>GET /api/v1/get_generated_layer_urls/</code></td>
-<td>generated vector or raster layer URLs</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L299-L329">get_generated_layer_urls()</a></td>
-</tr>
-<tr>
-<td><code>GET /api/v1/get_mws_report/</code></td>
-<td>report URL for one MWS</td>
-<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L343-L399">get_mws_report_urls()</a></td>
-</tr>
-<tr>
+<td><code>GET /api/v2/get_active_locations/</code></td>
 <td><code>GET /api/v1/get_active_locations/</code></td>
-<td>activated location inventory</td>
+<td>List tehsils with precomputed datasets</td>
+<td>v2 adds optional <code>state</code>, <code>district</code>, <code>tehsil</code> (alias <code>block</code>) filters</td>
 <td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L404-L423">get_active_locations()</a></td>
 </tr>
 <tr>
+<td><code>GET /api/v2/get_admin_details_by_latlon/</code></td>
+<td><code>GET /api/v1/get_admin_details_by_latlon/</code></td>
+<td>Retrieve <code>State</code>, <code>District</code>, <code>Tehsil</code> for a WGS84 point</td>
+<td><code>latitude</code>, <code>longitude</code>; v2 returns <code>admin_details</code> + <code>admin_field_hints</code></td>
+<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L43-L88">get_admin_details_by_lat_lon()</a></td>
+</tr>
+<tr>
+<td><code>GET /api/v2/get_mwsid_by_latlon/</code></td>
+<td><code>GET /api/v1/get_mwsid_by_latlon/</code></td>
+<td>Retrieve the micro-watershed ID (<code>uid</code> / <code>mws_id</code>) for a point</td>
+<td><code>latitude</code>, <code>longitude</code>; v2 returns <code>mws_details</code> + <code>mws_field_hints</code></td>
+<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L91-L131">get_mws_by_lat_lon()</a></td>
+</tr>
+<tr>
+<td><code>GET /api/v2/get_tehsil_data/</code></td>
+<td><code>GET /api/v1/get_tehsil_data/</code></td>
+<td>List analytical sheets for a tehsil (drought, hydrology, LULC, NREGA, etc.)</td>
+<td><code>state</code>, <code>district</code>, <code>tehsil</code>; v2 adds optional <code>data=</code> sheet filter (e.g. <code>data=croppingdrought_kharif,stream_order</code>)</td>
+<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L186-L235">generate_tehsil_data()</a></td>
+</tr>
+<tr>
+<td><code>GET /api/v2/get_mws_data/</code></td>
+<td><code>GET /api/v1/get_mws_data/</code></td>
+<td>Retrieve hydrology time series (ET, runoff, precipitation) for one MWS</td>
+<td><code>state</code>, <code>district</code>, <code>tehsil</code>, <code>mws_id</code>; v2 adds optional <code>fields=</code> and returns aligned <code>data.fortnight</code> + <code>fortnight_units</code></td>
+<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L134-L183">get_mws_data()</a></td>
+</tr>
+<tr>
+<td><code>GET /api/v2/get_mws_kyl_indicators/</code></td>
+<td><code>GET /api/v1/get_mws_kyl_indicators/</code></td>
+<td>Retrieve single-row KYL indicator snapshot for one MWS</td>
+<td><code>state</code>, <code>district</code>, <code>tehsil</code>, <code>mws_id</code>; v2 adds optional <code>fields=</code>, <code>indicator_units</code>, and <code>indicator_legends</code></td>
+<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L238-L296">get_mws_json_by_kyl_indicator()</a></td>
+</tr>
+<tr>
+<td><code>GET /api/v2/get_generated_layer_urls/</code></td>
+<td><code>GET /api/v1/get_generated_layer_urls/</code></td>
+<td>List generated GeoServer WFS/WCS layer URLs for a tehsil</td>
+<td><code>state</code>, <code>district</code>, <code>tehsil</code>; v2 returns <code>layers</code> + <code>layer_field_units</code></td>
+<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L299-L329">get_generated_layer_urls()</a></td>
+</tr>
+<tr>
+<td><code>GET /api/v2/get_mws_report/</code></td>
+<td><code>GET /api/v1/get_mws_report/</code></td>
+<td>Retrieve PDF/HTML report URL for one MWS</td>
+<td><code>state</code>, <code>district</code>, <code>tehsil</code>, <code>mws_id</code>; v2 returns <code>report.Mws_report_url</code> + <code>report_field_hints</code></td>
+<td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L343-L399">get_mws_report_urls()</a></td>
+</tr>
+<tr>
+<td><code>GET /api/v2/get_mws_geometries/</code></td>
 <td><code>GET /api/v1/get_mws_geometries/</code></td>
-<td>MWS geometries via GeoServer</td>
+<td>List micro-watershed polygons (GeoJSON <code>FeatureCollection</code>)</td>
+<td><code>state</code>, <code>district</code>, <code>tehsil</code>; v2 adds optional <code>mws_id</code> to fetch a single feature</td>
 <td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L428-L455">get_mws_geometries()</a></td>
 </tr>
 <tr>
+<td><code>GET /api/v2/get_village_geometries/</code></td>
 <td><code>GET /api/v1/get_village_geometries/</code></td>
-<td>village geometries via GeoServer</td>
+<td>List village / panchayat polygons (GeoJSON <code>FeatureCollection</code>)</td>
+<td><code>state</code>, <code>district</code>, <code>tehsil</code>; v2 adds optional <code>village_id</code> to fetch a single feature</td>
 <td><a href="https://github.com/core-stack-org/core-stack-backend/blob/main/public_api/api.py#L460-L487">get_village_geometries()</a></td>
 </tr>
 </tbody>
 </table>
+<h3 id="waterbody-apis-v1-v2">Waterbody APIs (v1 &amp; v2)<a class="headerlink" href="#waterbody-apis-v1-v2" title="Permanent link">&para;</a></h3>
+<p>Remotely sensed surface waterbody inventories and zone-of-influence (<code>zoi</code>) indicators (see <a href="../api-metadata/#waterbody-apis">API Metadata — Waterbody APIs</a> for field definitions):</p>
+<table>
+<thead>
+<tr>
+<th>v2 Path (Recommended)</th>
+<th>v1 Path (Legacy)</th>
+<th>What it does</th>
+<th>Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /api/v2/get_waterbodies_data_by_admin/</code></td>
+<td><code>GET /api/v1/get_waterbodies_data_by_admin/</code></td>
+<td>List every remotely sensed surface waterbody in a tehsil (including <code>UID</code>, <code>MWS_UID</code>, area, <code>zoi</code>, and <code>zoi_properties</code>)</td>
+<td><code>state</code>, <code>district</code>, <code>tehsil</code>, optional <code>regenerate</code> (<code>true</code>/<code>1</code>/<code>yes</code>)</td>
+</tr>
+<tr>
+<td><code>GET /api/v2/get_waterbody_data/</code></td>
+<td><code>GET /api/v1/get_waterbody_data/</code></td>
+<td>Retrieve one remotely sensed waterbody by <code>uid</code></td>
+<td><code>state</code>, <code>district</code>, <code>tehsil</code>, <code>uid</code>, optional <code>regenerate</code> (<code>true</code>/<code>1</code>/<code>yes</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="important-behavior-error-handling">Important Behavior &amp; Error Handling<a class="headerlink" href="#important-behavior-error-handling" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Boundary micro-watershed de-duplication:</strong> A tehsil includes all micro-watersheds that overlap its boundary. When aggregating across multiple tehsils (for example, district- or state-level analysis), <strong>de-duplicate rows and features on <code>uid</code> / <code>mws_id</code></strong> so boundary watersheds are not counted twice.</li>
+<li><strong>Zero-occurrence defaults (<code>forest_fire</code> and <code>mining</code>):</strong> When a micro-watershed has no recorded forest fires or mining sites, <code>forest_fire</code> (including KYL <code>fire_count_per_year</code>) and <code>mining</code> return <code>0</code> with <code>200 OK</code> rather than <code>-9999</code>, <code>null</code>, or missing-sheet errors.</li>
+<li><strong>Pan-India MWS lookup fallback (<code>get_mwsid_by_latlon</code>):</strong> Queries the per-tehsil GeoServer WFS layer first for active locations, and automatically falls back to the spatially indexed pan-India micro-watershed layer when a per-tehsil layer is not yet published.</li>
+<li><strong>Published layers only (<code>get_generated_layer_urls</code>):</strong> Only layers synced to GeoServer are returned. If layers are not yet published for a location, the API returns <code>404</code> (<code>LAYER_NOT_PUBLISHED</code> on v2) with: <em>"Layers are not yet published for this state, district, tehsil. The layers will soon be available."</em></li>
+<li><strong>Fortnightly hydrology fallback (<code>get_mws_data</code>):</strong> If the fortnightly layer is not published for a tehsil, <code>get_mws_data</code> returns <code>404</code> (<code>LAYER_NOT_PUBLISHED</code>) with <code>details.fallback: "get_tehsil_data?data=hydrological_seasonal"</code>.</li>
+<li><strong>Structured error codes:</strong> Missing generated stats on <code>get_mws_kyl_indicators</code> / <code>get_mws_report</code> return <code>404</code> (<code>DATA_NOT_GENERATED</code>), and GeoServer timeouts or upstream 5xx responses return <code>502</code> (<code>UPSTREAM_UNAVAILABLE</code>) instead of empty <code>200 OK</code> responses. See <a href="../../reference/api-errors/">API Errors Reference</a> for details.</li>
+</ul>
 <hr />
 <h2 id="4-recommended-api-workflow">4. Recommended API Workflow<a class="headerlink" href="#4-recommended-api-workflow" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>GET /api/v1/get_active_locations/</code> if you want only places currently active in the public surface</li>
-</ul>
+<p>Follow this sequence to go from discovery to analysis (using <code>/api/v2/</code> for new integrations, or <code>/api/v1/</code> for existing ones):</p>
+<ol>
+<li><strong>List active locations</strong> — Call <code>GET /api/v2/get_active_locations/</code> (optionally filtered by <code>state</code>, <code>district</code>, <code>tehsil</code>) to see which tehsils already have precomputed data. To request a new tehsil, use the <a href="https://dashboard.core-stack.org/locationForm/">Geospatial Data Request Form</a>.</li>
+<li><strong>Resolve coordinates (optional)</strong> — If you start from a point, call <code>GET /api/v2/get_admin_details_by_latlon/</code> or <code>GET /api/v2/get_mwsid_by_latlon/</code> to get exact <code>state</code>, <code>district</code>, <code>tehsil</code>, and <code>uid</code> (<code>mws_id</code>) values.</li>
+<li><strong>Fetch layers, geometries, or analytical tables</strong> — Pass those exact place names and <code>mws_id</code> to the dataset or waterbody routes below.</li>
+</ol>
 <h2 id="example-notebooks">Example Notebooks<a class="headerlink" href="#example-notebooks" title="Permanent link">&para;</a></h2>
 <p>These Colab notebooks are a good first step after you have an API key. They show how to turn CoRE Stack API responses into actual analysis, charts, and geospatial outputs.</p>
 <h3 id="water-balance-analysis">Water Balance Analysis<a class="headerlink" href="#water-balance-analysis" title="Permanent link">&para;</a></h3>
@@ -2996,7 +3318,7 @@
 <p>This notebook fetches MWS identifiers and uses the annual cropping-intensity dataset to inspect how land use changes across seasons and years.</p>
 <p>It breaks agricultural use into single-cropped, double-cropped, and triple-cropped percentages, making it useful for irrigation assessment, food-security analysis, agricultural change detection, and understanding the pulse of a region over time.</p>
 <h3 id="inventory-the-published-layers">Inventory the published layers<a class="headerlink" href="#inventory-the-published-layers" title="Permanent link">&para;</a></h3>
-<p>Call <code>GET /api/v1/get_generated_layer_urls/</code> and inspect:</p>
+<p>Call <code>GET /api/v2/get_generated_layer_urls/</code> (or <code>/api/v1/get_generated_layer_urls/</code>) and inspect:</p>
 <ul>
 <li><code>dataset_name</code></li>
 <li><code>layer_type</code></li>
@@ -3004,7 +3326,7 @@
 <li><code>style_url</code></li>
 <li><code>gee_asset_path</code></li>
 </ul>
-<p>The output url provides several ways to download and utilise the data:</p>
+<p>The output URL provides several ways to download and utilise the data:</p>
 <ul>
 <li>direct download</li>
 <li>QGIS loading</li>
@@ -3014,24 +3336,24 @@
 <h3 id="fetch-stable-geometries">Fetch stable geometries<a class="headerlink" href="#fetch-stable-geometries" title="Permanent link">&para;</a></h3>
 <p>Use:</p>
 <ul>
-<li><code>GET /api/v1/get_mws_geometries/</code></li>
-<li><code>GET /api/v1/get_village_geometries/</code></li>
+<li><code>GET /api/v2/get_mws_geometries/</code> (or <code>/api/v1/get_mws_geometries/</code>)</li>
+<li><code>GET /api/v2/get_village_geometries/</code> (or <code>/api/v1/get_village_geometries/</code>)</li>
 </ul>
 <p>The main practical join key to watch for is <code>uid</code> on micro-watershed-aligned outputs.</p>
 <h3 id="fetch-analytical-tables">Fetch analytical tables<a class="headerlink" href="#fetch-analytical-tables" title="Permanent link">&para;</a></h3>
 <p>Use:</p>
 <ul>
-<li><code>GET /api/v1/get_tehsil_data/</code> for tehsil-wide analytical tables keyed by watershed identifiers</li>
-<li><code>GET /api/v1/get_mws_data/</code> for one watershed time series</li>
-<li><code>GET /api/v1/get_mws_kyl_indicators/</code> for a compact watershed snapshot</li>
-<li><code>GET /api/v1/get_mws_report/</code> for report handoff URLs</li>
+<li><code>GET /api/v2/get_tehsil_data/</code> for tehsil-wide analytical tables keyed by watershed identifiers (optionally filtered with <code>data=</code>)</li>
+<li><code>GET /api/v2/get_mws_data/</code> for one watershed time series</li>
+<li><code>GET /api/v2/get_mws_kyl_indicators/</code> for a compact watershed snapshot</li>
+<li><code>GET /api/v2/get_mws_report/</code> for report handoff URLs</li>
 </ul>
 <h3 id="join-by-uid">Join by <code>uid</code><a class="headerlink" href="#join-by-uid" title="Permanent link">&para;</a></h3>
 <p>That is the central reuse pattern:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">geometries</span> <span class="o">=</span> <span class="n">fetch_mws_geometries</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">tehsil_data</span> <span class="o">=</span> <span class="n">fetch_tehsil_data</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">metric_table</span> <span class="o">=</span> <span class="n">build_metric_table</span><span class="p">(</span><span class="n">tehsil_data</span><span class="p">)</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">joined_geojson</span> <span class="o">=</span> <span class="n">join_metrics_to_geojson</span><span class="p">(</span><span class="n">geometries</span><span class="p">,</span> <span class="n">metric_table</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">geometries</span> <span class="o">=</span> <span class="n">fetch_mws_geometries</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">tehsil_data</span> <span class="o">=</span> <span class="n">fetch_tehsil_data</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">metric_table</span> <span class="o">=</span> <span class="n">build_metric_table</span><span class="p">(</span><span class="n">tehsil_data</span><span class="p">)</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">joined_geojson</span> <span class="o">=</span> <span class="n">join_metrics_to_geojson</span><span class="p">(</span><span class="n">geometries</span><span class="p">,</span> <span class="n">metric_table</span><span class="p">)</span>
 </span></code></pre></div>
 <p>In other words:</p>
 <ol>
@@ -3052,25 +3374,25 @@
 </ul>
 <p>The installer can test the same surface automatically during <code>public_api_check</code> if <code>PUBLIC_API_X_API_KEY</code> is configured in <code>nrm_app/.env</code>.</p>
 <p>Common commands:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Minimal smoke test</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>python<span class="w"> </span>installation/public_api_client.py<span class="w"> </span>smoke-test
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Resolve misspelled names using the active hierarchy</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>python<span class="w"> </span>installation/public_api_client.py<span class="w"> </span>resolve<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span>--state<span class="w"> </span>bihar<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span>--district<span class="w"> </span>jamu<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span>--tehsil<span class="w"> </span>jami
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># Download everything for one tehsil</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>python<span class="w"> </span>installation/public_api_client.py<span class="w"> </span>download<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span>--state<span class="w"> </span>assam<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span>--district<span class="w"> </span>cachar<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span>--tehsil<span class="w"> </span>lakhipur
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c1"># Resolve the containing tehsil from a point first</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>python<span class="w"> </span>installation/public_api_client.py<span class="w"> </span>download<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span>--latitude<span class="w"> </span><span class="m">24</span>.79<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">  </span>--longitude<span class="w"> </span><span class="m">92</span>.79
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Minimal smoke test</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>python<span class="w"> </span>installation/public_api_client.py<span class="w"> </span>smoke-test
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Resolve misspelled names using the active hierarchy</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>python<span class="w"> </span>installation/public_api_client.py<span class="w"> </span>resolve<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span>--state<span class="w"> </span>bihar<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span>--district<span class="w"> </span>jamu<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span>--tehsil<span class="w"> </span>jami
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># Download everything for one tehsil</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>python<span class="w"> </span>installation/public_api_client.py<span class="w"> </span>download<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">  </span>--state<span class="w"> </span>assam<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">  </span>--district<span class="w"> </span>cachar<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">  </span>--tehsil<span class="w"> </span>lakhipur
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="c1"># Resolve the containing tehsil from a point first</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>python<span class="w"> </span>installation/public_api_client.py<span class="w"> </span>download<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">  </span>--latitude<span class="w"> </span><span class="m">24</span>.79<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">  </span>--longitude<span class="w"> </span><span class="m">92</span>.79
 </span></code></pre></div>
 <p>Important runtime details:</p>
 <ul>

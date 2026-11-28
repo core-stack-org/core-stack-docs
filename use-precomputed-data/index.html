@@ -16,7 +16,7 @@
         <link rel="prev" href="../concepts/how-pipelines-work-algorithmically/">
       
       
-        <link rel="next" href="how-current-data-was-computed/">
+        <link rel="next" href="mcp/">
       
       
         
@@ -61,7 +61,20 @@
 
     
     
-  </head>
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Use PreComputed Geospatial Data - CoRE Stack Documentation" />
+<meta property="og:description" content="Community Resource Planning Stack - open geospatial infrastructure for public data access, computation pipelines, and grounded planning." />
+<meta property="og:image" content="https://docs.core-stack.org/assets/images/social/use-precomputed-data/index.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://docs.core-stack.org/use-precomputed-data/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="Use PreComputed Geospatial Data - CoRE Stack Documentation" />
+<meta property="twitter:description" content="Community Resource Planning Stack - open geospatial infrastructure for public data access, computation pipelines, and grounded planning." />
+<meta property="twitter:image" content="https://docs.core-stack.org/assets/images/social/use-precomputed-data/index.png" />
+</head>
   
   
     
@@ -629,6 +642,8 @@
       
         
       
+        
+      
     
     
     
@@ -684,6 +699,34 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1208,8 +1251,6 @@
       
         
       
-        
-      
     
     
     
@@ -1300,34 +1341,6 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../community/know-your-landscape/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Know Your Landscape Guide
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
     
     
       
@@ -1356,7 +1369,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_4" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -1378,14 +1391,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2600,12 +2613,13 @@
 <div class="admonition tip">
 <p class="admonition-title">Need an API key?</p>
 <p><a class="md-button md-button--primary" href="https://dashboard.core-stack.org/">Register or sign in at dashboard.core-stack.org</a>
-Then generate an API key before using the authenticated public-data APIs.</p>
+You can generate an <code>X-API-Key</code> directly from the dashboard, or programmatically via the Auth APIs (<code>POST /api/v1/auth/login/</code> followed by <code>POST /api/v1/generate_api_key/</code>). See <a href="public-apis/#1-authentication">Authentication</a> for both methods.</p>
 </div>
 <hr />
 <h2 id="key-pages">Key Pages<a class="headerlink" href="#key-pages" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Move to <a href="public-apis/">Public APIs</a> for API keys, Swagger, ReDoc, and the public API catalog.</li>
+<li>Start with <a href="mcp/">MCP</a> if you want to connect AI assistants and agents to CoRE Stack data using the Model Context Protocol.</li>
+<li>Move to <a href="public-apis/">Public APIs</a> for authentication (dashboard and API-based), v1 and v2 API catalogs, Swagger, and ReDoc.</li>
 <li>Try the <a href="public-apis/#water-balance-analysis">Water Balance Analysis</a> or <a href="public-apis/#cropping-intensity-analysis">Cropping Intensity Analysis</a> notebooks when you want a worked API example.</li>
 <li>Use <a href="api-metadata/">API Metadata</a> when you need the fields, types, units, and descriptions returned by the public APIs.</li>
 <li>Use <a href="stac-specs/">STAC Specs</a> when you need metadata, styles, and download structure.</li>
