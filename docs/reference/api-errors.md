@@ -131,6 +131,17 @@ Typical examples:
 - wrong organization or project identifier
 - stale layer or dataset URL
 
+### `LAYER_NOT_PUBLISHED`
+
+The requested GeoServer layer is not yet published for the given `state`, `district`, and `tehsil`.
+
+- On `get_mws_data`: returned when the fortnightly layer is unavailable, with `details.fallback: "get_tehsil_data?data=hydrological_seasonal"`.
+- On `get_generated_layer_urls`: returned when no GeoServer-synced layers exist yet for that location (*"Layers are not yet published for this state, district, tehsil. The layers will soon be available."*).
+
+### `DATA_NOT_GENERATED`
+
+Returned by `get_mws_kyl_indicators` and `get_mws_report` when the underlying stats / JSON files have not been generated yet for the requested location.
+
 ---
 
 ## 429 Rate Limited
@@ -153,9 +164,9 @@ Typical response guidance:
 
 The backend failed in an unexpected way.
 
-### `UPSTREAM_FAILURE`
+### `UPSTREAM_UNAVAILABLE` / `UPSTREAM_FAILURE`
 
-A dependency such as GeoServer, Earth Engine, or another external system failed or returned an invalid response.
+Returned with HTTP `502 Bad Gateway` when GeoServer, Earth Engine, or another upstream dependency times out, returns 5xx, or fails to respond (for example on `get_admin_details_by_latlon`, `get_mws_data`, or WFS-backed routes).
 
 ### `TIMEOUT`
 
